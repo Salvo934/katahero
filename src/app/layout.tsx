@@ -20,9 +20,9 @@ const dmSans = DM_Sans({
 
 const siteUrl = getSiteUrl();
 
-/** Anteprima link (Open Graph / Twitter): stesso asset di apple-icon in `src/app/apple-icon.png` → `/apple-icon.png`. */
+/** Anteprima quando si condivide il link (OG / Twitter / WhatsApp): `src/app/icon.png` → `/icon.png` — non l’immagine del case study in portfolio. */
 const shareImage = {
-  url: "/apple-icon.png",
+  url: "/icon.png",
   alt: `${SITE.name} — logo`,
   type: "image/png" as const,
 };
