@@ -8,8 +8,8 @@ const caseStudy = {
   coverAlt: "Ilario Simonetti in maglia da gioco, ritratto sul parquet",
   role: "Basket · Point guard · #7",
   location: "Italia · Benacquista Assicurazioni Latina",
-  liveUrl: "https://ilariosimonetti.vercel.app",
-  liveHostname: "ilariosimonetti.vercel.app",
+  liveUrl: "https://ilariosimonetti.katahero.com",
+  liveHostname: "ilariosimonetti.katahero.com",
   summary:
     "Sito ufficiale one-page per un atleta under pro: intro cinematografica, highlight YouTube, statistiche di stagione, gallery, biografia lunga, interviste, social e prototipo shop maglia — un solo link da mandare a club, media e tifosi.",
   context: {
