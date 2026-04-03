@@ -20,6 +20,13 @@ const dmSans = DM_Sans({
 
 const siteUrl = getSiteUrl();
 
+/** Anteprima link (Open Graph / Twitter): stesso asset di apple-icon in `src/app/apple-icon.png` → `/apple-icon.png`. */
+const shareImage = {
+  url: "/apple-icon.png",
+  alt: `${SITE.name} — logo`,
+  type: "image/png" as const,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -56,11 +63,13 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} | Personal branding per atleti e PT`,
     description: SITE.description,
+    images: [shareImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} | Personal branding sportivo`,
     description: SITE.description,
+    images: [shareImage.url],
   },
   robots: {
     index: true,
