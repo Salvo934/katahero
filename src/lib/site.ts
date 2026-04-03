@@ -15,9 +15,17 @@ export const SITE = {
   },
 } as const;
 
+/**
+ * URL canonico del sito (metadata, OG, sitemap, JSON-LD).
+ * Su Vercel usa l’host del deploy se `NEXT_PUBLIC_SITE_URL` non è impostato,
+ * così `og:image` e le anteprime link puntano al dominio giusto.
+ */
 export function getSiteUrl(): string {
   if (typeof process !== "undefined" && process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  }
+  if (typeof process !== "undefined" && process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
   }
   return "https://katahero.it";
 }

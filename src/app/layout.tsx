@@ -20,9 +20,12 @@ const dmSans = DM_Sans({
 
 const siteUrl = getSiteUrl();
 
-/** Anteprima quando si condivide il link (OG / Twitter / WhatsApp): `src/app/icon.png` → `/icon.png` — non l’immagine del case study in portfolio. */
+/** URL assoluto: crawler (WhatsApp, Facebook, LinkedIn) richiedono `og:image` assoluto e HTTPS. File: `src/app/icon.png` (1024×1024). */
+const shareImageUrl = new URL("/icon.png", `${siteUrl}/`).href;
 const shareImage = {
-  url: "/icon.png",
+  url: shareImageUrl,
+  width: 1024,
+  height: 1024,
   alt: `${SITE.name} — logo`,
   type: "image/png" as const,
 };
@@ -69,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE.name} | Personal branding sportivo`,
     description: SITE.description,
-    images: [shareImage.url],
+    images: [{ url: shareImageUrl, alt: shareImage.alt }],
   },
   robots: {
     index: true,
