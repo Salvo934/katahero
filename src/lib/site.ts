@@ -36,6 +36,14 @@ export function whatsappPackageUrl(
   setupEuro: number,
   monthlyEuro: number,
 ): string {
-  const text = `Ciao! Vorrei informazioni sul pacchetto ${planName} di ${SITE.name} (sito €${setupEuro} + abbonamento €${monthlyEuro}/mese).`;
+  const setup = new Intl.NumberFormat("it-IT", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(setupEuro);
+  const monthly = new Intl.NumberFormat("it-IT", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(monthlyEuro);
+  const text = `Ciao! Vorrei informazioni sul pacchetto ${planName} di ${SITE.name} (sito €${setup} + abbonamento €${monthly}/mese).`;
   return `${SITE.whatsappUrl}?text=${encodeURIComponent(text)}`;
 }

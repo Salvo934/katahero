@@ -2,92 +2,88 @@ import { whatsappPackageUrl } from "@/lib/site";
 
 type Tier = {
   name: "Starter" | "Pro" | "Elite";
+  /** Titolo con emoji (es. 🥉 Starter) */
+  heading: string;
   tagline: string;
   blurb: string;
-  setupLabel: string;
   setupEuro: number;
-  setupHint: string;
-  subLabel: string;
   monthlyEuro: number;
-  /** Aggiornamenti al sito inclusi nell’abbonamento (per mese). */
-  updatesPerMonth: number;
-  subHint: string;
   features: string[];
+  callout: string;
   highlighted: boolean;
 };
 
 const tiers: Tier[] = [
   {
     name: "Starter",
-    tagline: "Presenza essenziale, subito professionale",
-    blurb:
-      "Perfetto per chi vuole ordine visivo e una base solida: logo, palette e pagina che raccontano chi sei, con supporto leggero nel tempo.",
-    setupLabel: "Prezzo sito",
-    setupEuro: 99,
-    setupHint: "Progetto one-shot, consegnato e pronto all’uso",
-    subLabel: "Abbonamento",
-    monthlyEuro: 9,
-    updatesPerMonth: 1,
-    subHint: "Assistenza, contenuti e aggiornamenti sito inclusi nel piano",
+    heading: "🥉 Starter",
+    tagline: "Parti subito, senza pensieri",
+    blurb: "Per chi vuole essere online velocemente con una presenza pulita e professionale.",
+    setupEuro: 149,
+    monthlyEuro: 5.99,
     features: [
-      "Logo, colori e tipografia",
-      "One-page o mini-sito (template su misura)",
-      "Bio social e link in bio",
-      "Pacchetto post starter (template)",
+      "Sito one-page pronto (3-4 sezioni)",
+      "Logo base + colori + font",
+      "Bio professionale (atleta o PT)",
+      "Link in bio ottimizzato",
+      "Hosting e gestione inclusi",
     ],
+    callout: "Ideale per iniziare subito",
     highlighted: false,
   },
   {
     name: "Pro",
-    tagline: "Il brand completo che lavora ogni giorno",
+    heading: "🥈 Pro ⭐ (Consigliato)",
+    tagline: "Più clienti, più credibilità",
     blurb:
-      "Identità forte, piano editoriale e contenuti ricorrenti: il pacchetto più richiesto da atleti e PT che vogliono crescita costante e coerenza su tutti i canali.",
-    setupLabel: "Prezzo sito",
-    setupEuro: 199,
-    setupHint: "Include identità, sito/landing e kit digitale sponsor",
-    subLabel: "Abbonamento",
-    monthlyEuro: 19,
-    updatesPerMonth: 3,
-    subHint: "Piano editoriale, contenuti, report e priorità su WhatsApp",
+      "Per chi vuole un sito completo che presenti al meglio servizi, risultati o attività.",
+    setupEuro: 249,
+    monthlyEuro: 12.99,
     features: [
-      "Identità visiva completa + linee guida",
-      "Landing o sito multi-sezione",
-      "Piano editoriale 30 giorni + revisioni",
-      "Storytelling e tone of voice",
-      "Mini media kit digitale (PDF)",
+      "Sito multi-sezione (home + servizi + contatti 5-6 sezioni)",
+      "Design più curato e personalizzato",
+      "Sezioni dedicate (servizi, risultati, bio, contatti)",
+      "Ottimizzato mobile",
+      "2 aggiornamenti al mese inclusi",
     ],
+    callout: "Il miglior equilibrio qualità/prezzo",
     highlighted: true,
   },
   {
     name: "Elite",
-    tagline: "Massima visibilità e partnership",
-    blurb:
-      "Per chi ha esigenze da sponsor, eventi e stampa: direzione creativa, produzione e supporto premium con tempi dedicati.",
-    setupLabel: "Prezzo sito",
-    setupEuro: 299,
-    setupHint: "Shooting / video, landing avanzata o e-commerce leggero",
-    subLabel: "Abbonamento",
-    monthlyEuro: 29,
-    updatesPerMonth: 4,
-    subHint: "Content production, sponsor deck e priorità totale",
+    heading: "🥇 Elite",
+    tagline: "Tutto gestito, zero stress",
+    blurb: "Per chi vuole delegare tutto e avere un’immagine di alto livello.",
+    setupEuro: 349,
+    monthlyEuro: 19.99,
     features: [
-      "Tutto il Pro, con priorità sui tempi",
-      "Direzione creativa e set foto/video",
-      "Media kit stampa & digitale per sponsor",
-      "Supporto eventi e partnership",
-      "Revisioni incluse in fascia premium",
+      "Sito su misura (7-8 sezioni)",
+      "Struttura completa e professionale",
+      "4 aggiornamenti inclusi al mese",
+      "Supporto prioritario",
+      "Consulenza base su contenuti",
     ],
+    callout: "Pensiamo a tutto noi",
     highlighted: false,
   },
 ];
 
-function formatEuro(n: number) {
-  return `€${n}`;
+function formatSetupEuro(n: number) {
+  return new Intl.NumberFormat("it-IT", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(n);
 }
 
-function updatesLabel(n: number): string {
-  if (n === 1) return "1 aggiornamento al sito al mese";
-  return `${n} aggiornamenti al sito al mese`;
+function formatMonthlyEuro(n: number) {
+  return new Intl.NumberFormat("it-IT", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(n);
 }
 
 export function Packages() {
@@ -128,36 +124,31 @@ export function Packages() {
               >
                 {t.highlighted && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-black shadow-[0_8px_24px_-8px_rgba(0,229,160,0.6)]">
-                    Più scelto
+                    Consigliato
                   </span>
                 )}
 
                 <header className="text-center lg:text-left">
-                  <h3 className="font-display text-2xl font-bold text-white">{t.name}</h3>
+                  <h3 className="font-display text-2xl font-bold text-white">{t.heading}</h3>
                   <p className="mt-1 text-sm font-medium text-accent/90">{t.tagline}</p>
                   <p className="mt-4 text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
                 </header>
 
                 <div className="mt-8 grid gap-4">
                   <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">{t.setupLabel}</p>
-                    <p className="mt-1 font-display text-2xl font-bold text-white">{formatEuro(t.setupEuro)}</p>
-                    <p className="mt-2 text-xs leading-relaxed text-zinc-500">{t.setupHint}</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">💰 Una tantum</p>
+                    <p className="mt-1 font-display text-2xl font-bold text-white">{formatSetupEuro(t.setupEuro)}</p>
                   </div>
                   <div
                     className={`rounded-2xl border p-4 ${
                       t.highlighted ? "border-accent/35 bg-accent/8" : "border-white/10 bg-white/3"
                     }`}
                   >
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-accent/90">{t.subLabel}</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-accent/90">🔁 Abbonamento</p>
                     <p className="mt-1 font-display text-2xl font-bold text-accent">
-                      {formatEuro(t.monthlyEuro)}
+                      {formatMonthlyEuro(t.monthlyEuro)}
                       <span className="text-base font-semibold text-accent/80">/mese</span>
                     </p>
-                    <p className="mt-3 rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-[11px] font-medium leading-snug text-zinc-200">
-                      <span className="text-accent">Incluso:</span> {updatesLabel(t.updatesPerMonth)}
-                    </p>
-                    <p className="mt-3 text-xs leading-relaxed text-zinc-400">{t.subHint}</p>
                   </div>
                 </div>
 
@@ -165,18 +156,23 @@ export function Packages() {
                   {t.features.map((f) => (
                     <li key={f} className="flex gap-3">
                       <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
-                        ✓
+                        ✔
                       </span>
                       <span>{f}</span>
                     </li>
                   ))}
                 </ul>
 
+                <p className="mt-6 text-sm font-medium text-zinc-200">
+                  <span aria-hidden>👉 </span>
+                  {t.callout}
+                </p>
+
                 <a
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-8 inline-flex justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition ${
+                  className={`mt-6 inline-flex justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition ${
                     t.highlighted
                       ? "bg-accent text-black shadow-[0_12px_40px_-12px_rgba(0,229,160,0.55)] hover:brightness-110"
                       : "border border-white/20 text-white hover:bg-white/10"
@@ -187,6 +183,17 @@ export function Packages() {
               </article>
             );
           })}
+        </div>
+
+        <div className="mx-auto mt-14 max-w-2xl rounded-2xl border border-accent/25 bg-accent/5 px-6 py-8 text-center ring-1 ring-accent/15 sm:px-8">
+          <p className="text-2xl" aria-hidden>
+            👉
+          </p>
+          <p className="font-display mt-3 text-lg font-bold text-white sm:text-xl">Attivazione in 24–48 ore</p>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-300 sm:text-base">
+            Facciamo tutto noi. Tu ti concentri solo sul tuo lavoro
+          </p>
+          <p className="mt-3 text-sm font-medium text-accent sm:text-base">Perfetto per atleti e personal trainer</p>
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
