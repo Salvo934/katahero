@@ -33,7 +33,7 @@ const tiers: Tier[] = [
   },
   {
     name: "Pro",
-    heading: "🥈 Pro ⭐ (Consigliato)",
+    heading: "🥈 Pro ⭐",
     tagline: "Più clienti, più credibilità",
     blurb:
       "Per chi vuole un sito completo che presenti al meglio servizi, risultati o attività.",
