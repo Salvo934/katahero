@@ -20,8 +20,8 @@ const dmSans = DM_Sans({
 
 const siteUrl = getSiteUrl();
 
-/** URL assoluto: crawler (WhatsApp, Facebook, LinkedIn) richiedono `og:image` assoluto e HTTPS. File: `src/app/icon.png` (1024×1024). */
-const shareImageUrl = new URL("/icon.png", `${siteUrl}/`).href;
+/** URL assoluto: crawler (Instagram/Facebook, WhatsApp, LinkedIn) richiedono `og:image` assoluto e HTTPS. File: `src/app/apple-icon.png` (1024×1024). */
+const shareImageUrl = new URL("/apple-icon.png", `${siteUrl}/`).href;
 const shareImage = {
   url: shareImageUrl,
   width: 1024,
