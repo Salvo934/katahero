@@ -20,15 +20,7 @@ const dmSans = DM_Sans({
 
 const siteUrl = getSiteUrl();
 
-/** URL assoluto: crawler (Instagram/Facebook, WhatsApp, LinkedIn) richiedono `og:image` assoluto e HTTPS. File: `src/app/apple-icon.png` (1024×1024). */
-const shareImageUrl = new URL("/apple-icon.png", `${siteUrl}/`).href;
-const shareImage = {
-  url: shareImageUrl,
-  width: 1024,
-  height: 1024,
-  alt: `${SITE.name} — logo`,
-  type: "image/png" as const,
-};
+/** Anteprima link 1200×630: `opengraph-image.tsx` (Meta/Instagram); WhatsApp può usare la stessa risorsa. */
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -66,13 +58,11 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} | Personal branding per atleti e PT`,
     description: SITE.description,
-    images: [shareImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} | Personal branding sportivo`,
     description: SITE.description,
-    images: [{ url: shareImageUrl, alt: shareImage.alt }],
   },
   robots: {
     index: true,
