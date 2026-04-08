@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 export const runtime = "nodejs";
 
-export const alt = "KataHero — logo";
+export const alt = "KataHero — anteprima link";
 
 /** Formato consigliato da Meta (Instagram/Facebook) per le anteprime link: 1200×630, ~1.91:1. */
 export const size = { width: 1200, height: 630 };
@@ -18,7 +18,7 @@ function detectMime(buf: Buffer): string {
 }
 
 export default async function Image() {
-  const logoPath = join(process.cwd(), "src/app/apple-icon.png");
+  const logoPath = join(process.cwd(), "public/oj-image.png");
   const logoBuffer = await readFile(logoPath);
   const mime = detectMime(logoBuffer);
   const base64 = logoBuffer.toString("base64");
@@ -36,7 +36,7 @@ export default async function Image() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- richiesto da @vercel/og / Satori */}
-        <img alt="" height={560} src={`data:${mime};base64,${base64}`} width={560} />
+        <img alt="" height={630} src={`data:${mime};base64,${base64}`} width={630} />
       </div>
     ),
     { ...size },
