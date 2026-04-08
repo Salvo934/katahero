@@ -20,7 +20,14 @@ const dmSans = DM_Sans({
 
 const siteUrl = getSiteUrl();
 
-/** Anteprima link 1200×630: `opengraph-image.tsx` (Meta/Instagram); WhatsApp può usare la stessa risorsa. */
+/** Anteprima 1200×630: asset statico `public/og.png` in `openGraph.images` / `twitter.images`. */
+const ogImage = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: `${SITE.name} — personal branding per atleti e personal trainer`,
+  type: "image/png",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -58,11 +65,13 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} | Personal branding per atleti e PT`,
     description: SITE.description,
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} | Personal branding sportivo`,
     description: SITE.description,
+    images: [ogImage],
   },
   robots: {
     index: true,
