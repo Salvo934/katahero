@@ -27,7 +27,7 @@ export function getSiteUrl(): string {
   if (typeof process !== "undefined" && process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
   }
-  return "https://katahero.it";
+  return "https://katahero.com";
 }
 
 /** Link WhatsApp con testo che indica il pacchetto scelto (sito + abbonamento). */
