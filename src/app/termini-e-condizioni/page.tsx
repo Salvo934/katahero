@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/site/LegalPageShell";
+import { pageMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Termini e condizioni",
   description: `Condizioni generali di utilizzo del sito e dei servizi ${SITE.name}.`,
-  robots: { index: true, follow: true },
-};
+  path: "/termini-e-condizioni",
+});
 
 export default function TerminiCondizioniPage() {
   return (

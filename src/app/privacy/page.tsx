@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import { LegalPageShell } from "@/components/site/LegalPageShell";
+import { pageMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy policy",
   description: `Informativa sul trattamento dei dati personali per il sito ${SITE.name}.`,
-  robots: { index: true, follow: true },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
