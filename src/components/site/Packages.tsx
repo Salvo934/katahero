@@ -114,13 +114,13 @@ export function Packages() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr_auto_auto] lg:items-stretch lg:gap-x-6 lg:gap-y-0">
           {tiers.map((t) => {
             const waHref = whatsappPackageUrl(t.name, t.setupEuro, t.monthlyEuro);
             return (
               <article
                 key={t.name}
-                className={`relative flex flex-col rounded-3xl border p-8 transition hover:-translate-y-0.5 ${
+                className={`relative flex flex-col gap-8 rounded-3xl border p-8 transition hover:-translate-y-0.5 lg:grid lg:h-full lg:row-span-5 lg:grid-rows-subgrid ${
                   t.highlighted
                     ? "border-accent/45 bg-linear-to-b from-accent/12 via-zinc-900/80 to-zinc-950 shadow-[0_0_56px_-16px_rgba(0,229,160,0.4)] ring-1 ring-accent/20"
                     : "border-white/10 bg-white/2 hover:border-white/20"
@@ -132,13 +132,13 @@ export function Packages() {
                   </span>
                 )}
 
-                <header className="text-center lg:text-left">
+                <header className="min-h-0 text-center lg:text-left">
                   <h3 className="font-display text-2xl font-bold text-white">{t.heading}</h3>
                   <p className="mt-1 text-sm font-medium text-accent/90">{t.tagline}</p>
                   <p className="mt-4 text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
                 </header>
 
-                <div className="mt-8 grid gap-4">
+                <div className="grid min-h-0 gap-4">
                   <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
                     <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">💰 Una tantum</p>
                     <p className="mt-1 font-display text-2xl font-bold text-white">{formatSetupEuro(t.setupEuro)}</p>
@@ -156,7 +156,7 @@ export function Packages() {
                   </div>
                 </div>
 
-                <ul className="mt-8 flex-1 space-y-3 border-t border-white/10 pt-8 text-sm text-zinc-300">
+                <ul className="min-h-0 space-y-3 border-t border-white/10 pt-8 text-sm text-zinc-300">
                   {t.features.map((f) => (
                     <li key={f} className="flex gap-3">
                       <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
@@ -167,7 +167,7 @@ export function Packages() {
                   ))}
                 </ul>
 
-                <p className="mt-6 text-sm font-medium text-zinc-200">
+                <p className="text-sm font-medium text-zinc-200">
                   <span aria-hidden>👉 </span>
                   {t.callout}
                 </p>
@@ -176,7 +176,7 @@ export function Packages() {
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-6 inline-flex justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition ${
+                  className={`inline-flex justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition ${
                     t.highlighted
                       ? "bg-accent text-black shadow-[0_12px_40px_-12px_rgba(0,229,160,0.55)] hover:brightness-110"
                       : "border border-white/20 text-white hover:bg-white/10"
