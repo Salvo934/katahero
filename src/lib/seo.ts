@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
 import { SITE, getSiteUrl } from "@/lib/site";
 
-/**
- * Percorso pubblico dell’immagine per anteprime link (Open Graph + Twitter Card).
- * Default: `public/anteprima.png` — usata da WhatsApp, Instagram, Facebook, TikTok e crawler simili.
- * Override opzionale: `NEXT_PUBLIC_OG_IMAGE_PATH=/altro.png`.
- */
-function ogImagePath(): string {
-  const p = process.env.NEXT_PUBLIC_OG_IMAGE_PATH?.trim();
-  if (!p) return "/anteprima.png";
-  return p.startsWith("/") ? p : `/${p}`;
-}
+/** File in `public/anteprima.jpg` — unica immagine per anteprime link (OG + Twitter). */
+const OG_IMAGE_PATH = "/anteprima.jpg" as const;
 
 function absoluteUrl(path: string): string {
   const base = getSiteUrl().replace(/\/$/, "");
@@ -19,18 +11,19 @@ function absoluteUrl(path: string): string {
 }
 
 /**
- * Descriptor OG/Twitter con URL assoluti HTTPS (`url` + `secure_url`).
- * Meta/Instagram (stesso crawler di Facebook) richiedono spesso URL assoluti per mostrare l’immagine.
+ * Un solo asset per Open Graph e Twitter Card.
+ * Next.js emette i meta equivalenti a:
+ * og:image, og:image:secure_url, og:image:type, og:image:width, og:image:height
  */
 export function getOpenGraphImage() {
-  const url = absoluteUrl(ogImagePath());
+  const url = absoluteUrl(OG_IMAGE_PATH);
   return {
     url,
     secureUrl: url,
     width: 1200,
     height: 630,
-    alt: `${SITE.name} — personal branding per atleti e personal trainer`,
-    type: "image/png",
+    type: "image/jpeg",
+    alt: `${SITE.name} — Katahero.com`,
   };
 }
 
