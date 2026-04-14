@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { SITE, getSiteUrl } from "@/lib/site";
 
 /**
- * Percorso pubblico dell’immagine OG (default: `public/og.png`).
- * Per anteprime più leggibili su Instagram (card spesso su sfondo scuro), puoi usare una variante
- * più luminosa e impostare `NEXT_PUBLIC_OG_IMAGE_PATH=/nome-file.png`.
+ * Percorso pubblico dell’immagine per anteprime link (Open Graph + Twitter Card).
+ * Default: `public/anteprima.png` — usata da WhatsApp, Instagram, Facebook, TikTok e crawler simili.
+ * Override opzionale: `NEXT_PUBLIC_OG_IMAGE_PATH=/altro.png`.
  */
 function ogImagePath(): string {
   const p = process.env.NEXT_PUBLIC_OG_IMAGE_PATH?.trim();
-  if (!p) return "/og.png";
+  if (!p) return "/anteprima.png";
   return p.startsWith("/") ? p : `/${p}`;
 }
 
