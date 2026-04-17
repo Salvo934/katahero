@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { SITE, getSiteUrl } from "@/lib/site";
 
-/** File in `public/anteprima.jpg` — unica immagine per anteprime link (OG + Twitter). */
-const OG_IMAGE_PATH = "/anteprima.jpg" as const;
+/** File in `public/anteprima.png` — unica immagine per anteprime link (OG + Twitter). */
+const OG_IMAGE_PATH = "/anteprima.png" as const;
 
 function absoluteUrl(path: string): string {
   const base = getSiteUrl().replace(/\/$/, "");
@@ -22,7 +22,7 @@ export function getOpenGraphImage() {
     secureUrl: url,
     width: 1200,
     height: 630,
-    type: "image/jpeg",
+    type: "image/png",
     alt: `${SITE.name} — Katahero.com`,
   };
 }
