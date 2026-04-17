@@ -30,20 +30,18 @@ export function getSiteUrl(): string {
   return "https://www.katahero.com";
 }
 
-/** Link WhatsApp con testo che indica il pacchetto scelto (sito + abbonamento). */
+/**
+ * Link WhatsApp precompilato: nome pacchetto, mensilità e descrizione breve (es. tagline dalla card).
+ */
 export function whatsappPackageUrl(
   planName: string,
-  setupEuro: number,
   monthlyEuro: number,
+  shortDescription: string,
 ): string {
-  const setup = new Intl.NumberFormat("it-IT", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(setupEuro);
   const monthly = new Intl.NumberFormat("it-IT", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(monthlyEuro);
-  const text = `Ciao! Vorrei informazioni sul pacchetto ${planName} di ${SITE.name} (sito €${setup} + abbonamento €${monthly}/mese).`;
+  const text = `Ciao! Vorrei informazioni sul pacchetto ${planName} di ${SITE.name}: ${monthly}/mese. ${shortDescription}`;
   return `${SITE.whatsappUrl}?text=${encodeURIComponent(text)}`;
 }

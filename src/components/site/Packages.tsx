@@ -2,11 +2,9 @@ import { whatsappPackageUrl } from "@/lib/site";
 
 type Tier = {
   name: "Start" | "Pro" | "Elite";
-  /** Titolo con emoji (es. 🥉 START) */
   heading: string;
   tagline: string;
   blurb: string;
-  setupEuro: number;
   monthlyEuro: number;
   features: string[];
   callout: string;
@@ -19,7 +17,6 @@ const tiers: Tier[] = [
     heading: "🥉 START",
     tagline: "Il tuo sito online, senza complicazioni",
     blurb: "Perfetto per iniziare ad avere una presenza professionale con un unico link.",
-    setupEuro: 149,
     monthlyEuro: 8.99,
     features: [
       "Sito essenziale e pulito (4–5 sezioni)",
@@ -37,7 +34,6 @@ const tiers: Tier[] = [
     tagline: "Il tuo profilo che converte clienti",
     blurb:
       "Il piano più scelto da chi vuole trasformare il proprio link in uno strumento di lavoro.",
-    setupEuro: 299,
     monthlyEuro: 18.99,
     features: [
       "Sito completo e più personalizzato (6–7 sezioni)",
@@ -54,7 +50,6 @@ const tiers: Tier[] = [
     heading: "🥇 ELITE",
     tagline: "Il tuo brand, pronto per crescere",
     blurb: "Pensato per chi vuole distinguersi davvero e avere un supporto costante.",
-    setupEuro: 449,
     monthlyEuro: 28.99,
     features: [
       "Sito avanzato e completo (7–8 sezioni)",
@@ -69,16 +64,7 @@ const tiers: Tier[] = [
   },
 ];
 
-function formatSetupEuro(n: number) {
-  return new Intl.NumberFormat("it-IT", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(n);
-}
-
-function formatMonthlyEuro(n: number) {
+function formatEuro(n: number) {
   return new Intl.NumberFormat("it-IT", {
     style: "currency",
     currency: "EUR",
@@ -87,9 +73,52 @@ function formatMonthlyEuro(n: number) {
   }).format(n);
 }
 
-/** Abbonamento annuale: paghi 10 mensilità (sconto equivalente a 2 mesi). */
-function annualEuroTwoMonthsOff(monthlyEuro: number) {
+/** Annuale = 10 mensilità (sconto equivalente a 2 mesi). */
+function annualEuro(monthlyEuro: number) {
   return monthlyEuro * 10;
+}
+
+function TierPricing({
+  monthlyEuro,
+  highlighted,
+}: {
+  monthlyEuro: number;
+  highlighted: boolean;
+}) {
+  const annual = annualEuro(monthlyEuro);
+  const saving = monthlyEuro * 2;
+
+  return (
+    <div
+      className={`rounded-2xl border p-5 ${
+        highlighted
+          ? "border-accent/35 bg-linear-to-b from-accent/12 to-black/40 ring-1 ring-accent/15"
+          : "border-white/12 bg-black/35"
+      }`}
+    >
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-0 sm:divide-x sm:divide-white/10">
+        <div className="flex-1 sm:pr-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500">Mensile</p>
+          <p className="mt-2 font-display text-3xl font-bold tracking-tight tabular-nums text-white sm:text-[1.75rem]">
+            {formatEuro(monthlyEuro)}
+            <span className="text-lg font-semibold text-zinc-400">/mese</span>
+          </p>
+        </div>
+        <div className="flex-1 border-t border-white/10 pt-5 sm:border-t-0 sm:pl-5 sm:pt-0">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+            Annuale <span className="font-normal normal-case text-zinc-500">(2 mesi in regalo)</span>
+          </p>
+          <p className="mt-2 font-display text-3xl font-bold tracking-tight tabular-nums text-accent sm:text-[1.75rem]">
+            {formatEuro(annual)}
+            <span className="text-lg font-semibold text-accent/85">/anno</span>
+          </p>
+          <p className="mt-3 text-sm text-zinc-400">
+            Risparmi <span className="font-semibold text-zinc-200">{formatEuro(saving)}</span> rispetto a 12 mensilità
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function Packages() {
@@ -107,24 +136,22 @@ export function Packages() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
             Prezzi chiari,{" "}
-            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">modello ad abbonamento</span>
+            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">abbonamento flessibile</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Investimento iniziale per il <strong className="font-medium text-zinc-200">sito</strong>, più{" "}
-            <strong className="font-medium text-zinc-200">abbonamento</strong>{" "}
-            <strong className="font-medium text-zinc-200">mensile</strong> o{" "}
-            <strong className="font-medium text-zinc-200">annuale</strong> con sconto di due mesi. Scegli il piano e
-            scrivici su WhatsApp: ti confermiamo i dettagli.
+            Paghi <strong className="font-medium text-zinc-200">ogni mese</strong> oppure{" "}
+            <strong className="font-medium text-zinc-200">l&apos;anno intero</strong> con due mesi in regalo. Scegli il
+            piano e scrivici su WhatsApp: ti confermiamo i dettagli.
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr_auto_auto] lg:items-stretch lg:gap-x-6 lg:gap-y-0">
+        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-[auto_1fr_auto_auto] lg:items-stretch lg:gap-x-6">
           {tiers.map((t) => {
-            const waHref = whatsappPackageUrl(t.name, t.setupEuro, t.monthlyEuro);
+            const waHref = whatsappPackageUrl(t.name, t.monthlyEuro, t.tagline);
             return (
               <article
                 key={t.name}
-                className={`relative flex flex-col gap-8 rounded-3xl border p-8 transition hover:-translate-y-0.5 lg:grid lg:h-full lg:row-span-5 lg:grid-rows-subgrid ${
+                className={`relative flex flex-col gap-6 rounded-3xl border p-7 transition hover:-translate-y-0.5 sm:p-8 lg:grid lg:h-full lg:row-span-4 lg:grid-rows-subgrid lg:gap-8 ${
                   t.highlighted
                     ? "border-accent/45 bg-linear-to-b from-accent/12 via-zinc-900/80 to-zinc-950 shadow-[0_0_56px_-16px_rgba(0,229,160,0.4)] ring-1 ring-accent/20"
                     : "border-white/10 bg-white/2 hover:border-white/20"
@@ -136,59 +163,18 @@ export function Packages() {
                   </span>
                 )}
 
-                <header className="min-h-0 text-center lg:text-left">
-                  <h3 className="font-display text-2xl font-bold text-white">{t.heading}</h3>
-                  <p className="mt-1 text-sm font-medium text-accent/90">{t.tagline}</p>
-
-                  <div
-                    className={`mt-5 rounded-2xl border p-4 text-left sm:p-5 ${
-                      t.highlighted
-                        ? "border-accent/40 bg-linear-to-br from-accent/15 via-black/50 to-zinc-950 ring-1 ring-accent/20"
-                        : "border-white/15 bg-black/50"
-                    }`}
-                  >
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/90">
-                      Abbonamento — vedi l&apos;affare annuale
-                    </p>
-                    <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3">
-                      <div className="rounded-xl border border-white/10 bg-white/4 px-4 py-3">
-                        <p className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">Mensile</p>
-                        <p className="mt-1 font-display text-2xl font-bold tabular-nums text-white sm:text-3xl">
-                          {formatMonthlyEuro(t.monthlyEuro)}
-                          <span className="text-base font-semibold text-zinc-400 sm:text-lg">/mese</span>
-                        </p>
-                      </div>
-                      <div className="rounded-xl border border-accent/35 bg-accent/10 px-4 py-3 ring-1 ring-accent/20">
-                        <p className="text-[10px] font-medium uppercase tracking-wider text-accent/95">
-                          Annuale <span className="normal-case font-semibold text-white">(−2 mesi)</span>
-                        </p>
-                        <p className="mt-1 font-display text-2xl font-bold tabular-nums text-accent sm:text-3xl">
-                          {formatMonthlyEuro(annualEuroTwoMonthsOff(t.monthlyEuro))}
-                          <span className="text-base font-semibold text-accent/85 sm:text-lg">/anno</span>
-                        </p>
-                      </div>
-                    </div>
-                    <p className="mt-3 text-xs leading-relaxed text-zinc-400">
-                      Un anno in mensile: {formatMonthlyEuro(t.monthlyEuro * 12)} · Con l&apos;annuale paghi{" "}
-                      {formatMonthlyEuro(annualEuroTwoMonthsOff(t.monthlyEuro))} —{" "}
-                      <span className="font-semibold text-accent">
-                        risparmi {formatMonthlyEuro(t.monthlyEuro * 2)}
-                      </span>{" "}
-                      (equivalente a 10 mensilità).
-                    </p>
+                <header className="min-h-0 space-y-4 text-center lg:text-left">
+                  <div>
+                    <h3 className="font-display text-2xl font-bold text-white">{t.heading}</h3>
+                    <p className="mt-1.5 text-sm font-medium leading-snug text-accent/90">{t.tagline}</p>
                   </div>
 
-                  <p className="mt-4 text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
+                  <TierPricing monthlyEuro={t.monthlyEuro} highlighted={t.highlighted} />
+
+                  <p className="text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
                 </header>
 
-                <div className="grid min-h-0 gap-4">
-                  <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">💰 Una tantum</p>
-                    <p className="mt-1 font-display text-2xl font-bold text-white">{formatSetupEuro(t.setupEuro)}</p>
-                  </div>
-                </div>
-
-                <ul className="min-h-0 space-y-3 border-t border-white/10 pt-8 text-sm text-zinc-300">
+                <ul className="min-h-0 space-y-2.5 border-t border-white/10 pt-6 text-sm leading-relaxed text-zinc-300">
                   {t.features.map((f) => (
                     <li key={f} className="flex gap-3">
                       <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
@@ -199,7 +185,7 @@ export function Packages() {
                   ))}
                 </ul>
 
-                <p className="text-sm font-medium text-zinc-200">
+                <p className="text-sm font-medium leading-snug text-zinc-200">
                   <span aria-hidden>👉 </span>
                   {t.callout}
                 </p>
@@ -236,8 +222,8 @@ export function Packages() {
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
-          I valori sono da intendersi IVA esclusa o inclusa in base alla proposta. L’abbonamento è mensile o annuale (con
-          sconto equivalente a due mesi) con rinnovo secondo condizioni; disdetta come da contratto.
+          I valori sono da intendersi IVA esclusa o inclusa in base alla proposta. Abbonamento mensile o annuale (10
+          mensilità all&apos;anno); rinnovo e disdetta secondo condizioni in contratto.
         </p>
       </div>
     </section>
