@@ -32,7 +32,7 @@ export function LaunchOfferBanner() {
                 Listino bloccato per i primi progetti confermati
               </h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-[15px]">
-                Se entri tra i <strong className="font-semibold text-zinc-200">primi 10 clienti</strong>, Starter, Pro ed
+                Se entri tra i <strong className="font-semibold text-zinc-200">primi 10 clienti</strong>, Start, Pro ed
                 Elite restano ai <strong className="font-semibold text-zinc-200">prezzi che vedi in pagina</strong>{" "}
                 — niente sorprese dopo. Quando i posti finiscono, il listino può aggiornarsi.
               </p>

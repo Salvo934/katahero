@@ -1,8 +1,8 @@
 import { whatsappPackageUrl } from "@/lib/site";
 
 type Tier = {
-  name: "Starter" | "Pro" | "Elite";
-  /** Titolo con emoji (es. 🥉 Starter) */
+  name: "Start" | "Pro" | "Elite";
+  /** Titolo con emoji (es. 🥉 START) */
   heading: string;
   tagline: string;
   blurb: string;
@@ -15,59 +15,56 @@ type Tier = {
 
 const tiers: Tier[] = [
   {
-    name: "Starter",
-    heading: "🥉 Starter",
-    tagline: "Il tuo primo passo da atleta o personal trainer",
-    blurb:
-      "Parti subito con una presenza online pulita, credibile e pronta per essere condivisa con squadre, clienti o contatti.",
+    name: "Start",
+    heading: "🥉 START",
+    tagline: "Il tuo sito online, senza complicazioni",
+    blurb: "Perfetto per iniziare ad avere una presenza professionale con un unico link.",
     setupEuro: 149,
-    monthlyEuro: 5.99,
+    monthlyEuro: 8.99,
     features: [
-      "Sito one-page professionale (3–4 sezioni)",
-      "Identità base (logo, colori, font)",
-      "Bio ottimizzata (atleta o personal trainer)",
-      "Link in bio pronto per Instagram",
-      "Hosting + gestione inclusi",
+      "Sito essenziale e pulito (4–5 sezioni)",
+      "Struttura pronta all’uso",
+      "Hosting e gestione inclusi",
+      "1 piccolo aggiornamento al mese",
+      "Ottimizzato per mobile",
     ],
-    callout: "Perfetto per iniziare e farti trovare online subito",
+    callout: "Ideale se vuoi qualcosa di semplice, ma fatto bene.",
     highlighted: false,
   },
   {
     name: "Pro",
     heading: "🥈 Pro ⭐",
-    tagline: "Il tuo profilo completo da atleta o PT",
+    tagline: "Il tuo profilo che converte clienti",
     blurb:
-      "Diventa credibile agli occhi di squadre, sponsor o clienti con un sito professionale fatto per rappresentarti davvero.",
+      "Il piano più scelto da chi vuole trasformare il proprio link in uno strumento di lavoro.",
     setupEuro: 299,
-    monthlyEuro: 12.99,
+    monthlyEuro: 18.99,
     features: [
-      "Sito completo multi-sezione (5–6 sezioni)",
-      "Highlights, stats o servizi, risultati, bio, contatti",
-      "Design personalizzato e più professionale",
-      "Ottimizzato mobile (perfetto da condividere ovunque)",
-      "2 aggiornamenti mensili inclusi",
+      "Sito completo e più personalizzato (6–7 sezioni)",
+      "Struttura pensata per presentarti al meglio",
+      "2 aggiornamenti al mese su richiesta",
+      "Design più curato e ottimizzato",
+      "Maggiore attenzione a performance e chiarezza",
     ],
-    callout: "Perfetto per chi vuole fare il salto di livello",
+    callout: "Perfetto se vuoi fare sul serio e attirare clienti.",
     highlighted: true,
   },
   {
     name: "Elite",
-    heading: "🥇 Elite",
-    tagline: "Il tuo brand professionale, senza compromessi",
-    blurb:
-      "Per atleti e personal trainer che vogliono distinguersi davvero e avere un’immagine di alto livello pronta per opportunità importanti.",
+    heading: "🥇 ELITE",
+    tagline: "Il tuo brand, pronto per crescere",
+    blurb: "Pensato per chi vuole distinguersi davvero e avere un supporto costante.",
     setupEuro: 449,
-    monthlyEuro: 19.99,
+    monthlyEuro: 28.99,
     features: [
-      "Sito completo su misura (7–8 sezioni)",
-      "Highlights, stats o servizi, risultati, gallery, contatti",
-      "Design premium e personal branding avanzato",
-      "Ottimizzato per squadre, sponsor o acquisizione clienti",
-      "4 aggiornamenti mensili inclusi",
+      "Sito avanzato e completo (7–8 sezioni)",
+      "Personalizzazione più spinta",
+      "4 aggiornamenti al mese su richiesta",
       "Supporto prioritario",
-      "Consulenza su contenuti e posizionamento",
+      "Ottimizzazione continua del contenuto",
+      "Struttura pensata anche per sponsor e collaborazioni",
     ],
-    callout: "Per chi vuole essere preso sul serio nel proprio settore",
+    callout: "Ideale se vuoi un’immagine professionale e sempre aggiornata.",
     highlighted: false,
   },
 ];
@@ -90,6 +87,11 @@ function formatMonthlyEuro(n: number) {
   }).format(n);
 }
 
+/** Abbonamento annuale: paghi 10 mensilità (sconto equivalente a 2 mesi). */
+function annualEuroTwoMonthsOff(monthlyEuro: number) {
+  return monthlyEuro * 10;
+}
+
 export function Packages() {
   return (
     <section
@@ -105,12 +107,14 @@ export function Packages() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
             Prezzi chiari,{" "}
-            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">modello ibrido</span>
+            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">modello ad abbonamento</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
             Investimento iniziale per il <strong className="font-medium text-zinc-200">sito</strong>, più{" "}
-            <strong className="font-medium text-zinc-200">abbonamento mensile</strong> per aggiornamenti, contenuti e
-            assistenza. Scegli il piano e scrivici su WhatsApp: ti confermiamo i dettagli.
+            <strong className="font-medium text-zinc-200">abbonamento</strong>{" "}
+            <strong className="font-medium text-zinc-200">mensile</strong> o{" "}
+            <strong className="font-medium text-zinc-200">annuale</strong> con sconto di due mesi. Scegli il piano e
+            scrivici su WhatsApp: ti confermiamo i dettagli.
           </p>
         </div>
 
@@ -135,6 +139,45 @@ export function Packages() {
                 <header className="min-h-0 text-center lg:text-left">
                   <h3 className="font-display text-2xl font-bold text-white">{t.heading}</h3>
                   <p className="mt-1 text-sm font-medium text-accent/90">{t.tagline}</p>
+
+                  <div
+                    className={`mt-5 rounded-2xl border p-4 text-left sm:p-5 ${
+                      t.highlighted
+                        ? "border-accent/40 bg-linear-to-br from-accent/15 via-black/50 to-zinc-950 ring-1 ring-accent/20"
+                        : "border-white/15 bg-black/50"
+                    }`}
+                  >
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/90">
+                      Abbonamento — vedi l&apos;affare annuale
+                    </p>
+                    <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3">
+                      <div className="rounded-xl border border-white/10 bg-white/4 px-4 py-3">
+                        <p className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">Mensile</p>
+                        <p className="mt-1 font-display text-2xl font-bold tabular-nums text-white sm:text-3xl">
+                          {formatMonthlyEuro(t.monthlyEuro)}
+                          <span className="text-base font-semibold text-zinc-400 sm:text-lg">/mese</span>
+                        </p>
+                      </div>
+                      <div className="rounded-xl border border-accent/35 bg-accent/10 px-4 py-3 ring-1 ring-accent/20">
+                        <p className="text-[10px] font-medium uppercase tracking-wider text-accent/95">
+                          Annuale <span className="normal-case font-semibold text-white">(−2 mesi)</span>
+                        </p>
+                        <p className="mt-1 font-display text-2xl font-bold tabular-nums text-accent sm:text-3xl">
+                          {formatMonthlyEuro(annualEuroTwoMonthsOff(t.monthlyEuro))}
+                          <span className="text-base font-semibold text-accent/85 sm:text-lg">/anno</span>
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-xs leading-relaxed text-zinc-400">
+                      Un anno in mensile: {formatMonthlyEuro(t.monthlyEuro * 12)} · Con l&apos;annuale paghi{" "}
+                      {formatMonthlyEuro(annualEuroTwoMonthsOff(t.monthlyEuro))} —{" "}
+                      <span className="font-semibold text-accent">
+                        risparmi {formatMonthlyEuro(t.monthlyEuro * 2)}
+                      </span>{" "}
+                      (equivalente a 10 mensilità).
+                    </p>
+                  </div>
+
                   <p className="mt-4 text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
                 </header>
 
@@ -142,17 +185,6 @@ export function Packages() {
                   <div className="rounded-2xl border border-white/10 bg-black/40 p-4">
                     <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">💰 Una tantum</p>
                     <p className="mt-1 font-display text-2xl font-bold text-white">{formatSetupEuro(t.setupEuro)}</p>
-                  </div>
-                  <div
-                    className={`rounded-2xl border p-4 ${
-                      t.highlighted ? "border-accent/35 bg-accent/8" : "border-white/10 bg-white/3"
-                    }`}
-                  >
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-accent/90">🔁 Abbonamento</p>
-                    <p className="mt-1 font-display text-2xl font-bold text-accent">
-                      {formatMonthlyEuro(t.monthlyEuro)}
-                      <span className="text-base font-semibold text-accent/80">/mese</span>
-                    </p>
                   </div>
                 </div>
 
@@ -197,12 +229,15 @@ export function Packages() {
           <p className="mt-2 text-sm leading-relaxed text-zinc-300 sm:text-base">
             Facciamo tutto noi. Tu ti concentri solo sul tuo lavoro
           </p>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">
+            Un solo link. Tutto quello che ti serve per presentarti, crescere e farti trovare.
+          </p>
           <p className="mt-3 text-sm font-medium text-accent sm:text-base">Perfetto per atleti e personal trainer</p>
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
-          I valori sono da intendersi IVA esclusa o inclusa in base alla proposta. L’abbonamento è mensile con rinnovo
-          automatico; disdetta secondo condizioni in contratto.
+          I valori sono da intendersi IVA esclusa o inclusa in base alla proposta. L’abbonamento è mensile o annuale (con
+          sconto equivalente a due mesi) con rinnovo secondo condizioni; disdetta come da contratto.
         </p>
       </div>
     </section>

@@ -74,20 +74,20 @@ export function Hero() {
 
         <div className="mt-12 w-full max-w-md shrink-0 lg:mt-0 lg:max-w-sm">
           <div className="rounded-3xl border border-white/12 bg-black/45 p-6 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:p-7">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">Perché il modello ibrido</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">Modello ad abbonamento</p>
             <p className="mt-3 text-sm leading-relaxed text-zinc-300">
-              Paghi una volta il <strong className="font-medium text-zinc-100">sito e l&apos;identità</strong>, poi un
-              abbonamento leggero per tenerlo vivo: aggiornamenti, foto, video e assistenza quando serve — senza
-              sorprese.
+              Paghi l&apos;abbonamento <strong className="font-medium text-zinc-100">mensile</strong>, oppure{" "}
+              <strong className="font-medium text-zinc-100">tutto l&apos;anno</strong> con lo sconto equivalente a{" "}
+              <strong className="font-medium text-zinc-100">due mesi</strong>.
             </p>
             <div className="mt-5 flex gap-3 border-t border-white/10 pt-5">
               <div className="flex-1 rounded-2xl bg-white/4 px-3 py-2.5 text-center">
-                <p className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">Una tantum</p>
-                <p className="mt-0.5 font-display text-lg font-bold text-white">Sito &amp; brand</p>
+                <p className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">Mensile</p>
+                <p className="mt-0.5 font-display text-lg font-bold text-white">Abbonamento</p>
               </div>
               <div className="flex-1 rounded-2xl bg-accent/10 px-3 py-2.5 text-center ring-1 ring-accent/25">
-                <p className="text-[10px] font-medium uppercase tracking-wider text-accent/90">Ogni mese</p>
-                <p className="mt-0.5 font-display text-lg font-bold text-accent">Gestione</p>
+                <p className="text-[10px] font-medium uppercase tracking-wider text-accent/90">Annuale</p>
+                <p className="mt-0.5 font-display text-lg font-bold text-accent">−2 mesi</p>
               </div>
             </div>
             <Link
