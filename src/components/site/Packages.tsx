@@ -73,7 +73,6 @@ function formatEuro(n: number) {
   }).format(n);
 }
 
-/** Annuale = 10 mensilità (sconto equivalente a 2 mesi). */
 function annualEuro(monthlyEuro: number) {
   return monthlyEuro * 10;
 }
@@ -90,30 +89,33 @@ function TierPricing({
 
   return (
     <div
-      className={`rounded-2xl border p-5 ${
+      className={`rounded-2xl border px-5 py-5 ${
         highlighted
-          ? "border-accent/35 bg-linear-to-b from-accent/12 to-black/40 ring-1 ring-accent/15"
-          : "border-white/12 bg-black/35"
+          ? "border-accent/40 bg-zinc-900/60 ring-1 ring-accent/25"
+          : "border-white/12 bg-zinc-900/40"
       }`}
     >
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-0 sm:divide-x sm:divide-white/10">
-        <div className="flex-1 sm:pr-5">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500">Mensile</p>
-          <p className="mt-2 font-display text-3xl font-bold tracking-tight tabular-nums text-white sm:text-[1.75rem]">
+      <div className="space-y-4">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-zinc-500">Mensile</p>
+          <p className="mt-1.5 font-display text-3xl font-bold tabular-nums tracking-tight text-white">
             {formatEuro(monthlyEuro)}
             <span className="text-lg font-semibold text-zinc-400">/mese</span>
           </p>
         </div>
-        <div className="flex-1 border-t border-white/10 pt-5 sm:border-t-0 sm:pl-5 sm:pt-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-            Annuale <span className="font-normal normal-case text-zinc-500">(2 mesi in regalo)</span>
+
+        <div className="h-px w-full bg-white/10" aria-hidden />
+
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-accent">
+            Annuale <span className="font-normal normal-case tracking-normal text-zinc-500">(2 mesi in regalo)</span>
           </p>
-          <p className="mt-2 font-display text-3xl font-bold tracking-tight tabular-nums text-accent sm:text-[1.75rem]">
+          <p className="mt-1.5 font-display text-2xl font-bold tabular-nums tracking-tight text-accent sm:text-3xl">
             {formatEuro(annual)}
-            <span className="text-lg font-semibold text-accent/85">/anno</span>
+            <span className="text-base font-semibold text-accent/80">/anno</span>
           </p>
-          <p className="mt-3 text-sm text-zinc-400">
-            Risparmi <span className="font-semibold text-zinc-200">{formatEuro(saving)}</span> rispetto a 12 mensilità
+          <p className="mt-2 text-xs leading-snug text-zinc-500">
+            Risparmi <span className="font-medium text-zinc-300">{formatEuro(saving)}</span> rispetto a 12 mensilità
           </p>
         </div>
       </div>
@@ -145,59 +147,59 @@ export function Packages() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-[auto_1fr_auto_auto] lg:items-stretch lg:gap-x-6">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-14 md:gap-8 lg:grid-cols-3 lg:items-stretch">
           {tiers.map((t) => {
             const waHref = whatsappPackageUrl(t.name, t.monthlyEuro, t.tagline);
             return (
               <article
                 key={t.name}
-                className={`relative flex flex-col gap-6 rounded-3xl border p-7 transition hover:-translate-y-0.5 sm:p-8 lg:grid lg:h-full lg:row-span-4 lg:grid-rows-subgrid lg:gap-8 ${
+                className={`relative flex h-full flex-col rounded-3xl border p-6 sm:p-7 ${
                   t.highlighted
-                    ? "border-accent/45 bg-linear-to-b from-accent/12 via-zinc-900/80 to-zinc-950 shadow-[0_0_56px_-16px_rgba(0,229,160,0.4)] ring-1 ring-accent/20"
-                    : "border-white/10 bg-white/2 hover:border-white/20"
+                    ? "border-accent/50 bg-linear-to-b from-accent/12 to-zinc-950 pt-9 shadow-[0_0_48px_-20px_rgba(0,229,160,0.45)] ring-1 ring-accent/20"
+                    : "border-white/10 bg-zinc-950/80 pt-6 hover:border-white/18"
                 }`}
               >
                 {t.highlighted && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-black shadow-[0_8px_24px_-8px_rgba(0,229,160,0.6)]">
+                  <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-black shadow-[0_8px_24px_-8px_rgba(0,229,160,0.6)]">
                     Consigliato
                   </span>
                 )}
 
-                <header className="min-h-0 space-y-4 text-center lg:text-left">
-                  <div>
-                    <h3 className="font-display text-2xl font-bold text-white">{t.heading}</h3>
-                    <p className="mt-1.5 text-sm font-medium leading-snug text-accent/90">{t.tagline}</p>
+                <div className="flex flex-1 flex-col gap-5">
+                  <div className="text-center">
+                    <h3 className="font-display text-xl font-bold text-white sm:text-2xl">{t.heading}</h3>
+                    <p className="mt-2 text-sm font-medium leading-snug text-accent/90">{t.tagline}</p>
                   </div>
 
                   <TierPricing monthlyEuro={t.monthlyEuro} highlighted={t.highlighted} />
 
-                  <p className="text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
-                </header>
+                  <p className="text-center text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
 
-                <ul className="min-h-0 space-y-2.5 border-t border-white/10 pt-6 text-sm leading-relaxed text-zinc-300">
-                  {t.features.map((f) => (
-                    <li key={f} className="flex gap-3">
-                      <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
-                        ✔
-                      </span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="space-y-2.5 border-t border-white/10 pt-5 text-sm leading-relaxed text-zinc-300">
+                    {t.features.map((f) => (
+                      <li key={f} className="flex gap-3">
+                        <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
+                          ✔
+                        </span>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                <p className="text-sm font-medium leading-snug text-zinc-200">
-                  <span aria-hidden>👉 </span>
-                  {t.callout}
-                </p>
+                  <p className="text-center text-sm font-medium leading-snug text-zinc-200">
+                    <span aria-hidden>👉 </span>
+                    {t.callout}
+                  </p>
+                </div>
 
                 <a
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition ${
+                  className={`mt-6 inline-flex w-full shrink-0 justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition ${
                     t.highlighted
                       ? "bg-accent text-black shadow-[0_12px_40px_-12px_rgba(0,229,160,0.55)] hover:brightness-110"
-                      : "border border-white/20 text-white hover:bg-white/10"
+                      : "border border-white/20 bg-transparent text-white hover:bg-white/10"
                   }`}
                 >
                   Scegli {t.name}
