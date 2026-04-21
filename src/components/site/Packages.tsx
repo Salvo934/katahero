@@ -17,7 +17,7 @@ const tiers: Tier[] = [
     heading: "🥉 START",
     tagline: "Il tuo sito online, senza complicazioni",
     blurb: "Perfetto per iniziare ad avere una presenza professionale con un unico link.",
-    monthlyEuro: 8.99,
+    monthlyEuro: 19,
     features: [
       "Sito essenziale e pulito (4–5 sezioni)",
       "Struttura pronta all’uso",
@@ -34,7 +34,7 @@ const tiers: Tier[] = [
     tagline: "Il tuo profilo che converte clienti",
     blurb:
       "Il piano più scelto da chi vuole trasformare il proprio link in uno strumento di lavoro.",
-    monthlyEuro: 18.99,
+    monthlyEuro: 69,
     features: [
       "Sito completo e più personalizzato (6–7 sezioni)",
       "Struttura pensata per presentarti al meglio",
@@ -50,7 +50,7 @@ const tiers: Tier[] = [
     heading: "🥇 ELITE",
     tagline: "Il tuo brand, pronto per crescere",
     blurb: "Pensato per chi vuole distinguersi davvero e avere un supporto costante.",
-    monthlyEuro: 28.99,
+    monthlyEuro: 119,
     features: [
       "Sito avanzato e completo (7–8 sezioni)",
       "Personalizzazione più spinta",
