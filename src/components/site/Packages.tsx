@@ -17,7 +17,7 @@ const tiers: Tier[] = [
     heading: "🥉 START",
     tagline: "Il tuo sito online, senza complicazioni",
     blurb: "Perfetto per iniziare ad avere una presenza professionale con un unico link.",
-    monthlyEuro: 19,
+    monthlyEuro: 24.99,
     features: [
       "Sito essenziale e pulito (4–5 sezioni)",
       "Struttura pronta all’uso",
