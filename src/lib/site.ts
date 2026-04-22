@@ -9,7 +9,7 @@ export const SITE = {
   email: "salvo.bonaita9808@gmail.com",
   locale: "it_IT",
   social: {
-    instagram: "https://www.instagram.com/katahero.it/",
+    instagram: "https://www.instagram.com/katahero?igsh=b2tpbmM4bGQyazcw",
     tiktok: "https://www.tiktok.com/@katahero.it",
     linkedin: "https://www.linkedin.com/company/katahero-it/",
   },
