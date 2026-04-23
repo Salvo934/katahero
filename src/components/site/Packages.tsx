@@ -209,17 +209,26 @@ export function Packages() {
         </div>
 
         <div className="mx-auto mt-14 max-w-2xl rounded-2xl border border-accent/25 bg-accent/5 px-6 py-8 text-center ring-1 ring-accent/15 sm:px-8">
-          <p className="text-2xl" aria-hidden>
-            👉
+          <p className="font-display text-lg font-bold leading-snug text-white sm:text-xl">
+            In 24–48 ore hai una presenza online completa
           </p>
-          <p className="font-display mt-3 text-lg font-bold text-white sm:text-xl">Attivazione in 24–48 ore</p>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-300 sm:text-base">
-            Facciamo tutto noi. Tu ti concentri solo sul tuo lavoro
+          <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
+            Sito personale & contenuti social progettati per valorizzare la tua immagine da atleta.
+          </p>
+          <p className="mt-3 text-sm font-medium text-zinc-200 sm:text-base">Tu ti concentri sulla performance.</p>
+          <p className="mt-2 text-sm font-medium text-zinc-200 sm:text-base">
+            Noi costruiamo come vieni percepito online.
+          </p>
+          <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
+            Un solo link. Tutto il tuo valore in un posto.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">
-            Un solo link. Tutto quello che ti serve per presentarti, crescere e farti trovare.
+            E contenuti social pensati per farti emergere ogni settimana.
           </p>
-          <p className="mt-3 text-sm font-medium text-accent sm:text-base">Perfetto per atleti e personal trainer</p>
+          <p className="mt-5 text-sm font-medium text-accent sm:text-base">
+            <span aria-hidden>👉 </span>
+            Perfetto per chi vuole essere preso più sul serio online
+          </p>
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
