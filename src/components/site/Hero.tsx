@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { HeroVideoBackground } from "./HeroVideoBackground";
-import { SITE } from "@/lib/site";
 
 const highlights = [
   { label: "Sito & landing", detail: "Chiaro e aggiornabile" },
@@ -34,10 +33,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:mt-6 sm:text-lg sm:leading-relaxed">
-            {SITE.tagline} Il feed è rumoroso: noi ti diamo un{" "}
-            <strong className="font-semibold text-zinc-100">sito</strong> che racconta carriera, risultati e valore per
-            sponsor e community — e, se sei PT, un percorso che trasforma curiosi in{" "}
-            <strong className="font-semibold text-zinc-100">clienti</strong>.
+            Costruiamo il tuo brand con sito su misura e contenuti social strategici che trasformano visibilità in
+            opportunità.
           </p>
 
           <ul className="mt-8 flex flex-wrap gap-2 sm:gap-3" aria-label="Cosa ottieni">
