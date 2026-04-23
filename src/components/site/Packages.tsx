@@ -198,6 +198,8 @@ export function Packages() {
                     monthlyUrl={startStripe?.monthly}
                     annualUrl={startStripe?.annual}
                     whatsappHref={waHref}
+                    monthlyPriceCaption={`${formatEuro(t.monthlyEuro)}/mese`}
+                    annualPriceCaption={`${formatEuro(annualEuro(t.monthlyEuro))}/anno`}
                   />
                 ) : (
                   <a
