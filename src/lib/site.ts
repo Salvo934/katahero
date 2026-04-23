@@ -45,3 +45,16 @@ export function whatsappPackageUrl(
   const text = `Ciao! Vorrei informazioni sul pacchetto ${planName} di ${SITE.name}: ${monthly}/mese. ${shortDescription}`;
   return `${SITE.whatsappUrl}?text=${encodeURIComponent(text)}`;
 }
+
+/**
+ * Link Stripe Checkout (Payment Link o session) per il piano Start.
+ * Imposta in `.env.local` / Vercel: URL completi https://buy.stripe.com/... o simili.
+ */
+export function getStartStripeCheckoutUrls(): { monthly?: string; annual?: string } {
+  const monthly = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_START_MONTHLY?.trim();
+  const annual = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_START_ANNUAL?.trim();
+  return {
+    monthly: monthly || undefined,
+    annual: annual || undefined,
+  };
+}
