@@ -9,6 +9,15 @@ type Tier = {
   features: string[];
   callout: string;
   highlighted: boolean;
+  /** Titolo sopra l’elenco feature (es. “Cosa ottieni”). */
+  featuresSectionTitle?: string;
+  /** Blocco finale strutturato (es. Risultato + ideale se). Sostituisce il singolo callout. */
+  resultBlock?: {
+    title: string;
+    outcomes: string[];
+    idealTitle: string;
+    idealBullets: string[];
+  };
 };
 
 const tiers: Tier[] = [
@@ -31,40 +40,65 @@ const tiers: Tier[] = [
   {
     name: "Pro",
     heading: "🥈 PRO ⭐",
-    tagline: "Profilo professionale che lavora per te",
-    blurb:
-      "Sito e social allineati: presenti al meglio e dai una ragione concreta a chi vuole contattarti.",
+    tagline: "Costruisci un’immagine da atleta professionista online",
+    blurb: "",
     monthlyEuro: 79,
+    featuresSectionTitle: "🎯 Cosa ottieni",
     features: [
-      "Sito completo e personalizzato (6 sezioni)",
-      "Struttura pensata per trasformare visite in contatti",
-      "2 aggiornamenti mensili su richiesta",
+      "Sito personale completo e personalizzato (6 sezioni)",
+      "Struttura pensata per farti presentare al meglio",
+      "Ottimizzazione del tuo profilo Instagram",
+      "Sistema di contenuti per valorizzare la tua immagine",
+      "Instagram: 1 contenuto a settimana (4–5 al mese) pronto da pubblicare",
+      "Design coerente tra sito e social",
       "Hosting e gestione inclusi",
-      "Instagram: 3 post + 4 storie al mese",
-      "Design curato e coerente con il tuo profilo",
-      "Ottimizzazione per chiarezza e performance",
+      "2 aggiornamenti mensili su richiesta",
     ],
-    callout: "Pensato per chi vuole usare il proprio profilo per trovare clienti e opportunità.",
+    callout: "",
+    resultBlock: {
+      title: "📈 Risultato",
+      outcomes: [
+        "Un profilo chiaro, professionale e riconoscibile",
+        "Presenza online costante senza pubblicare a caso",
+      ],
+      idealTitle: "Ideale se vuoi",
+      idealBullets: [
+        "distinguerti dagli altri atleti",
+        "avere un’immagine più curata e credibile",
+        "costruire una presenza online solida",
+      ],
+    },
     highlighted: true,
   },
   {
     name: "Elite",
     heading: "🥇 ELITE",
-    tagline: "Brand forte, opportunità concrete",
-    blurb:
-      "Il massimo per sito, contenuti e immagine: pensato per chi vuole farsi notare da sponsor e partner seri.",
-    monthlyEuro: 159,
+    tagline: "Massimizza la tua visibilità e accelera la tua crescita",
+    blurb: "",
+    monthlyEuro: 149,
+    featuresSectionTitle: "🎯 Cosa ottieni",
     features: [
-      "Sito avanzato e completo (7–8 sezioni)",
-      "Personalizzazione spinta",
-      "4 aggiornamenti mensili su richiesta",
-      "Hosting e gestione inclusi",
-      "Instagram: 4 post + 8 storie al mese",
-      "Supporto prioritario",
-      "Ottimizzazione continua",
-      "Struttura orientata a sponsor e collaborazioni",
+      "Tutto incluso nel piano PRO",
+      "Instagram: 2 contenuti a settimana (8–10 al mese) pronti da pubblicare",
+      "Maggiore varietà e frequenza di contenuti",
+      "Direzione strategica più avanzata",
+      "Priorità nella gestione e supporto",
     ],
-    callout: "Per atleti che vogliono crescere il proprio brand e ottenere opportunità concrete.",
+    callout: "",
+    resultBlock: {
+      title: "📈 Risultato",
+      outcomes: [
+        "Maggiore visibilità e continuità",
+        "Crescita più veloce della tua immagine online",
+        "Profilo più forte agli occhi di sponsor e opportunità",
+      ],
+      idealTitle: "Ideale se vuoi",
+      idealBullets: [
+        "aumentare la tua presenza online",
+        "crescere più velocemente rispetto agli altri",
+        "sfruttare al massimo il tuo profilo",
+      ],
+    },
     highlighted: false,
   },
 ];
@@ -167,9 +201,12 @@ export function Packages() {
 
                   <TierPricing monthlyEuro={t.monthlyEuro} />
 
-                  <p className="text-sm leading-relaxed text-zinc-400">{t.blurb}</p>
+                  {t.blurb ? <p className="text-sm leading-relaxed text-zinc-400">{t.blurb}</p> : null}
 
                   <div className="flex flex-1 flex-col border-t border-white/10 pt-5 text-left">
+                    {t.featuresSectionTitle ? (
+                      <p className="mb-3 text-sm font-semibold text-zinc-100">{t.featuresSectionTitle}</p>
+                    ) : null}
                     <ul className="flex-1 space-y-2.5 text-sm leading-relaxed text-zinc-300">
                       {t.features.map((f) => (
                         <li key={f} className="flex gap-3">
@@ -180,10 +217,39 @@ export function Packages() {
                         </li>
                       ))}
                     </ul>
-                    <p className="mt-5 text-center text-sm font-medium leading-snug text-zinc-200">
-                      <span aria-hidden>👉 </span>
-                      {t.callout}
-                    </p>
+                    {t.resultBlock ? (
+                      <div className="mt-6 space-y-4 border-t border-white/10 pt-5 text-sm">
+                        <p className="font-semibold text-zinc-100">{t.resultBlock.title}</p>
+                        <ul className="space-y-2.5 text-zinc-200">
+                          {t.resultBlock.outcomes.map((line) => (
+                            <li key={line} className="flex gap-2 leading-snug">
+                              <span className="shrink-0" aria-hidden>
+                                👉
+                              </span>
+                              <span>{line}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="space-y-2 pt-1">
+                          <p className="font-medium text-zinc-200">
+                            <span aria-hidden>👉 </span>
+                            {t.resultBlock.idealTitle}
+                          </p>
+                          <ul className="space-y-1.5 border-l-2 border-accent/35 pl-3 text-zinc-400">
+                            {t.resultBlock.idealBullets.map((b) => (
+                              <li key={b} className="leading-snug">
+                                {b}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="mt-5 text-center text-sm font-medium leading-snug text-zinc-200">
+                        <span aria-hidden>👉 </span>
+                        {t.callout}
+                      </p>
+                    )}
                   </div>
                 </div>
 
