@@ -11,13 +11,6 @@ type Tier = {
   highlighted: boolean;
   /** Titolo sopra l’elenco feature (es. “Cosa ottieni”). */
   featuresSectionTitle?: string;
-  /** Blocco finale strutturato (es. Risultato + ideale se). Sostituisce il singolo callout. */
-  resultBlock?: {
-    title: string;
-    outcomes: string[];
-    idealTitle: string;
-    idealBullets: string[];
-  };
 };
 
 const tiers: Tier[] = [
@@ -54,20 +47,7 @@ const tiers: Tier[] = [
       "Hosting e gestione inclusi",
       "2 aggiornamenti mensili su richiesta",
     ],
-    callout: "",
-    resultBlock: {
-      title: "📈 Risultato",
-      outcomes: [
-        "Un profilo chiaro, professionale e riconoscibile",
-        "Presenza online costante senza pubblicare a caso",
-      ],
-      idealTitle: "Ideale se vuoi",
-      idealBullets: [
-        "distinguerti dagli altri atleti",
-        "avere un’immagine più curata e credibile",
-        "costruire una presenza online solida",
-      ],
-    },
+    callout: "Ideale se vuoi costruire una presenza online solida.",
     highlighted: true,
   },
   {
@@ -84,21 +64,7 @@ const tiers: Tier[] = [
       "Direzione strategica più avanzata",
       "Priorità nella gestione e supporto",
     ],
-    callout: "",
-    resultBlock: {
-      title: "📈 Risultato",
-      outcomes: [
-        "Maggiore visibilità e continuità",
-        "Crescita più veloce della tua immagine online",
-        "Profilo più forte agli occhi di sponsor e opportunità",
-      ],
-      idealTitle: "Ideale se vuoi",
-      idealBullets: [
-        "aumentare la tua presenza online",
-        "crescere più velocemente rispetto agli altri",
-        "sfruttare al massimo il tuo profilo",
-      ],
-    },
+    callout: "Ideale se vuoi crescere più velocemente rispetto agli altri.",
     highlighted: false,
   },
 ];
@@ -217,39 +183,10 @@ export function Packages() {
                         </li>
                       ))}
                     </ul>
-                    {t.resultBlock ? (
-                      <div className="mt-6 space-y-4 border-t border-white/10 pt-5 text-sm">
-                        <p className="font-semibold text-zinc-100">{t.resultBlock.title}</p>
-                        <ul className="space-y-2.5 text-zinc-200">
-                          {t.resultBlock.outcomes.map((line) => (
-                            <li key={line} className="flex gap-2 leading-snug">
-                              <span className="shrink-0" aria-hidden>
-                                👉
-                              </span>
-                              <span>{line}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="space-y-2 pt-1">
-                          <p className="font-medium text-zinc-200">
-                            <span aria-hidden>👉 </span>
-                            {t.resultBlock.idealTitle}
-                          </p>
-                          <ul className="space-y-1.5 border-l-2 border-accent/35 pl-3 text-zinc-400">
-                            {t.resultBlock.idealBullets.map((b) => (
-                              <li key={b} className="leading-snug">
-                                {b}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    ) : (
-                      <p className="mt-5 text-center text-sm font-medium leading-snug text-zinc-200">
-                        <span aria-hidden>👉 </span>
-                        {t.callout}
-                      </p>
-                    )}
+                    <p className="mt-5 text-center text-sm font-medium leading-snug text-zinc-200">
+                      <span aria-hidden>👉 </span>
+                      {t.callout}
+                    </p>
                   </div>
                 </div>
 
