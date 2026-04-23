@@ -64,28 +64,38 @@ export function getStartStripeCheckoutUrls(): { monthly: string; annual: string 
   return { monthly, annual };
 }
 
-/**
- * Stripe Checkout — piano Pro (solo env, nessun default).
- * `NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_MONTHLY` · `NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_ANNUAL`
- */
-export function getProStripeCheckoutUrls(): { monthly?: string; annual?: string } {
-  const monthly = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_MONTHLY?.trim();
-  const annual = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_ANNUAL?.trim();
-  return {
-    monthly: monthly || undefined,
-    annual: annual || undefined,
-  };
-}
+/** Payment Link Stripe — piano Pro (test). Sovrascrivi con env in produzione. */
+const PRO_STRIPE_CHECKOUT_MONTHLY_DEFAULT =
+  "https://buy.stripe.com/test_8x228tfB93VMaXCgpj8IU02";
+const PRO_STRIPE_CHECKOUT_ANNUAL_DEFAULT =
+  "https://buy.stripe.com/test_3cI28t2On2RI5Dic938IU03";
 
 /**
- * Stripe Checkout — piano Elite (solo env).
- * `NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_MONTHLY` · `NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_ANNUAL`
+ * Stripe Checkout — piano Pro.
+ * `NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_MONTHLY` / `_ANNUAL` se impostati vincono sui default.
  */
-export function getEliteStripeCheckoutUrls(): { monthly?: string; annual?: string } {
-  const monthly = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_MONTHLY?.trim();
-  const annual = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_ANNUAL?.trim();
-  return {
-    monthly: monthly || undefined,
-    annual: annual || undefined,
-  };
+export function getProStripeCheckoutUrls(): { monthly: string; annual: string } {
+  const monthly =
+    process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_MONTHLY?.trim() || PRO_STRIPE_CHECKOUT_MONTHLY_DEFAULT;
+  const annual =
+    process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_ANNUAL?.trim() || PRO_STRIPE_CHECKOUT_ANNUAL_DEFAULT;
+  return { monthly, annual };
+}
+
+/** Payment Link Stripe — piano Elite (test). Sovrascrivi con env in produzione. */
+const ELITE_STRIPE_CHECKOUT_MONTHLY_DEFAULT =
+  "https://buy.stripe.com/test_dRm6oJcoXeAq7Lq8WR8IU04";
+const ELITE_STRIPE_CHECKOUT_ANNUAL_DEFAULT =
+  "https://buy.stripe.com/test_bJe00lfB9gIyc1Gb4Z8IU05";
+
+/**
+ * Stripe Checkout — piano Elite.
+ * `NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_MONTHLY` / `_ANNUAL` se impostati vincono sui default.
+ */
+export function getEliteStripeCheckoutUrls(): { monthly: string; annual: string } {
+  const monthly =
+    process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_MONTHLY?.trim() || ELITE_STRIPE_CHECKOUT_MONTHLY_DEFAULT;
+  const annual =
+    process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_ANNUAL?.trim() || ELITE_STRIPE_CHECKOUT_ANNUAL_DEFAULT;
+  return { monthly, annual };
 }
