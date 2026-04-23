@@ -63,3 +63,29 @@ export function getStartStripeCheckoutUrls(): { monthly: string; annual: string 
     process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_START_ANNUAL?.trim() || START_STRIPE_CHECKOUT_ANNUAL_DEFAULT;
   return { monthly, annual };
 }
+
+/**
+ * Stripe Checkout — piano Pro (solo env, nessun default).
+ * `NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_MONTHLY` · `NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_ANNUAL`
+ */
+export function getProStripeCheckoutUrls(): { monthly?: string; annual?: string } {
+  const monthly = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_MONTHLY?.trim();
+  const annual = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_PRO_ANNUAL?.trim();
+  return {
+    monthly: monthly || undefined,
+    annual: annual || undefined,
+  };
+}
+
+/**
+ * Stripe Checkout — piano Elite (solo env).
+ * `NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_MONTHLY` · `NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_ANNUAL`
+ */
+export function getEliteStripeCheckoutUrls(): { monthly?: string; annual?: string } {
+  const monthly = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_MONTHLY?.trim();
+  const annual = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_ANNUAL?.trim();
+  return {
+    monthly: monthly || undefined,
+    annual: annual || undefined,
+  };
+}

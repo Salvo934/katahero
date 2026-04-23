@@ -1,11 +1,17 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 
 type Billing = "monthly" | "annual";
 
 type Props = {
+  /** Titolo modale, es. "Piano Pro" */
+  modalTitle: string;
+  /** Testo pulsante principale, es. "Acquista Pro" */
+  acquistaLabel: string;
+  /** Se non ci sono link Stripe, pulsante WhatsApp, es. "Scegli Pro" */
+  scegliLabel: string;
   monthlyUrl?: string;
   annualUrl?: string;
   whatsappHref: string;
@@ -13,13 +19,17 @@ type Props = {
   annualPriceCaption?: string;
 };
 
-export function StartPlanCheckout({
+export function PlanStripeCheckout({
+  modalTitle,
+  acquistaLabel,
+  scegliLabel,
   monthlyUrl,
   annualUrl,
   whatsappHref,
   monthlyPriceCaption,
   annualPriceCaption,
 }: Props) {
+  const titleId = useId();
   const hasMonthly = Boolean(monthlyUrl);
   const hasAnnual = Boolean(annualUrl);
   const hasStripe = hasMonthly || hasAnnual;
@@ -69,7 +79,7 @@ export function StartPlanCheckout({
         rel="noopener noreferrer"
         className="mt-6 inline-flex w-full shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-3.5 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/[0.07]"
       >
-        Scegli Start
+        {scegliLabel}
       </a>
     );
   }
@@ -96,12 +106,12 @@ export function StartPlanCheckout({
             className="relative z-10 w-full max-w-md rounded-3xl border border-white/12 bg-zinc-950 p-6 shadow-[0_24px_80px_-20px_rgba(0,0,0,0.9)] ring-1 ring-white/5 sm:p-7"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="start-checkout-title"
+            aria-labelledby={titleId}
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <h2 id="start-checkout-title" className="font-display text-lg font-bold text-white sm:text-xl">
-                  Piano Start
+                <h2 id={titleId} className="font-display text-lg font-bold text-white sm:text-xl">
+                  {modalTitle}
                 </h2>
                 <p className="mt-1 text-sm text-zinc-400">Scegli se pagare mese per mese o con l&apos;annuale (−2 mesi).</p>
               </div>
@@ -173,7 +183,7 @@ export function StartPlanCheckout({
           onClick={() => setModalOpen(true)}
           className="inline-flex w-full items-center justify-center rounded-2xl border border-accent/40 bg-accent px-5 py-3.5 text-center font-display text-sm font-bold tracking-tight text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110 active:brightness-95"
         >
-          Acquista Start
+          {acquistaLabel}
         </button>
       ) : (
         <a
@@ -182,7 +192,7 @@ export function StartPlanCheckout({
           rel="noopener noreferrer"
           className="inline-flex w-full items-center justify-center rounded-2xl border border-accent/40 bg-accent px-5 py-3.5 text-center font-display text-sm font-bold tracking-tight text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110 active:brightness-95"
         >
-          Acquista Start
+          {acquistaLabel}
         </a>
       )}
 

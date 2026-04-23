@@ -1,5 +1,10 @@
-import { getStartStripeCheckoutUrls, whatsappPackageUrl } from "@/lib/site";
-import { StartPlanCheckout } from "./StartPlanCheckout";
+import {
+  getEliteStripeCheckoutUrls,
+  getProStripeCheckoutUrls,
+  getStartStripeCheckoutUrls,
+  whatsappPackageUrl,
+} from "@/lib/site";
+import { PlanStripeCheckout } from "./PlanStripeCheckout";
 
 type Tier = {
   name: "Start" | "Pro" | "Elite";
@@ -146,7 +151,12 @@ export function Packages() {
         <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-14 sm:gap-6 lg:grid-cols-3 lg:items-stretch">
           {tiers.map((t) => {
             const waHref = whatsappPackageUrl(t.name, t.monthlyEuro, t.tagline);
-            const startStripe = t.name === "Start" ? getStartStripeCheckoutUrls() : null;
+            const stripeUrls =
+              t.name === "Start"
+                ? getStartStripeCheckoutUrls()
+                : t.name === "Pro"
+                  ? getProStripeCheckoutUrls()
+                  : getEliteStripeCheckoutUrls();
             return (
               <article
                 key={t.name}
@@ -193,28 +203,16 @@ export function Packages() {
                   </div>
                 </div>
 
-                {t.name === "Start" ? (
-                  <StartPlanCheckout
-                    monthlyUrl={startStripe?.monthly}
-                    annualUrl={startStripe?.annual}
-                    whatsappHref={waHref}
-                    monthlyPriceCaption={`${formatEuro(t.monthlyEuro)}/mese`}
-                    annualPriceCaption={`${formatEuro(annualEuro(t.monthlyEuro))}/anno`}
-                  />
-                ) : (
-                  <a
-                    href={waHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`mt-6 inline-flex w-full shrink-0 items-center justify-center rounded-full px-5 py-3.5 text-sm font-semibold transition ${
-                      t.highlighted
-                        ? "bg-accent text-black shadow-[0_12px_32px_-12px_rgba(0,229,160,0.5)] hover:brightness-110"
-                        : "border border-white/18 bg-white/5 text-white hover:border-white/28 hover:bg-white/10"
-                    }`}
-                  >
-                    Scegli {t.name}
-                  </a>
-                )}
+                <PlanStripeCheckout
+                  modalTitle={`Piano ${t.name}`}
+                  acquistaLabel={`Acquista ${t.name}`}
+                  scegliLabel={`Scegli ${t.name}`}
+                  monthlyUrl={stripeUrls.monthly}
+                  annualUrl={stripeUrls.annual}
+                  whatsappHref={waHref}
+                  monthlyPriceCaption={`${formatEuro(t.monthlyEuro)}/mese`}
+                  annualPriceCaption={`${formatEuro(annualEuro(t.monthlyEuro))}/anno`}
+                />
               </article>
             );
           })}
