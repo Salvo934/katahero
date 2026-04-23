@@ -46,15 +46,20 @@ export function whatsappPackageUrl(
   return `${SITE.whatsappUrl}?text=${encodeURIComponent(text)}`;
 }
 
+/** Payment Link Stripe — piano Start (test). Sovrascrivi con env in produzione (link live). */
+const START_STRIPE_CHECKOUT_MONTHLY_DEFAULT =
+  "https://buy.stripe.com/test_aFa8wR0Gf1NE9Ty4GB8IU00";
+const START_STRIPE_CHECKOUT_ANNUAL_DEFAULT =
+  "https://buy.stripe.com/test_bJe6oJ4WvgIyfdS4GB8IU01";
+
 /**
- * Link Stripe Checkout (Payment Link o session) per il piano Start.
- * Imposta in `.env.local` / Vercel: URL completi https://buy.stripe.com/... o simili.
+ * Link Stripe Checkout per il piano Start.
+ * `NEXT_PUBLIC_STRIPE_CHECKOUT_START_MONTHLY` / `_ANNUAL` se impostati vincono sui default.
  */
-export function getStartStripeCheckoutUrls(): { monthly?: string; annual?: string } {
-  const monthly = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_START_MONTHLY?.trim();
-  const annual = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_START_ANNUAL?.trim();
-  return {
-    monthly: monthly || undefined,
-    annual: annual || undefined,
-  };
+export function getStartStripeCheckoutUrls(): { monthly: string; annual: string } {
+  const monthly =
+    process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_START_MONTHLY?.trim() || START_STRIPE_CHECKOUT_MONTHLY_DEFAULT;
+  const annual =
+    process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_START_ANNUAL?.trim() || START_STRIPE_CHECKOUT_ANNUAL_DEFAULT;
+  return { monthly, annual };
 }
