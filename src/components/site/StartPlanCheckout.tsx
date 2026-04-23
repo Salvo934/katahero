@@ -150,24 +150,15 @@ export function StartPlanCheckout({
               ) : null}
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row-reverse sm:justify-end">
-              <a
-                href={checkoutHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setModalOpen(false)}
-                className="inline-flex flex-1 items-center justify-center rounded-2xl border border-accent/40 bg-accent px-5 py-3.5 text-center font-display text-sm font-bold text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110 sm:flex-none sm:min-w-[200px]"
-              >
-                Continua su Stripe
-              </a>
-              <button
-                type="button"
-                onClick={() => setModalOpen(false)}
-                className="rounded-2xl border border-white/12 px-5 py-3.5 text-sm font-medium text-zinc-300 transition hover:border-white/20 hover:bg-white/[0.04] hover:text-white sm:flex-none"
-              >
-                Annulla
-              </button>
-            </div>
+            <a
+              href={checkoutHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setModalOpen(false)}
+              className="mt-6 inline-flex w-full items-center justify-center rounded-2xl border border-accent/40 bg-accent px-5 py-3.5 text-center font-display text-sm font-bold text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110"
+            >
+              Paga ora
+            </a>
           </div>
         </div>,
         document.body,
