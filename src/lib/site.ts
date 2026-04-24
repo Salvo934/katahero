@@ -99,3 +99,11 @@ export function getEliteStripeCheckoutUrls(): { monthly: string; annual: string 
     process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_ELITE_ANNUAL?.trim() || ELITE_STRIPE_CHECKOUT_ANNUAL_DEFAULT;
   return { monthly, annual };
 }
+
+/** Portale clienti Stripe: disdetta, aggiornamento pagamento, fatture, piano. Sovrascrivibile con env. */
+const STRIPE_CUSTOMER_PORTAL_DEFAULT =
+  "https://billing.stripe.com/p/login/aFacN55n7eGn0lf45e4ZG00";
+
+export function getStripeCustomerPortalUrl(): string {
+  return process.env.NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL_URL?.trim() || STRIPE_CUSTOMER_PORTAL_DEFAULT;
+}

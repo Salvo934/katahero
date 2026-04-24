@@ -28,3 +28,41 @@ body {
   background: color-mix(in oklab, var(--accent) 35%, transparent);
   color: #fff;
 }
+
+/* Modale checkout Stripe: entrata */
+@keyframes kh-modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes kh-modal-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.kh-modal-backdrop-in {
+  animation: kh-modal-backdrop-in 0.28s ease-out forwards;
+}
+
+.kh-modal-panel-in {
+  animation: kh-modal-panel-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-modal-backdrop-in,
+  .kh-modal-panel-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

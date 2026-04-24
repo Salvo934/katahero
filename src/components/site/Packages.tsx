@@ -2,6 +2,7 @@ import {
   getEliteStripeCheckoutUrls,
   getProStripeCheckoutUrls,
   getStartStripeCheckoutUrls,
+  getStripeCustomerPortalUrl,
   whatsappPackageUrl,
 } from "@/lib/site";
 import { PlanStripeCheckout } from "./PlanStripeCheckout";
@@ -238,6 +239,33 @@ export function Packages() {
           <p className="mt-5 text-sm font-medium text-accent sm:text-base">
             <span aria-hidden>👉 </span>
             Perfetto per chi vuole essere preso più sul serio online
+          </p>
+        </div>
+
+        <div className="mx-auto mt-14 max-w-2xl rounded-3xl border border-white/12 bg-zinc-900/40 px-6 py-8 text-center sm:px-10 sm:py-10">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-zinc-500">Per chi è già cliente</p>
+          <h3 className="font-display mt-3 text-xl font-bold tracking-tight text-white sm:text-2xl">
+            Gestisci il tuo abbonamento in autonomia
+          </h3>
+          <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
+            Accedi all&apos;area clienti sicura di Stripe con l&apos;indirizzo email usato in fase di acquisto. Da lì puoi
+            aggiornare il metodo di pagamento, scaricare le fatture e, in base a come è configurato il tuo piano,
+            modificare il rinnovo o richiedere la disdetta. Le tempistiche e le condizioni di recesso restano quelle
+            indicate nel contratto.
+          </p>
+          <p className="mt-3 text-xs leading-relaxed text-zinc-500 sm:text-sm">
+            Stripe ti guiderà nel login (link via email). Se non ricevi nulla, controlla anche la posta indesiderata.
+          </p>
+          <a
+            href={getStripeCustomerPortalUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex w-full max-w-md items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 text-center font-display text-sm font-bold text-white shadow-[0_12px_40px_-20px_rgba(0,0,0,0.6)] transition hover:border-accent/40 hover:bg-accent/10 hover:text-accent sm:w-auto"
+          >
+            Apri l&apos;area clienti Stripe
+          </a>
+          <p className="mt-4 text-[11px] leading-relaxed text-zinc-600">
+            Pagamenti e abbonamenti sono gestiti da Stripe; noi non conserviamo i dati della tua carta.
           </p>
         </div>
 
