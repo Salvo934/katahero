@@ -219,54 +219,56 @@ export function Packages() {
           })}
         </div>
 
-        <div className="mx-auto mt-14 max-w-2xl rounded-2xl border border-accent/25 bg-accent/5 px-6 py-8 text-center ring-1 ring-accent/15 sm:px-8">
-          <p className="font-display text-lg font-bold leading-snug text-white sm:text-xl">
-            In 24–48 ore hai una presenza online completa
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
-            Sito personale & contenuti social progettati per valorizzare la tua immagine da atleta.
-          </p>
-          <p className="mt-3 text-sm font-medium text-zinc-200 sm:text-base">Tu ti concentri sulla performance.</p>
-          <p className="mt-2 text-sm font-medium text-zinc-200 sm:text-base">
-            Noi costruiamo come vieni percepito online.
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
-            Un solo link. Tutto il tuo valore in un posto.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">
-            E contenuti social pensati per farti emergere ogni settimana.
-          </p>
-          <p className="mt-5 text-sm font-medium text-accent sm:text-base">
-            <span aria-hidden>👉 </span>
-            Perfetto per chi vuole essere preso più sul serio online
-          </p>
-        </div>
+        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 md:items-stretch">
+          <div className="flex h-full flex-col rounded-2xl border border-accent/25 bg-accent/5 px-6 py-8 text-center ring-1 ring-accent/15 sm:px-8 sm:py-9">
+            <p className="font-display text-lg font-bold leading-snug text-white sm:text-xl">
+              In 24–48 ore hai una presenza online completa
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
+              Sito personale & contenuti social progettati per valorizzare la tua immagine da atleta.
+            </p>
+            <p className="mt-3 text-sm font-medium text-zinc-200 sm:text-base">Tu ti concentri sulla performance.</p>
+            <p className="mt-2 text-sm font-medium text-zinc-200 sm:text-base">
+              Noi costruiamo come vieni percepito online.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
+              Un solo link. Tutto il tuo valore in un posto.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">
+              E contenuti social pensati per farti emergere ogni settimana.
+            </p>
+            <p className="mt-auto pt-6 text-sm font-medium text-accent sm:text-base">
+              <span aria-hidden>👉 </span>
+              Perfetto per chi vuole essere preso più sul serio online
+            </p>
+          </div>
 
-        <div className="mx-auto mt-14 max-w-2xl rounded-3xl border border-white/12 bg-zinc-900/40 px-6 py-8 text-center sm:px-10 sm:py-10">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-zinc-500">Per chi è già cliente</p>
-          <h3 className="font-display mt-3 text-xl font-bold tracking-tight text-white sm:text-2xl">
-            Gestisci il tuo abbonamento in autonomia
-          </h3>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
-            Accedi all&apos;area clienti sicura di Stripe con l&apos;indirizzo email usato in fase di acquisto. Da lì puoi
-            aggiornare il metodo di pagamento, scaricare le fatture e, in base a come è configurato il tuo piano,
-            modificare il rinnovo o richiedere la disdetta. Le tempistiche e le condizioni di recesso restano quelle
-            indicate nel contratto.
-          </p>
-          <p className="mt-3 text-xs leading-relaxed text-zinc-500 sm:text-sm">
-            Stripe ti guiderà nel login (link via email). Se non ricevi nulla, controlla anche la posta indesiderata.
-          </p>
-          <a
-            href={getStripeCustomerPortalUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-7 inline-flex w-full max-w-md items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 text-center font-display text-sm font-bold text-white shadow-[0_12px_40px_-20px_rgba(0,0,0,0.6)] transition hover:border-accent/40 hover:bg-accent/10 hover:text-accent sm:w-auto"
-          >
-            Apri l&apos;area clienti Stripe
-          </a>
-          <p className="mt-4 text-[11px] leading-relaxed text-zinc-600">
-            Pagamenti e abbonamenti sono gestiti da Stripe; noi non conserviamo i dati della tua carta.
-          </p>
+          <div className="flex h-full flex-col rounded-3xl border border-white/12 bg-zinc-900/40 px-6 py-8 text-center sm:px-10 sm:py-10">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-zinc-500">Per chi è già cliente</p>
+            <h3 className="font-display mt-3 text-xl font-bold tracking-tight text-white sm:text-2xl">
+              Gestisci il tuo abbonamento in autonomia
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
+              Accedi all&apos;area clienti sicura di Stripe con l&apos;indirizzo email usato in fase di acquisto. Da lì
+              puoi aggiornare il metodo di pagamento, scaricare le fatture e, in base a come è configurato il tuo piano,
+              modificare il rinnovo o richiedere la disdetta. Le tempistiche e le condizioni di recesso restano quelle
+              indicate nel contratto.
+            </p>
+            <p className="mt-3 text-xs leading-relaxed text-zinc-500 sm:text-sm">
+              Stripe ti guiderà nel login (link via email). Se non ricevi nulla, controlla anche la posta indesiderata.
+            </p>
+            <a
+              href={getStripeCustomerPortalUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-7 inline-flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 text-center font-display text-sm font-bold text-white shadow-[0_12px_40px_-20px_rgba(0,0,0,0.6)] transition hover:border-accent/40 hover:bg-accent/10 hover:text-accent"
+            >
+              Apri l&apos;area clienti Stripe
+            </a>
+            <p className="mt-4 text-[11px] leading-relaxed text-zinc-600">
+              Pagamenti e abbonamenti sono gestiti da Stripe; noi non conserviamo i dati della tua carta.
+            </p>
+          </div>
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
