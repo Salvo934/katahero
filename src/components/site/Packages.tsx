@@ -33,6 +33,7 @@ const tiers: Tier[] = [
       "Struttura chiara: chi sei, cosa fai, come contattarti",
       "Hosting e gestione tecnica inclusi",
       "1 aggiornamento al mese su richiesta",
+      "1 contenuto social al mese (storia o post sulla prestazione), pronto da pubblicare",
       "Ottimizzato per mobile e facile da condividere (anche da Instagram)",
     ],
     callout: "Ideale se vuoi qualcosa di semplice, ma fatto bene.",
