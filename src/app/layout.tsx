@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   ...(verification ?? {}),
   title: {
-    default: `${SITE.name} | Personal branding per atleti e personal trainer`,
+    default: `${SITE.name} | Personal branding per atleti`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
