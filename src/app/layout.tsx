@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next/dist/types";
-import { DM_Sans, Syne } from "next/dist/compiled/@next/font/dist/google";
+import { DM_Sans, Syne } from "next/font/google";
 import "./globals.css";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getOpenGraphImage, siteVerificationMetadata } from "@/lib/seo";
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     locale: SITE.locale,
     url: siteUrl,
     siteName: SITE.name,
-    title: `${SITE.name} | Personal branding per atleti e PT`,
+    title: `${SITE.name} | Personal branding per atleti`,
     description: SITE.description,
     images: [og],
   },
