@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next/dist/client/link";
 
 function IconAthlete({ className }: { className?: string }) {
   return (
@@ -13,69 +13,39 @@ function IconAthlete({ className }: { className?: string }) {
   );
 }
 
-function IconPt({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-      />
-    </svg>
-  );
-}
-
-const audiences = [
-  {
-    id: "atleti",
-    badge: "Atleti",
-    title: "Il tuo sito, la tua storia completa",
-    icon: IconAthlete,
-    accent: "from-emerald-500/20 to-transparent",
-    ring: "ring-emerald-500/25",
-    lead:
-      "I social sono confusionari: feed, storie e algoritmi mescolano tutto e non raccontano davvero carriera, numeri e valore per gli sponsor. Noi realizziamo **siti web** pensati per la **visibilità** di chi compete: un punto fermo dove mostrare chi sei, cosa hai fatto e dove vuoi arrivare.",
-    points: [
-      "Struttura chiara: carriera, risultati, prossimi match o obiettivi stagionali",
-      "Aggiornamenti **foto e video** (highlight, backstage, comunicati) senza perdere il filo",
-      "**Statistiche** e numeri sempre leggibili: chi ti segue capisce il percorso",
-      "Sezione **sponsor / partnership** e materiali ordinati per chi vuole investire su di te",
-      "Organizzazione dei contenuti: meno rumore dei social, **un solo link** che racconta tutto",
-    ],
-  },
-  {
-    id: "pt",
-    badge: "Personal trainer",
-    title: "Da visibilità a clienti — con portfolio ordinato",
-    icon: IconPt,
-    accent: "from-violet-500/20 to-transparent",
-    ring: "ring-violet-500/25",
-    lead:
-      "Anche per i PT i social spesso non bastano: post sparsi, prove social sepolte, messaggio poco chiaro. Costruiamo un **sito** che ti fa **trovare**, spiega servizi e metodo e mette in fila un **portfolio** credibile — così la visibilità diventa richieste e appuntamenti.",
-    points: [
-      "Presenza online **professionale**: servizi, zone, contatti e call to action chiare",
-      "**Portfolio** organizzato: prima/dopo, percorsi, specializzazioni",
-      "Sezioni pensate per **convertire** chi cerca un PT nella tua città o online",
-      "Recensioni, risultati e autorità raccontati con ordine — non solo nel feed",
-      "Base solida per ads, Google e passaparola: tutto punta al sito",
-    ],
-  },
-];
+const athleteOffer = {
+  badge: "Per atleti",
+  title: "Il tuo profilo ufficiale, oltre il feed",
+  lead:
+    "I social mescolano tutto in una sequenza infinita: **carriera**, **numeri** e **valore per sponsor** si perdono tra storie e reel. Ti serve un **sito** ordinato e aggiornabile — il link che mandi a club, agenti e brand quando contano le cose serie.",
+  pillars: [
+    { label: "Carriera", hint: "Percorso e risultati" },
+    { label: "Valore", hint: "Cosa offri a chi investe su di te" },
+    { label: "Prossimi step", hint: "Match, obiettivi, calendario" },
+  ],
+  points: [
+    "Struttura **chiara**: biografia, palmares, media e obiettivi stagionali sempre trovabili",
+    "**Foto e video** (highlight, backstage, comunicati) integrati senza che il messaggio si disperda",
+    "**Statistiche e risultati** leggibili: chi ti valuta capisce il percorso in pochi scroll",
+    "Sezione **sponsor / partnership** con loghi, testi e materiali pronti per decisioni rapide",
+    "**Storytelling** coerente: stessa voce sul sito e sui social, senza contraddizioni",
+    "**Un solo link** professionale da mettere in bio, firme mail e presentazioni",
+  ],
+};
 
 function RichLine({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return (
     <>
-      {parts.map((part) => {
+      {parts.map((part, i) => {
         if (part.startsWith("**") && part.endsWith("**")) {
           return (
-            <strong key={part} className="font-semibold text-zinc-200">
+            <strong key={i} className="font-semibold text-zinc-200">
               {part.slice(2, -2)}
             </strong>
           );
         }
-        return part;
+        return <span key={i}>{part}</span>;
       })}
     </>
   );
@@ -95,63 +65,82 @@ export function Services() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Servizi</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Siti web che danno ordine alla tua visibilità
+            Ordine alla tua visibilità — prima di club e sponsor
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            I social vanno bene per il giorno dopo giorno, ma sono <strong className="font-medium text-zinc-200">rumorosi</strong>:
-            non raccontano in modo completo carriera, numeri, sponsor o il tuo metodo. Il sito è la{" "}
-            <strong className="font-medium text-zinc-200">casa</strong> in cui mettere tutto — aggiornabile, leggibile,
-            pronta per chi vuole seguirti o collaborare con te.
+            Il feed è utile ogni giorno, ma è <strong className="font-medium text-zinc-200">rumoroso</strong>: non
+            sostituisce una vetrina dove carriera, numeri e collaborazioni si capiscono in un colpo d&apos;occhio. Il
+            sito è il <strong className="font-medium text-zinc-200">punto di riferimento</strong> che usi quando la
+            posta in gioco è alta.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-2 lg:gap-8">
-          {audiences.map((a) => {
-            const Icon = a.icon;
-            return (
-              <article
-                key={a.id}
-                className={`relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-8 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:p-10 ${a.ring} ring-1`}
-              >
-                <div
-                  className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-linear-to-br ${a.accent} blur-3xl`}
-                  aria-hidden
-                />
-                <div className="relative">
-                  <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-zinc-300">
-                    {a.badge}
-                  </span>
-                  <div className="mt-6 flex items-start gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent/15 text-accent ring-1 ring-accent/25">
-                      <Icon className="h-7 w-7" />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl">{a.title}</h3>
-                    </div>
-                  </div>
-                  <p className="relative mt-5 text-sm leading-relaxed text-zinc-400 sm:text-base">
-                    <RichLine text={a.lead} />
-                  </p>
-                  <ul className="relative mt-8 space-y-3 border-t border-white/10 pt-8 text-sm text-zinc-300">
-                    {a.points.map((point) => (
-                      <li key={point} className="flex gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                        <span>
-                          <RichLine text={point} />
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+        <article className="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-3xl border border-accent/20 bg-linear-to-b from-zinc-900/80 to-black/50 p-8 shadow-[0_24px_80px_-40px_rgba(0,229,160,0.35)] ring-1 ring-white/10 sm:p-10 lg:p-12">
+          <div
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-linear-to-br from-emerald-500/15 to-transparent blur-3xl"
+            aria-hidden
+          />
+          <div className="relative grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-12 lg:items-start">
+            <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="inline-flex rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-accent">
+                  {athleteOffer.badge}
+                </span>
+              </div>
+              <div className="mt-6 flex items-start gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent/15 text-accent ring-1 ring-accent/30">
+                  <IconAthlete className="h-7 w-7" />
                 </div>
-              </article>
-            );
-          })}
-        </div>
+                <div className="min-w-0">
+                  <h3 className="font-display text-xl font-bold leading-snug text-white sm:text-2xl lg:text-[1.65rem]">
+                    {athleteOffer.title}
+                  </h3>
+                </div>
+              </div>
+              <p className="mt-5 text-sm leading-relaxed text-zinc-400 sm:text-base">
+                <RichLine text={athleteOffer.lead} />
+              </p>
+              <ul className="mt-8 flex flex-wrap gap-2" aria-label="Tre pilastri del profilo">
+                {athleteOffer.pillars.map((p) => (
+                  <li
+                    key={p.label}
+                    className="rounded-2xl border border-white/10 bg-white/4 px-3 py-2 text-left shadow-sm backdrop-blur-sm"
+                  >
+                    <p className="text-xs font-semibold text-white">{p.label}</p>
+                    <p className="text-[11px] text-zinc-500">{p.hint}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Cosa mettiamo in fila</p>
+              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-300">
+                {athleteOffer.points.map((point) => (
+                  <li
+                    key={point}
+                    className="flex gap-3 rounded-2xl border border-white/5 bg-black/25 px-4 py-3 sm:px-4 sm:py-3.5"
+                  >
+                    <span
+                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-accent/15 text-[10px] font-bold text-accent"
+                      aria-hidden
+                    >
+                      ✓
+                    </span>
+                    <span>
+                      <RichLine text={point} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </article>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/2 px-6 py-5 text-center sm:flex-row sm:text-left">
           <p className="max-w-2xl text-sm text-zinc-400">
-            Oltre al sito: su misura possiamo integrare identità, contenuti, media kit e supporto — sempre con lo stesso filo
-            narrativo.
+            Oltre al sito: identità, piani editoriali, media kit e supporto continuativo — con la stessa linea
+            narrativa ovunque.
           </p>
           <Link
             href="#pacchetti"

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "next/dist/client/link";
 import { useCallback, useEffect, useState } from "react";
 import { SITE } from "@/lib/site";
 

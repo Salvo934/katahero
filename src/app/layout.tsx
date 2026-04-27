@@ -1,5 +1,5 @@
-import type { Metadata, Viewport } from "next";
-import { DM_Sans, Syne } from "next/font/google";
+import type { Metadata, Viewport } from "next/dist/types";
+import { DM_Sans, Syne } from "next/dist/compiled/@next/font/dist/google";
 import "./globals.css";
 import { JsonLd } from "@/components/site/JsonLd";
 import { getOpenGraphImage, siteVerificationMetadata } from "@/lib/seo";
