@@ -19,9 +19,9 @@ export function Hero() {
 
       <div className="relative z-23 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-end px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:px-8">
         <div className="max-w-3xl lg:max-w-[min(56rem,58%)]">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-zinc-200 shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset] backdrop-blur-md sm:text-xs">
+          <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-2xl border border-white/15 bg-black/35 px-3 py-2 text-[10px] font-semibold uppercase leading-tight tracking-[0.14em] text-zinc-200 shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset] backdrop-blur-md sm:rounded-full sm:px-3 sm:py-1.5 sm:text-xs sm:tracking-[0.22em]">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(0,229,160,0.9)]" />
-            ATLETI EMERGENTI · SEMI-PRO · PROFESSIONISTI
+            <span className="min-w-0 text-balance">ATLETI EMERGENTI · SEMI-PRO · PROFESSIONISTI</span>
           </div>
 
           <h1 className="font-display text-[2.2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[2.75rem] xl:text-7xl">
@@ -33,8 +33,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:mt-6 sm:text-lg sm:leading-relaxed">
-          Fatti trovare pronto per la prossima opportunità.
-          KataHero costruisce il tuo profilo ufficiale da atleta: sito personale, storytelling e contenuti social per presentarti meglio a club, sponsor e collaborazioni.
+          Quando arriva l’opportunità, il tuo profilo deve parlare per te.
+          Con KataHero hai un sito personale, uno storytelling professionale e contenuti social pronti a presentarti a club, sponsor e nuove collaborazioni.
           </p>
 
           <ul className="mt-8 flex flex-wrap gap-2 sm:gap-3" aria-label="Cosa ottieni">
