@@ -1,18 +1,33 @@
 import Link from "next/link";
 import { whatsappPrefilledUrl } from "@/lib/site";
 
-const socialKitFeatures = [
-  "Gameday / Matchday",
-  "Post statistiche partita",
-  "Recap mensile atleta",
-  "Milestone e record personali",
-  "Rinnovi e trasferimenti",
-  "Nuova firma / nuovo accordo",
-  "Convocazioni e premi",
-  "Stories pre e post partita",
-  "Card sponsor o partnership",
-  "Template personalizzati per stagione",
-  "Grafiche coordinate con identità atleta, agenzia o società",
+const socialKitGroups: { title: string; items: string[] }[] = [
+  {
+    title: "Match & numeri",
+    items: [
+      "Gameday / Matchday",
+      "Post statistiche partita",
+      "Stories pre e post partita",
+      "Recap mensile atleta",
+    ],
+  },
+  {
+    title: "Carriera & annunci",
+    items: [
+      "Milestone e record personali",
+      "Rinnovi e trasferimenti",
+      "Nuova firma / nuovo accordo",
+      "Convocazioni e premi",
+    ],
+  },
+  {
+    title: "Brand & asset",
+    items: [
+      "Card sponsor o partnership",
+      "Template personalizzati per stagione",
+      "Grafiche coordinate con identità atleta, agenzia o società",
+    ],
+  },
 ];
 
 const socialKitWhatsAppMessage =
@@ -172,59 +187,91 @@ export function Packages() {
           ))}
         </div>
 
-        <div className="relative mx-auto mt-14 max-w-4xl rounded-2xl border border-white/10 bg-zinc-900/40 p-7 text-center sm:mt-16 sm:p-8 lg:p-10">
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="rounded-full bg-accent/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-accent">
-              Add-on
-            </span>
-            <span className="text-xs text-zinc-500">Social &amp; comunicazione</span>
-          </div>
-          <h3 className="font-display mt-5 text-2xl font-bold tracking-tight text-white sm:text-[1.65rem]">
-            KataHero Social Kit
-          </h3>
-          <p className="mt-3 max-w-2xl mx-auto text-sm leading-relaxed text-zinc-400 sm:text-base">
-            Stesse regole visive delle schede: post e stories allineati al messaggio che mandi a club e sponsor, senza
-            ricominciare da capo a ogni uscita importante.
-          </p>
+        <article
+          className="relative mx-auto mt-14 max-w-5xl overflow-hidden rounded-3xl border border-white/12 bg-zinc-900/45 shadow-[0_28px_90px_-48px_rgba(0,0,0,0.95)] ring-1 ring-white/5 sm:mt-16"
+          aria-labelledby="social-kit-heading"
+        >
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/55 to-transparent"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute -right-24 -top-28 h-72 w-72 rounded-full bg-accent/9 blur-3xl sm:-right-16 sm:-top-20"
+            aria-hidden
+          />
 
-          <div className="mt-6 border-t border-white/10 pt-6 text-left">
-            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
-              Può includere
-            </p>
-            <ul className="mx-auto mt-4 max-w-3xl grid gap-x-8 gap-y-2 text-sm leading-snug text-zinc-300 sm:grid-cols-2">
-              {socialKitFeatures.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="shrink-0 text-accent" aria-hidden>
-                    ✓
+          <div className="relative grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)]">
+            <div className="flex flex-col justify-between border-b border-white/10 p-6 text-left sm:p-8 lg:border-b-0 lg:border-r lg:border-white/10 lg:p-10 lg:pr-8">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
+                    Add-on
                   </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+                    Social &amp; comunicazione
+                  </span>
+                </div>
 
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-snug text-zinc-500">
-            <span className="text-zinc-400">Ideale per </span>
-            staff comunicazione, società e atleti che vogliono post coerenti e veloci da approvare.
-          </p>
+                <h3
+                  id="social-kit-heading"
+                  className="font-display mt-5 text-2xl font-bold tracking-tight text-white sm:text-[1.75rem] sm:leading-snug"
+                >
+                  KataHero{" "}
+                  <span className="bg-linear-to-r from-white via-zinc-100 to-accent bg-clip-text text-transparent">
+                    Social Kit
+                  </span>
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
+                  Stesse regole visive delle schede: post e stories allineati al messaggio che mandi a club e sponsor, senza
+                  ricominciare da capo a ogni uscita importante.
+                </p>
 
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={whatsappPrefilledUrl(socialKitWhatsAppMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex flex-1 items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-black shadow-[0_8px_32px_-8px_rgba(0,229,160,0.4)] transition hover:brightness-110 sm:flex-initial sm:min-w-[200px]"
-            >
-              Chiedi il Social Kit
-            </a>
-            <Link
-              href="#contatti"
-              className="inline-flex flex-1 items-center justify-center rounded-full border border-white/15 bg-transparent px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/5 sm:flex-initial sm:min-w-[200px]"
-            >
-              Contattaci dal modulo
-            </Link>
+                <p className="mt-5 rounded-2xl border border-white/8 bg-black/30 px-4 py-3 text-sm leading-snug text-zinc-500">
+                  <span className="font-medium text-zinc-400">Ideale per </span>
+                  staff comunicazione, società e atleti che vogliono contenuti coerenti, veloci da approvare.
+                </p>
+              </div>
+
+              <div className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center">
+                <a
+                  href={whatsappPrefilledUrl(socialKitWhatsAppMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-12 w-full flex-1 items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-black shadow-[0_10px_36px_-10px_rgba(0,229,160,0.45)] transition hover:brightness-110 active:brightness-95 sm:w-auto sm:min-h-0 sm:flex-initial"
+                >
+                  Chiedi il Social Kit
+                </a>
+                <Link
+                  href="#contatti"
+                  className="inline-flex min-h-12 w-full flex-1 items-center justify-center rounded-full border border-white/18 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/28 hover:bg-white/10 active:bg-white/8 sm:w-auto sm:min-h-0 sm:flex-initial"
+                >
+                  Modulo contatti
+                </Link>
+              </div>
+            </div>
+
+            <div className="bg-black/22 p-6 sm:p-8 lg:p-10 lg:pl-8">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500">Può includere</p>
+              <div className="mt-5 space-y-6">
+                {socialKitGroups.map((group) => (
+                  <div key={group.title}>
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-accent/90">{group.title}</p>
+                    <ul className="mt-2.5 space-y-2 text-sm leading-snug text-zinc-300">
+                      {group.items.map((item) => (
+                        <li key={item} className="flex gap-2.5">
+                          <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
+                            ✓
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
           Ogni incarico parte da un confronto: tempi, contenuti e condizioni le definiamo in preventivo. Sfogliare la
