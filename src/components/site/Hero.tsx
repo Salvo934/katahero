@@ -7,6 +7,12 @@ const highlights = [
   { label: "Un solo link", detail: "Pronto per decision maker" },
 ];
 
+const planTeaser = [
+  { name: "Player Card", hint: "Scheda atleta singola" },
+  { name: "Agency Portfolio", hint: "Portfolio fino a 10 atleti" },
+  { name: "Agency Pro", hint: "Roster strutturato e filtri" },
+];
+
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
@@ -17,8 +23,8 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="relative z-23 mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="relative">
+      <div className="relative z-23 mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 text-left sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10 lg:px-8 xl:gap-12">
+        <div className="relative min-w-0 max-w-[min(100%,42rem)] lg:max-w-[min(100%,48rem)]">
           <div
             className="pointer-events-none absolute -left-4 top-2 hidden h-[calc(100%-0.25rem)] w-px bg-linear-to-b from-accent/50 via-white/15 to-transparent sm:block lg:-left-5"
             aria-hidden
@@ -58,7 +64,7 @@ export function Hero() {
             ))}
           </ul>
 
-          <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-4">
+          <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:justify-start sm:gap-4">
             <Link
               href="#contatti"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-black shadow-[0_0_40px_-8px_rgba(0,229,160,0.65)] transition hover:brightness-110 sm:px-8 sm:text-base"
@@ -73,6 +79,40 @@ export function Hero() {
               className="inline-flex items-center justify-center rounded-full border border-white/22 bg-white/8 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition hover:border-white/35 hover:bg-white/12 sm:px-8 sm:text-base"
             >
               Pacchetti &amp; Social Kit
+            </Link>
+          </div>
+        </div>
+
+        <div className="w-full shrink-0 lg:max-w-90 lg:pb-0">
+          <div className="rounded-3xl border border-white/14 bg-black/50 p-6 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.9)] ring-1 ring-white/4 backdrop-blur-xl sm:p-7">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Pacchetti</p>
+            <p className="mt-2.5 text-sm leading-relaxed text-zinc-400">
+              Tre livelli più Social Kit opzionale — dettagli e ambiti nella sezione dedicata.
+            </p>
+            <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5">
+              {planTeaser.map((row) => (
+                <li
+                  key={row.name}
+                  className="rounded-2xl border border-white/6 bg-white/4 px-3.5 py-2.5"
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-300">{row.name}</p>
+                  <p className="mt-0.5 text-[11px] leading-snug text-zinc-500">{row.hint}</p>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="#pacchetti"
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border border-accent/35 bg-accent/10 py-3 text-sm font-semibold text-accent transition hover:border-accent/50 hover:bg-accent/15"
+            >
+              Vedi pacchetti e Social Kit
+              <span aria-hidden>→</span>
+            </Link>
+            <Link
+              href="#portfolio"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/12 py-3 text-sm font-medium text-zinc-300 transition hover:border-white/22 hover:bg-white/6 hover:text-white"
+            >
+              Esempio in portfolio
+              <span aria-hidden>↗</span>
             </Link>
           </div>
         </div>
