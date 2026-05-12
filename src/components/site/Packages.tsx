@@ -1,130 +1,114 @@
-import {
-  getEliteStripeCheckoutUrls,
-  getProStripeCheckoutUrls,
-  getStartStripeCheckoutUrls,
-  getStripeCustomerPortalUrl,
-  whatsappPackageUrl,
-} from "@/lib/site";
-import { PlanStripeCheckout } from "./PlanStripeCheckout";
+import Link from "next/dist/client/link";
+import { whatsappPrefilledUrl } from "@/lib/site";
 
-type Tier = {
-  name: "Start" | "Pro" | "Elite";
-  heading: string;
+const socialKitFeatures = [
+  "Gameday / Matchday",
+  "Post statistiche partita",
+  "Recap mensile atleta",
+  "Milestone e record personali",
+  "Rinnovi e trasferimenti",
+  "Nuova firma / nuovo accordo",
+  "Convocazioni e premi",
+  "Stories pre e post partita",
+  "Card sponsor o partnership",
+  "Template personalizzati per stagione",
+  "Grafiche coordinate con identità atleta, agenzia o società",
+];
+
+const socialKitWhatsAppMessage =
+  "Ciao! Vorrei informazioni sul KataHero Social Kit (contenuti social per statistiche, gameday, milestone, rinnovi, ecc.).";
+
+type Plan = {
+  name: string;
   tagline: string;
-  blurb: string;
-  monthlyEuro: number;
+  description: string;
+  featuresSectionTitle: string;
   features: string[];
-  callout: string;
+  idealFor: string;
+  pricingLabel: string;
+  ctaLabel: string;
+  whatsappMessage: string;
   highlighted: boolean;
-  /** Titolo sopra l’elenco feature (es. “Cosa ottieni”). */
-  featuresSectionTitle?: string;
 };
 
-const tiers: Tier[] = [
+const plans: Plan[] = [
   {
-    name: "Start",
-    heading: "🥉 START",
-    tagline: "La base per presentarti online in modo chiaro e professionale",
-    blurb: "",
-    monthlyEuro: 24.99,
-    featuresSectionTitle: "🎯 Cosa ottieni",
+    name: "Player Card",
+    tagline: "Per giocatori che vogliono presentare il proprio profilo sportivo in modo ordinato e professionale.",
+    description:
+      "Una scheda atleta digitale con dati, statistiche, video, percorso sportivo e contatti raccolti in un unico link, pronta da condividere con club, agenti, società e staff tecnici.",
+    featuresSectionTitle: "Include:",
     features: [
-      "Sito essenziale e curato (4–5 sezioni)",
-      "Struttura chiara: chi sei, cosa fai, come contattarti",
-      "Hosting e gestione tecnica inclusi",
-      "1 aggiornamento al mese su richiesta",
-      "1 contenuto social al mese (storia o post sulla prestazione), pronto da pubblicare",
-      "Ottimizzato per mobile e facile da condividere (anche da Instagram)",
+      "Scheda atleta digitale personalizzata",
+      "Dati fisici e sportivi",
+      "Ruolo, squadra, campionato e stagione",
+      "Statistiche principali",
+      "Video highlights integrato",
+      "Percorso sportivo",
+      "Contatto referente",
+      "Link unico condivisibile",
+      "Ottimizzazione mobile",
+      "PDF sintetico scaricabile",
     ],
-    callout: "Ideale se vuoi qualcosa di semplice, ma fatto bene.",
+    idealFor: "giocatori, prospetti, free agent e atleti che vogliono avere un profilo professionale da condividere.",
+    pricingLabel: "Da 149€",
+    ctaLabel: "Crea la tua Player Card",
+    whatsappMessage:
+      "Ciao! Vorrei creare la mia Player Card KataHero (da 149€): scheda atleta digitale con link e PDF. Potete darmi i prossimi passi?",
     highlighted: false,
   },
   {
-    name: "Pro",
-    heading: "🥈 PRO ⭐",
-    tagline: "Costruisci un’immagine da atleta professionista online",
-    blurb: "",
-    monthlyEuro: 79,
-    featuresSectionTitle: "🎯 Cosa ottieni",
+    name: "Agency Portfolio",
+    tagline:
+      "Per procuratori, agenti e piccole agenzie che vogliono presentare più atleti con un formato professionale.",
+    description:
+      "Un portfolio digitale con schede atleta dedicate, pensato per sostituire materiali sparsi tra PDF, video, pagine di lega e messaggi WhatsApp.",
+    featuresSectionTitle: "Include:",
     features: [
-      "Sito personale completo e personalizzato (6 sezioni)",
-      "Struttura pensata per farti presentare al meglio",
-      "Ottimizzazione del tuo profilo Instagram",
-      "Sistema di contenuti per valorizzare la tua immagine",
-      "Instagram: 1 contenuto a settimana (4–5 al mese) pronto da pubblicare",
-      "Design coerente tra sito e social",
-      "Hosting e gestione inclusi",
-      "2 aggiornamenti mensili su richiesta",
+      "Pagina agenzia / procuratore personalizzata",
+      "Fino a 10 schede atleta digitali",
+      "Dati, statistiche, video e percorso per ogni giocatore",
+      "Contatto referente centralizzato",
+      "Branding agenzia o procuratore",
+      "PDF per ogni atleta",
+      "Link portfolio condivisibile",
+      "Supporto nella raccolta materiali",
+      "1 aggiornamento mensile incluso",
     ],
-    callout: "Ideale se vuoi costruire una presenza online solida.",
+    idealFor: "procuratori indipendenti, agenti e agenzie che gestiscono un primo gruppo di atleti.",
+    pricingLabel: "Da 99€/mese",
+    ctaLabel: "Richiedi una demo",
+    whatsappMessage:
+      "Ciao! Vorrei richiedere una demo per Agency Portfolio KataHero (da 99€/mese): portfolio con schede atleta. Quando possiamo parlarne?",
     highlighted: true,
   },
   {
-    name: "Elite",
-    heading: "🥇 ELITE",
-    tagline: "Massimizza la tua visibilità e accelera la tua crescita",
-    blurb: "",
-    monthlyEuro: 149,
-    featuresSectionTitle: "🎯 Cosa ottieni",
+    name: "Agency Pro",
+    tagline:
+      "Per agenzie, società e academy che vogliono gestire e presentare un roster più ampio in modo strutturato.",
+    description:
+      "Una soluzione avanzata per organizzare più atleti, filtrarli per ruolo e caratteristiche, aggiornare i materiali e condividere schede professionali con club, scout e staff tecnici.",
+    featuresSectionTitle: "Include tutto Agency Portfolio, più:",
     features: [
-      "Tutto incluso nel piano PRO",
-      "Instagram: 2 contenuti a settimana (8–10 al mese) pronti da pubblicare",
-      "Maggiore varietà e frequenza di contenuti",
-      "Direzione strategica più avanzata",
-      "Priorità nella gestione e supporto",
+      "Schede atleta su misura per roster più ampi",
+      "Filtri per ruolo, anno, altezza, categoria, status e disponibilità",
+      "Sezioni video per skill o caratteristiche di gioco",
+      "Profilo tecnico e Best Fit per ogni atleta",
+      "Area riservata o schede private su richiesta",
+      "Aggiornamenti periodici dei dati",
+      "PDF professionale per ogni atleta",
+      "Supporto prioritario",
+      "Personalizzazione grafica avanzata",
+      "Report o statistiche di visualizzazione, se disponibili",
     ],
-    callout: "Ideale se vuoi crescere più velocemente rispetto agli altri.",
+    idealFor: "agenzie strutturate, società sportive, academy, settori giovanili e gruppi squadra.",
+    pricingLabel: "Su richiesta",
+    ctaLabel: "Parla con noi",
+    whatsappMessage:
+      "Ciao! Vorrei informazioni su Agency Pro KataHero (soluzione su richiesta) per gestire un roster più ampio. Possiamo fare una call?",
     highlighted: false,
   },
 ];
-
-function formatEuro(n: number) {
-  return new Intl.NumberFormat("it-IT", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(n);
-}
-
-function annualEuro(monthlyEuro: number) {
-  return monthlyEuro * 10;
-}
-
-/** Stesso blocco prezzi per tutti i tier — niente varianti per “highlighted”. */
-function TierPricing({ monthlyEuro }: { monthlyEuro: number }) {
-  const annual = annualEuro(monthlyEuro);
-  const saving = monthlyEuro * 2;
-
-  return (
-    <div className="rounded-2xl border border-white/10 bg-black/35 px-5 py-4">
-      <div className="space-y-3">
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Mensile</p>
-          <p className="mt-1 font-display text-[1.65rem] font-bold leading-none tabular-nums tracking-tight text-white sm:text-[1.75rem]">
-            {formatEuro(monthlyEuro)}
-            <span className="text-base font-semibold text-zinc-500">/mese</span>
-          </p>
-        </div>
-
-        <div className="h-px bg-white/10" aria-hidden />
-
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
-            Annuale <span className="font-normal normal-case tracking-normal text-accent/90">(2 mesi in regalo)</span>
-          </p>
-          <p className="mt-1 font-display text-[1.65rem] font-bold leading-none tabular-nums tracking-tight text-accent sm:text-[1.75rem]">
-            {formatEuro(annual)}
-            <span className="text-base font-semibold text-accent/75">/anno</span>
-          </p>
-          <p className="mt-2 text-xs leading-snug text-zinc-500">
-            Risparmi <span className="font-medium text-zinc-300">{formatEuro(saving)}</span> vs 12 mensilità
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export function Packages() {
   return (
@@ -140,141 +124,149 @@ export function Packages() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Prezzi chiari,{" "}
-            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">abbonamento flessibile</span>
+            Dalla{" "}
+            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">Player Card</span> al
+            roster completo
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Paghi <strong className="font-medium text-zinc-200">ogni mese</strong> oppure{" "}
-            <strong className="font-medium text-zinc-200">l&apos;anno intero</strong> con due mesi in regalo. Scegli il
-            piano e scrivici su WhatsApp: ti confermiamo i dettagli.
+            Tre livelli per atleti singoli, agenzie e organizzazioni che devono presentare talenti con chiarezza —
+            scrivici per il piano giusto o una demo.
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-14 sm:gap-6 lg:grid-cols-3 lg:items-stretch">
-          {tiers.map((t) => {
-            const waHref = whatsappPackageUrl(t.name, t.monthlyEuro, t.tagline);
-            const stripeUrls =
-              t.name === "Start"
-                ? getStartStripeCheckoutUrls()
-                : t.name === "Pro"
-                  ? getProStripeCheckoutUrls()
-                  : getEliteStripeCheckoutUrls();
-            return (
-              <article
-                key={t.name}
-                className={`relative flex h-full flex-col rounded-3xl border px-6 pb-6 pt-10 sm:px-7 sm:pb-7 sm:pt-11 ${
-                  t.highlighted
-                    ? "border-accent/35 bg-zinc-900/50 ring-1 ring-accent/25 shadow-[0_20px_60px_-28px_rgba(0,229,160,0.45)]"
-                    : "border-white/10 bg-zinc-900/35 hover:border-white/16"
-                }`}
-              >
-                {t.highlighted ? (
-                  <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-black shadow-[0_8px_24px_-8px_rgba(0,229,160,0.55)]">
-                    Consigliato
-                  </span>
-                ) : null}
+          {plans.map((p) => (
+            <article
+              key={p.name}
+              className={`relative flex h-full flex-col rounded-3xl border px-6 pb-6 pt-10 sm:px-7 sm:pb-7 sm:pt-11 ${
+                p.highlighted
+                  ? "border-accent/35 bg-zinc-900/50 ring-1 ring-accent/25 shadow-[0_20px_60px_-28px_rgba(0,229,160,0.45)]"
+                  : "border-white/10 bg-zinc-900/35 hover:border-white/16"
+              }`}
+            >
+              {p.highlighted ? (
+                <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-black shadow-[0_8px_24px_-8px_rgba(0,229,160,0.55)]">
+                  Consigliato
+                </span>
+              ) : null}
 
-                <div className="flex flex-1 flex-col gap-4 text-center">
-                  <div>
-                    <h3 className="font-display text-2xl font-bold tracking-tight text-white">{t.heading}</h3>
-                    <p className="mt-2 text-sm font-medium leading-snug text-zinc-400">{t.tagline}</p>
-                  </div>
-
-                  <TierPricing monthlyEuro={t.monthlyEuro} />
-
-                  {t.blurb ? <p className="text-sm leading-relaxed text-zinc-400">{t.blurb}</p> : null}
-
-                  <div className="flex flex-1 flex-col border-t border-white/10 pt-5 text-left">
-                    {t.featuresSectionTitle ? (
-                      <p className="mb-3 text-sm font-semibold text-zinc-100">{t.featuresSectionTitle}</p>
-                    ) : null}
-                    <ul className="flex-1 space-y-2.5 text-sm leading-relaxed text-zinc-300">
-                      {t.features.map((f) => (
-                        <li key={f} className="flex gap-3">
-                          <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
-                            ✔
-                          </span>
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-5 text-center text-sm font-medium leading-snug text-zinc-200">
-                      <span aria-hidden>👉 </span>
-                      {t.callout}
-                    </p>
-                  </div>
+              <div className="flex flex-1 flex-col gap-4 text-center">
+                <div>
+                  <h3 className="font-display text-2xl font-bold tracking-tight text-white">{p.name}</h3>
+                  <p className="mt-2 text-sm font-medium leading-snug text-zinc-400">{p.tagline}</p>
                 </div>
 
-                <PlanStripeCheckout
-                  modalTitle={`Piano ${t.name}`}
-                  acquistaLabel={`Acquista ${t.name}`}
-                  scegliLabel={`Scegli ${t.name}`}
-                  monthlyUrl={stripeUrls.monthly}
-                  annualUrl={stripeUrls.annual}
-                  whatsappHref={waHref}
-                  monthlyPriceCaption={`${formatEuro(t.monthlyEuro)}/mese`}
-                  annualPriceCaption={`${formatEuro(annualEuro(t.monthlyEuro))}/anno`}
-                />
-              </article>
-            );
-          })}
+                <div className="rounded-2xl border border-white/10 bg-black/35 px-5 py-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Investimento</p>
+                  <p className="mt-1 font-display text-[1.65rem] font-bold leading-none tabular-nums tracking-tight text-white sm:text-[1.75rem]">
+                    {p.pricingLabel}
+                  </p>
+                </div>
+
+                <p className="text-left text-sm leading-relaxed text-zinc-400">{p.description}</p>
+
+                <div className="flex flex-1 flex-col border-t border-white/10 pt-5 text-left">
+                  <p className="mb-3 text-sm font-semibold text-zinc-100">{p.featuresSectionTitle}</p>
+                  <ul className="flex-1 space-y-2.5 text-sm leading-relaxed text-zinc-300">
+                    {p.features.map((f) => (
+                      <li key={f} className="flex gap-3">
+                        <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
+                          ✓
+                        </span>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 text-sm leading-snug text-zinc-200">
+                    <span className="font-semibold text-zinc-100">Ideale per:</span> {p.idealFor}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 flex w-full shrink-0 flex-col gap-3">
+                <a
+                  href={whatsappPrefilledUrl(p.whatsappMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center rounded-2xl border border-accent/40 bg-accent px-5 py-3.5 text-center font-display text-sm font-bold tracking-tight text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110 active:brightness-95"
+                >
+                  {p.ctaLabel}
+                </a>
+                <Link
+                  href="#contatti"
+                  className="inline-flex w-full items-center justify-center rounded-2xl border border-white/12 bg-transparent py-3 text-sm font-medium text-zinc-300 transition hover:border-white/22 hover:bg-white/4 hover:text-white"
+                >
+                  Preferisci email / modulo
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
 
-        <div className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 md:items-stretch">
-          <div className="flex h-full flex-col rounded-2xl border border-accent/25 bg-accent/5 px-6 py-8 text-center ring-1 ring-accent/15 sm:px-8 sm:py-9">
-            <p className="font-display text-lg font-bold leading-snug text-white sm:text-xl">
-              In 24–48 ore hai una presenza online completa
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
-              Sito personale & contenuti social progettati per valorizzare la tua immagine da atleta.
-            </p>
-            <p className="mt-3 text-sm font-medium text-zinc-200 sm:text-base">Tu ti concentri sulla performance.</p>
-            <p className="mt-2 text-sm font-medium text-zinc-200 sm:text-base">
-              Noi costruiamo come vieni percepito online.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
-              Un solo link. Tutto il tuo valore in un posto.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">
-              E contenuti social pensati per farti emergere ogni settimana.
-            </p>
-            <p className="mt-auto pt-6 text-sm font-medium text-accent sm:text-base">
-              <span aria-hidden>👉 </span>
-              Perfetto per chi vuole essere preso più sul serio online
-            </p>
-          </div>
-
-          <div className="flex h-full flex-col rounded-3xl border border-white/12 bg-zinc-900/40 px-6 py-8 text-center sm:px-10 sm:py-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-zinc-500">Per chi è già cliente</p>
-            <h3 className="font-display mt-3 text-xl font-bold tracking-tight text-white sm:text-2xl">
-              Gestisci il tuo abbonamento in autonomia
+        <article
+          className="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-3xl border border-accent/25 bg-linear-to-b from-zinc-900/85 to-black/55 p-8 shadow-[0_24px_80px_-40px_rgba(0,229,160,0.22)] ring-1 ring-white/10 sm:p-10 lg:p-12"
+        >
+          <div
+            className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-accent/10 blur-3xl"
+            aria-hidden
+          />
+          <div className="relative text-left">
+            <h3 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-[1.85rem]">
+              KataHero Social Kit
             </h3>
+            <p className="mt-5 text-sm leading-relaxed text-zinc-400 sm:text-base">
+              Contenuti social personalizzati per comunicare in modo professionale statistiche, gameday, rinnovi,
+              trasferimenti, milestone e aggiornamenti degli atleti.
+            </p>
             <p className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base">
-              Accedi all&apos;area clienti sicura di Stripe con l&apos;indirizzo email usato in fase di acquisto. Da lì
-              puoi aggiornare il metodo di pagamento, scaricare le fatture e, in base a come è configurato il tuo piano,
-              modificare il rinnovo o richiedere la disdetta. Le tempistiche e le condizioni di recesso restano quelle
-              indicate nel contratto.
+              Il Social Kit è pensato per agenzie, società e atleti che vogliono mantenere una comunicazione coerente
+              anche fuori dalla scheda digitale, con grafiche pronte per post, stories e canali ufficiali.
             </p>
-            <p className="mt-3 text-xs leading-relaxed text-zinc-500 sm:text-sm">
-              Stripe ti guiderà nel login (link via email). Se non ricevi nulla, controlla anche la posta indesiderata.
+
+            <div className="mt-8 border-t border-white/10 pt-8">
+              <p className="text-sm font-semibold text-zinc-100">Può includere:</p>
+              <ul className="mt-4 grid gap-2.5 text-sm leading-relaxed text-zinc-300 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-2.5">
+                {socialKitFeatures.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <p className="mt-8 text-sm leading-snug text-zinc-200">
+              <span className="font-semibold text-zinc-100">Ideale per:</span> chi vuole trasformare dati, risultati e
+              aggiornamenti sportivi in contenuti social professionali e coerenti.
             </p>
-            <a
-              href={getStripeCustomerPortalUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 inline-flex w-full items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 text-center font-display text-sm font-bold text-white shadow-[0_12px_40px_-20px_rgba(0,0,0,0.6)] transition hover:border-accent/40 hover:bg-accent/10 hover:text-accent"
-            >
-              Apri l&apos;area clienti Stripe
-            </a>
-            <p className="mt-4 text-[11px] leading-relaxed text-zinc-600">
-              Pagamenti e abbonamenti sono gestiti da Stripe; noi non conserviamo i dati della tua carta.
-            </p>
+
+            <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+              <p className="font-display text-lg font-bold text-white sm:text-xl">Su richiesta</p>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href={whatsappPrefilledUrl(socialKitWhatsAppMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-2xl border border-accent/40 bg-accent px-6 py-3.5 text-center font-display text-sm font-bold text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110"
+                >
+                  Chiedi il Social Kit
+                </a>
+                <Link
+                  href="#contatti"
+                  className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
+                >
+                  Contattaci dal modulo
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
-          I valori sono da intendersi IVA esclusa o inclusa in base alla proposta. Abbonamento mensile o annuale (10
-          mensilità all&apos;anno); rinnovo e disdetta secondo condizioni in contratto.
+          I valori sono indicativi e da intendersi IVA esclusa o inclusa secondo preventivo. Player Card come progetto
+          una tantum; Agency Portfolio come canone ricorrente salvo diverso accordo; Agency Pro su misura.
         </p>
       </div>
     </section>

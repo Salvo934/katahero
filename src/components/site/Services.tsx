@@ -17,39 +17,21 @@ const athleteOffer = {
   badge: "Per atleti",
   title: "Il tuo profilo ufficiale, oltre il feed",
   lead:
-    "I social mescolano tutto in una sequenza infinita: **carriera**, **numeri** e **valore per sponsor** si perdono tra storie e reel. Ti serve un **sito** ordinato e aggiornabile — il link che mandi a club, agenti e brand quando contano le cose serie.",
+    "I social mescolano tutto in una sequenza infinita: carriera, numeri e valore per sponsor si perdono tra storie e reel. Ti serve un sito ordinato e aggiornabile — il link che mandi a club, agenti e brand quando contano le cose serie.",
   pillars: [
     { label: "Carriera", hint: "Percorso e risultati" },
     { label: "Valore", hint: "Cosa offri a chi investe su di te" },
     { label: "Prossimi step", hint: "Match, obiettivi, calendario" },
   ],
   points: [
-    "Struttura **chiara**: biografia, palmares, media e obiettivi stagionali sempre trovabili",
-    "**Foto e video** (highlight, backstage, comunicati) integrati senza che il messaggio si disperda",
-    "**Statistiche e risultati** leggibili: chi ti valuta capisce il percorso in pochi scroll",
-    "Sezione **sponsor / partnership** con loghi, testi e materiali pronti per decisioni rapide",
-    "**Storytelling** coerente: stessa voce sul sito e sui social, senza contraddizioni",
-    "**Un solo link** professionale da mettere in bio, firme mail e presentazioni",
+    "Struttura chiara: biografia, palmares, media e obiettivi stagionali sempre trovabili",
+    "Foto e video (highlight, backstage, comunicati) integrati senza che il messaggio si disperda",
+    "Statistiche e risultati leggibili: chi ti valuta capisce il percorso in pochi scroll",
+    "Sezione sponsor / partnership con loghi, testi e materiali pronti per decisioni rapide",
+    "Storytelling coerente: stessa voce sul sito e sui social, senza contraddizioni",
+    "Un solo link professionale da mettere in bio, firme mail e presentazioni",
   ],
 };
-
-function RichLine({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return (
-    <>
-      {parts.map((part, i) => {
-        if (part.startsWith("**") && part.endsWith("**")) {
-          return (
-            <strong key={i} className="font-semibold text-zinc-200">
-              {part.slice(2, -2)}
-            </strong>
-          );
-        }
-        return <span key={i}>{part}</span>;
-      })}
-    </>
-  );
-}
 
 export function Services() {
   return (
@@ -68,9 +50,8 @@ export function Services() {
             Ordine alla tua visibilità — prima di club e sponsor
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Il feed è utile ogni giorno, ma è <strong className="font-medium text-zinc-200">rumoroso</strong>: non
-            sostituisce una vetrina dove carriera, numeri e collaborazioni si capiscono in un colpo d&apos;occhio. Il
-            sito è il <strong className="font-medium text-zinc-200">punto di riferimento</strong> che usi quando la
+            Il feed è utile ogni giorno, ma è rumoroso: non sostituisce una vetrina dove carriera, numeri e
+            collaborazioni si capiscono in un colpo d&apos;occhio. Il sito è il punto di riferimento che usi quando la
             posta in gioco è alta.
           </p>
         </div>
@@ -97,9 +78,7 @@ export function Services() {
                   </h3>
                 </div>
               </div>
-              <p className="mt-5 text-sm leading-relaxed text-zinc-400 sm:text-base">
-                <RichLine text={athleteOffer.lead} />
-              </p>
+              <p className="mt-5 text-sm leading-relaxed text-zinc-400 sm:text-base">{athleteOffer.lead}</p>
               <ul className="mt-8 flex flex-wrap gap-2" aria-label="Tre pilastri del profilo">
                 {athleteOffer.pillars.map((p) => (
                   <li
@@ -114,7 +93,9 @@ export function Services() {
             </div>
 
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Cosa mettiamo in fila</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                Cosa mettiamo in fila
+              </p>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-300">
                 {athleteOffer.points.map((point) => (
                   <li
@@ -127,9 +108,7 @@ export function Services() {
                     >
                       ✓
                     </span>
-                    <span>
-                      <RichLine text={point} />
-                    </span>
+                    <span>{point}</span>
                   </li>
                 ))}
               </ul>

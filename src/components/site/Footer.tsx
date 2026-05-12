@@ -109,10 +109,11 @@ export function Footer() {
             <div className="mx-auto max-w-xl lg:mx-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Prossimo passo</p>
               <p className="font-display mt-3 text-2xl font-bold leading-tight text-white sm:text-3xl">
-                Porta il tuo brand oltre il feed.
+                Scheda atleta, portfolio e social sotto controllo.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-                Obiettivi, sport e tempistiche: rispondiamo su WhatsApp o via email con un perimetro chiaro.
+                Ti rispondiamo su WhatsApp o email con tempistiche e perimetro chiari — da un singolo atleta a un
+                roster strutturato.
               </p>
             </div>
             <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center lg:w-auto lg:justify-end">
@@ -269,7 +270,9 @@ export function Footer() {
           </div>
           <div className="flex max-w-sm flex-col items-center gap-2 text-center text-xs text-zinc-600 sm:max-w-none sm:flex-row sm:text-left">
             <span className="h-1 w-1 shrink-0 rounded-full bg-accent/60 sm:mt-1.5" aria-hidden />
-            <span>Personal branding · Atleti · Personal trainer · Italia</span>
+            <span>
+              Scheda atleta digitale · Basket · Agenzie e società · Italia
+            </span>
           </div>
         </div>
       </div>

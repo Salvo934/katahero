@@ -67,13 +67,14 @@ export function Contact() {
             Contatti
           </p>
           <h2 className="font-display mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Parliamo del{" "}
+            Parliamo della tua{" "}
             <span className="bg-linear-to-r from-white via-zinc-100 to-accent bg-clip-text text-transparent">
-              tuo brand
+              presentazione sportiva
             </span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Un solo tap per scriverci, chiamarci o inviarci una mail.
+            Player Card, Agency Portfolio, Agency Pro o Social Kit: per demo, preventivo o raccolta materiali — un solo tap
+            su WhatsApp, telefono o email.
           </p>
           <div
             className="mx-auto mt-8 h-px max-w-xs bg-linear-to-r from-transparent via-accent/50 to-transparent"
@@ -94,7 +95,7 @@ export function Contact() {
               </div>
               <h3 className="font-display mt-6 text-lg font-semibold text-white">WhatsApp</h3>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-zinc-400 transition group-hover:text-zinc-300">
-                Chat veloce, vocali e file quando vuoi.
+                Messaggi rapidi per Player Card, portfolio agenziale e Social Kit.
               </p>
               <span className="mt-6 inline-flex items-center gap-2 text-base font-semibold text-[#4ade80] transition group-hover:gap-3">
                 {SITE.phoneDisplay}
@@ -115,7 +116,7 @@ export function Contact() {
               </div>
               <h3 className="font-display mt-6 text-lg font-semibold text-white">Telefono</h3>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-zinc-400 transition group-hover:text-zinc-300">
-                Chiamata diretta per briefing e urgenze.
+                Call per roster, agenzie e tempistiche strette (matchday, trasferimenti).
               </p>
               <span className="mt-6 inline-flex items-center gap-2 text-base font-semibold text-white transition group-hover:gap-3 group-hover:text-accent">
                 {SITE.phoneDisplay}
@@ -136,7 +137,7 @@ export function Contact() {
               </div>
               <h3 className="font-display mt-6 text-lg font-semibold text-white">Email</h3>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-zinc-400 transition group-hover:text-zinc-300">
-                Brief dettagliati e allegati in un colpo solo.
+                Brief con roster, link video, statistiche e obiettivi di comunicazione.
               </p>
               <span className="mt-6 flex flex-wrap items-end justify-between gap-3 border-t border-white/5 pt-5">
                 <span className="min-w-0 flex-1 break-all text-sm font-semibold leading-snug text-violet-200/90 transition group-hover:text-violet-100 sm:text-[15px]">

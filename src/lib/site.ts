@@ -1,8 +1,8 @@
 export const SITE = {
   name: "KataHero",
   description:
-    "Studio di personal branding per atleti e personal trainer: identità visiva, contenuti social, media kit e strategia digitale su misura.",
-  tagline: "Sito e brand che ti fanno riconoscere — e scegliere — prima degli altri.",
+    "Scheda atleta digitale e portfolio per il basket: dati, video, percorso e contatti in un link professionale per giocatori, agenti, società e staff. Opzionale Social Kit per comunicazione social coerente.",
+  tagline: "La tua scheda atleta e il tuo portfolio — chiari, aggiornabili, pronti per chi decide.",
   phoneDisplay: "+39 327 459 7773",
   phoneTel: "+393274597773",
   whatsappUrl: "https://wa.me/393274597773",
@@ -47,6 +47,11 @@ export function whatsappPackageUrl(
   }).format(monthlyEuro);
   const text = `Ciao! Vorrei informazioni sul pacchetto ${planName} di ${SITE.name}: ${monthly}/mese. ${shortDescription}`;
   return `${SITE.whatsappUrl}?text=${encodeURIComponent(text)}`;
+}
+
+/** Messaggio WhatsApp libero (CTA pacchetti, demo, contatti commerciali). */
+export function whatsappPrefilledUrl(message: string): string {
+  return `${SITE.whatsappUrl}?text=${encodeURIComponent(message)}`;
 }
 
 /** Payment Link Stripe — piano Start (test). Sovrascrivi con env in produzione (link live). */
