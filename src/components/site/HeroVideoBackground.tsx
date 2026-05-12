@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const SRC = "/videos/herosfondo.mp4";
+const SRC = "/videos/sfondohero8.mp4";
 
 export function HeroVideoBackground() {
   const ref = useRef<HTMLVideoElement | null>(null);
@@ -53,7 +53,7 @@ export function HeroVideoBackground() {
         aria-hidden
       />
       <div
-        className="absolute inset-0 z-21 bg-[linear-gradient(to_top,rgba(5,5,5,0.95)_0%,transparent_35%)]"
+        className="absolute inset-0 z-21 bg-[linear-gradient(to_top,rgba(5,5,5,0.97)_0%,rgba(5,5,5,0.55)_28%,transparent_48%)]"
         aria-hidden
       />
     </div>
