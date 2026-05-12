@@ -28,16 +28,15 @@ type Plan = {
   idealFor: string;
   ctaLabel: string;
   whatsappMessage: string;
-  highlighted: boolean;
 };
 
 const plans: Plan[] = [
   {
     name: "Player Card",
     badge: "Singolo atleta",
-    tagline: "Un link ufficiale quando club, agenti o staff devono capirti in pochi secondi.",
+    tagline: "Il link che apri quando qualcuno deve valutarti in fretta — senza file sparsi o DM lunghi.",
     description:
-      "Tutto ciò che serve per presentarti: numeri, video, carriera e contatti in un’unica scheda digitale ottimizzata per mobile — più PDF sintetico da allegare quando serve.",
+      "Numeri, video, carriera e contatti in una scheda digitale pensata per il mobile, più un PDF sintetico da allegare quando serve andare dritti al punto.",
     featuresSectionTitle: "Cosa include",
     features: [
       "Scheda atleta digitale personalizzata",
@@ -56,14 +55,13 @@ const plans: Plan[] = [
     ctaLabel: "Crea la tua Player Card",
     whatsappMessage:
       "Ciao! Vorrei creare la mia Player Card KataHero: scheda atleta digitale con link e PDF. Potete darmi i prossimi passi?",
-    highlighted: false,
   },
   {
     name: "Agency Portfolio",
     badge: "Agenzia / procuratore",
-    tagline: "Le tue schede atleta nello stesso posto, con voce e immagine di agenzia coerenti.",
+    tagline: "Un solo indirizzo per il tuo marchio e per le schede dei tuoi assistiti — ordinato e riconoscibile.",
     description:
-      "Sostituisci il patchwork di PDF, link telefonati e reel persi nel feed: un portfolio digitale con pagina agenzia e fino a dieci schede giocatore sempre aggiornabili.",
+      "Metti ordine tra PDF, link e messaggi: pagina agenzia più fino a dieci schede giocatore, aggiornabili e coerenti con il tuo branding.",
     featuresSectionTitle: "Cosa include",
     features: [
       "Pagina istituzionale agenzia / procuratore",
@@ -81,14 +79,13 @@ const plans: Plan[] = [
     ctaLabel: "Richiedi una demo",
     whatsappMessage:
       "Ciao! Vorrei richiedere una demo per Agency Portfolio KataHero: portfolio con schede atleta. Quando possiamo parlarne?",
-    highlighted: true,
   },
   {
     name: "Agency Pro",
     badge: "Roster & organizzazioni",
-    tagline: "Per chi deve filtrare, aggiornare e condividere molti profili senza perdere qualità.",
+    tagline: "Gestisci molti profili con filtri, aggiornamenti e materiali che reggono il confronto con club e scouting.",
     description:
-      "Pensato per scouting e decisioni rapide: roster ampio, filtri per ruolo e caratteristiche, sezioni video mirate, materiali privati quando serve e workflow di aggiornamento strutturato.",
+      "Per organizzazioni che vivono il mercato ogni settimana: roster ampio, filtri per ruolo e caratteristiche, video mirati, riservatezza quando serve e cicli di aggiornamento chiari.",
     featuresSectionTitle: "Tutto Agency Portfolio, più",
     features: [
       "Schede su misura per roster numerosi",
@@ -106,7 +103,6 @@ const plans: Plan[] = [
     ctaLabel: "Parla con noi",
     whatsappMessage:
       "Ciao! Vorrei informazioni su Agency Pro KataHero (soluzione su richiesta) per gestire un roster più ampio. Possiamo fare una call?",
-    highlighted: false,
   },
 ];
 
@@ -121,51 +117,42 @@ export function Packages() {
         aria-hidden
       />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl lg:mx-0 lg:max-w-2xl lg:text-left">
+        <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-tight">
-            Lo stesso standard professionale,{" "}
-            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">dalla scheda al roster</span>
+            Tre modi di presentare il basket,{" "}
+            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">
+              con la stessa cura professionale
+            </span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Tre livelli pensati per come lavori davvero: presentare un atleta, curare un gruppo ristretto o gestire un
-            organico ampio. Nessun listino rigido in pagina: dopo un contatto ti proponiamo perimetro, tempi e deliverable
-            chiari.
+            Player Card per chi deve emergere con un link pulito. Agency Portfolio quando rappresenti più atleti sotto
+            un&apos;unica immagine. Agency Pro quando roster, filtri e aggiornamenti sono parte del lavoro quotidiano.
+            Qui trovi cosa include ogni perimetro; tempi e condizioni economiche li allineiamo in preventivo dopo un primo
+            contatto — senza costringerti a listini fissi online.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-14 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-14 lg:grid-cols-3 lg:items-stretch lg:gap-6">
           {plans.map((p) => (
             <article
               key={p.name}
-              className={`flex h-full flex-col rounded-2xl border p-6 transition-colors sm:p-7 ${
-                p.highlighted
-                  ? "border-accent/40 bg-zinc-900/60 shadow-[0_0_0_1px_rgba(0,229,160,0.12)]"
-                  : "border-white/10 bg-zinc-900/35 hover:border-white/15 hover:bg-zinc-900/45"
-              }`}
+              className="flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-zinc-900/40 p-6 transition-colors sm:p-7 hover:border-white/16 hover:bg-zinc-900/50"
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{p.badge}</p>
-                  <h3 className="font-display mt-2 text-xl font-bold tracking-tight text-white sm:text-[1.35rem]">
-                    {p.name}
-                  </h3>
-                </div>
-                {p.highlighted ? (
-                  <span className="shrink-0 rounded-full bg-accent/12 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-accent">
-                    Popolare
-                  </span>
-                ) : null}
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{p.badge}</p>
+                <h3 className="font-display mt-2 text-xl font-bold tracking-tight text-white sm:text-[1.35rem]">
+                  {p.name}
+                </h3>
+                <p className="mt-3 text-sm font-medium leading-snug text-zinc-300">{p.tagline}</p>
+                <p className="mt-4 text-sm leading-relaxed text-zinc-500">{p.description}</p>
               </div>
 
-              <p className="mt-3 text-sm font-medium leading-snug text-zinc-300">{p.tagline}</p>
-              <p className="mt-4 text-sm leading-relaxed text-zinc-500">{p.description}</p>
-
-              <div className="mt-6 border-t border-white/10 pt-6">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+              <div className="mt-6 flex min-h-0 flex-1 flex-col border-t border-white/10 pt-6">
+                <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
                   {p.featuresSectionTitle}
                 </p>
-                <ul className="mt-4 space-y-2.5 text-sm leading-snug text-zinc-300">
+                <ul className="mt-4 min-h-0 flex-1 space-y-2.5 text-sm leading-snug text-zinc-300">
                   {p.features.map((f) => (
                     <li key={f} className="flex gap-2.5">
                       <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
@@ -175,22 +162,17 @@ export function Packages() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-6 shrink-0 text-sm leading-snug text-zinc-500">
+                  <span className="text-zinc-400">Ideale per </span>
+                  {p.idealFor}
+                </p>
               </div>
-
-              <p className="mt-6 text-sm leading-snug text-zinc-500">
-                <span className="text-zinc-400">Ideale per </span>
-                {p.idealFor}
-              </p>
 
               <a
                 href={whatsappPrefilledUrl(p.whatsappMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition ${
-                  p.highlighted
-                    ? "bg-accent text-black shadow-[0_8px_32px_-8px_rgba(0,229,160,0.45)] hover:brightness-110"
-                    : "border border-white/15 bg-white/5 text-white hover:border-accent/30 hover:bg-white/8"
-                }`}
+                className="mt-6 inline-flex w-full shrink-0 items-center justify-center rounded-full bg-accent px-5 py-3.5 text-center text-sm font-semibold text-black shadow-[0_8px_28px_-10px_rgba(0,229,160,0.4)] transition hover:brightness-110"
               >
                 {p.ctaLabel}
               </a>
@@ -198,8 +180,8 @@ export function Packages() {
           ))}
         </div>
 
-        <div className="relative mx-auto mt-14 max-w-4xl rounded-2xl border border-white/10 bg-zinc-900/40 p-7 sm:mt-16 sm:p-8 lg:p-10">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="relative mx-auto mt-14 max-w-4xl rounded-2xl border border-white/10 bg-zinc-900/40 p-7 text-center sm:mt-16 sm:p-8 lg:p-10">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             <span className="rounded-full bg-accent/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-accent">
               Add-on
             </span>
@@ -208,14 +190,16 @@ export function Packages() {
           <h3 className="font-display mt-5 text-2xl font-bold tracking-tight text-white sm:text-[1.65rem]">
             KataHero Social Kit
           </h3>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base">
-            Grafiche e testi pronti per partite, numeri e aggiornamenti — stessa linea visiva delle schede, senza rifare
-            tutto da zero. Per chi vuole continuità tra sito, post e stories.
+          <p className="mt-3 max-w-2xl mx-auto text-sm leading-relaxed text-zinc-400 sm:text-base">
+            Stesse regole visive delle schede: post e stories allineati al messaggio che mandi a club e sponsor, senza
+            ricominciare da capo a ogni uscita importante.
           </p>
 
-          <div className="mt-6 border-t border-white/10 pt-6">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Può includere</p>
-            <ul className="mt-4 grid gap-x-8 gap-y-2 text-sm leading-snug text-zinc-300 sm:grid-cols-2">
+          <div className="mt-6 border-t border-white/10 pt-6 text-left">
+            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+              Può includere
+            </p>
+            <ul className="mx-auto mt-4 max-w-3xl grid gap-x-8 gap-y-2 text-sm leading-snug text-zinc-300 sm:grid-cols-2">
               {socialKitFeatures.map((item) => (
                 <li key={item} className="flex gap-2">
                   <span className="shrink-0 text-accent" aria-hidden>
@@ -227,12 +211,12 @@ export function Packages() {
             </ul>
           </div>
 
-          <p className="mt-6 text-sm leading-snug text-zinc-500">
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-snug text-zinc-500">
             <span className="text-zinc-400">Ideale per </span>
             staff comunicazione, società e atleti che vogliono post coerenti e veloci da approvare.
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={whatsappPrefilledUrl(socialKitWhatsAppMessage)}
               target="_blank"
@@ -250,9 +234,9 @@ export function Packages() {
           </div>
         </div>
 
-        <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-zinc-600 lg:mx-0 lg:text-left">
-          Ambiti di lavoro, tempistiche e condizioni si concordano in preventivo dopo il primo confronto — nessun
-          impegno dalla sola navigazione in home.
+        <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
+          Ogni incarico parte da un confronto: tempi, contenuti e condizioni le definiamo in preventivo. Sfogliare la
+          pagina non crea obblighi.
         </p>
       </div>
     </section>
