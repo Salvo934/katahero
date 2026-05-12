@@ -32,13 +32,11 @@ export function LaunchOfferBanner() {
                 Listino bloccato sui primi progetti confermati
               </h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-[15px]">
-                Per chi entra in questa fase, <strong className="font-semibold text-zinc-200">Player Card</strong>{" "}
-                resta <strong className="font-semibold text-zinc-200">da 149€</strong>,{" "}
-                <strong className="font-semibold text-zinc-200">Agency Portfolio</strong>{" "}
-                <strong className="font-semibold text-zinc-200">da 99€/mese</strong> e le condizioni di{" "}
-                <strong className="font-semibold text-zinc-200">Agency Pro</strong> restano allineate a quanto vedi
-                nei pacchetti — senza rincari a sorpresa dopo la conferma. Chiudendo il turno early access, il
-                listino può aggiornarsi.
+                Per chi entra in questa fase, <strong className="font-semibold text-zinc-200">Player Card</strong>,{" "}
+                <strong className="font-semibold text-zinc-200">Agency Portfolio</strong> e{" "}
+                <strong className="font-semibold text-zinc-200">Agency Pro</strong> restano sulle condizioni che ci
+                impegniamo a confermarti in preventivo — senza sorprese dopo la conferma del progetto. Al termine della
+                fase early access, le proposte possono evolvere.
               </p>
             </div>
 

@@ -25,7 +25,6 @@ type Plan = {
   featuresSectionTitle: string;
   features: string[];
   idealFor: string;
-  pricingLabel: string;
   ctaLabel: string;
   whatsappMessage: string;
   highlighted: boolean;
@@ -51,10 +50,9 @@ const plans: Plan[] = [
       "PDF sintetico scaricabile",
     ],
     idealFor: "giocatori, prospetti, free agent e atleti che vogliono avere un profilo professionale da condividere.",
-    pricingLabel: "Da 149€",
     ctaLabel: "Crea la tua Player Card",
     whatsappMessage:
-      "Ciao! Vorrei creare la mia Player Card KataHero (da 149€): scheda atleta digitale con link e PDF. Potete darmi i prossimi passi?",
+      "Ciao! Vorrei creare la mia Player Card KataHero: scheda atleta digitale con link e PDF. Potete darmi i prossimi passi?",
     highlighted: false,
   },
   {
@@ -76,10 +74,9 @@ const plans: Plan[] = [
       "1 aggiornamento mensile incluso",
     ],
     idealFor: "procuratori indipendenti, agenti e agenzie che gestiscono un primo gruppo di atleti.",
-    pricingLabel: "Da 99€/mese",
     ctaLabel: "Richiedi una demo",
     whatsappMessage:
-      "Ciao! Vorrei richiedere una demo per Agency Portfolio KataHero (da 99€/mese): portfolio con schede atleta. Quando possiamo parlarne?",
+      "Ciao! Vorrei richiedere una demo per Agency Portfolio KataHero: portfolio con schede atleta. Quando possiamo parlarne?",
     highlighted: true,
   },
   {
@@ -102,7 +99,6 @@ const plans: Plan[] = [
       "Report o statistiche di visualizzazione, se disponibili",
     ],
     idealFor: "agenzie strutturate, società sportive, academy, settori giovanili e gruppi squadra.",
-    pricingLabel: "Su richiesta",
     ctaLabel: "Parla con noi",
     whatsappMessage:
       "Ciao! Vorrei informazioni su Agency Pro KataHero (soluzione su richiesta) per gestire un roster più ampio. Possiamo fare una call?",
@@ -154,13 +150,6 @@ export function Packages() {
                 <div>
                   <h3 className="font-display text-2xl font-bold tracking-tight text-white">{p.name}</h3>
                   <p className="mt-2 text-sm font-medium leading-snug text-zinc-400">{p.tagline}</p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-black/35 px-5 py-4">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Investimento</p>
-                  <p className="mt-1 font-display text-[1.65rem] font-bold leading-none tabular-nums tracking-tight text-white sm:text-[1.75rem]">
-                    {p.pricingLabel}
-                  </p>
                 </div>
 
                 <p className="text-left text-sm leading-relaxed text-zinc-400">{p.description}</p>
@@ -242,31 +231,27 @@ export function Packages() {
               aggiornamenti sportivi in contenuti social professionali e coerenti.
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-display text-lg font-bold text-white sm:text-xl">Su richiesta</p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  href={whatsappPrefilledUrl(socialKitWhatsAppMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-2xl border border-accent/40 bg-accent px-6 py-3.5 text-center font-display text-sm font-bold text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110"
-                >
-                  Chiedi il Social Kit
-                </a>
-                <Link
-                  href="#contatti"
-                  className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/10"
-                >
-                  Contattaci dal modulo
-                </Link>
-              </div>
+            <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-stretch sm:justify-end">
+              <a
+                href={whatsappPrefilledUrl(socialKitWhatsAppMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex flex-1 items-center justify-center rounded-2xl border border-accent/40 bg-accent px-6 py-3.5 text-center font-display text-sm font-bold text-black shadow-[0_12px_40px_-16px_rgba(0,229,160,0.45)] transition hover:brightness-110 sm:flex-initial"
+              >
+                Chiedi il Social Kit
+              </a>
+              <Link
+                href="#contatti"
+                className="inline-flex flex-1 items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 text-center text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/10 sm:flex-initial"
+              >
+                Contattaci dal modulo
+              </Link>
             </div>
           </div>
         </article>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
-          I valori sono indicativi e da intendersi IVA esclusa o inclusa secondo preventivo. Player Card come progetto
-          una tantum; Agency Portfolio come canone ricorrente salvo diverso accordo; Agency Pro su misura.
+          Ambiti, tempi e condizioni si definiscono in preventivo dopo un contatto diretto — senza impegno dalla home.
         </p>
       </div>
     </section>
