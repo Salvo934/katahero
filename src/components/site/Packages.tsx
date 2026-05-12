@@ -22,7 +22,6 @@ type Plan = {
   name: string;
   badge: string;
   tagline: string;
-  description: string;
   featuresSectionTitle: string;
   features: string[];
   idealFor: string;
@@ -35,8 +34,6 @@ const plans: Plan[] = [
     name: "Player Card",
     badge: "Singolo atleta",
     tagline: "Il link che apri quando qualcuno deve valutarti in fretta — senza file sparsi o DM lunghi.",
-    description:
-      "Numeri, video, carriera e contatti in una scheda digitale pensata per il mobile, più un PDF sintetico da allegare quando serve andare dritti al punto.",
     featuresSectionTitle: "Cosa include",
     features: [
       "Scheda atleta digitale personalizzata",
@@ -60,8 +57,6 @@ const plans: Plan[] = [
     name: "Agency Portfolio",
     badge: "Agenzia / procuratore",
     tagline: "Un solo indirizzo per il tuo marchio e per le schede dei tuoi assistiti — ordinato e riconoscibile.",
-    description:
-      "Metti ordine tra PDF, link e messaggi: pagina agenzia più fino a dieci schede giocatore, aggiornabili e coerenti con il tuo branding.",
     featuresSectionTitle: "Cosa include",
     features: [
       "Pagina istituzionale agenzia / procuratore",
@@ -84,8 +79,6 @@ const plans: Plan[] = [
     name: "Agency Pro",
     badge: "Roster & organizzazioni",
     tagline: "Gestisci molti profili con filtri, aggiornamenti e materiali che reggono il confronto con club e scouting.",
-    description:
-      "Per organizzazioni che vivono il mercato ogni settimana: roster ampio, filtri per ruolo e caratteristiche, video mirati, riservatezza quando serve e cicli di aggiornamento chiari.",
     featuresSectionTitle: "Tutto Agency Portfolio, più",
     features: [
       "Schede su misura per roster numerosi",
@@ -145,10 +138,9 @@ export function Packages() {
                   {p.name}
                 </h3>
                 <p className="mt-3 text-sm font-medium leading-snug text-zinc-300">{p.tagline}</p>
-                <p className="mt-4 text-sm leading-relaxed text-zinc-500">{p.description}</p>
               </div>
 
-              <div className="mt-6 flex min-h-0 flex-1 flex-col border-t border-white/10 pt-6">
+              <div className="mt-5 flex min-h-0 flex-1 flex-col border-t border-white/10 pt-6 sm:mt-6">
                 <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
                   {p.featuresSectionTitle}
                 </p>

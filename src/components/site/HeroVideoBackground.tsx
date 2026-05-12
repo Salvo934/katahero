@@ -53,7 +53,7 @@ export function HeroVideoBackground() {
         aria-hidden
       />
       <div
-        className="absolute inset-0 z-21 bg-[linear-gradient(to_top,rgba(5,5,5,0.97)_0%,rgba(5,5,5,0.55)_28%,transparent_48%)]"
+        className="pointer-events-none absolute inset-0 z-21 bg-[linear-gradient(to_top,rgba(5,5,5,0.97)_0%,rgba(5,5,5,0.55)_28%,transparent_48%)] max-sm:bg-[linear-gradient(to_top,rgba(5,5,5,0.98)_0%,rgba(5,5,5,0.72)_32%,transparent_55%)]"
         aria-hidden
       />
     </div>
