@@ -243,7 +243,7 @@ export function Packages() {
                 </div>
               </div>
 
-              <div className="mt-auto flex flex-col gap-2 border-t border-white/8 bg-black/20 px-6 pb-6 pt-5 sm:px-7">
+              <div className="mt-auto border-t border-white/8 bg-black/20 px-6 pb-6 pt-5 sm:px-7">
                 <a
                   href={whatsappPrefilledUrl(p.whatsappMessage)}
                   target="_blank"
@@ -256,12 +256,6 @@ export function Packages() {
                 >
                   {p.ctaLabel}
                 </a>
-                <Link
-                  href="#contatti"
-                  className="inline-flex w-full items-center justify-center rounded-2xl border border-white/12 py-3 text-sm font-medium text-zinc-400 transition hover:border-white/22 hover:bg-white/5 hover:text-white"
-                >
-                  Modulo / email
-                </Link>
               </div>
             </article>
           ))}
