@@ -3,7 +3,7 @@ import { SITE } from "@/lib/site";
 
 const footerNav = [
   { href: "#servizi", label: "Servizi" },
-  { href: "#talent-board", label: "Talent Board" },
+  { href: "/talent-board", label: "Talent Board" },
   { href: "#portfolio", label: "Portfolio" },
   { href: "#pacchetti", label: "Pacchetti" },
   { href: "#contatti", label: "Contatti" },
