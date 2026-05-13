@@ -22,11 +22,15 @@ import { DEMO_ATHLETES_BASKETBALL, FAQ_ITEMS, FILTER_OPTIONS } from "@/lib/talen
 function ExplorerSkeleton() {
   return (
     <section className="border-t border-white/10 bg-zinc-950 py-16 sm:py-20" aria-busy="true">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="h-48 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/50" />
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="h-112 w-full animate-pulse rounded-3xl border border-white/10 bg-zinc-900/40" />
-          <div className="hidden h-112 w-full animate-pulse rounded-3xl border border-white/10 bg-zinc-900/40 md:block" />
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="h-104 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/40 sm:h-112"
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -209,7 +213,7 @@ function TalentBoardExplorerInner() {
 
   return (
     <section id="griglia-atleti" className="scroll-mt-24 border-t border-white/10 bg-zinc-950 py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl border border-white/12 bg-zinc-900/30 shadow-[0_24px_80px_-48px_rgba(0,0,0,0.9)] ring-1 ring-white/5">
           <div
             className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/45 to-transparent"
@@ -444,9 +448,9 @@ function TalentBoardExplorerInner() {
             </button>
           </div>
         ) : (
-          <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <ul className="mt-10 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {sorted.map((athlete) => (
-              <li key={athlete.id} className="min-w-0">
+              <li key={athlete.id} className="flex h-full min-h-0 min-w-0">
                 <TalentBoardAthleteCard athlete={athlete} />
               </li>
             ))}
