@@ -5,11 +5,32 @@ function initials(a: TalentAthlete) {
   return `${a.firstName[0] ?? ""}${a.lastName[0] ?? ""}`.toUpperCase();
 }
 
+function profileCtaTarget(athlete: TalentAthlete): { href: string; external: boolean } {
+  const raw = athlete.profileWebsiteUrl?.trim();
+  if (raw) {
+    try {
+      const u = new URL(raw);
+      if (u.protocol === "http:" || u.protocol === "https:") {
+        return { href: u.toString(), external: true };
+      }
+    } catch {
+      /* URL non valido: fallback interno */
+    }
+  }
+  return { href: athlete.profilePath, external: false };
+}
+
+const ctaClassName =
+  "group/cta inline-flex h-12 flex-1 items-center justify-center rounded-2xl bg-accent px-6 text-sm font-bold text-black shadow-[0_12px_40px_-12px_rgba(0,229,160,0.55)] transition hover:brightness-110 active:brightness-95";
+
 export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) {
   const { advanced: s } = athlete;
+  const cta = profileCtaTarget(athlete);
+  const photo = athlete.photoUrl?.trim();
+  const fullName = `${athlete.firstName} ${athlete.lastName}`;
 
   return (
-    <article className="group relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-white/12 bg-zinc-950 shadow-[0_32px_100px_-48px_rgba(0,0,0,0.95)] ring-1 ring-white/7 transition duration-300 hover:border-accent/25 hover:shadow-[0_40px_100px_-40px_rgba(0,229,160,0.14)]">
+    <article className="group relative w-full overflow-hidden rounded-3xl border border-white/12 bg-zinc-950 shadow-[0_32px_100px_-48px_rgba(0,0,0,0.95)] ring-1 ring-white/7 transition duration-300 hover:border-accent/25 hover:shadow-[0_40px_100px_-40px_rgba(0,229,160,0.14)]">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/55 to-transparent"
         aria-hidden
@@ -55,8 +76,19 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
           <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pb-8 pt-2 lg:pb-12">
             <div className="relative">
               <div className="absolute inset-0 scale-150 rounded-full bg-accent/20 blur-2xl transition duration-500 group-hover:bg-accent/28" aria-hidden />
-              <div className="relative flex h-36 w-36 items-center justify-center rounded-full border-2 border-white/12 bg-linear-to-br from-white/10 to-zinc-900/80 font-display text-5xl font-extrabold tracking-tight text-white shadow-[0_0_80px_-12px_rgba(0,229,160,0.35)] ring-2 ring-accent/20 transition duration-300 group-hover:scale-[1.02] group-hover:ring-accent/40 sm:h-40 sm:w-40 sm:text-6xl">
-                {initials(athlete)}
+              <div className="relative flex h-36 w-36 items-center justify-center overflow-hidden rounded-full border-2 border-white/12 bg-linear-to-br from-white/10 to-zinc-900/80 font-display text-5xl font-extrabold tracking-tight text-white shadow-[0_0_80px_-12px_rgba(0,229,160,0.35)] ring-2 ring-accent/20 transition duration-300 group-hover:scale-[1.02] group-hover:ring-accent/40 sm:h-40 sm:w-40 sm:text-6xl">
+                {photo ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- URL atleta arbitrario (CDN / siti terzi)
+                  <img
+                    src={photo}
+                    alt={fullName}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <span className="relative z-10">{initials(athlete)}</span>
+                )}
               </div>
             </div>
             <p className="mt-6 text-center font-display text-sm font-bold uppercase tracking-[0.25em] text-zinc-500">
@@ -125,17 +157,31 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href={athlete.profilePath}
-              className="group/cta inline-flex h-12 flex-1 items-center justify-center rounded-2xl bg-accent px-6 text-sm font-bold text-black shadow-[0_12px_40px_-12px_rgba(0,229,160,0.55)] transition hover:brightness-110 active:brightness-95"
-            >
-              Apri profilo completo
-              <span className="ml-2 transition-transform group-hover/cta:translate-x-0.5" aria-hidden>
-                →
-              </span>
-            </Link>
+            {cta.external ? (
+              <a
+                href={cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={ctaClassName}
+              >
+                Apri profilo completo
+                <span className="sr-only"> (si apre in una nuova scheda)</span>
+                <span className="ml-2 transition-transform group-hover/cta:translate-x-0.5" aria-hidden>
+                  ↗
+                </span>
+              </a>
+            ) : (
+              <Link href={cta.href} className={ctaClassName}>
+                Apri profilo completo
+                <span className="ml-2 transition-transform group-hover/cta:translate-x-0.5" aria-hidden>
+                  →
+                </span>
+              </Link>
+            )}
             <p className="text-center text-[11px] leading-snug text-zinc-600 sm:max-w-48 sm:text-left">
-              Highlight, carriera, social e contatti sul sito KataHero.
+              {cta.external
+                ? "Collegamento al sito o al profilo esterno dell’atleta (nuova scheda)."
+                : "Highlight, carriera, social e contatti sul sito KataHero."}
             </p>
           </div>
         </div>

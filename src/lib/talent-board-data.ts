@@ -29,17 +29,22 @@ export type TalentAthlete = {
   /** Righe tipo "14.8 PPG" per la card */
   statsMain: string[];
   badges: string[];
+  /** Percorso profilo interno Next.js (es. /atleti/slug) */
   profilePath: string;
+  /** URL immagine ritratto (https o percorso /… da public). Opzionale: senza foto si usano le iniziali. */
+  photoUrl?: string;
+  /** Se impostato, il CTA «Apri profilo completo» apre questo link (sito atleta / profilo esterno) in una nuova scheda. Altrimenti si usa `profilePath`. */
+  profileWebsiteUrl?: string;
   advanced: TalentAthleteAdvancedStats;
 };
 
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
-  { key: "athletes", value: "12", label: "Atleti presenti" },
+  { key: "athletes", value: "4", label: "Atleti presenti" },
   { key: "sports", value: "3", label: "Sport rappresentati" },
   { key: "updated", value: "9", label: "Profili aggiornati" },
   { key: "agencies", value: "4", label: "Agenzie / referenti" },
-  { key: "available", value: "6", label: "Card disponibili" },
+  { key: "available", value: "4", label: "Card disponibili" },
 ] as const;
 
 export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
@@ -60,8 +65,52 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     statsMain: ["14.8 PPG", "4.2 RPG", "3.1 APG", "FG 47%", "3P 38%", "FT 81%"],
     badges: ["Top Prospect", "Video aggiornato"],
     profilePath: "/atleti/mario-rossi",
+    photoUrl:
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=480&h=480&fit=crop&q=80",
+    profileWebsiteUrl: "https://example.com/atleti/mario-rossi",
     advanced: { ppg: 14.8, rpg: 4.2, apg: 3.1, fgPct: 47, tpPct: 38, ftPct: 81 },
   },
+  {
+    id: "2",
+    slug: "ilario-simonetti",
+    firstName: "Ilario",
+    lastName: "Simonetti",
+    sport: "Basket",
+    role: "Ala piccola",
+    birthYear: 2004,
+    heightCm: 200,
+    nationality: "Italia",
+    club: "Benacquista Assicurazioni Latina",
+    category: "Serie B",
+    status: "Disponibile",
+    agency: "Bright side agency",
+    statsMain: ["16.2 PPG", "6.1 RPG", "2.4 APG", "FG 44%", "3P 36%", "FT 78%"],
+    badges: ["Fisico elite", "Highlights recenti"],
+    profilePath: "/atleti/ilario-simonetti",
+    photoUrl: "/foto.jpeg",
+    profileWebsiteUrl: "https://ilariosimonetti.katahero.com",
+    advanced: { ppg: 16.2, rpg: 6.1, apg: 2.4, fgPct: 44, tpPct: 36, ftPct: 78 },
+  },
+  {
+    id: "3",
+    slug: "andrea-verdi",
+    firstName: "Andrea",
+    lastName: "Verdi",
+    sport: "Basket",
+    role: "Centro",
+    birthYear: 2004,
+    heightCm: 208,
+    nationality: "Italia",
+    club: "Virtus Bologna Next",
+    category: "Next Gen",
+    status: "Sotto contratto",
+    agency: "Elite Basket Agency",
+    statsMain: ["11.4 PPG", "9.8 RPG", "1.2 APG", "FG 58%", "3P 22%", "FT 69%"],
+    badges: ["Rimbalzi", "Difensore"],
+    profilePath: "/atleti/andrea-verdi",
+    advanced: { ppg: 11.4, rpg: 9.8, apg: 1.2, fgPct: 58, tpPct: 22, ftPct: 69 },
+  },
+  
 ];
 
 export const FAQ_ITEMS = [
@@ -90,13 +139,13 @@ export const FAQ_ITEMS = [
   },
 ] as const;
 
-/** Opzioni filtri — allineate al dataset demo (un atleta) */
+/** Opzioni filtri — allineate al dataset demo */
 export const FILTER_OPTIONS = {
   sport: ["Tutti", "Basket"] as const,
-  role: ["Tutti", "Guardia"] as const,
-  category: ["Tutte", "U19 Eccellenza"] as const,
-  birthYear: ["Tutti", "2006"] as const,
+  role: ["Tutti", "Ala piccola", "Centro", "Guardia"] as const,
+  category: ["Tutte", "Next Gen", "Serie B", "U18 Femminile", "U19 Eccellenza"] as const,
+  birthYear: ["Tutti", "2004", "2006", "2007"] as const,
   nationality: ["Tutte", "Italia"] as const,
-  status: ["Tutti", "Disponibile"] as const,
-  agency: ["Tutte", "Elite Basket Agency"] as const,
+  status: ["Tutti", "Disponibile", "In osservazione", "Sotto contratto"] as const,
+  agency: ["Tutte", "Bright side agency", "Elite Basket Agency", "Rising Stars Italia"] as const,
 } as const;

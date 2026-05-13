@@ -2,9 +2,7 @@ import { Footer } from "@/components/site/Footer";
 import { Navbar } from "@/components/site/Navbar";
 import { TalentBoardExplorer, TalentBoardFaqSection } from "@/components/talent-board/TalentBoardExplorer";
 import {
-  TalentBoardAudienceSection,
   TalentBoardClosingCta,
-  TalentBoardHowSection,
   TalentBoardPageHero,
   TalentBoardStatsStrip,
 } from "@/components/talent-board/talent-board-sections";
@@ -25,8 +23,6 @@ export default function TalentBoardPage() {
         <TalentBoardPageHero />
         <TalentBoardStatsStrip />
         <TalentBoardExplorer />
-        <TalentBoardAudienceSection />
-        <TalentBoardHowSection />
         <TalentBoardClosingCta />
         <TalentBoardFaqSection />
       </main>
