@@ -24,10 +24,8 @@ function ExplorerSkeleton() {
     <section className="border-t border-white/10 bg-zinc-950 py-16 sm:py-20" aria-busy="true">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="h-48 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/50" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-96 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/40" />
-          ))}
+        <div className="mt-10 flex justify-center">
+          <div className="h-112 w-full max-w-4xl animate-pulse rounded-3xl border border-white/10 bg-zinc-900/40" />
         </div>
       </div>
     </section>
@@ -445,9 +443,9 @@ function TalentBoardExplorerInner() {
             </button>
           </div>
         ) : (
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          <ul className="mt-10 flex justify-center">
             {sorted.map((athlete) => (
-              <li key={athlete.id}>
+              <li key={athlete.id} className="w-full max-w-4xl">
                 <TalentBoardAthleteCard athlete={athlete} />
               </li>
             ))}
