@@ -37,6 +37,8 @@ export type TalentAthlete = {
   profileWebsiteUrl?: string;
   /** Punti di forza e osservazioni sul gioco (mostrati come elenco in card) */
   playerNotes?: string[];
+  /** Una riga per società e procuratori: perché valutare questo profilo (lettura in pochi secondi) */
+  scoutLine?: string;
   advanced: TalentAthleteAdvancedStats;
 };
 
@@ -70,6 +72,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     photoUrl:
       "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=480&h=480&fit=crop&q=80",
     profileWebsiteUrl: "https://example.com/atleti/mario-rossi",
+    scoutLine: "Guardia alta che tira e difende: scoring affidabile e taglio di squadra per roster U19 di vertice.",
     playerNotes: [
       "Buona mano da tre e tiratore affidabile in catch-and-shoot",
       "Letture offensive in pick-and-roll: sa trovare il roll o il weak-side",
@@ -96,6 +99,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     profilePath: "/atleti/ilario-simonetti",
     photoUrl: "/foto.jpeg",
     profileWebsiteUrl: "https://ilariosimonetti.katahero.com",
+    scoutLine: "Ala con fisico da serie B e media versatile: volume, rimbalzo e switch difensivo per squadre ambiziose.",
     playerNotes: [
       "Fisico importante: incide nel pitturato e al contatto",
       "Tiro da media e attacco al ferro con buon timing nei tagli",
@@ -120,6 +124,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     statsMain: ["11.4 PPG", "9.8 RPG", "1.2 APG", "FG 58%", "3P 22%", "FT 69%"],
     badges: ["Rimbalzi", "Difensore"],
     profilePath: "/atleti/andrea-verdi",
+    scoutLine: "Centro prototipo “5”: protegge il ferro, domina i rimbalzi e gestisce i doppi — tassello difensivo per play-off.",
     playerNotes: [
       "Anchor difensivo: protezione del ferro e comunicazione in aiuto",
       "Ottimo rimbalzista offensivo, second chance per la squadra",
