@@ -140,17 +140,21 @@ export function TalentBoard() {
         <div className="mt-14 border-t border-white/10 pt-10 text-center lg:mt-16 lg:pt-12">
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-zinc-500">
             Scheda dimostrativa: sulla board pubblica i campi saranno quelli reali degli atleti iscritti al servizio.
+            L’esplorazione delle schede sarà su una <strong className="font-medium text-zinc-400">pagina dedicata</strong>, in
+            arrivo.
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mx-auto sm:flex-row sm:max-w-xl sm:flex-wrap">
-            <Link
-              href="/talent-board"
-              className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-black shadow-[0_10px_36px_-10px_rgba(0,229,160,0.45)] transition hover:brightness-110 active:brightness-95"
+            <button
+              type="button"
+              disabled
+              title="Presto disponibile"
+              className="inline-flex min-h-12 flex-1 cursor-not-allowed items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-black opacity-80 shadow-[0_10px_36px_-10px_rgba(0,229,160,0.45)] sm:flex-initial"
             >
               Esplora Talent Board
               <span className="ml-2" aria-hidden>
                 →
               </span>
-            </Link>
+            </button>
             <Link
               href="#contatti"
               className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/25 hover:bg-white/10"
