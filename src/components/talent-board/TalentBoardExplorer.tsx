@@ -1,88 +1,50 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { TalentBoardAthleteCard } from "@/components/talent-board/TalentBoardAthleteCard";
 import {
-  DEMO_ATHLETES_BASKETBALL,
-  FAQ_ITEMS,
-  FILTER_OPTIONS,
-  type TalentAthlete,
-} from "@/lib/talent-board-data";
+  buildFilterChips,
+  clearChip,
+  countAdvancedFiltersActive,
+  DEFAULT_TALENT_FILTERS,
+  hasNonDefaultFilters,
+  matchTalentAthlete,
+  normalizeParsedFilters,
+  parseTalentFilters,
+  serializeTalentFilters,
+  sortTalentAthletes,
+  SORT_LABELS,
+  type TalentFilterState,
+} from "@/lib/talent-board-filters";
+import { DEMO_ATHLETES_BASKETBALL, FAQ_ITEMS, FILTER_OPTIONS } from "@/lib/talent-board-data";
 
-type TalentExplorerFilterState = {
-  search: string;
-  sport: string;
-  role: string;
-  category: string;
-  birthYear: string;
-  nationality: string;
-  status: string;
-  agency: string;
-  minHeight: string;
-  clubContains: string;
-  minPpg: string;
-  minRpg: string;
-  minApg: string;
-  minFg: string;
-  min2p: string;
-  min3p: string;
-  minFt: string;
-};
+function ExplorerSkeleton() {
+  return (
+    <section className="border-t border-white/10 bg-zinc-950 py-16 sm:py-20" aria-busy="true">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="h-48 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/50" />
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="h-96 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/40" />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
-const defaultFilters: TalentExplorerFilterState = {
-  search: "",
-  sport: "Basket",
-  role: "Tutti",
-  category: "Tutte",
-  birthYear: "Tutti",
-  nationality: "Tutte",
-  status: "Tutti",
-  agency: "Tutte",
-  minHeight: "",
-  clubContains: "",
-  minPpg: "",
-  minRpg: "",
-  minApg: "",
-  minFg: "",
-  min2p: "",
-  min3p: "",
-  minFt: "",
-};
-
-function matchFilters(a: TalentAthlete, f: TalentExplorerFilterState): boolean {
-  const q = f.search.trim().toLowerCase();
-  if (q) {
-    const blob = `${a.firstName} ${a.lastName} ${a.club} ${a.agency} ${a.sport} ${a.role} ${a.category} ${a.status} ${a.nationality}`
-      .toLowerCase();
-    if (!blob.includes(q)) return false;
-  }
-  if (f.sport !== "Tutti" && a.sport !== f.sport) return false;
-  if (f.role !== "Tutti" && a.role !== f.role) return false;
-  if (f.category !== "Tutte" && a.category !== f.category) return false;
-  if (f.birthYear !== "Tutti" && String(a.birthYear) !== f.birthYear) return false;
-  if (f.nationality !== "Tutte" && a.nationality !== f.nationality) return false;
-  if (f.status !== "Tutti" && a.status !== f.status) return false;
-  if (f.agency !== "Tutte" && a.agency !== f.agency) return false;
-
-  if (f.clubContains.trim() && !a.club.toLowerCase().includes(f.clubContains.trim().toLowerCase())) return false;
-
-  const minH = Number(f.minHeight);
-  if (f.minHeight !== "" && !Number.isNaN(minH) && a.heightCm < minH) return false;
-
-  const minPpg = Number(f.minPpg);
-  if (f.minPpg !== "" && !Number.isNaN(minPpg) && a.advanced.ppg < minPpg) return false;
-  const minRpg = Number(f.minRpg);
-  if (f.minRpg !== "" && !Number.isNaN(minRpg) && a.advanced.rpg < minRpg) return false;
-  const minApg = Number(f.minApg);
-  if (f.minApg !== "" && !Number.isNaN(minApg) && a.advanced.apg < minApg) return false;
-  const minFg = Number(f.minFg);
-  if (f.minFg !== "" && !Number.isNaN(minFg) && a.advanced.fgPct < minFg) return false;
-  const min3p = Number(f.min3p);
-  if (f.min3p !== "" && !Number.isNaN(min3p) && a.advanced.tpPct < min3p) return false;
-  const minFt = Number(f.minFt);
-  if (f.minFt !== "" && !Number.isNaN(minFt) && a.advanced.ftPct < minFt) return false;
-
-  return true;
+function IconSearch({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.75}
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  );
 }
 
 function SelectFilter({
@@ -90,26 +52,77 @@ function SelectFilter({
   value,
   onChange,
   options,
+  id,
+  hideLabel,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   options: readonly string[];
+  id: string;
+  hideLabel?: boolean;
 }) {
   return (
-    <label className="flex flex-col gap-1.5">
+    <label className="group flex flex-col gap-1.5" htmlFor={id}>
+      {!hideLabel ? (
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">{label}</span>
+      ) : (
+        <span className="sr-only">{label}</span>
+      )}
+      <div className="relative">
+        <select
+          id={id}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="h-11 w-full cursor-pointer appearance-none rounded-xl border border-white/12 bg-zinc-900/90 pl-3 pr-10 text-sm text-white outline-none transition group-hover:border-white/18 focus:border-accent/45 focus:ring-2 focus:ring-accent/15"
+        >
+          {options.map((o) => (
+            <option key={o} value={o}>
+              {SORT_LABELS.find((s) => s.id === o)?.label ?? o}
+            </option>
+          ))}
+        </select>
+        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-zinc-500" aria-hidden>
+          ▾
+        </span>
+      </div>
+    </label>
+  );
+}
+
+function FilterSelect({
+  label,
+  value,
+  onChange,
+  options,
+  id,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: readonly string[];
+  id: string;
+}) {
+  return (
+    <label className="group flex flex-col gap-1.5" htmlFor={id}>
       <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">{label}</span>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="h-10 rounded-xl border border-white/12 bg-zinc-900/80 px-3 text-sm text-white outline-none ring-accent/0 transition focus:border-accent/40 focus:ring-2 focus:ring-accent/20"
-      >
-        {options.map((o) => (
-          <option key={o} value={o}>
-            {o}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <select
+          id={id}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="h-11 w-full cursor-pointer appearance-none rounded-xl border border-white/12 bg-zinc-900/90 pl-3 pr-10 text-sm text-white outline-none transition group-hover:border-white/18 focus:border-accent/45 focus:ring-2 focus:ring-accent/15"
+        >
+          {options.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </select>
+        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-zinc-500" aria-hidden>
+          ▾
+        </span>
+      </div>
     </label>
   );
 }
@@ -119,134 +132,321 @@ function NumInput({
   value,
   onChange,
   placeholder,
+  id,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
+  id: string;
 }) {
   return (
-    <label className="flex flex-col gap-1.5">
+    <label className="flex flex-col gap-1.5" htmlFor={id}>
       <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">{label}</span>
       <input
+        id={id}
         type="number"
         inputMode="decimal"
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="h-10 rounded-xl border border-white/12 bg-zinc-900/80 px-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-accent/40 focus:ring-2 focus:ring-accent/20"
+        className="h-11 rounded-xl border border-white/12 bg-zinc-900/90 px-3 text-sm text-white outline-none transition hover:border-white/16 placeholder:text-zinc-600 focus:border-accent/45 focus:ring-2 focus:ring-accent/15"
       />
     </label>
   );
 }
 
-export function TalentBoardExplorer() {
-  const [f, setF] = useState<TalentExplorerFilterState>(defaultFilters);
+function TalentBoardExplorerInner() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const [f, setF] = useState<TalentFilterState>(() => parseTalentFilters(new URLSearchParams(searchParams.toString())));
   const [advancedOpen, setAdvancedOpen] = useState(false);
+  const [filtersMobileOpen, setFiltersMobileOpen] = useState(true);
 
-  const filtered = useMemo(() => DEMO_ATHLETES_BASKETBALL.filter((a) => matchFilters(a, f)), [f]);
+  useEffect(() => {
+    setF(parseTalentFilters(new URLSearchParams(searchParams.toString())));
+  }, [searchParams]);
 
-  const patch = (partial: Partial<TalentExplorerFilterState>) => setF((prev) => ({ ...prev, ...partial }));
+  const patch = useCallback(
+    (partial: Partial<TalentFilterState>) => {
+      setF((prev) => {
+        const next = normalizeParsedFilters({ ...prev, ...partial });
+        const qs = serializeTalentFilters(next);
+        const url = qs ? `${pathname}?${qs}` : pathname;
+        queueMicrotask(() => router.replace(url, { scroll: false }));
+        return next;
+      });
+    },
+    [pathname, router],
+  );
+
+  const patchChip = useCallback(
+    (chipId: string) => {
+      clearChip(chipId, (delta) => {
+        setF((prev) => {
+          const next = normalizeParsedFilters({ ...prev, ...delta });
+          const qs = serializeTalentFilters(next);
+          queueMicrotask(() => router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false }));
+          return next;
+        });
+      });
+    },
+    [pathname, router],
+  );
+
+  const resetAll = useCallback(() => {
+    setF(DEFAULT_TALENT_FILTERS);
+    router.replace(pathname, { scroll: false });
+    setAdvancedOpen(false);
+  }, [pathname, router]);
+
+  const filtered = useMemo(() => DEMO_ATHLETES_BASKETBALL.filter((a) => matchTalentAthlete(a, f)), [f]);
+  const sorted = useMemo(() => sortTalentAthletes(filtered, f.sort, f.search), [filtered, f.sort, f.search]);
+  const chips = useMemo(() => buildFilterChips(f), [f]);
+  const advCount = countAdvancedFiltersActive(f);
+  const hasActive = hasNonDefaultFilters(f);
 
   return (
-    <section id="griglia-atleti" className="border-t border-white/10 bg-zinc-950 py-16 sm:py-20">
+    <section id="griglia-atleti" className="scroll-mt-24 border-t border-white/10 bg-zinc-950 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-white/10 bg-zinc-900/35 p-5 shadow-inner ring-1 ring-white/5 sm:p-6">
-          <h2 className="font-display text-xl font-bold text-white sm:text-2xl">Filtri e ricerca</h2>
-          <p className="mt-1 text-sm text-zinc-500">
-            Struttura pronta per dati reali: oggi filtri su dataset demo (solo basket).
-          </p>
+        <div className="relative overflow-hidden rounded-3xl border border-white/12 bg-zinc-900/30 shadow-[0_24px_80px_-48px_rgba(0,0,0,0.9)] ring-1 ring-white/5">
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/45 to-transparent"
+            aria-hidden
+          />
+          <div className="relative p-5 sm:p-7 lg:p-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="font-display text-xl font-bold text-white sm:text-2xl">Filtri e ricerca</h2>
+                <p className="mt-1 max-w-xl text-sm leading-relaxed text-zinc-500">
+                  Più parole in ricerca = tutte devono comparire (AND). Lo stato è salvato nell&apos;URL: puoi condividere il
+                  link.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={resetAll}
+                  disabled={!hasActive}
+                  className="inline-flex h-11 items-center justify-center rounded-full border border-white/14 bg-white/5 px-4 text-sm font-semibold text-zinc-200 transition enabled:hover:border-white/25 enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Azzera filtri
+                </button>
+                <button
+                  type="button"
+                  className="inline-flex h-11 items-center justify-center rounded-full border border-white/14 bg-white/5 px-4 text-sm font-semibold text-zinc-200 md:hidden"
+                  onClick={() => setFiltersMobileOpen((o) => !o)}
+                  aria-expanded={filtersMobileOpen}
+                >
+                  {filtersMobileOpen ? "Nascondi filtri" : "Mostra filtri"}
+                </button>
+              </div>
+            </div>
 
-          <div className="mt-6">
-            <label className="flex flex-col gap-1.5">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Cerca</span>
-              <input
-                type="search"
-                value={f.search}
-                placeholder="Cerca atleta, sport, club, agenzia..."
-                onChange={(e) => patch({ search: e.target.value })}
-                className="h-11 w-full rounded-xl border border-white/12 bg-zinc-900/80 px-4 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-accent/40 focus:ring-2 focus:ring-accent/20"
-              />
-            </label>
-          </div>
+            <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-end">
+              <label className="relative min-w-0 flex-1">
+                <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                  Ricerca libera
+                </span>
+                <IconSearch className="pointer-events-none absolute bottom-3 left-3.5 h-5 w-5 text-zinc-500" />
+                <input
+                  type="search"
+                  value={f.search}
+                  placeholder="Cerca atleta, sport, club, agenzia..."
+                  onChange={(e) => patch({ search: e.target.value })}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") patch({ search: "" });
+                  }}
+                  className="h-12 w-full rounded-2xl border border-white/12 bg-zinc-950/80 pl-11 pr-24 text-sm text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] outline-none placeholder:text-zinc-600 focus:border-accent/45 focus:ring-2 focus:ring-accent/15"
+                  autoComplete="off"
+                  enterKeyHint="search"
+                />
+                {f.search ? (
+                  <button
+                    type="button"
+                    onClick={() => patch({ search: "" })}
+                    className="absolute bottom-2.5 right-2 rounded-lg border border-white/12 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-zinc-400 hover:bg-white/10 hover:text-white"
+                  >
+                    Cancella
+                  </button>
+                ) : null}
+              </label>
+              <div className="w-full shrink-0 lg:w-60">
+                <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                  Ordina risultati
+                </span>
+                <SelectFilter
+                  id="tb-sort"
+                  label="Ordina risultati"
+                  hideLabel
+                  value={f.sort}
+                  onChange={(v) => patch({ sort: v as TalentFilterState["sort"] })}
+                  options={SORT_LABELS.map((s) => s.id)}
+                />
+              </div>
+            </div>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <SelectFilter label="Sport" value={f.sport} onChange={(v) => patch({ sport: v })} options={FILTER_OPTIONS.sport} />
-            <SelectFilter label="Ruolo" value={f.role} onChange={(v) => patch({ role: v })} options={FILTER_OPTIONS.role} />
-            <SelectFilter
-              label="Categoria"
-              value={f.category}
-              onChange={(v) => patch({ category: v })}
-              options={FILTER_OPTIONS.category}
-            />
-            <SelectFilter
-              label="Anno"
-              value={f.birthYear}
-              onChange={(v) => patch({ birthYear: v })}
-              options={FILTER_OPTIONS.birthYear}
-            />
-            <SelectFilter
-              label="Nazionalità"
-              value={f.nationality}
-              onChange={(v) => patch({ nationality: v })}
-              options={FILTER_OPTIONS.nationality}
-            />
-            <SelectFilter label="Status" value={f.status} onChange={(v) => patch({ status: v })} options={FILTER_OPTIONS.status} />
-            <SelectFilter
-              label="Agenzia / procuratore"
-              value={f.agency}
-              onChange={(v) => patch({ agency: v })}
-              options={FILTER_OPTIONS.agency}
-            />
-          </div>
-
-          <div className="mt-5">
-            <button
-              type="button"
-              onClick={() => setAdvancedOpen((o) => !o)}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-300 transition hover:border-white/25 hover:bg-white/10 hover:text-white"
-              aria-expanded={advancedOpen}
-            >
-              <span>Filtri avanzati</span>
-              <span className="text-zinc-500" aria-hidden>
-                {advancedOpen ? "▴" : "▾"}
-              </span>
-            </button>
-
-            {advancedOpen ? (
-              <div className="mt-4 grid gap-4 rounded-xl border border-white/8 bg-black/25 p-4 sm:grid-cols-2 lg:grid-cols-4">
-                <NumInput label="Altezza min (cm)" value={f.minHeight} onChange={(v) => patch({ minHeight: v })} placeholder="es. 190" />
-                <label className="flex flex-col gap-1.5 sm:col-span-2">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Club attuale</span>
-                  <input
-                    type="text"
-                    value={f.clubContains}
-                    placeholder="Contiene..."
-                    onChange={(e) => patch({ clubContains: e.target.value })}
-                    className="h-10 rounded-xl border border-white/12 bg-zinc-900/80 px-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-accent/40 focus:ring-2 focus:ring-accent/20"
-                  />
-                </label>
-                <NumInput label="PPG min" value={f.minPpg} onChange={(v) => patch({ minPpg: v })} />
-                <NumInput label="RPG min" value={f.minRpg} onChange={(v) => patch({ minRpg: v })} />
-                <NumInput label="APG min" value={f.minApg} onChange={(v) => patch({ minApg: v })} />
-                <NumInput label="FG% min" value={f.minFg} onChange={(v) => patch({ minFg: v })} />
-                <NumInput label="2P% min (futuro)" value={f.min2p} onChange={(v) => patch({ min2p: v })} placeholder="—" />
-                <NumInput label="3P% min" value={f.min3p} onChange={(v) => patch({ min3p: v })} />
-                <NumInput label="FT% min" value={f.minFt} onChange={(v) => patch({ minFt: v })} />
+            {chips.length > 0 ? (
+              <div className="mt-5 flex flex-col gap-2">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Filtri attivi</p>
+                <ul className="flex flex-wrap gap-2" aria-live="polite">
+                  {chips.map((c) => (
+                    <li key={`${c.id}-${c.label}`}>
+                      <button
+                        type="button"
+                        onClick={() => patchChip(c.id)}
+                        className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-accent/28 bg-accent/10 py-1.5 pl-3 pr-2 text-left text-[11px] font-semibold text-accent transition hover:bg-accent/16"
+                      >
+                        <span className="min-w-0 truncate">{c.label}</span>
+                        <span
+                          className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-black/35 text-sm text-zinc-300"
+                          aria-hidden
+                        >
+                          ×
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ) : null}
-          </div>
 
-          <p className="mt-4 text-sm text-zinc-500">
-            {filtered.length} {filtered.length === 1 ? "atleta" : "atleti"} in vista
-          </p>
+            <div
+              className={`mt-6 space-y-5 ${filtersMobileOpen ? "block" : "hidden"} md:block`}
+              id="talent-board-filter-panels"
+            >
+              <div>
+                <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">Profilo</p>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  <FilterSelect
+                    id="tb-sport"
+                    label="Sport"
+                    value={f.sport}
+                    onChange={(v) => patch({ sport: v })}
+                    options={FILTER_OPTIONS.sport}
+                  />
+                  <FilterSelect id="tb-role" label="Ruolo" value={f.role} onChange={(v) => patch({ role: v })} options={FILTER_OPTIONS.role} />
+                  <FilterSelect
+                    id="tb-cat"
+                    label="Categoria"
+                    value={f.category}
+                    onChange={(v) => patch({ category: v })}
+                    options={FILTER_OPTIONS.category}
+                  />
+                  <FilterSelect
+                    id="tb-year"
+                    label="Anno"
+                    value={f.birthYear}
+                    onChange={(v) => patch({ birthYear: v })}
+                    options={FILTER_OPTIONS.birthYear}
+                  />
+                  <FilterSelect
+                    id="tb-nat"
+                    label="Nazionalità"
+                    value={f.nationality}
+                    onChange={(v) => patch({ nationality: v })}
+                    options={FILTER_OPTIONS.nationality}
+                  />
+                  <FilterSelect
+                    id="tb-status"
+                    label="Status"
+                    value={f.status}
+                    onChange={(v) => patch({ status: v })}
+                    options={FILTER_OPTIONS.status}
+                  />
+                  <FilterSelect
+                    id="tb-ag"
+                    label="Agenzia / procuratore"
+                    value={f.agency}
+                    onChange={(v) => patch({ agency: v })}
+                    options={FILTER_OPTIONS.agency}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setAdvancedOpen((o) => !o)}
+                  className="inline-flex items-center gap-2 rounded-2xl border border-white/12 bg-black/30 px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-accent/30 hover:text-white"
+                  aria-expanded={advancedOpen}
+                >
+                  <span>Filtri avanzati</span>
+                  {advCount > 0 ? (
+                    <span className="rounded-full bg-accent/20 px-2 py-0.5 text-[10px] font-bold text-accent">{advCount}</span>
+                  ) : null}
+                  <span className="text-zinc-500" aria-hidden>
+                    {advancedOpen ? "▴" : "▾"}
+                  </span>
+                </button>
+
+                {advancedOpen ? (
+                  <div className="mt-4 space-y-6 rounded-2xl border border-white/10 bg-black/35 p-4 sm:p-5">
+                    <div>
+                      <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Fisico &amp; club</p>
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        <NumInput
+                          id="tb-hmin"
+                          label="Altezza min (cm)"
+                          value={f.minHeight}
+                          onChange={(v) => patch({ minHeight: v })}
+                          placeholder="es. 190"
+                        />
+                        <label className="flex flex-col gap-1.5 sm:col-span-2" htmlFor="tb-club">
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Club attuale</span>
+                          <input
+                            id="tb-club"
+                            type="text"
+                            value={f.clubContains}
+                            placeholder="Contiene nel nome..."
+                            onChange={(e) => patch({ clubContains: e.target.value })}
+                            className="h-11 rounded-xl border border-white/12 bg-zinc-900/90 px-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-accent/45 focus:ring-2 focus:ring-accent/15"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Statistiche (min)</p>
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <NumInput id="tb-ppg" label="PPG" value={f.minPpg} onChange={(v) => patch({ minPpg: v })} />
+                        <NumInput id="tb-rpg" label="RPG" value={f.minRpg} onChange={(v) => patch({ minRpg: v })} />
+                        <NumInput id="tb-apg" label="APG" value={f.minApg} onChange={(v) => patch({ minApg: v })} />
+                        <NumInput id="tb-fg" label="FG %" value={f.minFg} onChange={(v) => patch({ minFg: v })} />
+                        <NumInput id="tb-p2" label="2P % (futuro)" value={f.min2p} onChange={(v) => patch({ min2p: v })} placeholder="—" />
+                        <NumInput id="tb-tp" label="3P %" value={f.min3p} onChange={(v) => patch({ min3p: v })} />
+                        <NumInput id="tb-ft" label="FT %" value={f.minFt} onChange={(v) => patch({ minFt: v })} />
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+
+            <p className="mt-6 border-t border-white/10 pt-5 text-sm font-medium text-zinc-400" aria-live="polite">
+              <span className="tabular-nums text-white">{sorted.length}</span>{" "}
+              {sorted.length === 1 ? "atleta in vista" : "atleti in vista"}
+              {filtered.length < DEMO_ATHLETES_BASKETBALL.length ? <span className="text-zinc-600"> · sul totale demo</span> : null}
+            </p>
+          </div>
         </div>
 
-        {filtered.length === 0 ? (
-          <p className="mt-10 text-center text-zinc-500">Nessun atleta con questi filtri. Prova ad allargare la ricerca.</p>
+        {sorted.length === 0 ? (
+          <div className="mt-12 rounded-2xl border border-dashed border-white/15 bg-zinc-900/25 px-6 py-14 text-center">
+            <p className="font-display text-lg font-semibold text-white">Nessun risultato</p>
+            <p className="mt-2 text-sm text-zinc-500">Prova a togliere un filtro o usa una ricerca meno stretta.</p>
+            <button
+              type="button"
+              onClick={resetAll}
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black hover:brightness-110"
+            >
+              Ripristina tutto
+            </button>
+          </div>
         ) : (
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {filtered.map((athlete) => (
+            {sorted.map((athlete) => (
               <li key={athlete.id}>
                 <TalentBoardAthleteCard athlete={athlete} />
               </li>
@@ -255,6 +455,14 @@ export function TalentBoardExplorer() {
         )}
       </div>
     </section>
+  );
+}
+
+export function TalentBoardExplorer() {
+  return (
+    <Suspense fallback={<ExplorerSkeleton />}>
+      <TalentBoardExplorerInner />
+    </Suspense>
   );
 }
 
@@ -281,7 +489,9 @@ export function TalentBoardFaqSection() {
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
-                {isOpen ? <p className="border-t border-white/8 px-4 py-4 text-sm leading-relaxed text-zinc-400 sm:px-5">{item.a}</p> : null}
+                {isOpen ? (
+                  <p className="border-t border-white/8 px-4 py-4 text-sm leading-relaxed text-zinc-400 sm:px-5">{item.a}</p>
+                ) : null}
               </li>
             );
           })}
