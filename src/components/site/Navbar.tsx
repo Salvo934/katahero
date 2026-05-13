@@ -6,6 +6,7 @@ import { SITE } from "@/lib/site";
 
 const nav = [
   { href: "#servizi", label: "Servizi" },
+  { href: "#talent-board", label: "Talent Board" },
   { href: "#portfolio", label: "Portfolio" },
   { href: "#pacchetti", label: "Pacchetti" },
   { href: "#contatti", label: "Contatti" },

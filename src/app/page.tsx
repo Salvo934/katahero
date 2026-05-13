@@ -6,6 +6,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Packages } from "@/components/site/Packages";
 import { Portfolio } from "@/components/site/Portfolio";
 import { Services } from "@/components/site/Services";
+import { TalentBoard } from "@/components/site/TalentBoard";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <LaunchOfferBanner />
         <Services />
+        <TalentBoard />
         <Portfolio />
         <Packages />
         <Contact />
