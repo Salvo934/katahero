@@ -35,16 +35,18 @@ export type TalentAthlete = {
   photoUrl?: string;
   /** Se impostato, il CTA «Apri profilo completo» apre questo link (sito atleta / profilo esterno) in una nuova scheda. Altrimenti si usa `profilePath`. */
   profileWebsiteUrl?: string;
+  /** Punti di forza e osservazioni sul gioco (mostrati come elenco in card) */
+  playerNotes?: string[];
   advanced: TalentAthleteAdvancedStats;
 };
 
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
-  { key: "athletes", value: "4", label: "Atleti presenti" },
+  { key: "athletes", value: "3", label: "Atleti presenti" },
   { key: "sports", value: "3", label: "Sport rappresentati" },
   { key: "updated", value: "9", label: "Profili aggiornati" },
   { key: "agencies", value: "4", label: "Agenzie / referenti" },
-  { key: "available", value: "4", label: "Card disponibili" },
+  { key: "available", value: "3", label: "Card disponibili" },
 ] as const;
 
 export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
@@ -68,6 +70,11 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     photoUrl:
       "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=480&h=480&fit=crop&q=80",
     profileWebsiteUrl: "https://example.com/atleti/mario-rossi",
+    playerNotes: [
+      "Buona mano da tre e tiratore affidabile in catch-and-shoot",
+      "Letture offensive in pick-and-roll: sa trovare il roll o il weak-side",
+      "Aggressivo in difesa sui portatori, mani attive nei passing lane",
+    ],
     advanced: { ppg: 14.8, rpg: 4.2, apg: 3.1, fgPct: 47, tpPct: 38, ftPct: 81 },
   },
   {
@@ -89,6 +96,11 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     profilePath: "/atleti/ilario-simonetti",
     photoUrl: "/foto.jpeg",
     profileWebsiteUrl: "https://ilariosimonetti.katahero.com",
+    playerNotes: [
+      "Fisico importante: incide nel pitturato e al contatto",
+      "Tiro da media e attacco al ferro con buon timing nei tagli",
+      "Versatile in difesa: può switchare su esterni e alle piccole",
+    ],
     advanced: { ppg: 16.2, rpg: 6.1, apg: 2.4, fgPct: 44, tpPct: 36, ftPct: 78 },
   },
   {
@@ -108,6 +120,11 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     statsMain: ["11.4 PPG", "9.8 RPG", "1.2 APG", "FG 58%", "3P 22%", "FT 69%"],
     badges: ["Rimbalzi", "Difensore"],
     profilePath: "/atleti/andrea-verdi",
+    playerNotes: [
+      "Anchor difensivo: protezione del ferro e comunicazione in aiuto",
+      "Ottimo rimbalzista offensivo, second chance per la squadra",
+      "Lettura dei doppi: sa uscire la palla o chiudere sotto canestro",
+    ],
     advanced: { ppg: 11.4, rpg: 9.8, apg: 1.2, fgPct: 58, tpPct: 22, ftPct: 69 },
   },
   
