@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Talent Board",
-  description: `Sfoglia le mini schede degli atleti ${SITE.name}: dati essenziali e link al sito completo di ogni giocatore.`,
+  description: `Vetrina ${SITE.name} per scoprire, valutare e contattare i talenti: mini schede con dati rapidi e link al profilo completo di ogni atleta.`,
   path: "/talent-board",
 });
 
@@ -21,13 +21,13 @@ export default function TalentBoardPage() {
             Mini schede in arrivo
           </h1>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Qui raccoglieremo tutte le <strong className="font-medium text-zinc-200">mini card</strong> degli atleti:
-            potrai filtrare, confrontare e aprire con un tap il <strong className="font-medium text-zinc-200">sito completo</strong> di
-            ciascun giocatore. Stiamo allestendo l’esperienza; intanto puoi vedere un esempio di scheda full nel{" "}
+            Qui troverai tutte le <strong className="font-medium text-zinc-200">mini schede</strong> — ruolo, categoria, club,
+            numeri e disponibilità — e con un tap il <strong className="font-medium text-zinc-200">profilo completo</strong>{" "}
+            con media, carriera e contatti. Stiamo allestendo l’esplorazione; intanto nel{" "}
             <Link href="/#portfolio" className="font-semibold text-accent underline-offset-2 hover:underline">
               portfolio
-            </Link>
-            .
+            </Link>{" "}
+            c’è un esempio di sito atleta full.
           </p>
           <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <Link
