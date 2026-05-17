@@ -1,76 +1,17 @@
 import Link from "next/link";
 import { TALENT_BOARD_DASHBOARD_STATS } from "@/lib/talent-board-data";
 
-const BOARD_PREVIEW_ROWS = [
-  { initials: "MR", title: "Ruolo PG · Serie B", meta: "Club · Disponibile" },
-  { initials: "LF", title: "Ruolo SF · U19", meta: "Club · In osservazione" },
-  { initials: "GV", title: "Ruolo C · Serie A2", meta: "Club · Agenzia verificata" },
-] as const;
-
-function TalentBoardHeroPreviewCard() {
-  return (
-    <div className="relative">
-      <div
-        className="pointer-events-none absolute -inset-px rounded-[1.35rem] bg-linear-to-br from-accent/20 via-white/5 to-transparent opacity-90 blur-sm"
-        aria-hidden
-      />
-      <div className="relative overflow-hidden rounded-[1.25rem] border border-white/12 bg-zinc-900/55 shadow-[0_28px_90px_-40px_rgba(0,0,0,0.95),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/5 backdrop-blur-xl sm:rounded-3xl">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_100%_0%,rgba(0,229,160,0.09),transparent_50%)]" aria-hidden />
-        <div className="relative border-b border-white/10 px-5 py-4 sm:px-6 sm:py-5">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Board privata</p>
-              <p className="mt-1 font-display text-sm font-bold text-white sm:text-base">Il tuo roster in una griglia</p>
-            </div>
-            <span className="shrink-0 rounded-full border border-white/12 bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
-              Esempio
-            </span>
-          </div>
-        </div>
-        <div className="relative space-y-2 px-4 py-4 sm:space-y-2.5 sm:px-5 sm:py-5">
-          {BOARD_PREVIEW_ROWS.map((row) => (
-            <div
-              key={row.initials}
-              className="flex items-center gap-3 rounded-2xl border border-white/8 bg-black/35 px-3 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] sm:gap-3.5 sm:px-3.5 sm:py-3"
-            >
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-zinc-700/90 to-zinc-900 font-display text-[11px] font-bold text-white ring-1 ring-white/10 sm:h-12 sm:w-12 sm:text-xs">
-                {row.initials}
-              </div>
-              <div className="min-w-0 flex-1 space-y-1">
-                <div className="flex items-center gap-2">
-                  <p className="truncate text-[13px] font-semibold text-zinc-100 sm:text-sm">{row.title}</p>
-                  <span className="hidden h-1 w-1 shrink-0 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,160,0.45)] sm:inline" aria-hidden />
-                </div>
-                <p className="truncate text-[11px] text-zinc-500 sm:text-xs">{row.meta}</p>
-              </div>
-              <span className="hidden shrink-0 text-lg text-zinc-600 sm:inline" aria-hidden>
-                →
-              </span>
-            </div>
-          ))}
-        </div>
-        <div className="relative border-t border-white/8 px-5 py-3 sm:px-6">
-          <p className="text-center text-[11px] leading-snug text-zinc-500">
-            Stesse card che compongono una board privata.{" "}
-            <span className="font-medium text-zinc-400">Sotto: demo interattiva</span> (come sarà in produzione).
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function TalentBoardPageHero() {
   const highlights = [
-    "Board private roster",
-    "Ruolo e categoria",
-    "Filtri condivisibili",
-    "Scheda digitale completa",
+    "Griglia roster con mini schede",
+    "Filtri e ricerca istantanea",
+    "Scheda digitale estesa",
+    "Board private per chi rappresenta talenti",
   ] as const;
 
   return (
-    <section className="relative isolate overflow-hidden border-b border-white/10 bg-zinc-950 pt-[calc(5.5rem+env(safe-area-inset-top,0px))] pb-16 sm:pb-24 lg:pb-28">
-      {/* Campo arena (foto) — leggermente zoom + più scura per leggere copy e pill */}
+    <section className="relative isolate overflow-hidden border-b border-white/10 bg-zinc-950 pt-[max(7rem,calc(6.25rem+env(safe-area-inset-top,0px)))] pb-16 sm:pt-[max(7.75rem,calc(6.75rem+env(safe-area-inset-top,0px)))] sm:pb-24 lg:pt-[max(8rem,calc(7rem+env(safe-area-inset-top,0px)))] lg:pb-28">
+      {/* Campo arena (foto) — leggibile con overlay scuri */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
         <div
           className="absolute inset-0 bg-zinc-950 bg-[url('/sfondoherotalenti.png')] bg-cover bg-position-[26%_50%] bg-no-repeat lg:bg-position-[64%_50%] xl:bg-position-[58%_45%]"
@@ -108,53 +49,42 @@ export function TalentBoardPageHero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-10 lg:mx-0 lg:max-w-none lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:gap-x-14 lg:gap-y-12 xl:gap-x-20">
-          <div className="relative text-center lg:col-start-1 lg:row-start-1 lg:text-left">
+        <div className="mx-auto max-w-3xl lg:mx-0">
+          <div className="relative text-center lg:text-left">
             <div
-              className="pointer-events-none absolute -left-1 top-8 hidden h-28 w-px bg-linear-to-b from-accent/60 via-white/12 to-transparent lg:block xl:-left-2 xl:top-10 xl:h-32"
+              className="pointer-events-none absolute -left-1 top-2 hidden h-32 w-px bg-linear-to-b from-accent/60 via-white/12 to-transparent lg:block xl:-left-2 xl:top-3 xl:h-36"
               aria-hidden
             />
 
-            <p className="mx-auto mb-6 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/14 bg-black/45 px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-200 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] backdrop-blur-md sm:mb-7 sm:px-5 sm:text-[11px] sm:tracking-[0.22em] lg:mx-0">
-              <span
-                className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(0,229,160,0.85)] motion-safe:animate-pulse motion-reduce:animate-none"
-                aria-hidden
-              />
-              <span>KataHero · Talent Board</span>
-              <span className="text-zinc-600">·</span>
-              <span className="text-zinc-400">Anteprima demo</span>
-            </p>
-
             <h1 className="font-display text-balance text-[clamp(1.9rem,4.2vw+1rem,3.45rem)] font-bold leading-[1.08] tracking-[-0.03em] text-white">
               <span className="relative inline-block">
-                Cerca, filtra, valuta.
+                Il roster in una sola board.
                 <span
-                  className="pointer-events-none absolute -bottom-1 left-0 right-0 mx-auto h-2 max-w-[min(100%,12rem)] rounded-full bg-accent/15 blur-md lg:mx-0 lg:max-w-44"
+                  className="pointer-events-none absolute -bottom-1 left-0 right-0 mx-auto h-2 max-w-[min(100%,14rem)] rounded-full bg-accent/15 blur-md lg:mx-0 lg:max-w-48"
                   aria-hidden
                 />
               </span>
               <span className="mt-2 block sm:mt-2.5">
                 <span className="bg-linear-to-r from-white via-zinc-50 to-accent bg-clip-text text-transparent">
-                  Tutto da una sola board.
+                  Cerca, filtra, apri la scheda — senza più file sparsi.
                 </span>
               </span>
             </h1>
 
-            <p className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-zinc-400 sm:mt-8 sm:text-[1.0625rem] sm:leading-[1.65] lg:mx-0">
-              Puoi creare <strong className="font-semibold text-zinc-200">board private</strong> con tutte le mini schede dei
-              tuoi atleti: un unico posto ordinato per il tuo staff e per i contatti che inviti.{" "}
+            <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-zinc-400 sm:mt-7 sm:text-[1.0625rem] sm:leading-[1.65] lg:mx-0">
+              Questa pagina è l&apos;<strong className="font-semibold text-zinc-200">anteprima interattiva</strong> della
+              KataHero Talent Board: una griglia con le <strong className="font-semibold text-zinc-200">mini schede</strong>{" "}
+              dei tuoi atleti, filtri per ruolo, categoria e disponibilità, e link diretti al profilo completo con numeri,
+              video e percorso. È pensata per chi lavora lato agenzia, scouting o direzione tecnica{" "}
               <span className="text-zinc-500">
-                Più sotto trovi una <strong className="font-medium text-zinc-400">demo</strong> (dati basket di esempio) così
-                vedi come stanno ricerca, filtri e card.
+                (qui sotto vedi solo <strong className="font-medium text-zinc-400">dati dimostrativi basket</strong> — la
+                stessa esperienza, poi, sulla <strong className="font-medium text-zinc-400">board privata del tuo organico</strong>
+                ).
               </span>
             </p>
           </div>
 
-          <div className="mx-auto w-full max-w-md lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:mx-0 lg:max-w-none lg:self-center">
-            <TalentBoardHeroPreviewCard />
-          </div>
-
-          <div className="text-center lg:col-start-1 lg:row-start-2 lg:text-left">
+          <div className="mt-10 text-center lg:mt-12 lg:text-left">
             <ul
               className="mx-auto flex max-w-xl flex-wrap justify-center gap-2 sm:gap-2.5 lg:mx-0 lg:justify-start"
               aria-label="Cosa puoi fare sulla board"
@@ -190,8 +120,8 @@ export function TalentBoardPageHero() {
               </Link>
             </div>
 
-            <p className="mx-auto mt-6 max-w-md border-t border-white/8 pt-6 text-[11px] font-medium uppercase tracking-[0.26em] text-zinc-600 sm:mt-7 lg:mx-0 lg:border-t-0 lg:pt-0">
-              Board privata · Anteprima pubblica sotto
+            <p className="mx-auto mt-6 max-w-md text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-600 sm:mt-7 lg:mx-0">
+              Demo pubblica · Board private con Roster HQ
             </p>
           </div>
         </div>
