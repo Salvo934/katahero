@@ -1,4 +1,5 @@
 import { Contact } from "@/components/site/Contact";
+import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
 import { Hero } from "@/components/site/Hero";
 import { LaunchOfferBanner } from "@/components/site/LaunchOfferBanner";
@@ -19,6 +20,7 @@ export default function Home() {
         <TalentBoard />
         <Portfolio />
         <Packages />
+        <FaqSection />
         <Contact />
       </main>
       <Footer />
