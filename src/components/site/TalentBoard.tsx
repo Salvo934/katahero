@@ -4,6 +4,12 @@ import { TALENT_BOARD_SEASON_LABEL } from "@/lib/talent-board-data";
 
 const audience = ["Società & scouting", "Agenzie", "Procuratori"] as const;
 
+const talentBoardHighlights = [
+  "Board private roster",
+  "Ricerca e filtri",
+  "Scheda digitale completa",
+] as const;
+
 export function TalentBoard() {
   return (
     <section
@@ -18,20 +24,22 @@ export function TalentBoard() {
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-12 xl:gap-16">
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">KataHero Talent Board</p>
-            <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[2.45rem] md:leading-[1.14]">
-              Meno rumore tra chi{" "}
-              <span className="bg-linear-to-r from-white via-zinc-100 to-accent bg-clip-text text-transparent">
-                cerca e chi presenta
-              </span>{" "}
-              un talento
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">KataHero · Talent Board</p>
+            <p className="mt-2 text-xs font-medium text-zinc-500 sm:text-[0.8125rem]">Board privata per il tuo roster</p>
+            <h2 className="font-display mt-5 text-3xl font-bold tracking-tight text-white sm:mt-6 sm:text-4xl md:text-[2.45rem] md:leading-[1.14]">
+              <span className="block">Cerca, filtra, valuta.</span>
+              <span className="mt-1.5 block sm:mt-2">
+                <span className="bg-linear-to-r from-white via-zinc-100 to-accent bg-clip-text text-transparent">
+                  Tutto da una sola board.
+                </span>
+              </span>
             </h2>
 
             <ul
               className="mt-6 flex flex-wrap items-center justify-center gap-2 lg:justify-start"
-              aria-label="Destinatari principali"
+              aria-label="Elementi principali Talent Board"
             >
-              {audience.map((label) => (
+              {talentBoardHighlights.map((label) => (
                 <li
                   key={label}
                   className="rounded-full border border-white/12 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-zinc-300"
@@ -41,22 +49,32 @@ export function TalentBoard() {
               ))}
             </ul>
 
+            <ul
+              className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:justify-start"
+              aria-label="Destinatari principali"
+            >
+              {audience.map((label) => (
+                <li
+                  key={label}
+                  className="rounded-full border border-white/10 bg-white/3 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-zinc-500"
+                >
+                  {label}
+                </li>
+              ))}
+            </ul>
+
             <p className="mt-6 text-base leading-relaxed text-zinc-400 sm:text-[1.05rem] sm:leading-relaxed">
-              La Talent Board è una <strong className="font-semibold text-zinc-200">vetrina pubblica</strong> di mini
-              schede: un unico luogo dove{" "}
-              <strong className="font-semibold text-zinc-200">società e scouting</strong> confrontano profili senza
-              inseguire file e screenshot, le <strong className="font-semibold text-zinc-200">agenzie</strong> danno
-              visibilità ordinata al roster e i <strong className="font-semibold text-zinc-200">procuratori</strong>{" "}
-              condividono nomi e numeri con club e partner in modo chiaro e ripetibile.
+              Crea <strong className="font-semibold text-zinc-200">board private</strong> con le mini schede di tutti i tuoi
+              atleti: un punto solo per il tuo staff e per i contatti che inviti, senza inseguire file e screenshot.
             </p>
             <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-[1.05rem] sm:leading-relaxed">
-              Ogni scheda riassume{" "}
-              <strong className="font-semibold text-zinc-200">
-                ruolo, categoria, anno, nazionalità, club, statistiche chiave e disponibilità
-              </strong>
-              . <strong className="font-semibold text-zinc-200">Un tap</strong> apre il sito completo dell’atleta —
-              foto, video, carriera, social e contatti aggiornati, lo stesso standard del profilo KataHero che usi nelle
-              trattative.
+              La card qui accanto è dimostrativa. Sulla pagina{" "}
+              <Link href="/talent-board" className="font-medium text-zinc-300 underline-offset-2 hover:text-white hover:underline">
+                Talent Board
+              </Link>{" "}
+              trovi l&apos;<strong className="font-semibold text-zinc-200">anteprima demo interattiva</strong> (dati basket di
+              esempio): ricerca, filtri e link al profilo completo — la stessa esperienza che avrai con il{" "}
+              <strong className="font-semibold text-zinc-200">tuo roster</strong> in board privata.
             </p>
           </div>
 
@@ -85,6 +103,7 @@ export function TalentBoard() {
                   { label: "Assist", value: "4,8" },
                 ]}
                 seasonLabel={TALENT_BOARD_SEASON_LABEL}
+                compact
               />
             </div>
           </div>
@@ -92,18 +111,19 @@ export function TalentBoard() {
 
         <div className="mt-14 border-t border-white/10 pt-10 text-center lg:mt-16 lg:pt-12">
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-zinc-500">
-            Scheda dimostrativa: sulla{" "}
-            <Link href="/talent-board" className="font-medium text-zinc-400 underline-offset-2 hover:text-white hover:underline">
-              Talent Board
-            </Link>{" "}
-            trovi le mini card degli atleti (oggi in vetrina il basket) e i link ai profili completi.
+            La pagina Talent Board è una demo pubblica; per le{" "}
+            <strong className="font-medium text-zinc-400">board private</strong> con tutto il tuo roster vedi i{" "}
+            <Link href="/#pacchetti" className="font-medium text-zinc-400 underline-offset-2 hover:text-white hover:underline">
+              pacchetti
+            </Link>
+            .
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mx-auto sm:flex-row sm:max-w-xl sm:flex-wrap">
             <Link
               href="/talent-board"
               className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-black shadow-[0_10px_36px_-10px_rgba(0,229,160,0.45)] transition hover:brightness-110 active:brightness-95 sm:flex-initial"
             >
-              Esplora Talent Board
+              Apri la demo interattiva
               <span className="ml-2" aria-hidden>
                 →
               </span>
@@ -112,7 +132,7 @@ export function TalentBoard() {
               href="#contatti"
               className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/25 hover:bg-white/10"
             >
-              Proponi i tuoi atleti
+              Parla di board private
             </Link>
           </div>
         </div>
