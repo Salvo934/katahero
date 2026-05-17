@@ -105,8 +105,8 @@ export function TalentMiniCard({
     ? "text-[9px] font-semibold uppercase tracking-[0.12em] text-zinc-500"
     : "text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500";
   const seasonOuterCls = compact
-    ? "relative mt-3.5 rounded-xl border border-white/10 bg-black/30 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm"
-    : "relative mt-5 rounded-2xl border border-white/10 bg-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm sm:p-4";
+    ? "relative mt-3.5 shrink-0 rounded-xl border border-white/10 bg-black/30 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm"
+    : "relative mt-5 shrink-0 rounded-2xl border border-white/10 bg-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm sm:p-4";
   const seasonRowCls = compact
     ? "flex flex-col gap-2 border-b border-white/6 pb-2 sm:flex-row sm:items-end sm:justify-between sm:gap-2"
     : "flex flex-col gap-3 border-b border-white/6 pb-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3";
@@ -137,13 +137,12 @@ export function TalentMiniCard({
     : "absolute inset-0 flex items-center justify-center font-display text-lg font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-xl";
 
   const footerInteractiveClass = compact
-    ? "mt-4 block w-full rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
-    : "mt-6 block w-full rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
+    ? "block w-full rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
+    : "block w-full rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
   const footerStaticClass = compact
-    ? "mt-4 rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
-    : "mt-6 rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
-
-  const jerseyLabel =
+    ? "rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
+    : "rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
+  const footerPushWrapCls = compact ? "mt-auto w-full shrink-0 pt-4" : "mt-auto w-full shrink-0 pt-5";
     jerseyNumber !== undefined && jerseyNumber !== null && String(jerseyNumber).trim() !== ""
       ? `#${String(jerseyNumber).trim()}`
       : null;
@@ -171,7 +170,7 @@ export function TalentMiniCard({
 
   return (
     <article
-      className={`group/card relative w-full overflow-hidden rounded-3xl border border-white/12 bg-linear-to-b from-zinc-900/95 via-zinc-950/95 to-black/90 shadow-[0_28px_70px_-36px_rgba(0,0,0,0.92),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/6 backdrop-blur-md transition duration-300 hover:border-white/14 hover:shadow-[0_36px_90px_-38px_rgba(0,0,0,0.95)] hover:ring-white/8 ${cardPadding}`}
+      className={`group/card relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-3xl border border-white/12 bg-linear-to-b from-zinc-900/95 via-zinc-950/95 to-black/90 shadow-[0_28px_70px_-36px_rgba(0,0,0,0.92),inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/6 backdrop-blur-md transition duration-300 hover:border-white/14 hover:shadow-[0_36px_90px_-38px_rgba(0,0,0,0.95)] hover:ring-white/8 ${cardPadding}`}
       aria-label={ariaLabel}
     >
       <div
@@ -186,8 +185,9 @@ export function TalentMiniCard({
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent"
         aria-hidden
       />
-      <div className={`relative flex ${headerGap}`}>
-        <div className={photoCls}>
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+        <div className={`relative flex shrink-0 ${headerGap}`}>
+          <div className={photoCls}>
           {photo ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element -- URL atleta arbitrario (CDN / siti terzi) */}
@@ -236,9 +236,9 @@ export function TalentMiniCard({
             <span className="font-semibold text-zinc-200">{clubName}</span>
           </p>
         </div>
-      </div>
+        </div>
 
-      <dl className={dlCls}>
+      <dl className={`${dlCls} shrink-0`}>
         <div className={ddCellCls}>
           <dt className={dtLblCls}>Ruolo</dt>
           <dd className="font-semibold leading-snug text-zinc-50">{role}</dd>
@@ -277,7 +277,7 @@ export function TalentMiniCard({
         </div>
         <div className={`col-span-2 ${ddCellCls}`}>
           <dt className={dtLblCls}>Punto di forza</dt>
-          <dd className="wrap-anywhere font-semibold leading-snug text-zinc-50 line-clamp-4">
+          <dd className="wrap-anywhere min-h-14 font-semibold leading-snug text-zinc-50 line-clamp-4 sm:min-h-16">
             {strengthPoint}
           </dd>
         </div>
@@ -310,7 +310,7 @@ export function TalentMiniCard({
       </div>
 
       {profileUpdated ? (
-        <p className={updatedCls}>
+        <p className={`${updatedCls} shrink-0`}>
           <span>
             Scheda aggiornata il{" "}
             <time dateTime={profileUpdated.dateTime} className="font-semibold text-zinc-300">
@@ -320,7 +320,8 @@ export function TalentMiniCard({
         </p>
       ) : null}
 
-      {footer}
+      <div className={footerPushWrapCls}>{footer}</div>
+      </div>
     </article>
   );
 }

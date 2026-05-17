@@ -15,7 +15,7 @@ const planTeaser = [
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-[max(6rem,calc(5rem+env(safe-area-inset-top,0px)))] pb-[max(4rem,calc(3.25rem+env(safe-area-inset-bottom,0px)))] sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
+    <section className="relative isolate overflow-hidden pt-[max(7.5rem,calc(6.25rem+env(safe-area-inset-top,0px)))] pb-[max(4rem,calc(3.25rem+env(safe-area-inset-bottom,0px)))] sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24">
       <HeroVideoBackground />
 
       <div
