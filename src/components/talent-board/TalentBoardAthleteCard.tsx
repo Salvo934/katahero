@@ -60,8 +60,6 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
   const ln = athlete.lastName.trim();
   const fullName = `${fn} ${ln}`.trim();
   const avail = availabilityForCard(athlete.status);
-  const strengths = (athlete.playerNotes ?? []).filter(Boolean).slice(0, 4);
-  const summary = athlete.scoutLine?.trim();
 
   return (
     <TalentMiniCard
@@ -85,8 +83,6 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
         dateTime: athlete.profileUpdatedAt,
         label: formatProfileUpdatedLong(athlete.profileUpdatedAt),
       }}
-      playerSummary={summary || undefined}
-      playerStrengths={strengths.length > 0 ? strengths : undefined}
       profileHref={cta.href}
       profileExternal={cta.external}
     />

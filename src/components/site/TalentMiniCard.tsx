@@ -34,10 +34,6 @@ export type TalentMiniCardProps = {
     /** Es. 17 maggio 2026 */
     label: string;
   };
-  /** Sintesi gioco / profilo (es. scout line). */
-  playerSummary?: string;
-  /** Bullet punti di forza (da `playerNotes`). */
-  playerStrengths?: readonly string[];
   /** Senza href il footer è testo statico (come in home). */
   profileHref?: string;
   profileExternal?: boolean;
@@ -69,16 +65,10 @@ export function TalentMiniCard({
   stats,
   seasonLabel,
   profileUpdated,
-  playerSummary,
-  playerStrengths,
   profileHref,
   profileExternal,
 }: TalentMiniCardProps) {
   const photo = photoUrl?.trim();
-  const summaryTrimmed = playerSummary?.trim() ?? "";
-  const hasSummary = summaryTrimmed.length > 0;
-  const strengthsList = playerStrengths?.length ? playerStrengths.slice(0, 4) : [];
-  const hasStrengths = strengthsList.length > 0;
 
   const jerseyLabel =
     jerseyNumber !== undefined && jerseyNumber !== null && String(jerseyNumber).trim() !== ""
@@ -244,36 +234,6 @@ export function TalentMiniCard({
             </time>
           </span>
         </p>
-      ) : null}
-
-      {hasSummary || hasStrengths ? (
-        <div className="relative mt-4 overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-zinc-950/80 via-zinc-950/40 to-accent/4 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-white/4">
-          <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_80%_at_100%_0%,rgba(0,229,160,0.06),transparent_55%)]"
-            aria-hidden
-          />
-          <div className="relative">
-            {hasSummary ? (
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Sintesi</p>
-                <p className="mt-2 text-[12px] leading-relaxed text-zinc-300 line-clamp-4">{summaryTrimmed}</p>
-              </div>
-            ) : null}
-            {hasStrengths ? (
-              <div className={hasSummary ? "mt-4 border-t border-white/7 pt-4" : undefined}>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Punti di forza</p>
-                <ul className="mt-2 space-y-2">
-                  {strengthsList.map((line, index) => (
-                    <li key={`${index}-${line.slice(0, 48)}`} className="flex gap-2.5 text-[12px] leading-snug text-zinc-400">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent shadow-[0_0_10px_rgba(0,229,160,0.55)]" aria-hidden />
-                      <span className="min-w-0">{line}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-        </div>
       ) : null}
 
       {footer}
