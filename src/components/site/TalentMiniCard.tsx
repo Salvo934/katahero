@@ -143,6 +143,7 @@ export function TalentMiniCard({
   const footerStaticClass = compact
     ? "rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
     : "rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
+  const footerBlockCls = compact ? "shrink-0 w-full pt-4" : "shrink-0 w-full pt-5";
   const strengthDdCls = compact
     ? "wrap-anywhere min-h-[4.5rem] font-semibold leading-snug text-zinc-50 line-clamp-4"
     : "wrap-anywhere min-h-[6rem] font-semibold leading-snug text-zinc-50 line-clamp-4";
