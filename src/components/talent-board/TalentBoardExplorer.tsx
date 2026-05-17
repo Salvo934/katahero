@@ -274,10 +274,12 @@ function TalentBoardExplorerInner() {
           <div className="relative p-5 sm:p-7 lg:p-8">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
               <div className="min-w-0">
-                <h2 className="font-display text-xl font-bold text-white sm:text-2xl">Ricerca nella board</h2>
+                <h2 className="font-display text-xl font-bold text-white sm:text-2xl">Demo: anteprima interattiva</h2>
                 <p className="mt-1 max-w-2xl text-sm leading-relaxed text-zinc-500">
-                  Più parole = tutte devono comparire (AND). Filtri e ordinamento sono nel pannello. Lo stato resta
-                  nell&apos;URL.
+                  Atleti e numeri sono <strong className="font-medium text-zinc-400">solo di esempio</strong> per mostrarti
+                  ricerca, filtri e card. Una board privata reale contiene{" "}
+                  <strong className="font-medium text-zinc-400">solo i tuoi profili</strong>. Più parole in ricerca = tutte
+                  devono essere presenti (AND). Lo stato dei filtri resta nell&apos;URL.
                 </p>
               </div>
             </div>

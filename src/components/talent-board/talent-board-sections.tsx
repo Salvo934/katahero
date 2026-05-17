@@ -19,11 +19,11 @@ function TalentBoardHeroPreviewCard() {
         <div className="relative border-b border-white/10 px-5 py-4 sm:px-6 sm:py-5">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Anteprima</p>
-              <p className="mt-1 font-display text-sm font-bold text-white sm:text-base">Come appare sulla board</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Board privata</p>
+              <p className="mt-1 font-display text-sm font-bold text-white sm:text-base">Il tuo roster in una griglia</p>
             </div>
             <span className="shrink-0 rounded-full border border-white/12 bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
-              Demo
+              Esempio
             </span>
           </div>
         </div>
@@ -51,8 +51,8 @@ function TalentBoardHeroPreviewCard() {
         </div>
         <div className="relative border-t border-white/8 px-5 py-3 sm:px-6">
           <p className="text-center text-[11px] leading-snug text-zinc-500">
-            Stesse informazioni che trovi nelle{" "}
-            <span className="font-medium text-zinc-400">card complete</span> sotto.
+            Stesse card che compongono una board privata.{" "}
+            <span className="font-medium text-zinc-400">Sotto: demo interattiva</span> (come sarà in produzione).
           </p>
         </div>
       </div>
@@ -61,7 +61,12 @@ function TalentBoardHeroPreviewCard() {
 }
 
 export function TalentBoardPageHero() {
-  const highlights = ["Ruolo e categoria", "Club e statistiche", "Disponibilità", "Scheda digitale completa"] as const;
+  const highlights = [
+    "Board private roster",
+    "Ruolo e categoria",
+    "Filtri condivisibili",
+    "Scheda digitale completa",
+  ] as const;
 
   return (
     <section className="relative isolate overflow-hidden border-b border-white/10 bg-zinc-950 pt-[calc(5.5rem+env(safe-area-inset-top,0px))] pb-16 sm:pb-24 lg:pb-28">
@@ -108,7 +113,7 @@ export function TalentBoardPageHero() {
               />
               <span>KataHero · Talent Board</span>
               <span className="text-zinc-600">·</span>
-              <span className="text-zinc-400">Demo basket</span>
+              <span className="text-zinc-400">Anteprima demo</span>
             </p>
 
             <h1 className="font-display text-balance text-[clamp(1.9rem,4.2vw+1rem,3.45rem)] font-bold leading-[1.08] tracking-[-0.03em] text-white">
@@ -127,9 +132,12 @@ export function TalentBoardPageHero() {
             </h1>
 
             <p className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-zinc-400 sm:mt-8 sm:text-[1.0625rem] sm:leading-[1.65] lg:mx-0">
-              Trova atleti per ruolo, categoria, club, statistiche e disponibilità. Ogni card apre una scheda digitale
-              completa con dati, video, percorso sportivo, punti di forza e contatti, così agenti, scout e società possono
-              analizzare un profilo più velocemente e in un unico posto.
+              Puoi creare <strong className="font-semibold text-zinc-200">board private</strong> con tutte le mini schede dei
+              tuoi atleti: un unico posto ordinato per il tuo staff e per i contatti che inviti.{" "}
+              <span className="text-zinc-500">
+                Più sotto trovi una <strong className="font-medium text-zinc-400">demo</strong> (dati basket di esempio) così
+                vedi come stanno ricerca, filtri e card.
+              </span>
             </p>
           </div>
 
@@ -174,7 +182,7 @@ export function TalentBoardPageHero() {
             </div>
 
             <p className="mx-auto mt-6 max-w-md border-t border-white/8 pt-6 text-[11px] font-medium uppercase tracking-[0.26em] text-zinc-600 sm:mt-7 lg:mx-0 lg:border-t-0 lg:pt-0">
-              Ricerca libera · Filtri avanzati · Link condivisibili
+              Board privata · Anteprima pubblica sotto
             </p>
           </div>
         </div>
@@ -208,9 +216,10 @@ export function TalentBoardClosingCta() {
   return (
     <section className="border-t border-white/10 bg-linear-to-b from-zinc-950 to-black py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Vuoi entrare nella Talent Board?</h2>
+        <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Board private con il tuo roster</h2>
         <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
-          Crea la tua card atleta e collegala al tuo profilo digitale completo su KataHero.
+          Crea le mini schede dei tuoi atleti e organizzale nella tua Talent Board riservata — stessa esperienza che provi
+          nella demo qui sopra, con i tuoi dati e i tuoi contatti.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
           <Link

@@ -129,9 +129,10 @@ export function TalentMiniCard({
   const statValueCls = compact
     ? "font-display text-lg font-bold tabular-nums leading-none text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] sm:text-xl"
     : "font-display text-xl font-bold tabular-nums leading-none text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] sm:text-2xl";
-  const updatedCls = compact
-    ? "relative mt-3.5 inline-flex w-full items-center justify-center rounded-lg border border-white/6 bg-white/3 px-2.5 py-1.5 text-center text-[10px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
-    : "relative mt-5 inline-flex w-full items-center justify-center rounded-xl border border-white/6 bg-white/3 px-3 py-2 text-center text-[11px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]";
+  /** Fascia “Scheda aggiornata” in fondo al blocco centrale (`mt-auto` sul wrapper); senza margine top. */
+  const updatedBannerCls = compact
+    ? "relative inline-flex w-full items-center justify-center rounded-lg border border-white/6 bg-white/3 px-2.5 py-1.5 text-center text-[10px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+    : "relative inline-flex w-full items-center justify-center rounded-xl border border-white/6 bg-white/3 px-3 py-2 text-center text-[11px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]";
   const initialsCls = compact
     ? "absolute inset-0 flex items-center justify-center font-display text-sm font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-base"
     : "absolute inset-0 flex items-center justify-center font-display text-lg font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-xl";
@@ -312,16 +313,24 @@ export function TalentMiniCard({
         </div>
       </div>
 
-      {profileUpdated ? (
-        <p className={`${updatedCls} shrink-0`}>
-          <span>
-            Scheda aggiornata il{" "}
-            <time dateTime={profileUpdated.dateTime} className="font-semibold text-zinc-300">
-              {profileUpdated.label}
-            </time>
-          </span>
-        </p>
-      ) : null}
+      <div className="mt-auto w-full shrink-0">
+        {profileUpdated ? (
+          <p className={updatedBannerCls}>
+            <span>
+              Scheda aggiornata il{" "}
+              <time dateTime={profileUpdated.dateTime} className="font-semibold text-zinc-300">
+                {profileUpdated.label}
+              </time>
+            </span>
+          </p>
+        ) : (
+          <div className={`${updatedBannerCls} invisible pointer-events-none select-none`} aria-hidden>
+            <span>
+              Scheda aggiornata il <span className="font-semibold text-zinc-300">1 gennaio 2026</span>
+            </span>
+          </div>
+        )}
+      </div>
 
         </div>
 
