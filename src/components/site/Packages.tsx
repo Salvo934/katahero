@@ -102,7 +102,7 @@ const plans: Plan[] = [
     badge: "Roster & organizzazioni",
     promoPill: "Con Talent Board",
     tagline:
-      "La tua operatività ha bisogno di una board: filtri, aggiornamenti e presentazione al livello delle strutture più esposte sul mercato.",
+      "La tua operatività ha bisogno di una board: filtri, aggiornamenti e presentazione al livello più alto.",
     talentBoardLine:
       "Talent Board privata con le stesse mini schede e logica della demo su /talent-board — ma con i tuoi atleti e accessi controllati.",
     featuresSectionTitle: "Cosa include",
