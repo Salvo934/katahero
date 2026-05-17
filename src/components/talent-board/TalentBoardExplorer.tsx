@@ -24,12 +24,20 @@ function ExplorerSkeleton() {
     <section className="border-t border-white/10 bg-zinc-950 py-16 sm:py-20" aria-busy="true">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="h-48 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/50" />
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="h-104 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/40 sm:h-112"
-            />
+        <div className="mt-10 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 md:grid-cols-3 md:gap-3.5 lg:grid-cols-4 xl:grid-cols-5">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40">
+              <div className="h-21 animate-pulse bg-zinc-800/80 sm:h-24" />
+              <div className="space-y-2 p-3">
+                <div className="h-4 max-w-[85%] animate-pulse rounded bg-zinc-700/60" />
+                <div className="h-3 w-full animate-pulse rounded bg-zinc-700/40" />
+                <div className="h-3 max-w-[92%] animate-pulse rounded bg-zinc-700/40" />
+                <div className="mt-2 grid grid-cols-2 gap-1.5">
+                  <div className="h-9 animate-pulse rounded-xl bg-zinc-700/35" />
+                  <div className="h-9 animate-pulse rounded-xl bg-zinc-700/35" />
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -498,7 +506,7 @@ function TalentBoardExplorerInner() {
             </button>
           </div>
         ) : (
-          <ul className="mt-10 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-10 grid grid-cols-1 items-stretch gap-3 min-[480px]:grid-cols-2 md:grid-cols-3 md:gap-3.5 lg:grid-cols-4 xl:grid-cols-5">
             {sorted.map((athlete) => (
               <li key={athlete.id} className="flex h-full min-h-0 min-w-0">
                 <TalentBoardAthleteCard athlete={athlete} />
