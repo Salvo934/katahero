@@ -1,81 +1,8 @@
 import Link from "next/link";
-
-const showcaseStats = [
-  { label: "PPG", value: "12.4" },
-  { label: "AST", value: "4.8" },
-] as const;
+import { TalentMiniCard } from "@/components/site/TalentMiniCard";
+import { TALENT_BOARD_SEASON_LABEL } from "@/lib/talent-board-data";
 
 const audience = ["Società & scouting", "Agenzie", "Procuratori"] as const;
-
-function TalentShowcaseCard() {
-  return (
-    <article
-      className="relative w-full overflow-hidden rounded-3xl border border-white/12 bg-linear-to-b from-zinc-900/90 to-zinc-950/95 p-6 shadow-[0_32px_80px_-40px_rgba(0,0,0,0.95)] ring-1 ring-white/5 sm:p-7"
-      aria-label="Esempio di mini scheda Talent Board"
-    >
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/40 to-transparent"
-        aria-hidden
-      />
-      <div className="flex gap-4">
-        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-linear-to-br from-zinc-500 via-zinc-800 to-zinc-950 ring-1 ring-white/10 sm:h-24 sm:w-24">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_25%_15%,rgba(255,255,255,0.15),transparent_55%)]" />
-        </div>
-        <div className="min-w-0 flex-1 pt-0.5">
-          <h3 className="font-display text-lg font-bold tracking-tight text-white sm:text-xl">A. Rossi</h3>
-          <p className="mt-1 text-[12px] leading-snug text-zinc-400">
-            Playmaker · U19 · <span className="text-zinc-300">2006</span>
-            <span className="text-zinc-600"> · </span>
-            <span className="text-zinc-300">ITA</span>
-          </p>
-          <p className="mt-2 truncate text-sm text-zinc-500">
-            <span className="text-zinc-600">Club </span>
-            <span className="font-medium text-zinc-300">Benacquista Ass. Latina</span>
-          </p>
-        </div>
-      </div>
-
-      <dl className="mt-6 grid grid-cols-2 gap-x-4 gap-y-4 border-y border-white/8 py-5 text-[13px]">
-        <div className="flex flex-col gap-0.5">
-          <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Ruolo</dt>
-          <dd className="font-medium text-zinc-100">Playmaker</dd>
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Categoria</dt>
-          <dd className="font-medium text-zinc-100">U19</dd>
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Disponibilità</dt>
-          <dd className="font-semibold text-accent">Disponibile</dd>
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Nazionalità</dt>
-          <dd className="font-medium text-zinc-100">Italia</dd>
-        </div>
-      </dl>
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        {showcaseStats.map((s) => (
-          <div
-            key={s.label}
-            className="flex items-baseline gap-1.5 rounded-xl border border-white/10 bg-white/5 px-3 py-2"
-          >
-            <span className="text-lg font-bold tabular-nums text-white">{s.value}</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">{s.label}</span>
-          </div>
-        ))}
-        <div className="flex items-center rounded-xl border border-white/8 bg-white/5 px-3 py-2">
-          <span className="text-[10px] font-bold uppercase tracking-wide text-zinc-400">Stagione</span>
-          <span className="ml-2 text-[11px] font-medium text-zinc-300">2025-26</span>
-        </div>
-      </div>
-
-      <p className="mt-6 rounded-2xl border border-accent/25 bg-accent/8 py-3.5 text-center text-[12px] font-semibold text-accent">
-        Tap → profilo completo
-      </p>
-    </article>
-  );
-}
 
 export function TalentBoard() {
   return (
@@ -123,16 +50,36 @@ export function TalentBoard() {
               condividono nomi e numeri con club e partner in modo chiaro e ripetibile.
             </p>
             <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-[1.05rem] sm:leading-relaxed">
-              Ogni scheda riassume <strong className="font-semibold text-zinc-200">ruolo, categoria, anno, nazionalità, club, statistiche chiave e disponibilità</strong>.{" "}
-              <strong className="font-semibold text-zinc-200">Un tap</strong> apre il sito completo dell’atleta — foto, video, carriera, social e contatti
-              aggiornati, lo stesso standard del profilo KataHero che usi nelle trattative.
+              Ogni scheda riassume{" "}
+              <strong className="font-semibold text-zinc-200">
+                ruolo, categoria, anno, nazionalità, club, statistiche chiave e disponibilità
+              </strong>
+              . <strong className="font-semibold text-zinc-200">Un tap</strong> apre il sito completo dell’atleta —
+              foto, video, carriera, social e contatti aggiornati, lo stesso standard del profilo KataHero che usi nelle
+              trattative.
             </p>
           </div>
 
           <div className="flex w-full justify-center lg:justify-center">
             <div className="relative w-full max-w-84 sm:max-w-92">
               <div className="pointer-events-none absolute -inset-8 rounded-4xl bg-accent/7 blur-3xl" aria-hidden />
-              <TalentShowcaseCard />
+              <TalentMiniCard
+                ariaLabel="Esempio di mini scheda Talent Board"
+                nameDisplay="A. Rossi"
+                role="Playmaker"
+                category="U19"
+                birthYear={2006}
+                nationalityCode="ITA"
+                nationalityFull="Italia"
+                clubName="Benacquista Ass. Latina"
+                availabilityLabel="Disponibile"
+                availabilityHighlighted
+                stats={[
+                  { label: "PPG", value: "12.4" },
+                  { label: "AST", value: "4.8" },
+                ]}
+                seasonLabel={TALENT_BOARD_SEASON_LABEL}
+              />
             </div>
           </div>
         </div>

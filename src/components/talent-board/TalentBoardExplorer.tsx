@@ -24,19 +24,34 @@ function ExplorerSkeleton() {
     <section className="border-t border-white/10 bg-zinc-950 py-16 sm:py-20" aria-busy="true">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="h-48 animate-pulse rounded-2xl border border-white/10 bg-zinc-900/50" />
-        <div className="mt-10 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 md:grid-cols-3 md:gap-3.5 lg:grid-cols-4 xl:grid-cols-5">
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40">
-              <div className="h-21 animate-pulse bg-zinc-800/80 sm:h-24" />
-              <div className="space-y-2 p-3">
-                <div className="h-4 max-w-[85%] animate-pulse rounded bg-zinc-700/60" />
-                <div className="h-3 w-full animate-pulse rounded bg-zinc-700/40" />
-                <div className="h-3 max-w-[92%] animate-pulse rounded bg-zinc-700/40" />
-                <div className="mt-2 grid grid-cols-2 gap-1.5">
-                  <div className="h-9 animate-pulse rounded-xl bg-zinc-700/35" />
-                  <div className="h-9 animate-pulse rounded-xl bg-zinc-700/35" />
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/40 p-6 shadow-[0_32px_80px_-40px_rgba(0,0,0,0.95)] ring-1 ring-white/5 sm:p-7"
+            >
+              <div className="flex gap-4">
+                <div className="h-20 w-20 shrink-0 animate-pulse rounded-2xl bg-zinc-800 sm:h-24 sm:w-24" />
+                <div className="min-w-0 flex-1 space-y-2 pt-0.5">
+                  <div className="h-5 w-28 animate-pulse rounded bg-zinc-700/60 sm:h-6 sm:w-32" />
+                  <div className="h-3 w-full animate-pulse rounded bg-zinc-700/40" />
+                  <div className="h-4 max-w-[80%] animate-pulse rounded bg-zinc-700/45" />
                 </div>
               </div>
+              <div className="mt-6 space-y-3 border-y border-white/8 py-5">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="h-10 animate-pulse rounded bg-zinc-800/80" />
+                  <div className="h-10 animate-pulse rounded bg-zinc-800/80" />
+                  <div className="h-10 animate-pulse rounded bg-zinc-800/80" />
+                  <div className="h-10 animate-pulse rounded bg-zinc-800/80" />
+                </div>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <div className="h-11 w-24 animate-pulse rounded-xl bg-zinc-800/70" />
+                <div className="h-11 w-24 animate-pulse rounded-xl bg-zinc-800/70" />
+                <div className="h-11 w-28 animate-pulse rounded-xl bg-zinc-800/60" />
+              </div>
+              <div className="mt-6 h-12 animate-pulse rounded-2xl bg-accent/10" />
             </div>
           ))}
         </div>
@@ -506,7 +521,7 @@ function TalentBoardExplorerInner() {
             </button>
           </div>
         ) : (
-          <ul className="mt-10 grid grid-cols-1 items-stretch gap-3 min-[480px]:grid-cols-2 md:grid-cols-3 md:gap-3.5 lg:grid-cols-4 xl:grid-cols-5">
+          <ul className="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
             {sorted.map((athlete) => (
               <li key={athlete.id} className="flex h-full min-h-0 min-w-0">
                 <TalentBoardAthleteCard athlete={athlete} />

@@ -46,6 +46,9 @@ export type TalentAthlete = {
   advanced: TalentAthleteAdvancedStats;
 };
 
+/** Etichetta stagione mostrata sulle mini card (allineata alla home). */
+export const TALENT_BOARD_SEASON_LABEL = "2025-26";
+
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
   { key: "athletes", value: "3", label: "Atleti presenti" },
