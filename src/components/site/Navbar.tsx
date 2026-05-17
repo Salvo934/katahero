@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/dist/client/link";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { resolveSiteNavHref } from "@/lib/site-nav";
 import { SITE } from "@/lib/site";
 
 const nav = [
@@ -65,6 +67,7 @@ const socialIcons = {
 } as const;
 
 export function Navbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -129,7 +132,7 @@ export function Navbar() {
               {nav.map((item) => (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={resolveSiteNavHref(pathname, item.href)}
                   className="rounded-full px-3.5 py-2 text-[13px] font-medium text-zinc-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:px-4"
                 >
                   {item.label}
@@ -139,7 +142,7 @@ export function Navbar() {
 
             <div className="flex items-center gap-2 sm:gap-3">
               <Link
-                href="#contatti"
+                href={resolveSiteNavHref(pathname, "#contatti")}
                 className="hidden items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-black shadow-[0_0_28px_-6px_rgba(0,229,160,0.55)] transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:inline-flex"
               >
                 Richiedi consulenza
@@ -233,7 +236,7 @@ export function Navbar() {
                     className="border-b border-white/6 last:border-b-0"
                   >
                     <Link
-                      href={item.href}
+                      href={resolveSiteNavHref(pathname, item.href)}
                       className="group flex min-h-14 items-center justify-between gap-3 px-4 py-3.5 transition active:bg-white/5"
                       onClick={close}
                     >
@@ -274,7 +277,7 @@ export function Navbar() {
 
           <div className="mt-auto border-t border-white/10 bg-black/30 px-4 py-5">
             <Link
-              href="#contatti"
+              href={resolveSiteNavHref(pathname, "#contatti")}
               className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent py-4 text-base font-bold text-black shadow-[0_12px_36px_-14px_rgba(0,229,160,0.55)] transition hover:brightness-110 active:scale-[0.99]"
               onClick={close}
             >

@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { resolveSiteNavHref } from "@/lib/site-nav";
 import { SITE } from "@/lib/site";
 
 const footerNav = [
@@ -79,6 +83,7 @@ const socialLinks = [
 ] as const;
 
 export function Footer() {
+  const pathname = usePathname();
   const year = new Date().getFullYear();
 
   return (
@@ -176,7 +181,7 @@ export function Footer() {
               {footerNav.map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={resolveSiteNavHref(pathname, item.href)}
                     className="group inline-flex items-center justify-center gap-2 text-sm text-zinc-400 transition hover:text-white lg:justify-start"
                   >
                     <span className="hidden h-px w-4 bg-zinc-600 transition group-hover:w-6 group-hover:bg-accent sm:block" />

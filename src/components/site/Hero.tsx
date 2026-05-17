@@ -75,10 +75,10 @@ export function Hero() {
               </span>
             </Link>
             <Link
-              href="#pacchetti"
+              href="/talent-board"
               className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/22 bg-white/10 px-5 py-3.5 text-center text-sm font-semibold leading-snug text-white backdrop-blur-md transition hover:border-white/35 hover:bg-white/14 active:bg-white/12 sm:w-auto sm:min-h-0 sm:px-8 sm:text-base"
             >
-              Pacchetti &amp; Social Kit
+              Talent Board
             </Link>
           </div>
         </div>
@@ -101,11 +101,17 @@ export function Hero() {
               ))}
             </ul>
             <Link
-              href="#pacchetti"
+              href="/talent-board"
               className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-accent/35 bg-accent/10 py-3.5 text-sm font-semibold text-accent transition hover:border-accent/50 hover:bg-accent/15 active:bg-accent/20 sm:mt-5 sm:rounded-2xl"
             >
-              Vedi pacchetti e Social Kit
+              Vai alla Talent Board
               <span aria-hidden>→</span>
+            </Link>
+            <Link
+              href="#pacchetti"
+              className="mt-2 block text-center text-[11px] font-semibold text-zinc-500 underline-offset-2 transition hover:text-zinc-300 hover:underline sm:text-xs"
+            >
+              Pacchetti &amp; Social Kit
             </Link>
             <Link
               href="#portfolio"
