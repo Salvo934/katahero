@@ -159,6 +159,12 @@ function NumInput({
   );
 }
 
+/** Keeps #fragment when syncing query params so the viewport does not jump (e.g. after Esplora → #griglia-atleti). */
+function talentBoardHref(pathname: string, qs: string) {
+  const hash = typeof window !== "undefined" ? window.location.hash : "";
+  return qs ? `${pathname}?${qs}${hash}` : `${pathname}${hash}`;
+}
+
 function TalentBoardExplorerInner() {
   const router = useRouter();
   const pathname = usePathname();
@@ -177,8 +183,7 @@ function TalentBoardExplorerInner() {
       setF((prev) => {
         const next = normalizeParsedFilters({ ...prev, ...partial });
         const qs = serializeTalentFilters(next);
-        const url = qs ? `${pathname}?${qs}` : pathname;
-        queueMicrotask(() => router.replace(url, { scroll: false }));
+        queueMicrotask(() => router.replace(talentBoardHref(pathname, qs), { scroll: false }));
         return next;
       });
     },
@@ -191,7 +196,7 @@ function TalentBoardExplorerInner() {
         setF((prev) => {
           const next = normalizeParsedFilters({ ...prev, ...delta });
           const qs = serializeTalentFilters(next);
-          queueMicrotask(() => router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false }));
+          queueMicrotask(() => router.replace(talentBoardHref(pathname, qs), { scroll: false }));
           return next;
         });
       });
@@ -201,7 +206,7 @@ function TalentBoardExplorerInner() {
 
   const resetAll = useCallback(() => {
     setF(DEFAULT_TALENT_FILTERS);
-    router.replace(pathname, { scroll: false });
+    router.replace(talentBoardHref(pathname, ""), { scroll: false });
     setAdvancedOpen(false);
   }, [pathname, router]);
 

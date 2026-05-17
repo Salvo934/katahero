@@ -11,7 +11,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Talent Board",
-  description: `Dashboard ${SITE.name} per scoprire e valutare atleti: mini card, filtri e profili completi. Oggi in vetrina il basket.`,
+  description: `Su questa pagina sfogli card atleta, usi ricerca e filtri e apri i profili completi — demo ${SITE.name} sul basket, flusso uguale alla board reale.`,
   path: "/talent-board",
 });
 

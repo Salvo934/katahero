@@ -1,4 +1,4 @@
-import type { TalentAthlete } from "@/lib/talent-board-data";
+import { FILTER_OPTIONS, type TalentAthlete } from "@/lib/talent-board-data";
 
 /** Stato filtri — serializzabile su URL */
 export type TalentFilterState = {
@@ -117,7 +117,9 @@ export function parseTalentFilters(sp: URLSearchParams): TalentFilterState {
 
 export function normalizeParsedFilters(f: TalentFilterState): TalentFilterState {
   const sort = isSortId(f.sort) ? f.sort : DEFAULT_TALENT_FILTERS.sort;
-  return { ...f, sort };
+  const sportChoices = FILTER_OPTIONS.sport as readonly string[];
+  const sport = sportChoices.includes(f.sport) ? f.sport : DEFAULT_TALENT_FILTERS.sport;
+  return { ...f, sort, sport };
 }
 
 function fsearchTrim(s: string): string {
@@ -190,7 +192,7 @@ export function matchTalentAthlete(a: TalentAthlete, f: TalentFilterState): bool
     const tokens = q.split(/\s+/).filter(Boolean);
     if (!tokens.length || !tokens.every((t) => blob.includes(t))) return false;
   }
-  if (f.sport !== "Tutti" && a.sport !== f.sport) return false;
+  if (a.sport !== f.sport) return false;
   if (f.role !== "Tutti" && a.role !== f.role) return false;
   if (f.category !== "Tutte" && a.category !== f.category) return false;
   if (f.birthYear !== "Tutti" && String(a.birthYear) !== f.birthYear) return false;

@@ -45,7 +45,6 @@ export type TalentAthlete = {
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
   { key: "athletes", value: "3", label: "Atleti presenti" },
-  { key: "sports", value: "3", label: "Sport rappresentati" },
   { key: "updated", value: "9", label: "Profili aggiornati" },
   { key: "agencies", value: "4", label: "Agenzie / referenti" },
   { key: "available", value: "3", label: "Card disponibili" },
@@ -163,7 +162,7 @@ export const FAQ_ITEMS = [
 
 /** Opzioni filtri — allineate al dataset demo */
 export const FILTER_OPTIONS = {
-  sport: ["Tutti", "Basket"] as const,
+  sport: ["Basket"] as const,
   role: ["Tutti", "Ala piccola", "Centro", "Guardia"] as const,
   category: ["Tutte", "Next Gen", "Serie B", "U18 Femminile", "U19 Eccellenza"] as const,
   birthYear: ["Tutti", "2004", "2006", "2007"] as const,
