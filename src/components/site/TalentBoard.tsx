@@ -2,12 +2,12 @@ import Link from "next/link";
 import { TalentMiniCard } from "@/components/site/TalentMiniCard";
 import { TALENT_BOARD_SEASON_LABEL } from "@/lib/talent-board-data";
 
-const audience = ["Società & scouting", "Agenzie", "Procuratori"] as const;
+const audience = ["Agenzie", "Procuratori", "Staff scouting"] as const;
 
 const talentBoardHighlights = [
-  "Board private roster",
-  "Ricerca e filtri",
-  "Scheda digitale completa",
+  "Roster in un solo posto",
+  "Condivisione controllata",
+  "Presentazione ai club",
 ] as const;
 
 export function TalentBoard() {
@@ -25,12 +25,14 @@ export function TalentBoard() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-12 xl:gap-16">
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">KataHero · Talent Board</p>
-            <p className="mt-2 text-xs font-medium text-zinc-500 sm:text-[0.8125rem]">Board privata per il tuo roster</p>
+            <p className="mt-2 text-xs font-medium text-zinc-500 sm:text-[0.8125rem]">
+              Per chi rappresenta talenti e deve essere credibile nei confronti dei club
+            </p>
             <h2 className="font-display mt-5 text-3xl font-bold tracking-tight text-white sm:mt-6 sm:text-4xl md:text-[2.45rem] md:leading-[1.14]">
-              <span className="block">Cerca, filtra, valuta.</span>
+              <span className="block">Un roster che si presenta da solo.</span>
               <span className="mt-1.5 block sm:mt-2">
                 <span className="bg-linear-to-r from-white via-zinc-100 to-accent bg-clip-text text-transparent">
-                  Tutto da una sola board.
+                  Una board privata, zero caos.
                 </span>
               </span>
             </h2>
@@ -64,22 +66,23 @@ export function TalentBoard() {
             </ul>
 
             <p className="mt-6 text-base leading-relaxed text-zinc-400 sm:text-[1.05rem] sm:leading-relaxed">
-              Crea <strong className="font-semibold text-zinc-200">board private</strong> con le mini schede di tutti i tuoi
-              atleti: un punto solo per il tuo staff e per i contatti che inviti, senza inseguire file e screenshot.
+              Aggrega il tuo roster su <strong className="font-semibold text-zinc-200">board private</strong>: stesso formato per
+              ogni atleta, ricerca e filtri quando servono, e link al profilo completo da condividere in modo mirato con chi
+              conta — senza inseguire PDF, chat sparse o versioni diverse della stessa scheda.
             </p>
             <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-[1.05rem] sm:leading-relaxed">
               La card qui accanto è dimostrativa. Sulla pagina{" "}
               <Link href="/talent-board" className="font-medium text-zinc-300 underline-offset-2 hover:text-white hover:underline">
                 Talent Board
               </Link>{" "}
-              trovi l&apos;<strong className="font-semibold text-zinc-200">anteprima demo interattiva</strong> (dati basket di
-              esempio): ricerca, filtri e link al profilo completo — la stessa esperienza che avrai con il{" "}
-              <strong className="font-semibold text-zinc-200">tuo roster</strong> in board privata.
+              trovi l&apos;<strong className="font-semibold text-zinc-200">anteprima demo interattiva</strong> (dati di esempio):
+              prova ricerca e filtri — è la stessa esperienza che potrai avere con il{" "}
+              <strong className="font-semibold text-zinc-200">tuo roster reale</strong> in board privata.
             </p>
           </div>
 
           <div className="flex w-full justify-center lg:justify-center">
-            <div className="relative w-full max-w-84 sm:max-w-92">
+            <div className="relative w-full max-w-80 sm:max-w-86">
               <div className="pointer-events-none absolute -inset-8 rounded-4xl bg-accent/7 blur-3xl" aria-hidden />
               <TalentMiniCard
                 ariaLabel="Esempio di mini scheda Talent Board"
@@ -103,7 +106,7 @@ export function TalentBoard() {
                   { label: "Assist", value: "4,8" },
                 ]}
                 seasonLabel={TALENT_BOARD_SEASON_LABEL}
-                compact
+                compactPlus
               />
             </div>
           </div>

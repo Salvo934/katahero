@@ -44,6 +44,8 @@ export type TalentMiniCardProps = {
   profileExternal?: boolean;
   /** Layout più compatto (es. grid Talent Board desktop). */
   compact?: boolean;
+  /** Anteprima home: ancora più densa (implica layout compatto). */
+  compactPlus?: boolean;
 };
 
 const profileCtaLabel = "Apri profilo completo →";
@@ -76,77 +78,131 @@ export function TalentMiniCard({
   profileHref,
   profileExternal,
   compact = false,
+  compactPlus = false,
 }: TalentMiniCardProps) {
   const photo = photoUrl?.trim();
+  const tight = compactPlus;
 
-  const cardPadding = compact ? "p-4 sm:p-5" : "p-6 sm:p-7";
-  const glowPos = compact
-    ? "-right-12 top-0 h-36 w-36"
-    : "-right-16 top-0 h-44 w-44";
-  const photoCls = compact
-    ? "relative h-[4rem] w-[4rem] shrink-0 overflow-hidden rounded-xl bg-linear-to-br from-zinc-500 via-zinc-800 to-zinc-950 shadow-[0_10px_22px_-12px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.12)] ring-1 ring-white/15 transition duration-300 group-hover/card:ring-white/25 sm:h-[4.75rem] sm:w-[4.75rem]"
-    : "relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-linear-to-br from-zinc-500 via-zinc-800 to-zinc-950 shadow-[0_12px_28px_-14px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.12)] ring-1 ring-white/15 transition duration-300 group-hover/card:ring-white/25 sm:h-24 sm:w-24";
-  const headerGap = compact ? "gap-3" : "gap-4";
-  const headlineCls = compact
-    ? "font-display min-w-0 text-base font-bold tracking-tight text-white [text-shadow:0_1px_18px_rgba(0,0,0,0.35)] sm:text-lg"
-    : "font-display min-w-0 text-lg font-bold tracking-tight text-white [text-shadow:0_1px_18px_rgba(0,0,0,0.35)] sm:text-xl";
-  const jerseyBadgeCls = compact
-    ? "inline-flex shrink-0 items-center rounded-md border border-accent/35 bg-accent/12 px-1.5 py-px font-display text-[11px] font-bold tabular-nums tracking-tight text-accent shadow-[0_0_18px_-6px_rgba(0,229,160,0.55)] sm:text-xs"
-    : "inline-flex shrink-0 items-center rounded-lg border border-accent/35 bg-accent/12 px-2 py-0.5 font-display text-xs font-bold tabular-nums tracking-tight text-accent shadow-[0_0_20px_-6px_rgba(0,229,160,0.55)] sm:text-sm";
-  const metaLineCls = compact ? "mt-1 text-[11px] leading-snug text-zinc-400" : "mt-1.5 text-[12px] leading-snug text-zinc-400";
-  const clubLineCls = compact ? "mt-1.5 truncate text-[12px] leading-snug text-zinc-500" : "mt-2 truncate text-[13px] leading-snug text-zinc-500";
-  const dlCls = compact
-    ? "relative mt-4 grid grid-cols-2 gap-1.5 border-y border-white/7 py-3 text-[12px] sm:gap-2"
-    : "relative mt-6 grid grid-cols-2 gap-2 border-y border-white/7 py-5 text-[13px] sm:gap-3";
-  const ddCellCls = compact
-    ? "flex flex-col gap-0.5 rounded-lg border border-white/6 bg-zinc-950/35 px-2 py-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm"
-    : "flex flex-col gap-1 rounded-xl border border-white/6 bg-zinc-950/35 px-3 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm";
-  const dtLblCls = compact
-    ? "text-[9px] font-semibold uppercase tracking-[0.12em] text-zinc-500"
-    : "text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500";
-  const seasonOuterCls = compact
-    ? "relative mt-3.5 shrink-0 rounded-xl border border-white/10 bg-black/30 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm"
-    : "relative mt-5 shrink-0 rounded-2xl border border-white/10 bg-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm sm:p-4";
-  const seasonRowCls = compact
-    ? "flex flex-col gap-2 border-b border-white/6 pb-2 sm:flex-row sm:items-end sm:justify-between sm:gap-2"
-    : "flex flex-col gap-3 border-b border-white/6 pb-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3";
-  const seasonNumCls = compact
-    ? "mt-0.5 font-display text-lg font-bold tabular-nums tracking-tight sm:text-xl"
-    : "mt-1 font-display text-xl font-bold tabular-nums tracking-tight sm:text-2xl";
-  const statGridCls = compact ? "mt-3 grid grid-cols-3 gap-1.5 sm:gap-2" : "mt-4 grid grid-cols-3 gap-2 sm:gap-2.5";
-  const seasonLblCls = compact
-    ? "text-[9px] font-semibold uppercase tracking-[0.14em] text-zinc-500"
-    : "text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500";
-  const dividerVertCls = compact
-    ? "hidden h-7 w-px shrink-0 bg-linear-to-b from-transparent via-white/15 to-transparent sm:block"
-    : "hidden h-8 w-px shrink-0 bg-linear-to-b from-transparent via-white/15 to-transparent sm:block";
-  const statBoxCls = compact
-    ? "flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg border border-white/8 bg-linear-to-b from-white/9 to-white/2 px-1 py-2 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] sm:py-2.5"
-    : "flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-xl border border-white/8 bg-linear-to-b from-white/9 to-white/2 px-1.5 py-3 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] sm:px-2 sm:py-3.5";
-  const statLabelCls = compact
-    ? "text-[10px] font-semibold uppercase tracking-[0.1em] text-zinc-500 sm:text-[9px]"
-    : "text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500 sm:text-[10px] sm:tracking-wide";
-  const statValueCls = compact
-    ? "font-display text-lg font-bold tabular-nums leading-none text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] sm:text-xl"
-    : "font-display text-xl font-bold tabular-nums leading-none text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] sm:text-2xl";
+  const cardPadding = tight ? "p-3 sm:p-4" : compact ? "p-4 sm:p-5" : "p-6 sm:p-7";
+  const glowPos = tight
+    ? "-right-10 top-0 h-28 w-28"
+    : compact
+      ? "-right-12 top-0 h-36 w-36"
+      : "-right-16 top-0 h-44 w-44";
+  const photoCls = tight
+    ? "relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-linear-to-br from-zinc-500 via-zinc-800 to-zinc-950 shadow-[0_8px_18px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.12)] ring-1 ring-white/15 transition duration-300 group-hover/card:ring-white/25 sm:h-16 sm:w-16"
+    : compact
+      ? "relative h-[4rem] w-[4rem] shrink-0 overflow-hidden rounded-xl bg-linear-to-br from-zinc-500 via-zinc-800 to-zinc-950 shadow-[0_10px_22px_-12px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.12)] ring-1 ring-white/15 transition duration-300 group-hover/card:ring-white/25 sm:h-[4.75rem] sm:w-[4.75rem]"
+      : "relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-linear-to-br from-zinc-500 via-zinc-800 to-zinc-950 shadow-[0_12px_28px_-14px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.12)] ring-1 ring-white/15 transition duration-300 group-hover/card:ring-white/25 sm:h-24 sm:w-24";
+  const headerGap = tight ? "gap-2.5" : compact ? "gap-3" : "gap-4";
+  const headlineCls = tight
+    ? "font-display min-w-0 text-sm font-bold tracking-tight text-white [text-shadow:0_1px_18px_rgba(0,0,0,0.35)] sm:text-base"
+    : compact
+      ? "font-display min-w-0 text-base font-bold tracking-tight text-white [text-shadow:0_1px_18px_rgba(0,0,0,0.35)] sm:text-lg"
+      : "font-display min-w-0 text-lg font-bold tracking-tight text-white [text-shadow:0_1px_18px_rgba(0,0,0,0.35)] sm:text-xl";
+  const jerseyBadgeCls = tight
+    ? "inline-flex shrink-0 items-center rounded border border-accent/35 bg-accent/12 px-1 py-px font-display text-[10px] font-bold tabular-nums tracking-tight text-accent shadow-[0_0_14px_-6px_rgba(0,229,160,0.55)] sm:text-[11px]"
+    : compact
+      ? "inline-flex shrink-0 items-center rounded-md border border-accent/35 bg-accent/12 px-1.5 py-px font-display text-[11px] font-bold tabular-nums tracking-tight text-accent shadow-[0_0_18px_-6px_rgba(0,229,160,0.55)] sm:text-xs"
+      : "inline-flex shrink-0 items-center rounded-lg border border-accent/35 bg-accent/12 px-2 py-0.5 font-display text-xs font-bold tabular-nums tracking-tight text-accent shadow-[0_0_20px_-6px_rgba(0,229,160,0.55)] sm:text-sm";
+  const metaLineCls = tight
+    ? "mt-0.5 text-[10px] leading-snug text-zinc-400"
+    : compact
+      ? "mt-1 text-[11px] leading-snug text-zinc-400"
+      : "mt-1.5 text-[12px] leading-snug text-zinc-400";
+  const clubLineCls = tight
+    ? "mt-1 truncate text-[11px] leading-snug text-zinc-500"
+    : compact
+      ? "mt-1.5 truncate text-[12px] leading-snug text-zinc-500"
+      : "mt-2 truncate text-[13px] leading-snug text-zinc-500";
+  const dlCls = tight
+    ? "relative mt-3 grid grid-cols-2 gap-1 border-y border-white/7 py-2.5 text-[11px] sm:gap-1.5"
+    : compact
+      ? "relative mt-4 grid grid-cols-2 gap-1.5 border-y border-white/7 py-3 text-[12px] sm:gap-2"
+      : "relative mt-6 grid grid-cols-2 gap-2 border-y border-white/7 py-5 text-[13px] sm:gap-3";
+  const ddCellCls = tight
+    ? "flex flex-col gap-px rounded-md border border-white/6 bg-zinc-950/35 px-1.5 py-1.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm"
+    : compact
+      ? "flex flex-col gap-0.5 rounded-lg border border-white/6 bg-zinc-950/35 px-2 py-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm"
+      : "flex flex-col gap-1 rounded-xl border border-white/6 bg-zinc-950/35 px-3 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm";
+  const dtLblCls = tight
+    ? "text-[8px] font-semibold uppercase tracking-[0.1em] text-zinc-500"
+    : compact
+      ? "text-[9px] font-semibold uppercase tracking-[0.12em] text-zinc-500"
+      : "text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500";
+  const seasonOuterCls = tight
+    ? "relative mt-2.5 shrink-0 rounded-lg border border-white/10 bg-black/30 p-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm"
+    : compact
+      ? "relative mt-3.5 shrink-0 rounded-xl border border-white/10 bg-black/30 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm"
+      : "relative mt-5 shrink-0 rounded-2xl border border-white/10 bg-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-sm sm:p-4";
+  const seasonRowCls = tight
+    ? "flex flex-col gap-1.5 border-b border-white/6 pb-1.5 sm:flex-row sm:items-end sm:justify-between sm:gap-2"
+    : compact
+      ? "flex flex-col gap-2 border-b border-white/6 pb-2 sm:flex-row sm:items-end sm:justify-between sm:gap-2"
+      : "flex flex-col gap-3 border-b border-white/6 pb-3 sm:flex-row sm:items-end sm:justify-between sm:gap-3";
+  const seasonNumCls = tight
+    ? "mt-0.5 font-display text-base font-bold tabular-nums tracking-tight sm:text-lg"
+    : compact
+      ? "mt-0.5 font-display text-lg font-bold tabular-nums tracking-tight sm:text-xl"
+      : "mt-1 font-display text-xl font-bold tabular-nums tracking-tight sm:text-2xl";
+  const statGridCls = tight
+    ? "mt-2 grid grid-cols-3 gap-1 sm:gap-1.5"
+    : compact
+      ? "mt-3 grid grid-cols-3 gap-1.5 sm:gap-2"
+      : "mt-4 grid grid-cols-3 gap-2 sm:gap-2.5";
+  const seasonLblCls = tight
+    ? "text-[8px] font-semibold uppercase tracking-[0.12em] text-zinc-500"
+    : compact
+      ? "text-[9px] font-semibold uppercase tracking-[0.14em] text-zinc-500"
+      : "text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500";
+  const dividerVertCls = tight
+    ? "hidden h-6 w-px shrink-0 bg-linear-to-b from-transparent via-white/15 to-transparent sm:block"
+    : compact
+      ? "hidden h-7 w-px shrink-0 bg-linear-to-b from-transparent via-white/15 to-transparent sm:block"
+      : "hidden h-8 w-px shrink-0 bg-linear-to-b from-transparent via-white/15 to-transparent sm:block";
+  const statBoxCls = tight
+    ? "flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-md border border-white/8 bg-linear-to-b from-white/9 to-white/2 px-0.5 py-1.5 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] sm:py-2"
+    : compact
+      ? "flex min-w-0 flex-col items-center justify-center gap-1 rounded-lg border border-white/8 bg-linear-to-b from-white/9 to-white/2 px-1 py-2 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] sm:py-2.5"
+      : "flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-xl border border-white/8 bg-linear-to-b from-white/9 to-white/2 px-1.5 py-3 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] sm:px-2 sm:py-3.5";
+  const statLabelCls = tight
+    ? "text-[9px] font-semibold uppercase tracking-[0.08em] text-zinc-500"
+    : compact
+      ? "text-[10px] font-semibold uppercase tracking-[0.1em] text-zinc-500 sm:text-[9px]"
+      : "text-[11px] font-semibold uppercase tracking-[0.12em] text-zinc-500 sm:text-[10px] sm:tracking-wide";
+  const statValueCls = tight
+    ? "font-display text-base font-bold tabular-nums leading-none text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] sm:text-lg"
+    : compact
+      ? "font-display text-lg font-bold tabular-nums leading-none text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] sm:text-xl"
+      : "font-display text-xl font-bold tabular-nums leading-none text-white [text-shadow:0_2px_18px_rgba(0,0,0,0.35)] sm:text-2xl";
   /** Fascia “Scheda aggiornata” in fondo al blocco centrale (`mt-auto` sul wrapper); senza margine top. */
-  const updatedBannerCls = compact
-    ? "relative inline-flex w-full items-center justify-center rounded-lg border border-white/6 bg-white/3 px-2.5 py-1.5 text-center text-[10px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
-    : "relative inline-flex w-full items-center justify-center rounded-xl border border-white/6 bg-white/3 px-3 py-2 text-center text-[11px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]";
-  const initialsCls = compact
-    ? "absolute inset-0 flex items-center justify-center font-display text-sm font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-base"
-    : "absolute inset-0 flex items-center justify-center font-display text-lg font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-xl";
+  const updatedBannerCls = tight
+    ? "relative inline-flex w-full items-center justify-center rounded-md border border-white/6 bg-white/3 px-2 py-1 text-center text-[9px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+    : compact
+      ? "relative inline-flex w-full items-center justify-center rounded-lg border border-white/6 bg-white/3 px-2.5 py-1.5 text-center text-[10px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+      : "relative inline-flex w-full items-center justify-center rounded-xl border border-white/6 bg-white/3 px-3 py-2 text-center text-[11px] leading-snug text-zinc-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]";
+  const initialsCls = tight
+    ? "absolute inset-0 flex items-center justify-center font-display text-xs font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-sm"
+    : compact
+      ? "absolute inset-0 flex items-center justify-center font-display text-sm font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-base"
+      : "absolute inset-0 flex items-center justify-center font-display text-lg font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:text-xl";
 
-  const footerInteractiveClass = compact
-    ? "block w-full rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
-    : "block w-full rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
-  const footerStaticClass = compact
-    ? "rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
-    : "rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
-  const footerBlockCls = compact ? "shrink-0 w-full pt-4" : "shrink-0 w-full pt-5";
-  const strengthDdCls = compact
-    ? "wrap-anywhere min-h-[4.5rem] font-semibold leading-snug text-zinc-50 line-clamp-4"
-    : "wrap-anywhere min-h-[6rem] font-semibold leading-snug text-zinc-50 line-clamp-4";
+  const footerInteractiveClass = tight
+    ? "block w-full rounded-lg border border-accent/40 py-1.5 text-center text-xs font-semibold text-accent"
+    : compact
+      ? "block w-full rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
+      : "block w-full rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
+  const footerStaticClass = tight
+    ? "rounded-lg border border-accent/40 py-1.5 text-center text-xs font-semibold text-accent"
+    : compact
+      ? "rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
+      : "rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
+  const footerBlockCls = tight ? "shrink-0 w-full pt-2.5" : compact ? "shrink-0 w-full pt-4" : "shrink-0 w-full pt-5";
+  const strengthDdCls = tight
+    ? "wrap-anywhere min-h-[3.25rem] text-[11px] font-semibold leading-snug text-zinc-50 line-clamp-3"
+    : compact
+      ? "wrap-anywhere min-h-[4.5rem] font-semibold leading-snug text-zinc-50 line-clamp-4"
+      : "wrap-anywhere min-h-[6rem] font-semibold leading-snug text-zinc-50 line-clamp-4";
 
   const jerseyLabel =
     jerseyNumber !== undefined && jerseyNumber !== null && String(jerseyNumber).trim() !== ""
