@@ -88,6 +88,9 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
       }}
       profileHref={cta.href}
       profileExternal={cta.external}
+      collapsible
+      summary={athlete.scoutLine}
+      strengths={athlete.playerNotes}
     />
   );
 }
