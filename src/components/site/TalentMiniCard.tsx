@@ -142,7 +142,11 @@ export function TalentMiniCard({
   const footerStaticClass = compact
     ? "rounded-xl border border-accent/40 py-2.5 text-center text-sm font-semibold text-accent"
     : "rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
-  const footerPushWrapCls = compact ? "mt-auto w-full shrink-0 pt-4" : "mt-auto w-full shrink-0 pt-5";
+  const strengthDdCls = compact
+    ? "wrap-anywhere min-h-[4.5rem] font-semibold leading-snug text-zinc-50 line-clamp-4"
+    : "wrap-anywhere min-h-[6rem] font-semibold leading-snug text-zinc-50 line-clamp-4";
+
+  const jerseyLabel =
     jerseyNumber !== undefined && jerseyNumber !== null && String(jerseyNumber).trim() !== ""
       ? `#${String(jerseyNumber).trim()}`
       : null;
@@ -238,7 +242,8 @@ export function TalentMiniCard({
         </div>
         </div>
 
-      <dl className={`${dlCls} shrink-0`}>
+        <div className="flex min-h-0 flex-1 flex-col">
+      <dl className={`${dlCls} min-h-0 shrink-0`}>
         <div className={ddCellCls}>
           <dt className={dtLblCls}>Ruolo</dt>
           <dd className="font-semibold leading-snug text-zinc-50">{role}</dd>
@@ -277,9 +282,7 @@ export function TalentMiniCard({
         </div>
         <div className={`col-span-2 ${ddCellCls}`}>
           <dt className={dtLblCls}>Punto di forza</dt>
-          <dd className="wrap-anywhere min-h-14 font-semibold leading-snug text-zinc-50 line-clamp-4 sm:min-h-16">
-            {strengthPoint}
-          </dd>
+          <dd className={strengthDdCls}>{strengthPoint}</dd>
         </div>
       </dl>
 
@@ -320,7 +323,9 @@ export function TalentMiniCard({
         </p>
       ) : null}
 
-      <div className={footerPushWrapCls}>{footer}</div>
+        </div>
+
+      <div className={footerBlockCls}>{footer}</div>
       </div>
     </article>
   );

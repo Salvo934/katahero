@@ -529,7 +529,7 @@ function TalentBoardExplorerInner() {
         ) : (
           <ul className="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
             {sorted.map((athlete) => (
-              <li key={athlete.id} className="flex h-full min-h-0 min-w-0">
+              <li key={athlete.id} className="flex h-full min-h-0 min-w-0 flex-col">
                 <TalentBoardAthleteCard athlete={athlete} />
               </li>
             ))}
