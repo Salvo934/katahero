@@ -123,19 +123,21 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
 
       <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-5">
         <div className="flex min-h-0 flex-1 flex-col gap-5 sm:gap-6">
-          <section className="flex h-36 shrink-0 flex-col gap-2 sm:h-40">
-            <SectionLabel>Profilo</SectionLabel>
-            <div className={scrollRegion}>
-              <p className={`text-[13px] leading-relaxed ${scoutLine ? "text-zinc-300" : "text-zinc-600"}`}>
-                {scoutLine ?? "—"}
-              </p>
-            </div>
-          </section>
+          <div className="flex shrink-0 flex-col gap-2 sm:gap-2">
+            <section className="flex h-36 shrink-0 flex-col gap-2 sm:h-40">
+              <SectionLabel>Profilo</SectionLabel>
+              <div className={scrollRegion}>
+                <p className={`text-[13px] leading-relaxed ${scoutLine ? "text-zinc-300" : "text-zinc-600"}`}>
+                  {scoutLine ?? "—"}
+                </p>
+              </div>
+            </section>
 
-          <section className="flex h-18 shrink-0 flex-col justify-center gap-2">
-            <SectionLabel>Media stagione</SectionLabel>
-            <p className="text-sm font-medium tabular-nums tracking-tight text-white">{mediaSeasonLine(athlete)}</p>
-          </section>
+            <section className="flex h-18 shrink-0 flex-col justify-center gap-1.5">
+              <SectionLabel>Media stagione</SectionLabel>
+              <p className="text-sm font-medium tabular-nums tracking-tight text-white">{mediaSeasonLine(athlete)}</p>
+            </section>
+          </div>
 
           <section className="flex h-52 shrink-0 flex-col gap-3 sm:h-56">
             <SectionLabel>Perché può fare al caso vostro</SectionLabel>

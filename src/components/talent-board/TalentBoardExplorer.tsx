@@ -50,6 +50,14 @@ function IconSearch({ className }: { className?: string }) {
   );
 }
 
+function IconSliders({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4 6h16M8 12h8M10 18h4" />
+    </svg>
+  );
+}
+
 function SelectFilter({
   label,
   value,
@@ -172,8 +180,16 @@ function TalentBoardExplorerInner() {
 
   const [f, setF] = useState<TalentFilterState>(() => parseTalentFilters(new URLSearchParams(searchParams.toString())));
   const [advancedOpen, setAdvancedOpen] = useState(false);
-  const [filtersMobileOpen, setFiltersMobileOpen] = useState(true);
+  const [filtersPanelOpen, setFiltersPanelOpen] = useState(false);
 
+  useEffect(() => {
+    if (!filtersPanelOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFiltersPanelOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [filtersPanelOpen]);
   useEffect(() => {
     setF(parseTalentFilters(new URLSearchParams(searchParams.toString())));
   }, [searchParams]);
@@ -208,6 +224,7 @@ function TalentBoardExplorerInner() {
     setF(DEFAULT_TALENT_FILTERS);
     router.replace(talentBoardHref(pathname, ""), { scroll: false });
     setAdvancedOpen(false);
+    setFiltersPanelOpen(false);
   }, [pathname, router]);
 
   const filtered = useMemo(() => DEMO_ATHLETES_BASKETBALL.filter((a) => matchTalentAthlete(a, f)), [f]);
@@ -215,6 +232,7 @@ function TalentBoardExplorerInner() {
   const chips = useMemo(() => buildFilterChips(f), [f]);
   const advCount = countAdvancedFiltersActive(f);
   const hasActive = hasNonDefaultFilters(f);
+  const panelBadgeCount = useMemo(() => chips.filter((c) => c.id !== "q").length, [chips]);
 
   return (
     <section id="griglia-atleti" className="scroll-mt-24 border-t border-white/10 bg-zinc-950 py-16 sm:py-20">
@@ -225,49 +243,29 @@ function TalentBoardExplorerInner() {
             aria-hidden
           />
           <div className="relative p-5 sm:p-7 lg:p-8">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2 className="font-display text-xl font-bold text-white sm:text-2xl">Filtri e ricerca</h2>
-                <p className="mt-1 max-w-xl text-sm leading-relaxed text-zinc-500">
-                  Più parole in ricerca = tutte devono comparire (AND). Lo stato è salvato nell&apos;URL: puoi condividere il
-                  link.
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+              <div className="min-w-0">
+                <h2 className="font-display text-xl font-bold text-white sm:text-2xl">Ricerca nella board</h2>
+                <p className="mt-1 max-w-2xl text-sm leading-relaxed text-zinc-500">
+                  Più parole = tutte devono comparire (AND). Filtri e ordinamento sono nel pannello. Lo stato resta
+                  nell&apos;URL.
                 </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={resetAll}
-                  disabled={!hasActive}
-                  className="inline-flex h-11 items-center justify-center rounded-full border border-white/14 bg-white/5 px-4 text-sm font-semibold text-zinc-200 transition enabled:hover:border-white/25 enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  Azzera filtri
-                </button>
-                <button
-                  type="button"
-                  className="inline-flex h-11 items-center justify-center rounded-full border border-white/14 bg-white/5 px-4 text-sm font-semibold text-zinc-200 md:hidden"
-                  onClick={() => setFiltersMobileOpen((o) => !o)}
-                  aria-expanded={filtersMobileOpen}
-                >
-                  {filtersMobileOpen ? "Nascondi filtri" : "Mostra filtri"}
-                </button>
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-end">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
               <label className="relative min-w-0 flex-1">
-                <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                  Ricerca libera
-                </span>
-                <IconSearch className="pointer-events-none absolute bottom-3 left-3.5 h-5 w-5 text-zinc-500" />
+                <span className="sr-only">Ricerca libera</span>
+                <IconSearch className="pointer-events-none absolute bottom-3 left-3.5 h-5 w-5 text-zinc-500 sm:bottom-3.5" />
                 <input
                   type="search"
                   value={f.search}
-                  placeholder="Cerca atleta, sport, club, agenzia..."
+                  placeholder="Cerca atleta, sport, club, agenzia…"
                   onChange={(e) => patch({ search: e.target.value })}
                   onKeyDown={(e) => {
                     if (e.key === "Escape") patch({ search: "" });
                   }}
-                  className="h-12 w-full rounded-2xl border border-white/12 bg-zinc-950/80 pl-11 pr-24 text-sm text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] outline-none placeholder:text-zinc-600 focus:border-accent/45 focus:ring-2 focus:ring-accent/15"
+                  className="h-12 w-full rounded-2xl border border-white/12 bg-zinc-950/80 py-3 pl-11 pr-24 text-sm text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] outline-none placeholder:text-zinc-600 focus:border-accent/45 focus:ring-2 focus:ring-accent/15 sm:h-13"
                   autoComplete="off"
                   enterKeyHint="search"
                 />
@@ -275,30 +273,37 @@ function TalentBoardExplorerInner() {
                   <button
                     type="button"
                     onClick={() => patch({ search: "" })}
-                    className="absolute bottom-2.5 right-2 rounded-lg border border-white/12 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-zinc-400 hover:bg-white/10 hover:text-white"
+                    className="absolute bottom-2.5 right-2 rounded-lg border border-white/12 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-zinc-400 hover:bg-white/10 hover:text-white sm:bottom-3"
                   >
                     Cancella
                   </button>
                 ) : null}
               </label>
-              <div className="w-full shrink-0 lg:w-60">
-                <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                  Ordina risultati
+
+              <button
+                type="button"
+                onClick={() => setFiltersPanelOpen((o) => !o)}
+                aria-expanded={filtersPanelOpen}
+                aria-controls="talent-board-filter-panels"
+                id="talent-board-filters-trigger"
+                className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-2xl border border-white/14 bg-white/7 px-5 text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition hover:border-accent/35 hover:bg-white/10 sm:h-13 sm:px-6"
+              >
+                <IconSliders className="h-5 w-5 text-accent" />
+                <span>Filtri</span>
+                {panelBadgeCount > 0 ? (
+                  <span className="flex min-w-5.5 items-center justify-center rounded-full bg-accent px-1.5 py-0.5 text-[11px] font-bold leading-none text-black">
+                    {panelBadgeCount}
+                  </span>
+                ) : null}
+                <span className="text-zinc-500" aria-hidden>
+                  {filtersPanelOpen ? "▴" : "▾"}
                 </span>
-                <SelectFilter
-                  id="tb-sort"
-                  label="Ordina risultati"
-                  hideLabel
-                  value={f.sort}
-                  onChange={(v) => patch({ sort: v as TalentFilterState["sort"] })}
-                  options={SORT_LABELS.map((s) => s.id)}
-                />
-              </div>
+              </button>
             </div>
 
             {chips.length > 0 ? (
               <div className="mt-5 flex flex-col gap-2">
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Filtri attivi</p>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Attivi</p>
                 <ul className="flex flex-wrap gap-2" aria-live="polite">
                   {chips.map((c) => (
                     <li key={`${c.id}-${c.label}`}>
@@ -322,9 +327,49 @@ function TalentBoardExplorerInner() {
             ) : null}
 
             <div
-              className={`mt-6 space-y-5 ${filtersMobileOpen ? "block" : "hidden"} md:block`}
               id="talent-board-filter-panels"
+              role="region"
+              aria-labelledby="talent-board-filters-trigger"
+              hidden={!filtersPanelOpen}
+              className={
+                filtersPanelOpen
+                  ? "mt-6 space-y-5 rounded-2xl border border-white/12 bg-black/40 p-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-white/5 sm:p-6"
+                  : "hidden"
+              }
             >
+              <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-end sm:justify-between">
+                <div className="w-full min-w-0 sm:max-w-xs">
+                  <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                    Ordina risultati
+                  </span>
+                  <SelectFilter
+                    id="tb-sort"
+                    label="Ordina risultati"
+                    hideLabel
+                    value={f.sort}
+                    onChange={(v) => patch({ sort: v as TalentFilterState["sort"] })}
+                    options={SORT_LABELS.map((s) => s.id)}
+                  />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={resetAll}
+                    disabled={!hasActive}
+                    className="inline-flex h-11 items-center justify-center rounded-full border border-white/14 bg-white/5 px-4 text-sm font-semibold text-zinc-200 transition enabled:hover:border-white/25 enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    Azzera tutto
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setFiltersPanelOpen(false)}
+                    className="inline-flex h-11 items-center justify-center rounded-full border border-white/14 bg-transparent px-4 text-sm font-semibold text-zinc-400 transition hover:border-white/22 hover:text-white"
+                  >
+                    Chiudi
+                  </button>
+                </div>
+              </div>
+
               <div>
                 <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">Profilo</p>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -378,7 +423,7 @@ function TalentBoardExplorerInner() {
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((o) => !o)}
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/12 bg-black/30 px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-accent/30 hover:text-white"
+                  className="inline-flex items-center gap-2 rounded-2xl border border-white/12 bg-zinc-950/50 px-4 py-3 text-sm font-semibold text-zinc-200 transition hover:border-accent/30 hover:text-white"
                   aria-expanded={advancedOpen}
                 >
                   <span>Filtri avanzati</span>
@@ -391,7 +436,7 @@ function TalentBoardExplorerInner() {
                 </button>
 
                 {advancedOpen ? (
-                  <div className="mt-4 space-y-6 rounded-2xl border border-white/10 bg-black/35 p-4 sm:p-5">
+                  <div className="mt-4 space-y-6 rounded-2xl border border-white/10 bg-zinc-950/60 p-4 sm:p-5">
                     <div>
                       <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Fisico &amp; club</p>
                       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
