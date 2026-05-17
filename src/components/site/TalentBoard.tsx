@@ -65,7 +65,8 @@ export function TalentBoard() {
               <div className="pointer-events-none absolute -inset-8 rounded-4xl bg-accent/7 blur-3xl" aria-hidden />
               <TalentMiniCard
                 ariaLabel="Esempio di mini scheda Talent Board"
-                nameDisplay="A. Rossi"
+                nameDisplay="Mario Rossi"
+                jerseyNumber={11}
                 role="Playmaker"
                 category="U19"
                 birthYear={2006}
@@ -75,8 +76,9 @@ export function TalentBoard() {
                 availabilityLabel="Disponibile"
                 availabilityHighlighted
                 stats={[
-                  { label: "PPG", value: "12.4" },
-                  { label: "AST", value: "4.8" },
+                  { label: "Punti", value: "12,4" },
+                  { label: "Rimbalzi", value: "5,2" },
+                  { label: "Assist", value: "4,8" },
                 ]}
                 seasonLabel={TALENT_BOARD_SEASON_LABEL}
               />

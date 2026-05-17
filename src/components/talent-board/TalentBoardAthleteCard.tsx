@@ -21,30 +21,28 @@ function profileCtaTarget(athlete: TalentAthlete): { href: string; external: boo
   return { href: athlete.profilePath, external: false };
 }
 
-function parseStatEntry(raw: string): { value: string; label: string } {
-  const t = raw.trim();
-  const m = /^([\d.,]+)\s+(.+)$/.exec(t);
-  if (m) return { value: m[1], label: m[2].trim().replace(/\s+/g, " ") };
-  const parts = t.split(/\s+/);
-  if (parts.length >= 2) return { value: parts[0], label: parts.slice(1).join(" ") };
-  return { value: t, label: "" };
-}
-
-function twoStatChips(athlete: TalentAthlete): readonly [TalentMiniCardStat, TalentMiniCardStat] {
+function seasonStatTriple(athlete: TalentAthlete): readonly [TalentMiniCardStat, TalentMiniCardStat, TalentMiniCardStat] {
   const fmt = (n: number) =>
     n.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  const parsed = (athlete.statsMain ?? []).map(parseStatEntry).filter((x) => x.label.length > 0);
-  const fallback: [TalentMiniCardStat, TalentMiniCardStat] = [
-    { label: "PPG", value: fmt(athlete.advanced.ppg) },
-    { label: "APG", value: fmt(athlete.advanced.apg) },
+  return [
+    { label: "Punti", value: fmt(athlete.advanced.ppg) },
+    { label: "Rimbalzi", value: fmt(athlete.advanced.rpg) },
+    { label: "Assist", value: fmt(athlete.advanced.apg) },
   ];
-  return [parsed[0] ?? fallback[0], parsed[1] ?? fallback[1]];
 }
 
 function nationalityCodeLabel(nationality: string): string {
   const t = nationality.trim();
   if (t.length <= 4) return t.toUpperCase();
   return t.slice(0, 3).toUpperCase();
+}
+
+function formatProfileUpdatedLong(iso: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso.trim());
+  if (!m) return iso;
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
 }
 
 function availabilityForCard(status: string): { label: string; highlighted: boolean } {
@@ -60,9 +58,10 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
   const cta = profileCtaTarget(athlete);
   const fn = athlete.firstName.trim();
   const ln = athlete.lastName.trim();
-  const nameDisplay = fn.length ? `${fn.slice(0, 1)}. ${ln}` : ln;
   const fullName = `${fn} ${ln}`.trim();
   const avail = availabilityForCard(athlete.status);
+  const strengths = (athlete.playerNotes ?? []).filter(Boolean).slice(0, 4);
+  const summary = athlete.scoutLine?.trim();
 
   return (
     <TalentMiniCard
@@ -70,7 +69,8 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
       photoUrl={athlete.photoUrl}
       photoAlt={fullName}
       photoInitials={initials(athlete)}
-      nameDisplay={nameDisplay}
+      nameDisplay={fullName}
+      jerseyNumber={athlete.jerseyNumber}
       role={athlete.role}
       category={athlete.category}
       birthYear={athlete.birthYear}
@@ -79,8 +79,14 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
       clubName={athlete.club}
       availabilityLabel={avail.label}
       availabilityHighlighted={avail.highlighted}
-      stats={twoStatChips(athlete)}
+      stats={seasonStatTriple(athlete)}
       seasonLabel={TALENT_BOARD_SEASON_LABEL}
+      profileUpdated={{
+        dateTime: athlete.profileUpdatedAt,
+        label: formatProfileUpdatedLong(athlete.profileUpdatedAt),
+      }}
+      playerSummary={summary || undefined}
+      playerStrengths={strengths.length > 0 ? strengths : undefined}
       profileHref={cta.href}
       profileExternal={cta.external}
     />

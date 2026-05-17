@@ -46,10 +46,16 @@ function ExplorerSkeleton() {
                   <div className="h-10 animate-pulse rounded bg-zinc-800/80" />
                 </div>
               </div>
-              <div className="mt-5 flex flex-wrap gap-2">
-                <div className="h-11 w-24 animate-pulse rounded-xl bg-zinc-800/70" />
-                <div className="h-11 w-24 animate-pulse rounded-xl bg-zinc-800/70" />
-                <div className="h-11 w-28 animate-pulse rounded-xl bg-zinc-800/60" />
+              <div className="mt-5 space-y-4">
+                <div className="space-y-2">
+                  <div className="h-3 w-16 animate-pulse rounded bg-zinc-700/50" />
+                  <div className="h-7 w-20 animate-pulse rounded bg-zinc-700/55 sm:h-8 sm:w-24" />
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="h-16 animate-pulse rounded-xl bg-zinc-800/70" />
+                  <div className="h-16 animate-pulse rounded-xl bg-zinc-800/70" />
+                  <div className="h-16 animate-pulse rounded-xl bg-zinc-800/70" />
+                </div>
               </div>
               <div className="mt-6 h-12 animate-pulse rounded-2xl bg-accent/10" />
             </div>

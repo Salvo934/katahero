@@ -17,6 +17,8 @@ export type TalentAthlete = {
   slug: string;
   firstName: string;
   lastName: string;
+  /** Numero di maglia in card (es. 11 → «#11»). */
+  jerseyNumber?: number | string;
   sport: string;
   role: string;
   birthYear: number;
@@ -47,7 +49,7 @@ export type TalentAthlete = {
 };
 
 /** Etichetta stagione mostrata sulle mini card (allineata alla home). */
-export const TALENT_BOARD_SEASON_LABEL = "2025-26";
+export const TALENT_BOARD_SEASON_LABEL = "25/26";
 
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
@@ -63,6 +65,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     slug: "mario-rossi",
     firstName: "Mario",
     lastName: "Rossi",
+    jerseyNumber: 11,
     sport: "Basket",
     role: "Guardia",
     birthYear: 2006,
@@ -93,6 +96,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     slug: "ilario-simonetti",
     firstName: "Ilario",
     lastName: "Simonetti",
+    jerseyNumber: 22,
     sport: "Basket",
     role: "Ala piccola",
     birthYear: 2004,
@@ -123,6 +127,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     slug: "andrea-verdi",
     firstName: "Andrea",
     lastName: "Verdi",
+    jerseyNumber: 15,
     sport: "Basket",
     role: "Centro",
     birthYear: 2004,
