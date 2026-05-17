@@ -37,8 +37,10 @@ export type TalentAthlete = {
   profileWebsiteUrl?: string;
   /** Punti di forza e osservazioni sul gioco (mostrati come elenco in card) */
   playerNotes?: string[];
-  /** Una riga per società e procuratori: perché valutare questo profilo (lettura in pochi secondi) */
+  /** Testo lungo sezione «Profilo» sulla card Talent Board */
   scoutLine?: string;
+  /** Badge riga finale card (es. Disponibile · Video disponibile …). Se omesso si derivano da status. */
+  cardBadgeLabels?: string[];
   advanced: TalentAthleteAdvancedStats;
 };
 
@@ -67,6 +69,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     agency: "Elite Basket Agency",
     statsMain: ["14.8 PPG", "4.2 RPG", "3.1 APG", "FG 47%", "3P 38%", "FT 81%"],
     badges: ["Top Prospect", "Video aggiornato"],
+    cardBadgeLabels: ["Disponibile", "Video disponibile", "Profilo aggiornato", "Agenzia verificata"],
     profilePath: "/atleti/mario-rossi",
     photoUrl:
       "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=480&h=480&fit=crop&q=80",
@@ -92,17 +95,19 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     club: "Benacquista Assicurazioni Latina",
     category: "Serie B",
     status: "Disponibile",
-    agency: "Bright side agency",
+    agency: "Bright Side Agency",
     statsMain: ["16.2 PPG", "6.1 RPG", "2.4 APG", "FG 44%", "3P 36%", "FT 78%"],
     badges: ["Fisico elite", "Highlights recenti"],
+    cardBadgeLabels: ["Disponibile", "Video disponibile", "Profilo aggiornato", "Agenzia verificata"],
     profilePath: "/atleti/ilario-simonetti",
     photoUrl: "/foto.jpeg",
     profileWebsiteUrl: "https://ilariosimonetti.katahero.com",
-    scoutLine: "Ala con fisico da serie B e media versatile: volume, rimbalzo e switch difensivo per squadre ambiziose.",
+    scoutLine:
+      "Ala fisica e produttiva, con volume offensivo, presenza a rimbalzo e capacità di cambiare difensivamente su più ruoli. Profilo adatto a squadre ambiziose di Serie B.",
     playerNotes: [
-      "Fisico importante: incide nel pitturato e al contatto",
-      "Tiro da media e attacco al ferro con buon timing nei tagli",
-      "Versatile in difesa: può switchare su esterni e alle piccole",
+      "Fisico importante: impatto nel pitturato e al contatto",
+      "Tiro dalla media e attacco al ferro con buon timing nei tagli",
+      "Versatilità difensiva: può cambiare su esterni e ali piccole",
     ],
     advanced: { ppg: 16.2, rpg: 6.1, apg: 2.4, fgPct: 44, tpPct: 36, ftPct: 78 },
   },
@@ -122,6 +127,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     agency: "Elite Basket Agency",
     statsMain: ["11.4 PPG", "9.8 RPG", "1.2 APG", "FG 58%", "3P 22%", "FT 69%"],
     badges: ["Rimbalzi", "Difensore"],
+    cardBadgeLabels: ["Sotto contratto", "Video disponibile", "Profilo aggiornato", "Agenzia verificata"],
     profilePath: "/atleti/andrea-verdi",
     scoutLine: "Centro prototipo “5”: protegge il ferro, domina i rimbalzi e gestisce i doppi — tassello difensivo per play-off.",
     playerNotes: [
@@ -168,5 +174,5 @@ export const FILTER_OPTIONS = {
   birthYear: ["Tutti", "2004", "2006", "2007"] as const,
   nationality: ["Tutte", "Italia"] as const,
   status: ["Tutti", "Disponibile", "In osservazione", "Sotto contratto"] as const,
-  agency: ["Tutte", "Bright side agency", "Elite Basket Agency", "Rising Stars Italia"] as const,
+  agency: ["Tutte", "Bright Side Agency", "Elite Basket Agency", "Rising Stars Italia"] as const,
 } as const;

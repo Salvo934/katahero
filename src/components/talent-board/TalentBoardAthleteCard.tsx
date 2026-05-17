@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { TalentAthlete } from "@/lib/talent-board-data";
+import { SITE } from "@/lib/site";
 
 function initials(a: TalentAthlete) {
   return `${a.firstName[0] ?? ""}${a.lastName[0] ?? ""}`.toUpperCase();
@@ -20,44 +21,66 @@ function profileCtaTarget(athlete: TalentAthlete): { href: string; external: boo
   return { href: athlete.profilePath, external: false };
 }
 
-function statusPresentation(status: string): { label: string; className: string } {
-  const lower = status.toLowerCase();
-  if (lower.includes("disponib")) {
-    return { label: status, className: "border-accent/25 bg-accent/10 text-accent" };
-  }
-  if (lower.includes("contratto")) {
-    return { label: status, className: "border-amber-400/25 bg-amber-400/8 text-amber-100/95" };
-  }
-  if (lower.includes("osservaz")) {
-    return { label: status, className: "border-sky-400/25 bg-sky-400/8 text-sky-100/95" };
-  }
-  return { label: status, className: "border-white/10 bg-white/5 text-zinc-300" };
+function contactAvailabilityPhrase(status: string): string {
+  const s = status.toLowerCase();
+  if (s.includes("disponib")) return "Disponibile al contatto";
+  if (s.includes("contratto")) return "Sotto contratto — contatto tramite agenzia";
+  if (s.includes("osservaz")) return "In osservazione — contatto su richiesta";
+  return `${status} — verifica disponibilità`;
 }
 
-const ctaClassName =
-  "flex w-full items-center justify-center rounded-full bg-accent py-2.5 text-sm font-bold text-black shadow-[0_8px_24px_-10px_rgba(0,229,160,0.4)] transition duration-200 hover:brightness-105 active:scale-[0.99] active:brightness-100";
+function mediaSeasonLine(athlete: TalentAthlete): string {
+  const { statsMain, advanced: s } = athlete;
+  if (statsMain.length >= 3) return statsMain.slice(0, 3).join(" · ");
+  const fmt = (n: number) =>
+    n.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  return `${fmt(s.ppg)} PPG · ${fmt(s.rpg)} RPG · ${fmt(s.apg)} APG`;
+}
+
+function cardBadgeDisplayLabels(athlete: TalentAthlete): string[] {
+  if (athlete.cardBadgeLabels?.length) return athlete.cardBadgeLabels;
+  const st = athlete.status.toLowerCase();
+  const head =
+    st.includes("disponib") ? "Disponibile" : st.includes("contratto") ? "Sotto contratto" : st.includes("osservaz") ? "In osservazione" : athlete.status;
+  const hasVideoHint = athlete.badges.some((b) => /video|highlight/i.test(b));
+  return [head, hasVideoHint ? "Video disponibile" : "Video su richiesta", "Profilo aggiornato", "Agenzia verificata"];
+}
+
+function referralMailto(athlete: TalentAthlete, fullName: string): string {
+  const subject = `Talent Board — ${fullName}`;
+  const body = `Ciao,\n\nvorrei informazioni sul profilo di ${fullName} (${athlete.role}, ${athlete.club}, ${athlete.category}).\n\n`;
+  return `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
 const thumbWrapClass =
-  "relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/8 sm:h-28 sm:w-28";
+  "relative h-[5.5rem] w-[5.5rem] shrink-0 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/8 sm:h-24 sm:w-24";
 
-/** Altezze minime allineate tra tutte le card (stesso numero di righe visibili). */
-const SCOUT_LINE_CLAMP = "line-clamp-4 min-h-[4.5rem]";
-const NOTE_LINE_CLAMP = "line-clamp-2";
-const NOTES_LIST_MIN_H = "min-h-[8.5rem]";
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500">{children}</p>
+  );
+}
+
+const btnPrimary =
+  "inline-flex w-full items-center justify-center rounded-full bg-accent py-3 text-sm font-bold text-black shadow-[0_8px_24px_-10px_rgba(0,229,160,0.4)] transition hover:brightness-105 active:scale-[0.99]";
+const btnSecondary =
+  "inline-flex w-full items-center justify-center rounded-full border border-white/18 bg-white/5 py-3 text-sm font-semibold text-zinc-100 transition hover:border-white/28 hover:bg-white/10";
+const btnDisabled =
+  "inline-flex w-full cursor-not-allowed items-center justify-center rounded-full border border-white/10 bg-white/[0.03] py-3 text-sm font-semibold text-zinc-600 opacity-80";
 
 export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) {
-  const { advanced: s } = athlete;
   const cta = profileCtaTarget(athlete);
   const photo = athlete.photoUrl?.trim();
   const fullName = `${athlete.firstName} ${athlete.lastName}`;
   const notes = (athlete.playerNotes ?? []).filter(Boolean);
   const scoutLine = athlete.scoutLine?.trim();
-  const statusUi = statusPresentation(athlete.status);
+  const badgesRow = cardBadgeDisplayLabels(athlete);
+  const metaCore = `${athlete.role} · ${athlete.heightCm} cm · ${athlete.birthYear} · ${athlete.nationality}`;
+  const clubRow = `${athlete.club} · ${athlete.category}`;
 
   return (
     <article className="group/card flex h-full min-h-0 w-full flex-col overflow-hidden rounded-3xl border border-white/8 bg-zinc-900/40 shadow-[0_20px_40px_-28px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 hover:border-white/12 hover:shadow-[0_24px_48px_-28px_rgba(0,0,0,0.82)]">
-      {/* Header: stessa altezza minima della foto per fila allineata */}
-      <div className="flex shrink-0 items-stretch gap-4 p-5 sm:gap-5 sm:p-6 sm:pb-4">
+      <header className="flex shrink-0 gap-4 border-b border-white/8 p-5 sm:gap-5 sm:p-6">
         <div className={thumbWrapClass}>
           {photo ? (
             // eslint-disable-next-line @next/next/no-img-element -- URL atleta arbitrario (CDN / siti terzi)
@@ -69,115 +92,86 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
               decoding="async"
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-zinc-600/85 via-zinc-800 to-zinc-950 font-display text-2xl font-bold text-white sm:text-3xl">
+            <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-zinc-600/85 via-zinc-800 to-zinc-950 font-display text-xl font-bold text-white sm:text-2xl">
               {initials(athlete)}
             </div>
           )}
         </div>
 
-        <div className="flex min-h-24 min-w-0 flex-1 flex-col justify-center sm:min-h-28">
-          <div className="flex items-start justify-between gap-3">
-            <p className="min-w-0 text-[11px] leading-snug text-zinc-500">
-              <span className="text-zinc-400">{athlete.sport}</span>
-              <span className="text-zinc-600"> · </span>
-              <span className="text-zinc-300">{athlete.role}</span>
-            </p>
-            <span
-              className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold tracking-wide ${statusUi.className}`}
-            >
-              {statusUi.label}
-            </span>
-          </div>
-          <h2 className="font-display mt-2 text-base font-bold tracking-tight text-white sm:text-lg">{fullName}</h2>
-          <p className="mt-1 line-clamp-2 min-h-8 text-xs leading-relaxed text-zinc-400">{athlete.club}</p>
-        </div>
-      </div>
-
-      <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 sm:px-6 sm:pb-6">
-        <div className="flex min-h-0 flex-1 flex-col gap-4 sm:gap-5">
-          <div>
-            <p className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">In sintesi</p>
-            <p
-              className={`mt-1.5 border-l-2 border-accent/50 pl-3 text-[13px] leading-relaxed ${scoutLine ? "text-zinc-200" : "text-zinc-600"} ${SCOUT_LINE_CLAMP}`}
-            >
-              {scoutLine ?? "—"}
-            </p>
-          </div>
-
-          <dl className="grid shrink-0 gap-3 text-xs sm:grid-cols-2 sm:gap-x-6">
-            <div>
-              <dt className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">Categoria</dt>
-              <dd className="mt-0.5 font-medium text-zinc-100">{athlete.category}</dd>
-            </div>
-            <div>
-              <dt className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">Agenzia</dt>
-              <dd className="mt-0.5 font-medium text-zinc-100">{athlete.agency}</dd>
-            </div>
-          </dl>
-
-          <p className="shrink-0 text-xs tabular-nums text-zinc-500">
-            {athlete.heightCm} cm · {athlete.birthYear} · {athlete.nationality}
-          </p>
-
-          <div className="shrink-0 border-t border-white/8 pt-4">
-            <p className="text-[10px] font-medium uppercase tracking-wider text-zinc-500">Media stagione</p>
-            <dl className="mt-3 grid grid-cols-3 gap-2">
-              {[
-                { label: "PPG", value: s.ppg },
-                { label: "RPG", value: s.rpg },
-                { label: "APG", value: s.apg },
-              ].map((row) => (
-                <div key={row.label} className="rounded-xl bg-zinc-950/40 py-2.5 text-center ring-1 ring-white/5">
-                  <dt className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">{row.label}</dt>
-                  <dd className="font-display mt-1 text-base font-bold tabular-nums text-white">{row.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="flex min-h-0 flex-1 flex-col border-t border-white/8 pt-4">
-            <p className="shrink-0 text-[10px] font-medium uppercase tracking-wider text-zinc-500">
-              Perché può fare al caso vostro
-            </p>
-            <ul className={`mt-3 flex flex-1 flex-col space-y-2.5 ${NOTES_LIST_MIN_H}`}>
-              {notes.length > 0
-                ? notes.map((line) => (
-                    <li key={line} className="flex gap-2.5 text-xs leading-relaxed text-zinc-400">
-                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-zinc-500" aria-hidden />
-                      <span className={`min-w-0 ${NOTE_LINE_CLAMP}`}>{line}</span>
-                    </li>
-                  ))
-                : [0, 1, 2].map((i) => (
-                    <li key={i} className="flex gap-2.5 text-xs leading-relaxed text-zinc-600">
-                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-zinc-600/50" aria-hidden />
-                      <span className="min-w-0">—</span>
-                    </li>
-                  ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-4 shrink-0 border-t border-white/8 pt-4 sm:mt-5">
-          {cta.external ? (
-            <a href={cta.href} target="_blank" rel="noopener noreferrer" className={ctaClassName}>
-              Scheda professionale
-              <span className="sr-only"> (si apre in una nuova scheda)</span>
-              <span className="ml-1.5" aria-hidden>
-                ↗
-              </span>
-            </a>
-          ) : (
-            <Link href={cta.href} className={ctaClassName}>
-              Scheda professionale
-              <span className="ml-1.5" aria-hidden>
-                →
-              </span>
-            </Link>
-          )}
-          <p className="mt-3 text-center text-[10px] leading-relaxed text-zinc-600">
-            Video, numeri aggiornati e contatti per valutare il fit con il vostro roster.
+        <div className="min-w-0 flex-1">
+          <h2 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">{fullName}</h2>
+          <p className="mt-2 text-[13px] leading-snug text-zinc-400">{metaCore}</p>
+          <p className="mt-2 text-[13px] font-semibold leading-snug text-accent">{contactAvailabilityPhrase(athlete.status)}</p>
+          <p className="mt-2 text-[13px] leading-snug text-zinc-200">{clubRow}</p>
+          <p className="mt-2 text-[12px] leading-snug text-zinc-500">
+            Rappresentato da <span className="font-medium text-zinc-400">{athlete.agency}</span>
           </p>
         </div>
+      </header>
+
+      <div className="flex min-h-0 flex-1 flex-col gap-5 p-5 sm:gap-6 sm:p-6">
+        <section className="space-y-2">
+          <SectionLabel>Profilo</SectionLabel>
+          <p className={`text-[13px] leading-relaxed ${scoutLine ? "text-zinc-300" : "text-zinc-600"}`}>
+            {scoutLine ?? "—"}
+          </p>
+        </section>
+
+        <section className="space-y-2">
+          <SectionLabel>Media stagione</SectionLabel>
+          <p className="text-sm font-medium tabular-nums tracking-tight text-white">{mediaSeasonLine(athlete)}</p>
+        </section>
+
+        <section className="space-y-3">
+          <SectionLabel>Perché può fare al caso vostro</SectionLabel>
+          <ul className="space-y-2.5">
+            {notes.length > 0 ? (
+              notes.map((line) => (
+                <li key={line} className="flex gap-2.5 text-[13px] leading-relaxed text-zinc-400">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/70" aria-hidden />
+                  <span>{line}</span>
+                </li>
+              ))
+            ) : (
+              <li className="text-[13px] text-zinc-600">—</li>
+            )}
+          </ul>
+        </section>
+
+        <section className="space-y-2">
+          <SectionLabel>Badge</SectionLabel>
+          <p className="text-[13px] leading-relaxed text-zinc-300">{badgesRow.join(" · ")}</p>
+        </section>
+
+        <section className="border-t border-white/8 pt-5" aria-label="Azioni">
+          <span className="sr-only">CTA</span>
+          <div className="flex flex-col gap-2.5">
+            {cta.external ? (
+              <a href={cta.href} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
+                Apri profilo
+                <span className="sr-only"> (si apre in una nuova scheda)</span>
+                <span className="ml-1.5" aria-hidden>
+                  ↗
+                </span>
+              </a>
+            ) : (
+              <Link href={cta.href} className={btnPrimary}>
+                Apri profilo
+                <span className="ml-1.5" aria-hidden>
+                  →
+                </span>
+              </Link>
+            )}
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <a href={referralMailto(athlete, fullName)} className={btnSecondary}>
+                Contatta referente
+              </a>
+              <button type="button" disabled className={btnDisabled} title="Funzione in arrivo sulla Talent Board">
+                Salva atleta
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
     </article>
   );
