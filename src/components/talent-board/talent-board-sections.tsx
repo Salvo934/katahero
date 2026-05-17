@@ -70,10 +70,19 @@ export function TalentBoardPageHero() {
 
   return (
     <section className="relative isolate overflow-hidden border-b border-white/10 bg-zinc-950 pt-[calc(5.5rem+env(safe-area-inset-top,0px))] pb-16 sm:pb-24 lg:pb-28">
-      {/* Base wash + vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-zinc-950 via-zinc-950 to-black" aria-hidden />
+      {/* Campo arena (foto) — leggermente zoom + più scura per leggere copy e pill */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div
+          className="absolute inset-0 bg-zinc-950 bg-[url('/sfondoherotalenti.png')] bg-cover bg-position-[26%_50%] bg-no-repeat lg:bg-position-[64%_50%] xl:bg-position-[58%_45%]"
+        />
+        <div className="absolute inset-0 bg-black/48" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/35 to-black/82" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/55 via-black/25 to-transparent lg:via-black/20" />
+      </div>
+
+      {/* Accenti marca (attenuati sulla foto) */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_110%_55%_at_50%_-18%,rgba(0,229,160,0.14),transparent_58%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_110%_55%_at_50%_-18%,rgba(0,229,160,0.09),transparent_58%)]"
         aria-hidden
       />
       <div

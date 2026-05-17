@@ -73,7 +73,7 @@ export function Contact() {
             </span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Player Card, Agency Portfolio, Agency Pro o Social Kit: per demo, preventivo o raccolta materiali — un solo tap
+            Spotlight, Collective, Roster HQ o Social Kit: per demo, preventivo o raccolta materiali — un solo tap
             su WhatsApp, telefono o email.
           </p>
           <div
@@ -95,7 +95,7 @@ export function Contact() {
               </div>
               <h3 className="font-display mt-6 text-lg font-semibold text-white">WhatsApp</h3>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-zinc-400 transition group-hover:text-zinc-300">
-                Messaggi rapidi per Player Card, portfolio agenziale e Social Kit.
+                Messaggi rapidi per Spotlight, Collective/Roster HQ e Social Kit.
               </p>
               <span className="mt-6 inline-flex items-center gap-2 text-base font-semibold text-[#4ade80] transition group-hover:gap-3">
                 {SITE.phoneDisplay}

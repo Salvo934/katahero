@@ -8,9 +8,9 @@ const highlights = [
 ];
 
 const planTeaser = [
-  { name: "Player Card", hint: "Scheda atleta singola" },
-  { name: "Agency Portfolio", hint: "Portfolio fino a 10 atleti" },
-  { name: "Agency Pro", hint: "Roster strutturato e filtri" },
+  { name: "Spotlight", hint: "Un link · un PDF · tutto chiaro" },
+  { name: "Collective", hint: "Brand + fino a 10 schede complete" },
+  { name: "Roster HQ", hint: "Talent Board privata, filtri, roster grande" },
 ];
 
 export function Hero() {
@@ -87,7 +87,8 @@ export function Hero() {
           <div className="rounded-2xl border border-white/14 bg-black/55 p-5 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.9)] ring-1 ring-white/4 backdrop-blur-xl sm:rounded-3xl sm:p-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Pacchetti</p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-              Tre livelli più Social Kit opzionale — dettagli nella sezione dedicata.
+              Dal singolo profilo alla board del roster: tre livelli + Social Kit facoltativo — qui sotto l&apos;anteprima; il
+              dettaglio è nella sezione pacchetti.
             </p>
             <ul className="mt-4 space-y-2 border-t border-white/10 pt-4 sm:mt-5 sm:space-y-2.5 sm:pt-5">
               {planTeaser.map((row) => (

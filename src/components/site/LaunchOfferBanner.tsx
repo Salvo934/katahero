@@ -32,9 +32,9 @@ export function LaunchOfferBanner() {
                 Listino bloccato sui primi progetti confermati
               </h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-[15px]">
-                Per chi entra in questa fase, <strong className="font-semibold text-zinc-200">Player Card</strong>,{" "}
-                <strong className="font-semibold text-zinc-200">Agency Portfolio</strong> e{" "}
-                <strong className="font-semibold text-zinc-200">Agency Pro</strong> restano sulle condizioni che ci
+                Per chi entra in questa fase, <strong className="font-semibold text-zinc-200">Spotlight</strong>,{" "}
+                <strong className="font-semibold text-zinc-200">Collective</strong> e{" "}
+                <strong className="font-semibold text-zinc-200">Roster HQ</strong> restano sulle condizioni che ci
                 impegniamo a confermarti in preventivo — senza sorprese dopo la conferma del progetto. Al termine della
                 fase early access, le proposte possono evolvere.
               </p>
@@ -50,7 +50,7 @@ export function LaunchOfferBanner() {
                 href="#pacchetti"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-black shadow-[0_10px_32px_-14px_rgba(0,229,160,0.55)] transition hover:brightness-110"
               >
-                Vedi Player Card e portfolio
+                Vedi i pacchetti
               </Link>
             </div>
           </div>

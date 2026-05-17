@@ -36,81 +36,90 @@ const socialKitWhatsAppMessage =
 type Plan = {
   name: string;
   badge: string;
+  /** Pill opzionale sopra il titolo (es. “Più richiesto”, “Talent Board”). */
+  promoPill?: string;
   tagline: string;
+  /** Collante con la Talent Board / demo. */
+  talentBoardLine: string;
   featuresSectionTitle: string;
   features: string[];
   idealFor: string;
   ctaLabel: string;
   whatsappMessage: string;
+  /** Default: bordo standard; featured: leggero enfasi; flagship: Roster HQ + Talent Board. */
+  variant?: "default" | "featured" | "flagship";
 };
 
 const plans: Plan[] = [
   {
-    name: "Player Card",
+    name: "Spotlight",
     badge: "Singolo atleta",
-    tagline: "Il link che apri quando qualcuno deve valutarti in fretta — senza file sparsi o DM lunghi.",
+    tagline:
+      "Il profilo che apri quando un club o uno scout ha due minuti — niente allegati, solo decisioni.",
+    talentBoardLine:
+      "Stessa cura visiva delle mini schede che vedi nella demo Talent Board: un solo standard professionale.",
     featuresSectionTitle: "Cosa include",
     features: [
-      "Scheda atleta digitale personalizzata",
-      "Dati fisici e sportivi essenziali",
-      "Ruolo, squadra, campionato e stagione",
-      "Statistiche e metriche principali",
-      "Video highlights integrato",
-      "Percorso sportivo (palmares / timeline)",
-      "Contatto referente chiaro",
-      "Link unico da bio, mail e presentazioni",
-      "Layout mobile-first",
-      "PDF sintetico scaricabile",
+      "Scheda digitale con link pubblico e PDF sintetico scaricabile",
+      "Dati fisici, ruolo, squadra, campionato e statistiche chiave",
+      "Video highlights e percorso sportivo in un’unica pagina mobile-first",
+      "Contatto referente evidenziato: meno ping-pong su WhatsApp",
+      "Pronta da incollare in bio, firma mail e presentazioni",
     ],
     idealFor:
-      "giovani, prospetti, free agent e professionisti che vogliono uscire dalla confusione dei DM e dei file sparsi.",
-    ctaLabel: "Crea la tua Player Card",
+      "prospetti U19–U23, free agent e professionisti che vogliono uscire dalla giungla di DM e file incompleti.",
+    ctaLabel: "Richiedi Spotlight",
     whatsappMessage:
-      "Ciao! Vorrei creare la mia Player Card KataHero: scheda atleta digitale con link e PDF. Potete darmi i prossimi passi?",
+      "Ciao! Vorrei informazioni sul pacchetto Spotlight di KataHero (scheda atleta digitale con link e PDF). Tempi e materiali necessari?",
+    variant: "default",
   },
   {
-    name: "Agency Portfolio",
-    badge: "Agenzia / procuratore",
-    tagline: "Un solo indirizzo per il tuo marchio e per le schede dei tuoi assistiti — ordinato e riconoscibile.",
+    name: "Collective",
+    badge: "Agenzia · procuratore",
+    promoPill: "Più richiesto",
+    tagline:
+      "Un dominio visivo unico: il tuo marchio e le schede dei talenti, ordinati come in un vero dossier digitale.",
+    talentBoardLine:
+      "Pensato per roster fino a dieci profili: quando il volume esplode, Roster HQ apre la Talent Board privata con filtri e inviti.",
     featuresSectionTitle: "Cosa include",
     features: [
-      "Pagina istituzionale agenzia / procuratore",
-      "Fino a 10 schede atleta digitali",
-      "Dati, statistiche, video e percorso per ogni tesserato",
-      "Contatto referente centralizzato",
-      "Branding agenzia (colori, logotipo, tono)",
-      "PDF dedicato per ogni atleta",
-      "Link portfolio unico da condividere",
-      "Supporto nella raccolta materiali",
-      "Un aggiornamento mensile incluso sulle schede",
+      "Pagina istituzionale branded (colori, logo, tono comunicativo)",
+      "Fino a 10 schede atleta complete (dati, statistiche, video, timeline)",
+      "URL portfolio unico da inviare a società e sponsor",
+      "PDF professionale per ogni assistito",
+      "Supporto alla raccolta materiali e un aggiornamento mensile incluso sulle schede",
+      "Base solida per chi negozia trasferimenti o gestisce un primo gruppo organizzato",
     ],
     idealFor:
-      "procuratori indipendenti, agenti e piccole strutture che gestiscono un primo gruppo di talenti con ritmo costante.",
-    ctaLabel: "Richiedi una demo",
+      "procuratori, agenti federati e boutique agency che vogliono credibilità immediata senza strumenti dispersivi.",
+    ctaLabel: "Richiedi Collective",
     whatsappMessage:
-      "Ciao! Vorrei richiedere una demo per Agency Portfolio KataHero: portfolio con schede atleta. Quando possiamo parlarne?",
+      "Ciao! Siamo un’agenzia interessata a Collective di KataHero (fino a 10 schede + pagina brand). Possiamo vedere una demo?",
+    variant: "featured",
   },
   {
-    name: "Agency Pro",
+    name: "Roster HQ",
     badge: "Roster & organizzazioni",
-    tagline: "Gestisci molti profili con filtri, aggiornamenti e materiali che reggono il confronto con club e scouting.",
-    featuresSectionTitle: "Tutto Agency Portfolio, più",
+    promoPill: "Con Talent Board",
+    tagline:
+      "La tua operatività ha bisogno di una board: filtri, aggiornamenti e presentazione al livello delle strutture più esposte sul mercato.",
+    talentBoardLine:
+      "Talent Board privata con le stesse mini schede e logica della demo su /talent-board — ma con i tuoi atleti e accessi controllati.",
+    featuresSectionTitle: "Cosa include",
     features: [
-      "Schede su misura per roster numerosi",
-      "Filtri per ruolo, anno, altezza, categoria, status e disponibilità",
-      "Blocchi video per skill e tratti distintivi in campo",
-      "Profilo tecnico e indicazioni ‘best fit’",
-      "Area riservata o schede private on demand",
-      "Piano di aggiornamento dati periodico",
-      "Export PDF professionale per atleta",
-      "Supporto prioritario operativo",
-      "Personalizzazione grafica avanzata",
-      "Report o metriche di utilizzo, dove applicabile",
+      "KataHero Talent Board privata: ricerca, filtri (ruolo, età, disponibilità, metriche…) e condivisione mirata",
+      "Roster esteso e perimetri su misura per academy, società multi-livello e grandi agenzie",
+      "Blocchi video dedicati a skill, tratti di campo e “best fit” per ruolo",
+      "Piano di aggiornamento dati ricorrente + supporto operativo prioritario",
+      "Export PDF avanzato e personalizzazione grafica coordinata al brand",
+      "Tutto ciò che serve quando il mercato ti chiama ogni settimana, non una volta all’anno",
     ],
-    idealFor: "agenzie strutturate, società, academy, settori giovanili e staff che vivono il mercato ogni settimana.",
-    ctaLabel: "Parla con noi",
+    idealFor:
+      "strutture che vivono scouting, trasferimenti e relazioni club in continuo movimento.",
+    ctaLabel: "Parla di Talent Board & Roster HQ",
     whatsappMessage:
-      "Ciao! Vorrei informazioni su Agency Pro KataHero (soluzione su richiesta) per gestire un roster più ampio. Possiamo fare una call?",
+      "Ciao! Vorremmo Roster HQ di KataHero con Talent Board privata sul nostro organico. Possiamo fissare una call e capire il perimetro?",
+    variant: "flagship",
   },
 ];
 
@@ -128,31 +137,60 @@ export function Packages() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-tight">
-            Tre modi di presentare il basket,{" "}
-            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">
-              con la stessa cura professionale
-            </span>
+            Dal singolo talento alla{" "}
+            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">Talent Board</span>{" "}
+            del roster
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Player Card per chi deve emergere con un link pulito. Agency Portfolio quando rappresenti più atleti sotto
-            un&apos;unica immagine. Agency Pro quando roster, filtri e aggiornamenti sono parte del lavoro quotidiano.
-            Qui trovi cosa include ogni perimetro; tempi e condizioni economiche li allineiamo in preventivo dopo un primo
-            contatto — senza costringerti a listini fissi online.
+            Parti con <strong className="font-semibold text-zinc-300">Spotlight</strong> per mettere il singolo talento al
+            centro; passa a <strong className="font-semibold text-zinc-300">Collective</strong> quando gestisci più profili con
+            un marchio unico; apri <strong className="font-semibold text-zinc-300">Roster HQ</strong> quando ti serve una{" "}
+            <strong className="font-semibold text-zinc-300">Talent Board</strong> privata come nella demo pubblica — filtri,
+            inviti mirati, ritmo da mercato vero. Nessun listino pubblico: tempi e investimento si definiscono in preventivo
+            dopo un confronto diretto.
           </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/talent-board"
+              className="inline-flex min-h-10 items-center justify-center rounded-full border border-accent/35 bg-accent/10 px-4 py-2 text-xs font-semibold text-accent transition hover:border-accent/50 hover:bg-accent/18 sm:text-sm"
+            >
+              Prova la demo Talent Board <span aria-hidden>→</span>
+            </Link>
+            <span className="hidden text-[11px] text-zinc-600 sm:inline">Dati basket di esempio · gratis in anteprima</span>
+          </div>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-14 lg:grid-cols-3 lg:items-stretch lg:gap-6">
-          {plans.map((p) => (
+          {plans.map((p) => {
+            const v = p.variant ?? "default";
+            const cardClass =
+              v === "flagship"
+                ? "flex h-full min-h-0 flex-col rounded-2xl border border-accent/38 bg-zinc-900/55 p-6 shadow-[0_0_0_1px_rgba(0,229,160,0.1),0_24px_64px_-36px_rgba(0,229,160,0.14)] transition-colors sm:p-7 hover:border-accent/48 hover:bg-zinc-900/62 hover:shadow-[0_0_0_1px_rgba(0,229,160,0.14),0_28px_72px_-32px_rgba(0,229,160,0.18)] lg:relative lg:z-10"
+                : v === "featured"
+                  ? "flex h-full min-h-0 flex-col rounded-2xl border border-white/15 bg-zinc-900/42 p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] transition-colors sm:p-7 hover:border-white/22 hover:bg-zinc-900/50"
+                  : "flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-zinc-900/40 p-6 transition-colors sm:p-7 hover:border-white/16 hover:bg-zinc-900/48";
+
+            return (
             <article
               key={p.name}
-              className="flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-zinc-900/40 p-6 transition-colors sm:p-7 hover:border-white/16 hover:bg-zinc-900/50"
+              className={cardClass}
             >
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{p.badge}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{p.badge}</p>
+                  {p.promoPill ? (
+                    <span className="rounded-full border border-accent/30 bg-accent/10 px-2 py-px text-[9px] font-bold tracking-wide text-accent">
+                      {p.promoPill}
+                    </span>
+                  ) : null}
+                </div>
                 <h3 className="font-display mt-2 text-xl font-bold tracking-tight text-white sm:text-[1.35rem]">
                   {p.name}
                 </h3>
                 <p className="mt-3 text-sm font-medium leading-snug text-zinc-300">{p.tagline}</p>
+                <p className="mt-3 border-l-2 border-accent/45 pl-3 text-xs leading-relaxed text-zinc-400">
+                  {p.talentBoardLine}
+                </p>
               </div>
 
               <div className="mt-5 flex min-h-0 flex-1 flex-col border-t border-white/10 pt-6 sm:mt-6">
@@ -184,7 +222,8 @@ export function Packages() {
                 {p.ctaLabel}
               </a>
             </article>
-          ))}
+            );
+          })}
         </div>
 
         <article
