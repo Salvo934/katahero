@@ -73,6 +73,7 @@ export function TalentBoard() {
                 dominantHand="Destra"
                 heightCm={188}
                 weightKg={82}
+                strengthPoint="Lettura in pick-and-roll e mani attive in difesa sui portatori."
                 nationalityCode="ITA"
                 nationalityFull="Italia"
                 clubName="Benacquista Ass. Latina"

@@ -22,6 +22,8 @@ export type TalentMiniCardProps = {
   dominantHand: string;
   heightCm: number;
   weightKg: number;
+  /** Punto di forza in evidenza (testo scouting). Peso mostrato insieme all’altezza. */
+  strengthPoint: string;
   nationalityCode: string;
   nationalityFull: string;
   clubName: string;
@@ -62,6 +64,7 @@ export function TalentMiniCard({
   dominantHand,
   heightCm,
   weightKg,
+  strengthPoint,
   nationalityCode,
   nationalityFull,
   clubName,
@@ -265,14 +268,18 @@ export function TalentMiniCard({
           <dd className="font-semibold leading-snug text-zinc-50">{dominantHand}</dd>
         </div>
         <div className={ddCellCls}>
-          <dt className={dtLblCls}>Altezza</dt>
+          <dt className={dtLblCls}>Altezza · Peso</dt>
           <dd className="font-semibold tabular-nums leading-snug text-zinc-50">
-            {heightCm} cm
+            <span className="whitespace-nowrap">{heightCm} cm</span>
+            <span className="text-zinc-600"> · </span>
+            <span className="whitespace-nowrap">{weightKg} kg</span>
           </dd>
         </div>
         <div className={`col-span-2 ${ddCellCls}`}>
-          <dt className={dtLblCls}>Peso</dt>
-          <dd className="font-semibold tabular-nums leading-snug text-zinc-50">{weightKg} kg</dd>
+          <dt className={dtLblCls}>Punto di forza</dt>
+          <dd className="wrap-anywhere font-semibold leading-snug text-zinc-50 line-clamp-4">
+            {strengthPoint}
+          </dd>
         </div>
       </dl>
 

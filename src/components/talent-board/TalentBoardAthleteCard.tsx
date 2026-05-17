@@ -53,6 +53,14 @@ function availabilityForCard(status: string): { label: string; highlighted: bool
   return { label: status, highlighted: false };
 }
 
+function strengthPointForCard(athlete: TalentAthlete): string {
+  const fromNotes = athlete.playerNotes?.map((x) => x.trim()).find((x) => x.length > 0);
+  if (fromNotes) return fromNotes;
+  const scout = athlete.scoutLine?.trim();
+  if (scout) return scout.length > 160 ? `${scout.slice(0, 157)}…` : scout;
+  return "Profilo disponibile sulla scheda completa.";
+}
+
 /** Stessa mini scheda della sezione Talent Board in home (`TalentMiniCard`). */
 export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) {
   const cta = profileCtaTarget(athlete);
@@ -75,6 +83,7 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
       dominantHand={athlete.dominantHand}
       heightCm={athlete.heightCm}
       weightKg={athlete.weightKg}
+      strengthPoint={strengthPointForCard(athlete)}
       nationalityCode={nationalityCodeLabel(athlete.nationality)}
       nationalityFull={athlete.nationality}
       clubName={athlete.club}
