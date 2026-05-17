@@ -41,6 +41,8 @@ export type TalentAthlete = {
   scoutLine?: string;
   /** Badge riga finale card (es. Disponibile · Video disponibile …). Se omesso si derivano da status. */
   cardBadgeLabels?: string[];
+  /** Data ultimo aggiornamento scheda (YYYY-MM-DD), mostrata in card per affidabilità */
+  profileUpdatedAt: string;
   advanced: TalentAthleteAdvancedStats;
 };
 
@@ -80,6 +82,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
       "Letture offensive in pick-and-roll: sa trovare il roll o il weak-side",
       "Aggressivo in difesa sui portatori, mani attive nei passing lane",
     ],
+    profileUpdatedAt: "2026-05-10",
     advanced: { ppg: 14.8, rpg: 4.2, apg: 3.1, fgPct: 47, tpPct: 38, ftPct: 81 },
   },
   {
@@ -109,6 +112,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
       "Tiro dalla media e attacco al ferro con buon timing nei tagli",
       "Versatilità difensiva: può cambiare su esterni e ali piccole",
     ],
+    profileUpdatedAt: "2026-05-14",
     advanced: { ppg: 16.2, rpg: 6.1, apg: 2.4, fgPct: 44, tpPct: 36, ftPct: 78 },
   },
   {
@@ -135,9 +139,9 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
       "Ottimo rimbalzista offensivo, second chance per la squadra",
       "Lettura dei doppi: sa uscire la palla o chiudere sotto canestro",
     ],
+    profileUpdatedAt: "2026-05-08",
     advanced: { ppg: 11.4, rpg: 9.8, apg: 1.2, fgPct: 58, tpPct: 22, ftPct: 69 },
   },
-  
 ];
 
 export const FAQ_ITEMS = [

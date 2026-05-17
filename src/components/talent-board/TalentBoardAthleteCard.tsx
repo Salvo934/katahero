@@ -52,6 +52,14 @@ function referralMailto(athlete: TalentAthlete, fullName: string): string {
   return `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
+function formatProfileUpdatedLabel(iso: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso.trim());
+  if (!m) return iso;
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+}
+
 const thumbWrapClass =
   "relative h-[5.5rem] w-[5.5rem] shrink-0 overflow-hidden rounded-2xl bg-zinc-800 ring-1 ring-white/8 sm:h-24 sm:w-24";
 
@@ -77,10 +85,11 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
   const badgesRow = cardBadgeDisplayLabels(athlete);
   const metaCore = `${athlete.role} · ${athlete.heightCm} cm · ${athlete.birthYear} · ${athlete.nationality}`;
   const clubRow = `${athlete.club} · ${athlete.category}`;
+  const updatedLabel = formatProfileUpdatedLabel(athlete.profileUpdatedAt);
 
   return (
-    <article className="group/card flex h-full min-h-0 w-full flex-col overflow-hidden rounded-3xl border border-white/8 bg-zinc-900/40 shadow-[0_20px_40px_-28px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 hover:border-white/12 hover:shadow-[0_24px_48px_-28px_rgba(0,0,0,0.82)]">
-      <header className="flex shrink-0 gap-4 border-b border-white/8 p-5 sm:gap-5 sm:p-6">
+    <article className="group/card flex h-full min-h-144 min-w-0 flex-col overflow-hidden rounded-3xl border border-white/8 bg-zinc-900/40 shadow-[0_20px_40px_-28px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 hover:border-white/12 hover:shadow-[0_24px_48px_-28px_rgba(0,0,0,0.82)] sm:min-h-152">
+      <header className="flex shrink-0 gap-4 border-b border-white/8 p-5 sm:min-h-46 sm:gap-5 sm:p-6">
         <div className={thumbWrapClass}>
           {photo ? (
             // eslint-disable-next-line @next/next/no-img-element -- URL atleta arbitrario (CDN / siti terzi)
@@ -98,7 +107,7 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
           )}
         </div>
 
-        <div className="min-w-0 flex-1">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center">
           <h2 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">{fullName}</h2>
           <p className="mt-2 text-[13px] leading-snug text-zinc-400">{metaCore}</p>
           <p className="mt-2 text-[13px] font-semibold leading-snug text-accent">{contactAvailabilityPhrase(athlete.status)}</p>
@@ -109,41 +118,44 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
         </div>
       </header>
 
-      <div className="flex min-h-0 flex-1 flex-col gap-5 p-5 sm:gap-6 sm:p-6">
-        <section className="space-y-2">
-          <SectionLabel>Profilo</SectionLabel>
-          <p className={`text-[13px] leading-relaxed ${scoutLine ? "text-zinc-300" : "text-zinc-600"}`}>
-            {scoutLine ?? "—"}
-          </p>
-        </section>
+      <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-5">
+        <div className="flex min-h-0 flex-1 flex-col gap-5 sm:gap-6">
+          <section className="flex min-h-25 flex-col space-y-2 sm:min-h-28">
+            <SectionLabel>Profilo</SectionLabel>
+            <p className={`text-[13px] leading-relaxed ${scoutLine ? "text-zinc-300" : "text-zinc-600"}`}>{scoutLine ?? "—"}</p>
+          </section>
 
-        <section className="space-y-2">
-          <SectionLabel>Media stagione</SectionLabel>
-          <p className="text-sm font-medium tabular-nums tracking-tight text-white">{mediaSeasonLine(athlete)}</p>
-        </section>
+          <section className="shrink-0 space-y-2">
+            <SectionLabel>Media stagione</SectionLabel>
+            <p className="text-sm font-medium tabular-nums tracking-tight text-white">{mediaSeasonLine(athlete)}</p>
+          </section>
 
-        <section className="space-y-3">
-          <SectionLabel>Perché può fare al caso vostro</SectionLabel>
-          <ul className="space-y-2.5">
-            {notes.length > 0 ? (
-              notes.map((line) => (
-                <li key={line} className="flex gap-2.5 text-[13px] leading-relaxed text-zinc-400">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/70" aria-hidden />
-                  <span>{line}</span>
-                </li>
-              ))
-            ) : (
-              <li className="text-[13px] text-zinc-600">—</li>
-            )}
-          </ul>
-        </section>
+          <section className="flex min-h-38 flex-col space-y-3 sm:min-h-42">
+            <SectionLabel>Perché può fare al caso vostro</SectionLabel>
+            <ul className="flex flex-col gap-2.5">
+              {notes.length > 0 ? (
+                notes.map((line) => (
+                  <li key={line} className="flex gap-2.5 text-[13px] leading-relaxed text-zinc-400">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/70" aria-hidden />
+                    <span>{line}</span>
+                  </li>
+                ))
+              ) : (
+                <li className="text-[13px] text-zinc-600">—</li>
+              )}
+            </ul>
+          </section>
 
-        <section className="space-y-2">
-          <SectionLabel>Badge</SectionLabel>
-          <p className="text-[13px] leading-relaxed text-zinc-300">{badgesRow.join(" · ")}</p>
-        </section>
+          <section className="shrink-0 space-y-2">
+            <SectionLabel>Badge</SectionLabel>
+            <p className="text-[13px] leading-relaxed text-zinc-300">{badgesRow.join(" · ")}</p>
+            <p className="text-[11px] leading-snug text-zinc-500">
+              Scheda aggiornata il <time dateTime={athlete.profileUpdatedAt}>{updatedLabel}</time>
+            </p>
+          </section>
+        </div>
 
-        <section className="border-t border-white/8 pt-5" aria-label="Azioni">
+        <section className="shrink-0 border-t border-white/8 pt-5" aria-label="Azioni">
           <span className="sr-only">CTA</span>
           <div className="flex flex-col gap-2.5">
             {cta.external ? (
