@@ -38,7 +38,6 @@ function ExplorerSkeleton() {
                   <div className="h-4 max-w-[80%] animate-pulse rounded bg-zinc-700/45" />
                 </div>
               </div>
-              <div className="mt-6 h-12 w-full animate-pulse rounded-2xl border border-white/12 bg-white/5" />
               <div className="mt-6 space-y-3 border-y border-white/8 py-5">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="h-10 animate-pulse rounded bg-zinc-800/80" />
