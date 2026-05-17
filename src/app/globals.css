@@ -66,3 +66,17 @@ body {
     transform: none;
   }
 }
+
+/* Partner marquee sotto hero */
+@keyframes kh-partner-marquee-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.kh-partner-marquee .kh-partner-marquee-track {
+  animation: kh-partner-marquee-x 42s linear infinite;
+}
