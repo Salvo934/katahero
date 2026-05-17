@@ -19,6 +19,9 @@ export type TalentMiniCardProps = {
   role: string;
   category: string;
   birthYear: number;
+  dominantHand: string;
+  heightCm: number;
+  weightKg: number;
   nationalityCode: string;
   nationalityFull: string;
   clubName: string;
@@ -40,7 +43,10 @@ export type TalentMiniCardProps = {
 };
 
 const footerInteractiveClass =
-  "mt-6 block w-full rounded-2xl border border-accent/30 bg-linear-to-b from-accent/14 to-accent/6 py-3.5 text-center text-[12px] font-semibold text-accent shadow-[0_10px_36px_-14px_rgba(0,229,160,0.4)] ring-1 ring-accent/15 transition hover:border-accent/45 hover:from-accent/18 hover:to-accent/10 hover:shadow-[0_14px_44px_-14px_rgba(0,229,160,0.55)] active:scale-[0.99]";
+  "mt-6 block w-full rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
+
+const footerStaticClass =
+  "mt-6 rounded-xl border border-accent/40 py-3 text-center text-sm font-semibold text-accent";
 
 const profileCtaLabel = "Apri profilo completo →";
 
@@ -57,6 +63,9 @@ export function TalentMiniCard({
   role,
   category,
   birthYear,
+  dominantHand,
+  heightCm,
+  weightKg,
   nationalityCode,
   nationalityFull,
   clubName,
@@ -91,7 +100,7 @@ export function TalentMiniCard({
         {profileCtaLabel}
       </Link>
     ) : (
-      <p className="mt-6 rounded-2xl border border-accent/30 bg-linear-to-b from-accent/12 to-accent/5 py-3.5 text-center text-[12px] font-semibold text-accent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] ring-1 ring-accent/12">
+      <p className={footerStaticClass}>
         {profileCtaLabel}
       </p>
     );
@@ -189,6 +198,20 @@ export function TalentMiniCard({
         <div className="flex flex-col gap-1 rounded-xl border border-white/6 bg-zinc-950/35 px-3 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm">
           <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500">Nazionalità</dt>
           <dd className="font-semibold leading-snug text-zinc-50">{nationalityFull}</dd>
+        </div>
+        <div className="flex flex-col gap-1 rounded-xl border border-white/6 bg-zinc-950/35 px-3 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm">
+          <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500">Mano dominante</dt>
+          <dd className="font-semibold leading-snug text-zinc-50">{dominantHand}</dd>
+        </div>
+        <div className="flex flex-col gap-1 rounded-xl border border-white/6 bg-zinc-950/35 px-3 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm">
+          <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500">Altezza</dt>
+          <dd className="font-semibold tabular-nums leading-snug text-zinc-50">
+            {heightCm} cm
+          </dd>
+        </div>
+        <div className="col-span-2 flex flex-col gap-1 rounded-xl border border-white/6 bg-zinc-950/35 px-3 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] backdrop-blur-sm">
+          <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500">Peso</dt>
+          <dd className="font-semibold tabular-nums leading-snug text-zinc-50">{weightKg} kg</dd>
         </div>
       </dl>
 

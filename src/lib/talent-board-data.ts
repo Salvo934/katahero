@@ -23,6 +23,10 @@ export type TalentAthlete = {
   role: string;
   birthYear: number;
   heightCm: number;
+  /** Mano dominante (es. Destra, Sinistra, Ambidestro). */
+  dominantHand: string;
+  /** Peso in kg. */
+  weightKg: number;
   nationality: string;
   club: string;
   category: string;
@@ -70,6 +74,8 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     role: "Guardia",
     birthYear: 2006,
     heightCm: 193,
+    dominantHand: "Destra",
+    weightKg: 88,
     nationality: "Italia",
     club: "Stella Azzurra Roma",
     category: "U19 Eccellenza",
@@ -101,6 +107,8 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     role: "Ala piccola",
     birthYear: 2004,
     heightCm: 200,
+    dominantHand: "Destra",
+    weightKg: 98,
     nationality: "Italia",
     club: "Benacquista Assicurazioni Latina",
     category: "Serie B",
@@ -132,6 +140,8 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     role: "Centro",
     birthYear: 2004,
     heightCm: 208,
+    dominantHand: "Sinistra",
+    weightKg: 108,
     nationality: "Italia",
     club: "Virtus Bologna Next",
     category: "Next Gen",

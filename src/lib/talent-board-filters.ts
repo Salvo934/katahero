@@ -187,7 +187,7 @@ export function hasNonDefaultFilters(f: TalentFilterState): boolean {
 export function matchTalentAthlete(a: TalentAthlete, f: TalentFilterState): boolean {
   const q = f.search.trim().toLowerCase();
   if (q) {
-    const blob = `${a.firstName} ${a.lastName} ${a.jerseyNumber ?? ""} ${a.club} ${a.agency} ${a.sport} ${a.role} ${a.category} ${a.status} ${a.nationality} ${a.badges.join(" ")}`
+    const blob = `${a.firstName} ${a.lastName} ${a.jerseyNumber ?? ""} ${a.club} ${a.agency} ${a.sport} ${a.role} ${a.category} ${a.status} ${a.nationality} ${a.dominantHand} ${a.heightCm} ${a.weightKg} ${a.badges.join(" ")}`
       .toLowerCase();
     const tokens = q.split(/\s+/).filter(Boolean);
     if (!tokens.length || !tokens.every((t) => blob.includes(t))) return false;

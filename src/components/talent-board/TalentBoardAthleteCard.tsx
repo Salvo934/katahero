@@ -72,6 +72,9 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
       role={athlete.role}
       category={athlete.category}
       birthYear={athlete.birthYear}
+      dominantHand={athlete.dominantHand}
+      heightCm={athlete.heightCm}
+      weightKg={athlete.weightKg}
       nationalityCode={nationalityCodeLabel(athlete.nationality)}
       nationalityFull={athlete.nationality}
       clubName={athlete.club}

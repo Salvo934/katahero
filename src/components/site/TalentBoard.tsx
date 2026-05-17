@@ -70,6 +70,9 @@ export function TalentBoard() {
                 role="Playmaker"
                 category="U19"
                 birthYear={2006}
+                dominantHand="Destra"
+                heightCm={188}
+                weightKg={82}
                 nationalityCode="ITA"
                 nationalityFull="Italia"
                 clubName="Benacquista Ass. Latina"
