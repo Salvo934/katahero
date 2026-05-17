@@ -7,7 +7,7 @@ import { resolveSiteNavHref } from "@/lib/site-nav";
 import { SITE } from "@/lib/site";
 
 const nav = [
-  { href: "#servizi", label: "Servizi" },
+  { href: "#servizi", label: "Vetrina digitale" },
   { href: "/talent-board", label: "Talent Board" },
   { href: "#portfolio", label: "Portfolio" },
   { href: "#pacchetti", label: "Pacchetti" },
