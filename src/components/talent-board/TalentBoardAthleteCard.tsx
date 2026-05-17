@@ -87,9 +87,12 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
   const clubRow = `${athlete.club} · ${athlete.category}`;
   const updatedLabel = formatProfileUpdatedLabel(athlete.profileUpdatedAt);
 
+  /** Altezze fisse delle sezioni = stessa silhouette; `flex-1` + scroll sul contenuto sotto il titolo. */
+  const scrollRegion = "min-h-0 flex-1 overflow-y-auto overscroll-y-contain [scrollbar-width:thin]";
+
   return (
-    <article className="group/card flex h-full min-h-144 min-w-0 flex-col overflow-hidden rounded-3xl border border-white/8 bg-zinc-900/40 shadow-[0_20px_40px_-28px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 hover:border-white/12 hover:shadow-[0_24px_48px_-28px_rgba(0,0,0,0.82)] sm:min-h-152">
-      <header className="flex shrink-0 gap-4 border-b border-white/8 p-5 sm:min-h-46 sm:gap-5 sm:p-6">
+    <article className="group/card flex h-full min-h-0 w-full flex-col overflow-hidden rounded-3xl border border-white/8 bg-zinc-900/40 shadow-[0_20px_40px_-28px_rgba(0,0,0,0.75)] backdrop-blur-md transition duration-300 hover:border-white/12 hover:shadow-[0_24px_48px_-28px_rgba(0,0,0,0.82)]">
+      <header className="flex h-44 shrink-0 gap-4 border-b border-white/8 p-5 sm:h-52 sm:gap-5 sm:p-6">
         <div className={thumbWrapClass}>
           {photo ? (
             // eslint-disable-next-line @next/next/no-img-element -- URL atleta arbitrario (CDN / siti terzi)
@@ -107,7 +110,7 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
           )}
         </div>
 
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center overflow-y-auto overscroll-y-contain [scrollbar-width:thin]">
           <h2 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">{fullName}</h2>
           <p className="mt-2 text-[13px] leading-snug text-zinc-400">{metaCore}</p>
           <p className="mt-2 text-[13px] font-semibold leading-snug text-accent">{contactAvailabilityPhrase(athlete.status)}</p>
@@ -120,19 +123,23 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
 
       <div className="flex min-h-0 flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-5">
         <div className="flex min-h-0 flex-1 flex-col gap-5 sm:gap-6">
-          <section className="flex min-h-25 flex-col space-y-2 sm:min-h-28">
+          <section className="flex h-36 shrink-0 flex-col gap-2 sm:h-40">
             <SectionLabel>Profilo</SectionLabel>
-            <p className={`text-[13px] leading-relaxed ${scoutLine ? "text-zinc-300" : "text-zinc-600"}`}>{scoutLine ?? "—"}</p>
+            <div className={scrollRegion}>
+              <p className={`text-[13px] leading-relaxed ${scoutLine ? "text-zinc-300" : "text-zinc-600"}`}>
+                {scoutLine ?? "—"}
+              </p>
+            </div>
           </section>
 
-          <section className="shrink-0 space-y-2">
+          <section className="flex h-18 shrink-0 flex-col justify-center gap-2">
             <SectionLabel>Media stagione</SectionLabel>
             <p className="text-sm font-medium tabular-nums tracking-tight text-white">{mediaSeasonLine(athlete)}</p>
           </section>
 
-          <section className="flex min-h-38 flex-col space-y-3 sm:min-h-42">
+          <section className="flex h-52 shrink-0 flex-col gap-3 sm:h-56">
             <SectionLabel>Perché può fare al caso vostro</SectionLabel>
-            <ul className="flex flex-col gap-2.5">
+            <ul className={`flex flex-col gap-2.5 ${scrollRegion}`}>
               {notes.length > 0 ? (
                 notes.map((line) => (
                   <li key={line} className="flex gap-2.5 text-[13px] leading-relaxed text-zinc-400">
@@ -146,16 +153,18 @@ export function TalentBoardAthleteCard({ athlete }: { athlete: TalentAthlete }) 
             </ul>
           </section>
 
-          <section className="shrink-0 space-y-2">
+          <section className="flex h-22 shrink-0 flex-col gap-2 sm:h-24">
             <SectionLabel>Badge</SectionLabel>
-            <p className="text-[13px] leading-relaxed text-zinc-300">{badgesRow.join(" · ")}</p>
-            <p className="text-[11px] leading-snug text-zinc-500">
-              Scheda aggiornata il <time dateTime={athlete.profileUpdatedAt}>{updatedLabel}</time>
-            </p>
+            <div className={scrollRegion}>
+              <p className="text-[13px] leading-relaxed text-zinc-300">{badgesRow.join(" · ")}</p>
+              <p className="mt-2 text-[11px] leading-snug text-zinc-500">
+                Scheda aggiornata il <time dateTime={athlete.profileUpdatedAt}>{updatedLabel}</time>
+              </p>
+            </div>
           </section>
         </div>
 
-        <section className="shrink-0 border-t border-white/8 pt-5" aria-label="Azioni">
+        <section className="mt-auto shrink-0 border-t border-white/8 pt-5" aria-label="Azioni">
           <span className="sr-only">CTA</span>
           <div className="flex flex-col gap-2.5">
             {cta.external ? (
