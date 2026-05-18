@@ -114,7 +114,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     category: "Serie B",
     status: "Disponibile",
     agency: "Bright Side Agency",
-    statsMain: ["16.2 PPG", "6.1 RPG", "2.4 APG", "FG 44%", "3P 36%", "FT 78%"],
+    statsMain: ["5.7 PPG", "1.8 RPG", "1 APG", "FG 49%", "3P 31%", "FT 52%"],
     badges: ["Fisico elite", "Highlights recenti"],
     cardBadgeLabels: ["Disponibile", "Video disponibile", "Profilo aggiornato", "Agenzia verificata"],
     profilePath: "/atleti/ilario-simonetti",
@@ -128,7 +128,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
       "Versatilità difensiva: può cambiare su esterni e ali piccole",
     ],
     profileUpdatedAt: "2026-05-14",
-    advanced: { ppg: 16.2, rpg: 6.1, apg: 2.4, fgPct: 44, tpPct: 36, ftPct: 78 },
+    advanced: { ppg: 5.7, rpg: 1.8, apg: 1, fgPct: 49, tpPct: 31, ftPct: 52 },
   },
   {
     id: "3",
