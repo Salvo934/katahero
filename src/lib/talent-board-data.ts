@@ -119,7 +119,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     cardBadgeLabels: ["Disponibile", "Video disponibile", "Profilo aggiornato", "Agenzia verificata"],
     profilePath: "/atleti/ilario-simonetti",
     photoUrl: "/foto.jpeg",
-    profileWebsiteUrl: "https://ilariosimonetti.katahero.com",
+    profileWebsiteUrl: "https://ilariosimonetti7.katahero.com/ilario-simonetti",
     scoutLine:
       "Ala fisica e produttiva, con volume offensivo, presenza a rimbalzo e capacità di cambiare difensivamente su più ruoli. Profilo adatto a squadre ambiziose di Serie B.",
     playerNotes: [
