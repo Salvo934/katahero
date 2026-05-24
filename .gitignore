@@ -6,6 +6,7 @@ build/
 .DS_Store
 *.zip
 *.mp4
+!public/videos/sfondohero8.mp4
 *.mov
 *.sqlite
 *.db
