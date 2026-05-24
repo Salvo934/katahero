@@ -1,0 +1,29 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@theme",
+      "description": "Tailwind CSS v4: theme tokens (e.g. `@theme inline { ... }`)."
+    },
+    {
+      "name": "@plugin",
+      "description": "Tailwind CSS v4: load a plugin."
+    },
+    {
+      "name": "@config",
+      "description": "Tailwind CSS v4: path to tailwind config."
+    },
+    {
+      "name": "@utility",
+      "description": "Tailwind CSS v4: custom utility."
+    },
+    {
+      "name": "@variant",
+      "description": "Tailwind CSS v4: custom variant."
+    },
+    {
+      "name": "@custom-variant",
+      "description": "Tailwind CSS v4: named custom variant."
+    }
+  ]
+}

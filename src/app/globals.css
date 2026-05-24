@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #f4f4f5;
+  --accent: #00e5a0;
+  --accent-muted: rgba(0, 229, 160, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-dm), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+  color: #fff;
+}
+
+/* Modale checkout Stripe: entrata */
+@keyframes kh-modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes kh-modal-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.kh-modal-backdrop-in {
+  animation: kh-modal-backdrop-in 0.28s ease-out forwards;
+}
+
+.kh-modal-panel-in {
+  animation: kh-modal-panel-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-modal-backdrop-in,
+  .kh-modal-panel-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Partner marquee sotto hero */
+@keyframes kh-partner-marquee-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.kh-partner-marquee .kh-partner-marquee-track {
+  animation: kh-partner-marquee-x 32s linear infinite;
+}
+
+/* Talent Board — numeri sintetici, loop automatico continuo */
+@keyframes kh-talent-stats-marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.kh-talent-stats-marquee .kh-talent-stats-marquee-track {
+  animation: kh-talent-stats-marquee-x 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-talent-stats-marquee .kh-talent-stats-marquee-track {
+    animation: none;
+  }
+}
