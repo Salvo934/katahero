@@ -5,8 +5,9 @@ import type { CSSProperties } from "react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const CARD_IMAGE = "/talent-board-hero-card-ilario.png";
+const PLAYER_CARD_URL = "https://ilariosimonetti7.katahero.com/ilario-simonetti";
 
-/** Figurina demo nella hero Talent Board — tilt 3D sul puntatore (rispetta prefers-reduced-motion). */
+/** Figurina interattiva nella hero Talent Board — tilt 3D e link alla player card completa. */
 export function TalentBoardHeroCard3D() {
   const frameRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -55,17 +56,24 @@ export function TalentBoardHeroCard3D() {
       style={reducedMotion ? undefined : { perspective: "1150px" }}
     >
       <figure className="relative m-0 w-full max-w-[min(94vw,28rem)] sm:max-w-lg lg:max-w-136">
-        <div
-          ref={frameRef}
-          onPointerMove={onPointerMove}
-          onPointerLeave={reducedMotion ? undefined : resetTilt}
-          className={
-            reducedMotion
-              ? "relative isolate"
-              : "relative isolate cursor-pointer touch-manipulation rounded-2xl transition-[transform] duration-200 ease-out will-change-transform"
-          }
-          style={tiltStyle}
+        <a
+          href={PLAYER_CARD_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Apri la player card completa di Ilario Simonetti (si apre in una nuova scheda)"
+          className="group block rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
+          <div
+            ref={frameRef}
+            onPointerMove={onPointerMove}
+            onPointerLeave={reducedMotion ? undefined : resetTilt}
+            className={
+              reducedMotion
+                ? "relative isolate"
+                : "relative isolate cursor-pointer touch-manipulation rounded-2xl transition-[transform] duration-200 ease-out will-change-transform"
+            }
+            style={tiltStyle}
+          >
           <div
             className="pointer-events-none absolute inset-x-[12%] -bottom-[10%] top-[36%] -z-10 rounded-4xl bg-accent/25 blur-[52px]"
             aria-hidden
@@ -83,10 +91,12 @@ export function TalentBoardHeroCard3D() {
               />
             </div>
           </div>
-        </div>
+          </div>
+        </a>
         <figcaption className="mt-4 text-pretty text-center text-[11px] leading-relaxed text-zinc-500 sm:text-xs lg:text-right">
-          Stesso <strong className="font-medium text-zinc-400">look da figurina digitale</strong> che ottieni quando mandi il link
-          della scheda: ordine sul telefono senza scaricare PDF.
+          Clicca la figurina per aprire la{" "}
+          <strong className="font-medium text-zinc-400">player card completa</strong> — video, statistiche, pitch scout e
+          contatti in un solo link.
         </figcaption>
       </figure>
     </div>
