@@ -117,7 +117,7 @@ export function TalentBoardPageHero() {
                 href="/#pacchetti"
                 className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/18 bg-white/[0.07] px-8 py-3.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.07)] backdrop-blur-sm transition hover:border-white/28 hover:bg-white/11 sm:w-auto sm:min-w-48"
               >
-                Attiva la tua board
+                Attiva la tua card
               </Link>
             </div>
 
