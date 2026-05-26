@@ -17,3 +17,6 @@ build/
 .env.local
 *.env.local
 tsconfig.tsbuildinfo
+
+node_modules/
+node_modules 2
