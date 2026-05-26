@@ -5,10 +5,10 @@ import { TalentBoardStatsCarousel } from "./TalentBoardStatsCarousel";
 
 export function TalentBoardPageHero() {
   const highlights = [
-    "Figurina digitale per ogni atleta",
-    "Sito completo al click",
-    "Board con filtri e ricerca",
-    "Un link per tutto il roster",
+    "Card su misura per ogni atleta",
+    "Sito completo integrato",
+    "Roster con filtri live",
+    "Condivisione in un click",
   ] as const;
 
   return (
@@ -49,9 +49,13 @@ export function TalentBoardPageHero() {
                 aria-hidden
               />
 
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">
+                Per agenzie · procuratori · staff
+              </p>
+
               <h1 className="font-display text-balance text-[clamp(1.9rem,4.2vw+1rem,3.45rem)] font-bold leading-[1.08] tracking-[-0.03em] text-white">
                 <span className="relative inline-block">
-                  Creiamo la card del tuo atleta.
+                  Creiamo la card interattiva del tuo atleta.
                   <span
                     className="pointer-events-none absolute -bottom-1 left-0 right-0 mx-auto h-2 max-w-[min(100%,14rem)] rounded-full bg-accent/15 blur-md lg:mx-0 lg:max-w-48"
                     aria-hidden
@@ -59,20 +63,19 @@ export function TalentBoardPageHero() {
                 </span>
                 <span className="mt-2 block sm:mt-2.5">
                   <span className="bg-linear-to-r from-white via-zinc-50 to-accent bg-clip-text text-transparent">
-                    Aprirla: c&apos;è tutto il suo sito.
+                    Apri la card: dentro c&apos;è il sito completo.
                   </span>
                 </span>
               </h1>
 
               <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-zinc-400 sm:mt-7 sm:text-[1.0625rem] sm:leading-[1.65] lg:mx-0">
-                La <strong className="font-semibold text-zinc-200">player card KataHero</strong> è il primo impatto — ruolo, fisico, numeri
-                e punto di forza in una figurina digitale interattiva. Un click e si apre il{" "}
-                <strong className="font-semibold text-zinc-200">sito completo</strong>: video, statistiche, carriera, social e contatti,
-                pronti per club e scout.
+                Ruolo, fisico, numeri e punto di forza — tutto leggibile in pochi secondi. Un click e si apre il{" "}
+                <strong className="font-semibold text-zinc-200">sito completo</strong>: highlight, statistiche, percorso sportivo e
+                contatti, in un&apos;esperienza mobile-first pensata per chi valuta i talenti.
                 <span className="mt-2 block text-zinc-500">
-                  Con la <strong className="font-medium text-zinc-400">Talent Board</strong> metti tutte le card del roster nello stesso
-                  posto: filtri, ricerca e link da inoltrare —{" "}
-                  <strong className="font-medium text-zinc-400">senza PDF, senza chat infinite</strong>.
+                  La <strong className="font-medium text-zinc-400">Talent Board</strong> riunisce tutte le card del roster: cerca, filtra
+                  e condividi con club, scout e partner il profilo giusto —{" "}
+                  <strong className="font-medium text-zinc-400">un formato, un link, zero caos</strong>.
                 </span>
               </p>
             </div>
@@ -105,7 +108,7 @@ export function TalentBoardPageHero() {
                 href="#griglia-atleti"
                 className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-black shadow-[0_14px_48px_-16px_rgba(0,229,160,0.58)] transition hover:brightness-110 active:scale-[0.99] sm:w-auto sm:min-w-56"
               >
-                Esplora le card del roster
+                Scopri le card del roster
                 <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
                   →
                 </span>
@@ -114,12 +117,12 @@ export function TalentBoardPageHero() {
                 href="/#pacchetti"
                 className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/18 bg-white/[0.07] px-8 py-3.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.07)] backdrop-blur-sm transition hover:border-white/28 hover:bg-white/11 sm:w-auto sm:min-w-48"
               >
-                Richiedi player card
+                Attiva la tua board
               </Link>
             </div>
 
             <p className="mx-auto mt-6 max-w-md text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-600 sm:mt-7 lg:mx-0">
-              Player card · Sito atleta · Talent Board
+              Card · Sito · Board — presentazione professionale
             </p>
           </div>
         </div>

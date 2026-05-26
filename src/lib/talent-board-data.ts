@@ -69,10 +69,10 @@ export const TALENT_BOARD_SEASON_LABEL = "25/26";
 
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
-  { key: "athletes", value: "4", label: "Atleti in board" },
-  { key: "updated", value: "4", label: "Schede aggiornate" },
-  { key: "agencies", value: "2", label: "Agenzie sul board" },
-  { key: "available", value: "4", label: "Card da condividere" },
+  { key: "athletes", value: "5", label: "Atleti in board" },
+  { key: "updated", value: "5", label: "Schede aggiornate" },
+  { key: "agencies", value: "3", label: "Agenzie sul board" },
+  { key: "available", value: "5", label: "Card da condividere" },
 ] as const;
 
 export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
@@ -210,6 +210,43 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     profileUpdatedAt: "2026-05-18",
     advanced: { ppg: 8.1, rpg: 2.4, apg: 3.2, fgPct: 46, twoPct: 54, tpPct: 35, ftPct: 78 },
   },
+  {
+    id: "5",
+    slug: "francesco-spinelli",
+    firstName: "Francesco",
+    lastName: "Spinelli",
+    jerseyNumber: 9,
+    sport: "Basket",
+    role: "Guardia",
+    leagueLabel: "LNP",
+    roleCardSuffix: "/ PG",
+    birthYear: 2005,
+    heightCm: 197,
+    dominantHand: "Destra",
+    weightKg: 87,
+    nationality: "Italia",
+    club: "Aurora Desio",
+    clubLogoUrl: "/aurora-desio-logo.png",
+    category: "Serie B",
+    status: "Disponibile",
+    agency: "PLS Agency",
+    statsMain: ["6 PPG", "1,9 RPG", "1,6 APG", "2P 49%", "3P 27%", "FT 74%"],
+    badges: ["Serie B Girone A", "Under 21"],
+    cardBadgeLabels: ["Disponibile", "35 gare", "Serie B 25/26", "Profilo aggiornato"],
+    profilePath: "/atleti/francesco-spinelli",
+    photoUrl: "/francesco-spinelli.png",
+    publicCardStrengthLine: "Play/guardia che detta ritmi e crea dal pick and roll.",
+    strengthAccentPhrase: "pick and roll",
+    scoutLine:
+      "Play/guardia classe 2005 (29/09/2005): 35 gare in Serie B Girone A 25/26 con Aurora Desio, 16'5 di media. Medie ufficiali LNP: 6 PPG, 1,9 RPG, 1,6 APG — 2P 49%, 3P 27%, FT 74%.",
+    playerNotes: [
+      "Percorso in B con Virtus Pozzuoli, Virtus Arechi Salerno e Malvin PSA Sant'Antimo",
+      "Gestione del pick and roll e scelta tiro/passaggio in transizione",
+      "Tiro da tre in crescita con buona percentuale ai liberi (74%)",
+    ],
+    profileUpdatedAt: "2026-04-26",
+    advanced: { ppg: 6, rpg: 1.9, apg: 1.6, fgPct: 38, twoPct: 49, tpPct: 27, ftPct: 74 },
+  },
 ];
 
 export const FAQ_ITEMS = [
@@ -246,5 +283,5 @@ export const FILTER_OPTIONS = {
   birthYear: ["Tutti", "2005", "2004", "2003", "2002"] as const,
   nationality: ["Tutte", "Italia"] as const,
   status: ["Tutti", "Disponibile", "In osservazione"] as const,
-  agency: ["Tutte", "Bright Side Agency", "Side Sports Management"] as const,
+  agency: ["Tutte", "Bright Side Agency", "Side Sports Management", "PLS Agency"] as const,
 } as const;
