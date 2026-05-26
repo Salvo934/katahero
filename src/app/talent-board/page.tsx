@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Talent Board",
-  description: `Card interattiva per ogni atleta: apri la card e trovi il sito completo. La Talent Board raccoglie tutto il roster con filtri, ricerca e link condivisibili.`,
+  description: `Ogni atleta può richiedere la propria card. Agenzie e procuratori attivano una board privata con tutto il roster, filtri e link condivisibili.`,
   path: "/talent-board",
 });
 

@@ -94,9 +94,8 @@ export function TalentBoardHeroCard3D() {
           </div>
         </a>
         <figcaption className="mt-4 text-pretty text-center text-[11px] leading-relaxed text-zinc-500 sm:text-xs lg:text-right">
-          Clicca la figurina per aprire la{" "}
-          <strong className="font-medium text-zinc-400">player card completa</strong> — video, statistiche, pitch scout e
-          contatti in un solo link.
+          Clicca per aprire la{" "}
+          <strong className="font-medium text-zinc-400">player card</strong>: video, numeri e contatti in un link.
         </figcaption>
       </figure>
     </div>

@@ -245,7 +245,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
       "Gestione del pick and roll e scelta tiro/passaggio in transizione",
       "Tiro da tre in crescita con buona percentuale ai liberi (74%)",
     ],
-    profileUpdatedAt: "2026-04-26",
+    profileUpdatedAt: "2026-05-27",
     advanced: { ppg: 6, rpg: 1.9, apg: 1.6, fgPct: 38, twoPct: 49, tpPct: 27, ftPct: 74 },
   },
 ];

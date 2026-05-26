@@ -280,9 +280,7 @@ function TalentBoardExplorerInner() {
               <div className="min-w-0">
                 <h2 className="font-display text-base font-bold text-white sm:text-lg">Griglia roster</h2>
                 <p className="mt-0.5 max-w-3xl text-[11px] leading-snug text-zinc-500 sm:text-xs sm:leading-relaxed">
-                  Ogni atleta ha una <strong className="font-medium text-zinc-400">mini scheda</strong> con dati, ruolo e link al profilo
-                  completo. Ricerca e filtri restano salvati nell&apos;URL — condividi la vista che ti serve. Due parole cercate → entrambe
-                  devono comparire nei campi del profilo.
+                  Demo di board privata: ogni card apre il profilo completo. Cerca, filtra e condividi — i filtri restano nell&apos;URL.
                 </p>
               </div>
             </div>
