@@ -41,7 +41,7 @@ export function TalentBoardPageHero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(20rem,42rem)] lg:items-start lg:gap-x-14 xl:grid-cols-[minmax(0,1fr)_minmax(22rem,44rem)] xl:gap-x-16">
+        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(16rem,34rem)] lg:items-start lg:gap-x-14 xl:gap-x-16">
           <div className="min-w-0 lg:col-start-1 lg:row-start-1">
             <div className="relative mx-auto max-w-xl text-center lg:mx-0 lg:max-w-3xl lg:text-left">
               <div
@@ -80,7 +80,7 @@ export function TalentBoardPageHero() {
             </div>
           </div>
 
-          <aside className="flex w-full shrink-0 justify-center lg:sticky lg:top-[max(5.5rem,env(safe-area-inset-top,0px))] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:w-auto lg:justify-end lg:self-start lg:pt-1 xl:top-28">
+          <aside className="flex shrink-0 justify-center lg:sticky lg:top-[max(5.5rem,env(safe-area-inset-top,0px))] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:justify-end lg:self-start lg:pt-1 xl:top-28">
             <TalentBoardHeroCard3D />
           </aside>
 

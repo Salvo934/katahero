@@ -55,7 +55,7 @@ export function TalentBoardHeroCard3D() {
       className="mx-auto lg:mx-0 lg:justify-self-end"
       style={reducedMotion ? undefined : { perspective: "1150px" }}
     >
-      <figure className="relative m-0 w-full max-w-[min(96vw,36rem)] sm:max-w-2xl lg:max-w-full">
+      <figure className="relative m-0 w-full max-w-[min(94vw,28rem)] sm:max-w-lg lg:max-w-136">
         <a
           href={PLAYER_CARD_URL}
           target="_blank"
@@ -86,7 +86,7 @@ export function TalentBoardHeroCard3D() {
                 alt="Esempio figurina digitale: Ilario Simonetti, numero 7 — stile della scheda giocatore condivisibile"
                 fill
                 className="object-contain object-center bg-black/70"
-                sizes="(max-width:640px) 96vw,(max-width:1024px) 40rem,44rem"
+                sizes="(max-width:640px) 94vw,(max-width:1024px) 32rem,34rem"
                 priority
               />
             </div>
