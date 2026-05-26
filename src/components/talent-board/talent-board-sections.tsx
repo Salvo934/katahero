@@ -12,7 +12,7 @@ export function TalentBoardPageHero() {
   ] as const;
 
   return (
-    <section className="relative isolate overflow-hidden border-b border-white/10 bg-zinc-950 pt-[max(7rem,calc(6.25rem+env(safe-area-inset-top,0px)))] pb-16 sm:pt-[max(7.75rem,calc(6.75rem+env(safe-area-inset-top,0px)))] sm:pb-24 lg:pt-[max(8rem,calc(7rem+env(safe-area-inset-top,0px)))] lg:pb-28">
+    <section className="relative isolate overflow-x-hidden border-b border-white/10 bg-zinc-950 pt-[max(7rem,calc(6.25rem+env(safe-area-inset-top,0px)))] pb-16 sm:pt-[max(7.75rem,calc(6.75rem+env(safe-area-inset-top,0px)))] sm:pb-24 lg:flex lg:max-h-[calc(100dvh-4.5rem)] lg:min-h-0 lg:flex-col lg:justify-center lg:overflow-x-hidden lg:pt-[max(6.5rem,calc(5.75rem+env(safe-area-inset-top,0px)))] lg:pb-10">
       {/* Accenti marca */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_110%_55%_at_50%_-18%,rgba(0,229,160,0.09),transparent_58%)]"
@@ -40,8 +40,8 @@ export function TalentBoardPageHero() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(16rem,34rem)] lg:items-start lg:gap-x-14 xl:gap-x-16">
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:min-h-0 lg:flex-1 lg:px-8 lg:py-1">
+        <div className="flex flex-col gap-10 lg:grid lg:min-h-0 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,34rem)] lg:items-center lg:gap-x-14 lg:gap-y-4 xl:gap-x-16">
           <div className="min-w-0 lg:col-start-1 lg:row-start-1">
             <div className="relative mx-auto max-w-xl text-center lg:mx-0 lg:max-w-3xl lg:text-left">
               <div
@@ -68,7 +68,7 @@ export function TalentBoardPageHero() {
                 </span>
               </h1>
 
-              <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-zinc-400 sm:mt-7 sm:text-[1.0625rem] sm:leading-[1.65] lg:mx-0">
+              <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-zinc-400 sm:mt-7 sm:text-[1.0625rem] sm:leading-[1.65] lg:mx-0 lg:mt-5 lg:leading-[1.6]">
                 <strong className="font-semibold text-zinc-200">Atleta?</strong> Richiedi la tua card interattiva con sito
                 professionale: numeri, video e contatti in un link da inviare a club e scout.
                 <span className="mt-3 block">
@@ -80,7 +80,7 @@ export function TalentBoardPageHero() {
             </div>
           </div>
 
-          <aside className="flex shrink-0 justify-center lg:sticky lg:top-[max(5.5rem,env(safe-area-inset-top,0px))] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:justify-end lg:self-start lg:pt-1 xl:top-28">
+          <aside className="flex shrink-0 justify-center lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:justify-end lg:self-center lg:pt-0">
             <TalentBoardHeroCard3D />
           </aside>
 
@@ -102,7 +102,7 @@ export function TalentBoardPageHero() {
               ))}
             </ul>
 
-            <div className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start lg:gap-4">
+            <div className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center lg:mt-5 lg:justify-start lg:gap-3">
               <a
                 href="#griglia-atleti"
                 className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-black shadow-[0_14px_48px_-16px_rgba(0,229,160,0.58)] transition hover:brightness-110 active:scale-[0.99] sm:w-auto sm:min-w-56"
@@ -120,7 +120,7 @@ export function TalentBoardPageHero() {
               </Link>
             </div>
 
-            <p className="mx-auto mt-6 max-w-md text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-600 sm:mt-7 lg:mx-0">
+            <p className="mx-auto mt-6 max-w-md text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-600 sm:mt-7 lg:mx-0 lg:mt-4">
               Atleta: card personale · Agenzia: roster privato
             </p>
           </div>

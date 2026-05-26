@@ -55,7 +55,7 @@ export function TalentBoardHeroCard3D() {
       className="mx-auto lg:mx-0 lg:justify-self-end"
       style={reducedMotion ? undefined : { perspective: "1150px" }}
     >
-      <figure className="relative m-0 w-full max-w-[min(98vw,40rem)] sm:max-w-2xl lg:max-w-136 lg:origin-top-right lg:scale-[1.28]">
+      <figure className="relative m-0 w-full max-w-[min(98vw,40rem)] sm:max-w-2xl lg:max-h-[min(44dvh,21rem)] lg:max-w-136 lg:origin-center">
         <a
           href={PLAYER_CARD_URL}
           target="_blank"
@@ -80,7 +80,7 @@ export function TalentBoardHeroCard3D() {
           />
           <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-black/60 shadow-[0_42px_90px_-52px_rgba(0,0,0,0.92),0_22px_50px_-28px_rgba(0,229,160,0.12)] ring-1 ring-white/6">
             <div className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-linear-to-br from-white/14 via-transparent to-transparent opacity-35" />
-            <div className="relative aspect-5/3 w-full sm:aspect-16/10">
+            <div className="relative aspect-5/3 w-full sm:aspect-16/10 lg:aspect-16/10 lg:h-[min(40dvh,19rem)] lg:max-h-full">
               <Image
                 src={CARD_IMAGE}
                 alt="Esempio figurina digitale: Ilario Simonetti, numero 7 — stile della scheda giocatore condivisibile"
@@ -93,7 +93,7 @@ export function TalentBoardHeroCard3D() {
           </div>
           </div>
         </a>
-        <figcaption className="mt-4 text-pretty text-center text-[11px] leading-relaxed text-zinc-500 sm:text-xs lg:text-right">
+        <figcaption className="mt-3 text-pretty text-center text-[11px] leading-snug text-zinc-500 sm:text-xs lg:mt-2 lg:text-right">
           Clicca per aprire la{" "}
           <strong className="font-medium text-zinc-400">player card</strong>: video, numeri e contatti in un link.
         </figcaption>
