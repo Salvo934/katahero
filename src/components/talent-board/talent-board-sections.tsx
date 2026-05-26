@@ -55,7 +55,7 @@ export function TalentBoardPageHero() {
 
               <h1 className="font-display text-balance text-[clamp(1.9rem,4.2vw+1rem,3.45rem)] font-bold leading-[1.08] tracking-[-0.03em] text-white">
                 <span className="relative inline-block">
-                  Creiamo la card interattiva del tuo atleta.
+                  Creiamo la card interattiva dell&apos;atleta.
                   <span
                     className="pointer-events-none absolute -bottom-1 left-0 right-0 mx-auto h-2 max-w-[min(100%,14rem)] rounded-full bg-accent/15 blur-md lg:mx-0 lg:max-w-48"
                     aria-hidden

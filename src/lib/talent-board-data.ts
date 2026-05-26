@@ -234,6 +234,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     badges: ["Serie B Girone A", "Under 21"],
     cardBadgeLabels: ["Disponibile", "35 gare", "Serie B 25/26", "Profilo aggiornato"],
     profilePath: "/atleti/francesco-spinelli",
+    profileWebsiteUrl: "https://francescospinelli9.katahero.com",
     photoUrl: "/francesco-spinelli.png",
     publicCardStrengthLine: "Play/guardia che detta ritmi e crea dal pick and roll.",
     strengthAccentPhrase: "pick and roll",
