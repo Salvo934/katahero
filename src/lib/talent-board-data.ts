@@ -222,7 +222,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     roleCardSuffix: "/ PG",
     birthYear: 2005,
     heightCm: 197,
-    dominantHand: "Destra",
+    dominantHand: "Sinistra",
     weightKg: 87,
     nationality: "Italia",
     club: "Aurora Desio",
