@@ -100,3 +100,38 @@ body {
     animation: none;
   }
 }
+
+@keyframes kh-hero-card-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes kh-hero-card-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.kh-hero-card-float {
+  animation: kh-hero-card-float 6s ease-in-out infinite;
+}
+
+.kh-hero-card-glow {
+  animation: kh-hero-card-glow 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kh-hero-card-float,
+  .kh-hero-card-glow {
+    animation: none;
+  }
+}
