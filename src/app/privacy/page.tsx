@@ -119,7 +119,17 @@ export default function PrivacyPage() {
         browser. L&apos;uso di cookie non necessari è subordinato al consenso ove applicabile.
       </p>
 
-      <h2>9. Modifiche</h2>
+      <h2>9. Atleti minorenni</h2>
+      <p>
+        Per profili di atleti di età inferiore ai 18 anni è richiesto il consenso del genitore o tutore legale. Informazioni
+        e modulo da firmare sono disponibili nella pagina{" "}
+        <a className="text-accent underline underline-offset-2 hover:text-white" href="/minori">
+          Atleti minorenni
+        </a>
+        .
+      </p>
+
+      <h2>10. Modifiche</h2>
       <p>
         L&apos;informativa può essere aggiornata. Si consiglia di consultare periodicamente questa pagina; la data in
         cima indica l&apos;ultimo aggiornamento sostanziale.

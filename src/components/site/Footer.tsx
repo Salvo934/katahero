@@ -16,6 +16,7 @@ const footerNav = [
 const footerLegal = [
   { href: "/termini-e-condizioni", label: "Termini e condizioni" },
   { href: "/privacy", label: "Privacy policy" },
+  { href: "/minori", label: "Atleti minorenni" },
 ];
 
 function IconMail({ className }: { className?: string }) {
@@ -271,6 +272,9 @@ export function Footer() {
               </Link>
               <Link href="/privacy" className="text-zinc-500 transition hover:text-accent">
                 Privacy
+              </Link>
+              <Link href="/minori" className="text-zinc-500 transition hover:text-accent">
+                Minorenni
               </Link>
             </nav>
           </div>
