@@ -1,7 +1,7 @@
 export const SITE = {
   name: "KataHero",
   description:
-    "Scheda atleta digitale e portfolio per il basket: dati, video, percorso e contatti in un link professionale per giocatori, agenti, società e staff. Opzionale Social Kit per comunicazione social coerente.",
+    "KataHero aiuta agenti, società e atleti di basket a presentare talenti in modo professionale, veloce e condivisibile, con schede digitali e board roster pronte per club, scout e sponsor.",
   tagline: "La tua scheda atleta e il tuo portfolio — chiari, aggiornabili, pronti per chi decide.",
   phoneDisplay: "+39 327 459 7773",
   phoneTel: "+393274597773",

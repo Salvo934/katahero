@@ -32,17 +32,17 @@ export function Hero() {
 
           <div className="mb-4 inline-flex max-w-full items-center gap-2 rounded-2xl border border-white/15 bg-black/45 px-3 py-2 text-[10px] font-semibold uppercase leading-snug tracking-[0.14em] text-zinc-200 shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset] backdrop-blur-md sm:mb-5 sm:rounded-full sm:px-4 sm:py-1.5 sm:text-[11px] sm:leading-tight sm:tracking-[0.22em]">
             <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-accent shadow-[0_0_12px_rgba(0,229,160,0.9)]" />
-            <span className="min-w-0 text-balance">Agenti · Società · Staff tecnico</span>
+            <span className="min-w-0 text-balance">Agenti · Società · Atleti</span>
           </div>
 
           <h1
-            className="font-display max-w-none text-pretty text-[clamp(1.5rem,5.5vw+0.65rem,3.1rem)] font-bold leading-[1.12] tracking-[-0.02em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] sm:max-w-[min(100%,52ch)] sm:leading-[1.07] sm:[text-shadow:0_2px_28px_rgba(0,0,0,0.5)]"
+            className="font-display max-w-none text-pretty text-[clamp(1.5rem,5.5vw+0.65rem,3.1rem)] font-bold leading-[1.12] tracking-[-0.02em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] sm:max-w-[min(100%,58ch)] sm:leading-[1.07] sm:[text-shadow:0_2px_28px_rgba(0,0,0,0.5)]"
           >
-            KataHero trasforma dati, video e percorso sportivo di un atleta in una{" "}
+            KataHero aiuta agenti, società e atleti di basket a presentare talenti in modo{" "}
             <span className="bg-linear-to-r from-white via-zinc-50 to-accent bg-clip-text text-transparent">
-              scheda digitale professionale
+              professionale, veloce e condivisibile
             </span>
-            , pronta da condividere con club, scout, agenti e società
+            , con schede digitali e board roster pronte per club, scout e sponsor.
           </h1>
 
           <ul
