@@ -5,13 +5,13 @@
 
 export type TalentAthleteAdvancedStats = {
   ppg: number;
-  rpg: number;
-  apg: number;
-  fgPct: number;
+  rpg?: number;
+  apg?: number;
+  fgPct?: number;
   /** % da due punti — opzionale, mostrato in card se presente. */
   twoPct?: number;
-  tpPct: number;
-  ftPct: number;
+  tpPct?: number;
+  ftPct?: number;
 };
 
 export type TalentAthlete = {
@@ -69,10 +69,10 @@ export const TALENT_BOARD_SEASON_LABEL = "25/26";
 
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
-  { key: "athletes", value: "5", label: "Atleti in board" },
-  { key: "updated", value: "5", label: "Schede aggiornate" },
+  { key: "athletes", value: "6", label: "Atleti in board" },
+  { key: "updated", value: "6", label: "Schede aggiornate" },
   { key: "agencies", value: "3", label: "Agenzie sul board" },
-  { key: "available", value: "5", label: "Card da condividere" },
+  { key: "available", value: "6", label: "Card da condividere" },
 ] as const;
 
 export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
@@ -248,6 +248,44 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     profileUpdatedAt: "2026-05-27",
     advanced: { ppg: 6, rpg: 1.9, apg: 1.6, fgPct: 38, twoPct: 49, tpPct: 27, ftPct: 74 },
   },
+  {
+    id: "6",
+    slug: "thomas-aguzzoli",
+    firstName: "Thomas",
+    lastName: "Aguzzoli",
+    jerseyNumber: 5,
+    sport: "Basket",
+    role: "Ala piccola",
+    leagueLabel: "FIP",
+    roleCardSuffix: "/ SF",
+    birthYear: 2000,
+    heightCm: 195,
+    dominantHand: "Destra",
+    weightKg: 90,
+    nationality: "Italia",
+    club: "Bk4.0 Barcellona",
+    category: "B Interregionale",
+    status: "Disponibile",
+    agency: "Non indicata",
+    statsMain: ["14.5 PPG", "34 gare", "High 28 pts"],
+    badges: ["B Interregionale 25/26", "Top scorer"],
+    cardBadgeLabels: ["Disponibile", "34 gare", "B IR 25/26", "Profilo aggiornato"],
+    profilePath: "/atleti/thomas-aguzzoli",
+    profileWebsiteUrl:
+      "https://www.playbasket.it/sicilia/profile.php?exteid=4&extobj=15305&subj=1&season=2026&obj=68668&action=view&eid=5",
+    photoUrl: "/thomas-aguzzoli.png",
+    publicCardStrengthLine: "Ala atletica, difesa perimetrale e tiro dalla distanza.",
+    strengthAccentPhrase: "tiro dalla distanza",
+    scoutLine:
+      "Ala piccola classe 2000 (195 cm, 90 kg): 14,5 PPG in 34 gare di B Interregionale 25/26 con Bk4.0 Barcellona — fonte PlayBasket. Profilo atletico, difesa perimetrale e tiro esterno tra i punti di forza.",
+    playerNotes: [
+      "14,5 PPG e season high 28 punti in B Interregionale 25/26",
+      "195 cm: atletismo, lunghe leve e versatilità difensiva",
+      "Esperienze in Serie B, C Gold, Viola Reggio Calabria e Monopoli",
+    ],
+    profileUpdatedAt: "2026-05-27",
+    advanced: { ppg: 14.5 },
+  },
 ];
 
 export const FAQ_ITEMS = [
@@ -280,9 +318,9 @@ export const FAQ_ITEMS = [
 export const FILTER_OPTIONS = {
   sport: ["Basket"] as const,
   role: ["Tutti", "Ala piccola", "Playmaker", "Centro", "Guardia"] as const,
-  category: ["Tutte", "Serie B"] as const,
-  birthYear: ["Tutti", "2005", "2004", "2003", "2002"] as const,
+  category: ["Tutte", "Serie B", "B Interregionale"] as const,
+  birthYear: ["Tutti", "2005", "2004", "2003", "2002", "2000"] as const,
   nationality: ["Tutte", "Italia"] as const,
   status: ["Tutti", "Disponibile", "In osservazione"] as const,
-  agency: ["Tutte", "Bright Side Agency", "Side Sports Management", "PLS Agency"] as const,
+  agency: ["Tutte", "Bright Side Agency", "Side Sports Management", "PLS Agency", "Non indicata"] as const,
 } as const;

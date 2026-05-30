@@ -67,7 +67,8 @@ function formatProfileUpdatedShort(iso: string): string {
   return d.toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
 }
 
-function formatSeasonAvg(n: number): string {
+function formatSeasonAvg(n: number | undefined): string {
+  if (n == null) return "n/d";
   return n.toLocaleString("it-IT", {
     minimumFractionDigits: n % 1 === 0 ? 0 : 1,
     maximumFractionDigits: 2,

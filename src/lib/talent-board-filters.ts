@@ -208,15 +208,15 @@ export function matchTalentAthlete(a: TalentAthlete, f: TalentFilterState): bool
   const minPpg = Number(f.minPpg);
   if (f.minPpg !== "" && !Number.isNaN(minPpg) && a.advanced.ppg < minPpg) return false;
   const minRpg = Number(f.minRpg);
-  if (f.minRpg !== "" && !Number.isNaN(minRpg) && a.advanced.rpg < minRpg) return false;
+  if (f.minRpg !== "" && !Number.isNaN(minRpg) && (a.advanced.rpg == null || a.advanced.rpg < minRpg)) return false;
   const minApg = Number(f.minApg);
-  if (f.minApg !== "" && !Number.isNaN(minApg) && a.advanced.apg < minApg) return false;
+  if (f.minApg !== "" && !Number.isNaN(minApg) && (a.advanced.apg == null || a.advanced.apg < minApg)) return false;
   const minFg = Number(f.minFg);
-  if (f.minFg !== "" && !Number.isNaN(minFg) && a.advanced.fgPct < minFg) return false;
+  if (f.minFg !== "" && !Number.isNaN(minFg) && (a.advanced.fgPct == null || a.advanced.fgPct < minFg)) return false;
   const min3p = Number(f.min3p);
-  if (f.min3p !== "" && !Number.isNaN(min3p) && a.advanced.tpPct < min3p) return false;
+  if (f.min3p !== "" && !Number.isNaN(min3p) && (a.advanced.tpPct == null || a.advanced.tpPct < min3p)) return false;
   const minFt = Number(f.minFt);
-  if (f.minFt !== "" && !Number.isNaN(minFt) && a.advanced.ftPct < minFt) return false;
+  if (f.minFt !== "" && !Number.isNaN(minFt) && (a.advanced.ftPct == null || a.advanced.ftPct < minFt)) return false;
 
   return true;
 }
