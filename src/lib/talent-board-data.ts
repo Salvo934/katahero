@@ -271,8 +271,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     badges: ["B Interregionale 25/26", "Top scorer"],
     cardBadgeLabels: ["Disponibile", "34 gare", "B IR 25/26", "Profilo aggiornato"],
     profilePath: "/atleti/thomas-aguzzoli",
-    profileWebsiteUrl:
-      "https://www.playbasket.it/sicilia/profile.php?exteid=4&extobj=15305&subj=1&season=2026&obj=68668&action=view&eid=5",
+    profileWebsiteUrl: "https://thomasaguzzoli5.katahero.com",
     photoUrl: "/thomas-aguzzoli.png",
     publicCardStrengthLine: "Ala atletica, difesa perimetrale e tiro dalla distanza.",
     strengthAccentPhrase: "tiro dalla distanza",
