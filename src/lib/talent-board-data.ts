@@ -268,7 +268,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     category: "B Interregionale",
     status: "Disponibile",
     agency: "Non indicata",
-    statsMain: ["14.5 PPG", "34 gare", "High 28 pts"],
+    statsMain: ["14.5 PPG", "5 RPG", "2.8 APG"],
     badges: ["B Interregionale 25/26", "Top scorer"],
     cardBadgeLabels: ["Disponibile", "34 gare", "B IR 25/26", "Profilo aggiornato"],
     profilePath: "/atleti/thomas-aguzzoli",
@@ -284,7 +284,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
       "Esperienze in Serie B, C Gold, Viola Reggio Calabria e Monopoli",
     ],
     profileUpdatedAt: "2026-05-27",
-    advanced: { ppg: 14.5 },
+    advanced: { ppg: 14.5, rpg: 5, apg: 2.8 },
   },
 ];
 
