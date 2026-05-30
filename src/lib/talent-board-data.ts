@@ -264,6 +264,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     weightKg: 90,
     nationality: "Italia",
     club: "Bk4.0 Barcellona",
+    clubLogoUrl: "/barcellona-basket-logo.png",
     category: "B Interregionale",
     status: "Disponibile",
     agency: "Non indicata",
