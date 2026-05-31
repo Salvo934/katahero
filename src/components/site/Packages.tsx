@@ -15,12 +15,9 @@ type Plan = {
   pricing?: {
     launch: string;
     launchNote: string;
-    recommended: string;
   };
   whyBuyTitle: string;
   whyBuy: string;
-  /** Nota operativa (es. Social Kit = template, non contenuti settimanali). */
-  importantNote?: string;
   featuresSectionTitle: string;
   features: string[];
   ctaLabel: string;
@@ -41,7 +38,6 @@ const plans: Plan[] = [
     pricing: {
       launch: "€99,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
-      recommended: "Prezzo consigliato €129/anno",
     },
     whyBuyTitle: "Perché lo comprano",
     whyBuy:
@@ -71,28 +67,21 @@ const plans: Plan[] = [
     audienceLine:
       "Per chi vuole curare la propria immagine anche su Instagram, senza dover creare grafiche da zero.",
     salesLine:
-      "Oltre alla tua card e al tuo profilo online, hai anche grafiche social personalizzate già pronte da usare nei momenti importanti della stagione.",
+      "Oltre alla card e al profilo online, nel tuo sito trovi le grafiche social già pronte: le apri e le condividi con un click nei momenti importanti della stagione.",
     pricing: {
       launch: "€149,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
-      recommended: "Prezzo consigliato €199/anno",
     },
     whyBuyTitle: "Perché lo comprano",
     whyBuy:
       "Perché non comprano solo un profilo: comprano immagine pronta per Instagram.",
-    importantNote:
-      "Il Social Kit è composto da template riutilizzabili, non da contenuti fatti ogni settimana.",
     featuresSectionTitle: "Include",
     features: [
       "Tutto KATA HERO Card, più:",
-      "Sezione Social Kit nel profilo",
-      "Template Instagram personalizzati",
-      "Grafiche pronte da scaricare e pubblicare",
-      "Match Day",
-      "Grande prestazione",
-      "Compleanno",
-      "Nuova stagione / nuova squadra",
-      "Thank you / post partita",
+      "Social Kit nel tuo sito web personale",
+      "Grafiche personalizzate sempre nel profilo — condividibili con un click su Instagram",
+      "Template pronti: Match Day, grande prestazione, compleanno",
+      "Nuova stagione / nuova squadra, thank you post partita",
       "5 aggiornamenti gratuiti all’anno: ottobre, dicembre, febbraio, aprile, giugno",
     ],
     ctaLabel: "Attiva KATA HERO Pro",
@@ -122,7 +111,7 @@ export function Packages() {
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
             Due livelli chiari: <strong className="font-semibold text-zinc-300">KATA HERO Card</strong> per la figurina
             digitale con link personale; <strong className="font-semibold text-zinc-300">KATA HERO Pro</strong> aggiunge
-            Social Kit e template Instagram per i momenti chiave della stagione.
+            Social Kit e template Instagram per i momenti chiave — grafiche nel sito, condivisione con un click.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
@@ -176,7 +165,6 @@ export function Packages() {
                       </p>
                       <p className="text-sm font-medium text-zinc-400">{p.pricing.launchNote}</p>
                     </div>
-                    <p className="mt-2 text-xs text-zinc-500">{p.pricing.recommended}</p>
                   </div>
                 ) : (
                   <div className="mt-6 rounded-2xl border border-white/10 bg-white/3 px-4 py-3.5 sm:px-5">
@@ -201,12 +189,6 @@ export function Packages() {
                       </li>
                     ))}
                   </ul>
-                  {p.importantNote ? (
-                    <p className="mt-4 shrink-0 rounded-xl border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-xs leading-relaxed text-amber-100/85">
-                      <span className="font-semibold uppercase tracking-wide text-amber-200/90">Importante · </span>
-                      {p.importantNote}
-                    </p>
-                  ) : null}
                   <div className="mt-6 shrink-0 rounded-xl border border-white/8 bg-black/25 px-4 py-3">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{p.whyBuyTitle}</p>
                     <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">{p.whyBuy}</p>
@@ -227,8 +209,7 @@ export function Packages() {
         </div>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
-          Prezzi lancio validi per i primi 20 atleti per ciascun pacchetto, salvo diversa comunicazione. Social Kit Pro:
-          template riutilizzabili, non produzione settimanale di contenuti.
+          Prezzi lancio validi per i primi 20 atleti per ciascun pacchetto, salvo diversa comunicazione.
         </p>
       </div>
     </section>
