@@ -1,6 +1,17 @@
 import Link from "next/link";
 import { whatsappPrefilledUrl } from "@/lib/site";
 
+/** Da stringa tipo «€99,99» → equivalente mensile (12 mesi). */
+function monthlyEquivalentFromLaunch(launch: string): string | null {
+  const normalized = launch.replace(/[^\d,]/g, "").replace(",", ".");
+  const annual = Number(normalized);
+  if (!Number.isFinite(annual) || annual <= 0) return null;
+  return (annual / 12).toLocaleString("it-IT", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
 type Plan = {
   name: string;
   badge: string;
@@ -129,6 +140,7 @@ export function Packages() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-14 lg:grid-cols-2 lg:items-stretch lg:gap-8">
           {plans.map((p) => {
             const v = p.variant ?? "default";
+            const monthlyLaunch = p.pricing ? monthlyEquivalentFromLaunch(p.pricing.launch) : null;
             const cardClass =
               v === "flagship"
                 ? "flex h-full min-h-0 flex-col rounded-2xl border border-accent/38 bg-zinc-900/55 p-6 shadow-[0_0_0_1px_rgba(0,229,160,0.1),0_24px_64px_-36px_rgba(0,229,160,0.14)] transition-colors sm:p-8 hover:border-accent/48 hover:bg-zinc-900/62"
@@ -165,6 +177,14 @@ export function Packages() {
                       </p>
                       <p className="text-sm font-medium text-zinc-400">{p.pricing.launchNote}</p>
                     </div>
+                    {monthlyLaunch ? (
+                      <p className="mt-3 text-sm leading-snug text-zinc-300">
+                        Pari a{" "}
+                        <span className="font-display text-lg font-bold text-accent sm:text-xl">€{monthlyLaunch}</span>{" "}
+                        <span className="font-medium text-zinc-200">al mese</span>
+                        <span className="text-zinc-500"> · equivalente annuo</span>
+                      </p>
+                    ) : null}
                   </div>
                 ) : (
                   <div className="mt-6 rounded-2xl border border-white/10 bg-white/3 px-4 py-3.5 sm:px-5">
