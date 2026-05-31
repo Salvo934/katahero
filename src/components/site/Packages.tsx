@@ -21,6 +21,7 @@ type Plan = {
   pricing: {
     launch: string;
     launchNote: string;
+    delivery: string;
   };
   whyBuyTitle: string;
   whyBuy: string;
@@ -44,6 +45,7 @@ const plans: Plan[] = [
     pricing: {
       launch: "€99,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
+      delivery: "Consegna entro 72h",
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
@@ -77,6 +79,7 @@ const plans: Plan[] = [
     pricing: {
       launch: "€149,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
+      delivery: "Consegna entro 48h",
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
@@ -210,6 +213,16 @@ function PlanCard({ plan }: { plan: Plan }) {
               <p className="font-display text-xl font-bold text-accent sm:text-2xl">€{monthlyLaunch}</p>
             </div>
           </div>
+          <p
+            className={`mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${
+              isPro
+                ? "border-accent/30 bg-accent/10 text-accent"
+                : "border-white/12 bg-white/5 text-zinc-300"
+            }`}
+          >
+            <span className="size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_8px_rgba(0,229,160,0.8)]" aria-hidden />
+            {plan.pricing.delivery}
+          </p>
         </div>
 
         <div className="mt-6 flex flex-1 flex-col border-t border-white/10 pt-6">
