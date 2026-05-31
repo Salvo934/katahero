@@ -18,7 +18,7 @@ type Plan = {
   subtitle?: string;
   audienceLine?: string;
   salesLine: string;
-  pricing?: {
+  pricing: {
     launch: string;
     launchNote: string;
   };
@@ -28,7 +28,7 @@ type Plan = {
   features: string[];
   ctaLabel: string;
   whatsappMessage: string;
-  tier?: "card" | "pro";
+  tier: "card" | "pro";
 };
 
 const plans: Plan[] = [
@@ -97,16 +97,59 @@ const plans: Plan[] = [
   },
 ];
 
-function PlanCardShell({
-  isPro,
-  children,
-}: {
-  isPro: boolean;
-  children: React.ReactNode;
-}) {
+const packageExtras = [
+  {
+    name: "Aggiornamento extra",
+    description: "Modifica foto, bio, dati, social o numero fuori dalle finestre incluse",
+    price: "€9,99",
+  },
+  {
+    name: "Cambio squadra",
+    description: "Aggiornamento squadra, campionato, numero e dati principali",
+    price: "€24,99",
+  },
+  {
+    name: "Nuova card",
+    description: "Creazione di una nuova card digitale personalizzata",
+    price: "€39,99",
+  },
+  {
+    name: "Video highlight",
+    description: "Inserimento di un video o reel nel profilo atleta",
+    price: "€29,99",
+  },
+  {
+    name: "Social Kit Extra",
+    description: "5 template social aggiuntivi personalizzati",
+    price: "€59,99",
+  },
+  {
+    name: "Consegna prioritaria",
+    description: "Lavorazione in giornata",
+    price: "+ €34,99",
+  },
+] as const;
+
+function FeatureCheck({ highlight }: { highlight?: boolean }) {
+  return (
+    <span
+      className={`mt-0.5 flex size-4 shrink-0 items-center justify-center rounded text-[9px] font-bold ${
+        highlight ? "bg-accent/20 text-accent" : "bg-white/8 text-accent"
+      }`}
+      aria-hidden
+    >
+      ✓
+    </span>
+  );
+}
+
+function PlanCard({ plan }: { plan: Plan }) {
+  const monthlyLaunch = monthlyEquivalentFromLaunch(plan.pricing.launch);
+  const isPro = plan.tier === "pro";
+
   return (
     <article
-      className={`group relative flex h-full min-h-0 flex-col overflow-hidden rounded-[1.75rem] border transition duration-300 lg:row-span-5 lg:grid lg:grid-rows-subgrid lg:gap-6 ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border transition duration-300 ${
         isPro
           ? "border-accent/35 bg-linear-to-b from-accent/9 via-zinc-900/75 to-zinc-950 shadow-[0_0_0_1px_rgba(0,229,160,0.08),0_28px_80px_-40px_rgba(0,229,160,0.22)] hover:border-accent/50"
           : "border-white/12 bg-linear-to-b from-white/7 via-zinc-900/70 to-zinc-950 shadow-[0_24px_70px_-44px_rgba(0,0,0,0.85)] hover:border-white/20"
@@ -120,118 +163,86 @@ function PlanCardShell({
         className={`pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full blur-3xl ${isPro ? "bg-accent/15" : "bg-white/5"}`}
         aria-hidden
       />
-      {children}
-    </article>
-  );
-}
 
-function PlanCard({ plan }: { plan: Plan }) {
-  const monthlyLaunch = plan.pricing ? monthlyEquivalentFromLaunch(plan.pricing.launch) : null;
-  const isPro = plan.tier === "pro";
+      <div className="relative flex flex-1 flex-col p-6 sm:p-8">
+        <header>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{plan.badge}</p>
+            {plan.promoPill ? (
+              <span
+                className={`rounded-full border px-2.5 py-0.5 text-[9px] font-bold tracking-wide ${
+                  isPro
+                    ? "border-accent/40 bg-accent/15 text-accent"
+                    : "border-white/15 bg-white/8 text-zinc-300"
+                }`}
+              >
+                {plan.promoPill}
+              </span>
+            ) : null}
+          </div>
+          <h3 className="font-display mt-3 text-2xl font-bold tracking-tight text-white">{plan.name}</h3>
+          <p className="mt-1.5 text-sm font-semibold text-accent">{plan.subtitle}</p>
+          <div className="mt-4 space-y-3">
+            <p className="text-sm leading-relaxed text-zinc-400">{plan.audienceLine}</p>
+            <p className="text-sm leading-relaxed text-zinc-200">{plan.salesLine}</p>
+          </div>
+        </header>
 
-  return (
-    <PlanCardShell isPro={isPro}>
-      {/* Riga 1 — intro */}
-      <header className="relative px-6 pt-6 sm:px-8 sm:pt-8">
-        <div className="flex flex-wrap items-center gap-2">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{plan.badge}</p>
-          {plan.promoPill ? (
-            <span
-              className={`rounded-full border px-2.5 py-0.5 text-[9px] font-bold tracking-wide ${
-                isPro
-                  ? "border-accent/40 bg-accent/15 text-accent"
-                  : "border-white/15 bg-white/8 text-zinc-300"
+        <div
+          className={`mt-6 rounded-2xl border p-4 sm:p-5 ${
+            isPro ? "border-accent/30 bg-accent/7" : "border-white/10 bg-black/30"
+          }`}
+        >
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">Investimento annuo</p>
+              <p className="font-display mt-1 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                {plan.pricing.launch}
+              </p>
+              <p className="mt-1 text-xs leading-snug text-zinc-500">{plan.pricing.launchNote}</p>
+            </div>
+            <div
+              className={`shrink-0 rounded-xl border px-3.5 py-2.5 text-right ${
+                isPro ? "border-accent/25 bg-accent/10" : "border-white/10 bg-white/5"
               }`}
             >
-              {plan.promoPill}
-            </span>
-          ) : null}
-        </div>
-        <h3 className="font-display mt-3 text-2xl font-bold tracking-tight text-white">{plan.name}</h3>
-        {plan.subtitle ? <p className="mt-1.5 text-sm font-semibold text-accent">{plan.subtitle}</p> : null}
-        <div className="mt-4 space-y-3">
-          {plan.audienceLine ? (
-            <p className="text-sm leading-relaxed text-zinc-400">{plan.audienceLine}</p>
-          ) : null}
-          <p className="text-sm leading-relaxed text-zinc-200">{plan.salesLine}</p>
-        </div>
-      </header>
-
-      {/* Riga 2 — prezzo */}
-      {plan.pricing ? (
-        <div className="relative px-6 sm:px-8">
-          <div
-            className={`rounded-2xl border p-4 sm:p-5 ${
-              isPro ? "border-accent/30 bg-accent/7" : "border-white/10 bg-black/30"
-            }`}
-          >
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                  Investimento annuo
-                </p>
-                <p className="font-display mt-1 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  {plan.pricing.launch}
-                </p>
-                <p className="mt-1 text-xs leading-snug text-zinc-500">{plan.pricing.launchNote}</p>
-              </div>
-              {monthlyLaunch ? (
-                <div
-                  className={`shrink-0 rounded-xl border px-3.5 py-2.5 text-right ${
-                    isPro ? "border-accent/25 bg-accent/10" : "border-white/10 bg-white/5"
-                  }`}
-                >
-                  <p className="text-[9px] font-semibold uppercase tracking-wider text-zinc-500">Al mese</p>
-                  <p className="font-display text-xl font-bold text-accent sm:text-2xl">€{monthlyLaunch}</p>
-                </div>
-              ) : null}
+              <p className="text-[9px] font-semibold uppercase tracking-wider text-zinc-500">Al mese</p>
+              <p className="font-display text-xl font-bold text-accent sm:text-2xl">€{monthlyLaunch}</p>
             </div>
           </div>
         </div>
-      ) : null}
 
-      {/* Riga 3 — include (cresce uguale sulle due card) */}
-      <div className="relative flex min-h-0 flex-col px-6 sm:px-8">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
-          {plan.featuresSectionTitle}
-        </p>
-        <ul className="mt-3 space-y-1.5">
-          {plan.features.map((f) => {
-            const highlight = f.startsWith("Tutto KATA HERO Card");
-            return (
-              <li
-                key={f}
-                className={`flex gap-2.5 rounded-lg border px-3 py-2 text-sm leading-snug ${
-                  highlight
-                    ? "border-accent/25 bg-accent/8 font-semibold text-zinc-100"
-                    : "border-white/6 bg-white/3 text-zinc-300"
-                }`}
-              >
-                <span
-                  className={`mt-0.5 flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded text-[9px] font-bold ${
-                    highlight ? "bg-accent/20 text-accent" : "bg-white/8 text-accent"
+        <div className="mt-6 flex flex-1 flex-col border-t border-white/10 pt-6">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            {plan.featuresSectionTitle}
+          </p>
+          <ul className="mt-3 flex-1 space-y-1.5">
+            {plan.features.map((f) => {
+              const highlight = f.startsWith("Tutto KATA HERO Card");
+              return (
+                <li
+                  key={f}
+                  className={`flex gap-2.5 rounded-lg border px-3 py-2 text-sm leading-snug ${
+                    highlight
+                      ? "border-accent/25 bg-accent/8 font-semibold text-zinc-100"
+                      : "border-white/6 bg-white/3 text-zinc-300"
                   }`}
-                  aria-hidden
                 >
-                  ✓
-                </span>
-                <span>{f}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                  <FeatureCheck highlight={highlight} />
+                  <span>{f}</span>
+                </li>
+              );
+            })}
+          </ul>
 
-      {/* Riga 4 — perché */}
-      <div className="relative px-6 sm:px-8">
-        <div className="rounded-xl border border-white/8 bg-black/35 px-4 py-3.5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{plan.whyBuyTitle}</p>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-400">{plan.whyBuy}</p>
+          <div className="mt-6 rounded-xl border border-white/8 bg-black/35 px-4 py-3.5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{plan.whyBuyTitle}</p>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-400">{plan.whyBuy}</p>
+          </div>
         </div>
       </div>
 
-      {/* Riga 5 — CTA */}
-      <div className="relative mt-auto border-t border-white/10 bg-black/20 px-6 py-5 sm:px-8 sm:py-6">
+      <div className="relative shrink-0 border-t border-white/10 bg-black/20 px-6 py-5 sm:px-8 sm:py-6">
         <a
           href={whatsappPrefilledUrl(plan.whatsappMessage)}
           target="_blank"
@@ -245,7 +256,47 @@ function PlanCard({ plan }: { plan: Plan }) {
           {plan.ctaLabel}
         </a>
       </div>
-    </PlanCardShell>
+    </article>
+  );
+}
+
+function PackageExtrasTable() {
+  return (
+    <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/45 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-136 border-collapse text-left text-sm">
+          <thead>
+            <tr className="border-b border-white/10 bg-white/3">
+              <th className="px-4 py-3.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500 sm:px-5">
+                Extra
+              </th>
+              <th className="px-4 py-3.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500 sm:px-5">
+                Cosa include
+              </th>
+              <th className="px-4 py-3.5 text-right text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500 sm:px-5">
+                Prezzo
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {packageExtras.map((row, i) => (
+              <tr
+                key={row.name}
+                className={`border-b border-white/6 last:border-b-0 ${i % 2 === 1 ? "bg-black/15" : ""}`}
+              >
+                <td className="px-4 py-4 align-top font-semibold text-zinc-100 sm:px-5 sm:whitespace-nowrap">
+                  {row.name}
+                </td>
+                <td className="px-4 py-4 align-top leading-relaxed text-zinc-400 sm:px-5">{row.description}</td>
+                <td className="px-4 py-4 align-top text-right font-display text-base font-bold text-accent sm:px-5 sm:whitespace-nowrap">
+                  {row.price}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
@@ -273,10 +324,23 @@ export function Packages() {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-14 lg:grid-cols-2 lg:grid-rows-[repeat(5,auto)] lg:items-stretch lg:gap-x-8 lg:gap-y-0">
+        <div className="mt-12 grid grid-cols-1 items-stretch gap-6 sm:mt-14 lg:grid-cols-2 lg:gap-8">
           {plans.map((p) => (
             <PlanCard key={p.name} plan={p} />
           ))}
+        </div>
+
+        <div className="mx-auto mt-14 max-w-4xl sm:mt-16">
+          <div className="text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Extra</p>
+            <h3 className="font-display mt-2 text-xl font-bold text-white sm:text-2xl">
+              Servizi aggiuntivi oltre il pacchetto
+            </h3>
+            <p className="mt-2 text-sm text-zinc-500">
+              Aggiungi solo ciò che ti serve, quando ti serve — oltre agli aggiornamenti già inclusi in Card e Pro.
+            </p>
+          </div>
+          <PackageExtrasTable />
         </div>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
