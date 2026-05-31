@@ -45,9 +45,9 @@ const plans: Plan[] = [
       launch: "€99,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
     },
-    whyBuyTitle: "Perché lo comprano",
+    whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché non sembra un “sito”. Sembra la loro figurina professionale, con un link personale da mostrare.",
+      "Perché non è solo un “sito”. È la tua figurina professionale, con un link personale da condividere ovunque.",
     featuresSectionTitle: "Include",
     features: [
       "Card digitale personalizzata",
@@ -78,9 +78,9 @@ const plans: Plan[] = [
       launch: "€149,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
     },
-    whyBuyTitle: "Perché lo comprano",
+    whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché non comprano solo un profilo: comprano immagine pronta per Instagram.",
+      "Perché non compri solo un profilo: è come avere un social media manager dentro il tuo sito — grafiche pronte, immagine curata e contenuti da condividere con un click su Instagram.",
     featuresSectionTitle: "Include",
     features: [
       "Tutto KATA HERO Card, più:",
