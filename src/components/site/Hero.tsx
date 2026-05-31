@@ -8,9 +8,8 @@ const highlights = [
 ];
 
 const planTeaser = [
-  { name: "Spotlight", hint: "Un link · un PDF · tutto chiaro" },
-  { name: "Collective", hint: "Brand + fino a 10 schede complete" },
-  { name: "Roster HQ", hint: "Talent Board privata, filtri, roster grande" },
+  { name: "KATA HERO Card", hint: "Figurina digitale · link in bio · da €99,99/anno" },
+  { name: "KATA HERO Pro", hint: "Card + Social Kit Instagram · da €149,99/anno" },
 ];
 
 export function Hero() {
@@ -87,8 +86,9 @@ export function Hero() {
           <div className="rounded-2xl border border-white/14 bg-black/55 p-5 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.9)] ring-1 ring-white/4 backdrop-blur-xl sm:rounded-3xl sm:p-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Pacchetti</p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-              Dal singolo profilo alla board del roster: tre livelli + Social Kit facoltativo — qui sotto l&apos;anteprima; il
-              dettaglio è nella sezione pacchetti.
+              Due pacchetti: <strong className="font-semibold text-zinc-300">KATA HERO Card</strong> e{" "}
+              <strong className="font-semibold text-zinc-300">KATA HERO Pro</strong> — anteprima qui; dettaglio e prezzi
+              in sezione pacchetti.
             </p>
             <ul className="mt-4 space-y-2 border-t border-white/10 pt-4 sm:mt-5 sm:space-y-2.5 sm:pt-5">
               {planTeaser.map((row) => (
@@ -112,7 +112,7 @@ export function Hero() {
               href="#pacchetti"
               className="mt-2 block text-center text-[11px] font-semibold text-zinc-500 underline-offset-2 transition hover:text-zinc-300 hover:underline sm:text-xs"
             >
-              Pacchetti &amp; Social Kit
+              Pacchetti Card &amp; Pro
             </Link>
             <Link
               href="#portfolio"

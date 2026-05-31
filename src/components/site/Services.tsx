@@ -93,7 +93,7 @@ export function Services() {
               href="#pacchetti"
               className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-white/18 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/28 hover:bg-white/10 sm:flex-initial"
             >
-              Vedi Spotlight, Collective e Roster HQ
+              Vedi KATA HERO Card e Pro
             </Link>
           </div>
           <p className="mx-auto mt-5 max-w-md text-[11px] leading-snug text-zinc-600">
