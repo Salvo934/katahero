@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { resolveSiteNavHref } from "@/lib/site-nav";
-import { SITE } from "@/lib/site";
+import { getStripeCustomerPortalUrl, SITE } from "@/lib/site";
 
 const footerNav = [
   { href: "#servizi", label: "Vetrina digitale" },
@@ -13,10 +13,11 @@ const footerNav = [
   { href: "#contatti", label: "Contatti" },
 ];
 
-const footerLegal = [
+const footerLegal: { href: string; label: string; external?: boolean }[] = [
   { href: "/termini-e-condizioni", label: "Termini e condizioni" },
   { href: "/privacy", label: "Privacy policy" },
   { href: "/minori", label: "Atleti minorenni" },
+  { href: getStripeCustomerPortalUrl(), label: "Gestisci abbonamento", external: true },
 ];
 
 function IconMail({ className }: { className?: string }) {
@@ -199,14 +200,26 @@ export function Footer() {
             </h3>
             <ul className="mt-6 flex w-full max-w-md flex-col items-center gap-3.5 lg:max-w-none lg:items-start">
               {footerLegal.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="group inline-flex items-center justify-center gap-2 text-center text-sm text-zinc-400 transition hover:text-white lg:justify-start lg:text-left"
-                  >
-                    <span className="hidden h-px w-4 shrink-0 bg-zinc-600 transition group-hover:w-6 group-hover:bg-accent sm:block" />
-                    {item.label}
-                  </Link>
+                <li key={item.label}>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center justify-center gap-2 text-center text-sm text-zinc-400 transition hover:text-white lg:justify-start lg:text-left"
+                    >
+                      <span className="hidden h-px w-4 shrink-0 bg-zinc-600 transition group-hover:w-6 group-hover:bg-accent sm:block" />
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="group inline-flex items-center justify-center gap-2 text-center text-sm text-zinc-400 transition hover:text-white lg:justify-start lg:text-left"
+                    >
+                      <span className="hidden h-px w-4 shrink-0 bg-zinc-600 transition group-hover:w-6 group-hover:bg-accent sm:block" />
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -276,6 +289,14 @@ export function Footer() {
               <Link href="/minori" className="text-zinc-500 transition hover:text-accent">
                 Minorenni
               </Link>
+              <a
+                href={getStripeCustomerPortalUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-500 transition hover:text-accent"
+              >
+                Gestisci abbonamento
+              </a>
             </nav>
           </div>
           <div className="flex max-w-sm flex-col items-center gap-2 text-center text-xs text-zinc-600 sm:max-w-none sm:flex-row sm:text-left">

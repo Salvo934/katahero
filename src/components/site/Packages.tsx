@@ -1,4 +1,4 @@
-import { whatsappPrefilledUrl } from "@/lib/site";
+import { getStripeCustomerPortalUrl, whatsappPrefilledUrl } from "@/lib/site";
 
 /** Da stringa tipo «€99,99» → equivalente mensile (12 mesi). */
 function monthlyEquivalentFromLaunch(launch: string): string | null {
@@ -313,6 +313,41 @@ function PackageExtrasTable() {
   );
 }
 
+function SubscriptionManagement() {
+  const portalUrl = getStripeCustomerPortalUrl();
+
+  return (
+    <div
+      id="gestisci-abbonamento"
+      className="mx-auto mt-14 max-w-2xl scroll-mt-24 sm:mt-16"
+    >
+      <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-linear-to-br from-zinc-900/80 via-zinc-900/50 to-black/80 p-6 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:p-8">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent"
+          aria-hidden
+        />
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Clienti attivi</p>
+        <h3 className="font-display mt-2 text-xl font-bold text-white sm:text-2xl">Gestisci il tuo abbonamento</h3>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-zinc-400">
+          Accedi al portale Stripe per aggiornare il metodo di pagamento, scaricare le fatture o gestire il rinnovo del
+          piano Card o Pro.
+        </p>
+        <a
+          href={portalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-accent/40 hover:bg-white/10"
+        >
+          Gestisci abbonamento
+          <span className="ml-2 text-accent" aria-hidden>
+            ↗
+          </span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export function Packages() {
   return (
     <section
@@ -355,6 +390,8 @@ export function Packages() {
           </div>
           <PackageExtrasTable />
         </div>
+
+        <SubscriptionManagement />
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-xs leading-relaxed text-zinc-600">
           Prezzi lancio validi per i primi 20 atleti per ciascun pacchetto, salvo diversa comunicazione.
