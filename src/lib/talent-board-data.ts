@@ -206,6 +206,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     weightKg: 85,
     nationality: "Italia",
     club: "Scuola Basket Viola",
+    clubLogoUrl: "/scuola-basket-viola-logo.png",
     category: "Divisione Regionale 1",
     status: "Disponibile",
     agency: "Non indicata",
@@ -214,8 +215,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     cardBadgeLabels: ["Disponibile", "23 gare", "DR1 25/26", "Profilo aggiornato"],
     profilePath: "/atleti/antonio-sorbara",
     photoUrl: "/antonio-sorbara.png",
-    profileWebsiteUrl:
-      "https://www.playbasket.it/calabria/profile.php?exteid=4&subj=1&season=2021&obj=148971&extobj=12170&mod=ws&action=view&eid=5",
+    profileWebsiteUrl: "https://antoniosorbara.katahero.com",
     publicCardStrengthLine: "Scoring e leadership: top scorer in DR1 Calabria 25/26.",
     strengthAccentPhrase: "top scorer",
     scoutLine:
