@@ -210,7 +210,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     category: "Divisione Regionale 1",
     status: "Disponibile",
     agency: "Non indicata",
-    statsMain: ["16.4 PPG"],
+    statsMain: ["16.4 PPG", "3.5 RPG", "2.5 APG"],
     badges: ["Divisione Regionale 1 25/26", "Top scorer"],
     cardBadgeLabels: ["Disponibile", "23 gare", "DR1 25/26", "Profilo aggiornato"],
     profilePath: "/atleti/antonio-sorbara",
@@ -226,7 +226,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
       "Esperienze fuori regione: Cefalù in DR1 e maturazione in contesti ad alto ritmo",
     ],
     profileUpdatedAt: "2026-05-27",
-    advanced: { ppg: 16.4 },
+    advanced: { ppg: 16.4, rpg: 3.5, apg: 2.5 },
   },
 ];
 
