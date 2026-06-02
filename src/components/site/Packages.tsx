@@ -1,6 +1,6 @@
 import { getStripeCustomerPortalUrl, whatsappPrefilledUrl } from "@/lib/site";
 
-/** Da stringa tipo «€99,99» → equivalente mensile (12 mesi). */
+/** Da stringa tipo «€89,99» → equivalente mensile (12 mesi). */
 function monthlyEquivalentFromLaunch(launch: string): string | null {
   const normalized = launch.replace(/[^\d,]/g, "").replace(",", ".");
   const annual = Number(normalized);
@@ -43,7 +43,7 @@ const plans: Plan[] = [
     salesLine:
       "La tua card digitale personalizzata con profilo atleta online: un solo link per presentarti in modo professionale a squadre, sponsor, scout e follower.",
     pricing: {
-      launch: "€99,99",
+      launch: "€89,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
       delivery: "Consegna entro 72h",
     },
@@ -64,7 +64,7 @@ const plans: Plan[] = [
     ],
     ctaLabel: "Attiva la KATA HERO Card",
     whatsappMessage:
-      "Ciao! Vorrei attivare la KATA HERO Card (€99,99/anno lancio). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare la KATA HERO Card (€89,99/anno lancio). Mi dite tempi e materiali necessari?",
     tier: "card",
   },
   {

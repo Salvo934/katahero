@@ -8,7 +8,7 @@ const highlights = [
 ];
 
 const planTeaser = [
-  { name: "KATA HERO Card", hint: "Figurina digitale · link in bio · da €99,99/anno" },
+  { name: "KATA HERO Card", hint: "Figurina digitale · link in bio · da €89,99/anno" },
   { name: "KATA HERO Pro", hint: "Card + Social Kit Instagram · da €149,99/anno" },
 ];
 
