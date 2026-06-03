@@ -36,7 +36,7 @@ const plans: Plan[] = [
   {
     name: "KATA HERO Card Player",
     badge: "Singolo atleta",
-    promoPill: "Entry · figurina",
+    promoPill: "Entry · hero",
     subtitle: "Solo la hero card, senza sito completo.",
     audienceLine:
       "Per chi vuole la sezione hero da atleta (figurina + dati in evidenza) da condividere subito, senza il sito web completo.",
@@ -179,38 +179,40 @@ function tierIncludesPrefix(tier: Plan["tier"]): string {
   return "";
 }
 
+function planDisplayName(name: string): { brand: string; tier: string } {
+  const stripped = name.replace(/^KATA HERO\s+/i, "").trim();
+  return { brand: "KATA HERO", tier: stripped || name };
+}
+
 function PlanCard({ plan }: { plan: Plan }) {
   const monthlyLaunch = monthlyEquivalentFromLaunch(plan.pricing.launch);
   const isElite = plan.tier === "elite";
   const isPro = plan.tier === "pro";
   const includesPrefix = tierIncludesPrefix(plan.tier);
+  const { brand, tier } = planDisplayName(plan.name);
+
+  const cardSurface = isElite
+    ? "border-accent/40 bg-linear-to-b from-accent/10 via-zinc-900/80 to-zinc-950 shadow-[0_0_0_1px_rgba(0,229,160,0.12),0_28px_72px_-32px_rgba(0,229,160,0.35)] lg:ring-1 lg:ring-accent/25"
+    : isPro
+      ? "border-accent/22 bg-linear-to-b from-accent/6 via-zinc-900/75 to-zinc-950 shadow-[0_20px_56px_-40px_rgba(0,0,0,0.88)]"
+      : "border-white/12 bg-linear-to-b from-white/6 via-zinc-900/72 to-zinc-950 shadow-[0_20px_56px_-40px_rgba(0,0,0,0.88)]";
 
   return (
     <article
-      className={`relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border transition duration-300 ${
-        isElite
-          ? "border-accent/35 bg-linear-to-b from-accent/9 via-zinc-900/75 to-zinc-950 shadow-[0_0_0_1px_rgba(0,229,160,0.08),0_28px_80px_-40px_rgba(0,229,160,0.22)] hover:border-accent/50"
-          : isPro
-            ? "border-accent/20 bg-linear-to-b from-accent/5 via-zinc-900/72 to-zinc-950 shadow-[0_24px_70px_-44px_rgba(0,0,0,0.85)] hover:border-accent/35"
-            : "border-white/12 bg-linear-to-b from-white/7 via-zinc-900/70 to-zinc-950 shadow-[0_24px_70px_-44px_rgba(0,0,0,0.85)] hover:border-white/20"
-      }`}
+      className={`relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border transition duration-300 hover:border-white/25 ${cardSurface} ${isElite ? "hover:border-accent/55" : isPro ? "hover:border-accent/38" : ""}`}
     >
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${isElite ? "via-accent/70" : isPro ? "via-accent/40" : "via-white/25"} to-transparent`}
         aria-hidden
       />
-      <div
-        className={`pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full blur-3xl ${isElite ? "bg-accent/15" : isPro ? "bg-accent/8" : "bg-white/5"}`}
-        aria-hidden
-      />
 
-      <div className="relative flex flex-1 flex-col p-6 sm:p-8">
-        <header>
+      <div className="relative flex min-h-0 flex-1 flex-col p-5 sm:p-6 lg:p-5 xl:p-6">
+        <header className="min-w-0 shrink-0">
           <div className="flex flex-wrap items-center gap-2">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">{plan.badge}</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{plan.badge}</p>
             {plan.promoPill ? (
               <span
-                className={`rounded-full border px-2.5 py-0.5 text-[9px] font-bold tracking-wide ${
+                className={`rounded-full border px-2 py-0.5 text-[9px] font-bold tracking-wide ${
                   isElite
                     ? "border-accent/40 bg-accent/15 text-accent"
                     : isPro
@@ -222,38 +224,44 @@ function PlanCard({ plan }: { plan: Plan }) {
               </span>
             ) : null}
           </div>
-          <h3 className="font-display mt-3 text-2xl font-bold tracking-tight text-white">{plan.name}</h3>
-          <p className="mt-1.5 text-sm font-semibold text-accent">{plan.subtitle}</p>
-          <div className="mt-4 space-y-3">
-            <p className="text-sm leading-relaxed text-zinc-400">{plan.audienceLine}</p>
-            <p className="text-sm leading-relaxed text-zinc-200">{plan.salesLine}</p>
-          </div>
+          <h3 className="font-display mt-3 min-w-0">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500">{brand}</span>
+            <span className="mt-1 block text-pretty text-xl font-bold leading-tight tracking-tight text-white lg:text-[1.35rem] xl:text-2xl">
+              {tier}
+            </span>
+          </h3>
+          <p className="mt-2 text-sm font-semibold leading-snug text-accent">{plan.subtitle}</p>
+          <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-zinc-400 lg:text-[13px] lg:leading-relaxed">
+            {plan.salesLine}
+          </p>
         </header>
 
         <div
-          className={`mt-6 rounded-2xl border p-4 sm:p-5 ${
-            isElite ? "border-accent/30 bg-accent/7" : isPro ? "border-accent/20 bg-accent/5" : "border-white/10 bg-black/30"
+          className={`mt-5 shrink-0 rounded-xl border p-4 ${
+            isElite ? "border-accent/30 bg-accent/8" : isPro ? "border-accent/20 bg-accent/5" : "border-white/10 bg-black/35"
           }`}
         >
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">Investimento annuo</p>
-              <p className="font-display mt-1 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <div className="space-y-3">
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">Investimento annuo</p>
+              <p className="font-display mt-0.5 text-3xl font-bold tracking-tight text-white lg:text-[1.85rem]">
                 {plan.pricing.launch}
               </p>
-              <p className="mt-1 text-xs leading-snug text-zinc-500">{plan.pricing.launchNote}</p>
+              <p className="mt-1 text-[11px] leading-snug text-zinc-500">{plan.pricing.launchNote}</p>
             </div>
-            <div
-              className={`shrink-0 rounded-xl border px-3.5 py-2.5 text-right ${
-                isElite || isPro ? "border-accent/25 bg-accent/10" : "border-white/10 bg-white/5"
-              }`}
-            >
-              <p className="text-[9px] font-semibold uppercase tracking-wider text-zinc-500">Al mese</p>
-              <p className="font-display text-xl font-bold text-accent sm:text-2xl">€{monthlyLaunch}</p>
-            </div>
+            {monthlyLaunch ? (
+              <div
+                className={`flex items-center justify-between gap-3 rounded-lg border px-3 py-2.5 ${
+                  isElite || isPro ? "border-accent/25 bg-accent/10" : "border-white/10 bg-white/5"
+                }`}
+              >
+                <p className="text-[9px] font-semibold uppercase tracking-wider text-zinc-500">Al mese</p>
+                <p className="font-display text-lg font-bold text-accent">€{monthlyLaunch}</p>
+              </div>
+            ) : null}
           </div>
           <p
-            className={`mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${
+            className={`mt-3 inline-flex max-w-full items-center gap-2 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${
               isElite || isPro
                 ? "border-accent/30 bg-accent/10 text-accent"
                 : "border-white/12 bg-white/5 text-zinc-300"
@@ -264,46 +272,46 @@ function PlanCard({ plan }: { plan: Plan }) {
           </p>
         </div>
 
-        <div className="mt-6 flex flex-1 flex-col border-t border-white/10 pt-6">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+        <div className="mt-5 flex min-h-0 flex-1 flex-col border-t border-white/10 pt-5">
+          <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
             {plan.featuresSectionTitle}
           </p>
-          <ul className="mt-3 flex-1 space-y-1.5">
+          <ul className="mt-2.5 min-h-0 flex-1 space-y-2">
             {plan.features.map((f) => {
               const highlight = includesPrefix !== "" && f.startsWith(includesPrefix);
               return (
                 <li
                   key={f}
-                  className={`flex gap-2.5 rounded-lg border px-3 py-2 text-sm leading-snug ${
+                  className={`flex gap-2.5 rounded-lg px-2 py-2 text-[13px] leading-snug lg:text-sm ${
                     highlight
-                      ? "border-accent/25 bg-accent/8 font-semibold text-zinc-100"
-                      : "border-white/6 bg-white/3 text-zinc-300"
+                      ? "border border-accent/25 bg-accent/8 font-semibold text-zinc-100"
+                      : "text-zinc-400"
                   }`}
                 >
                   <FeatureCheck highlight={highlight} />
-                  <span>{f}</span>
+                  <span className="min-w-0 text-pretty">{f}</span>
                 </li>
               );
             })}
           </ul>
 
-          <div className="mt-6 rounded-xl border border-white/8 bg-black/35 px-4 py-3.5">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{plan.whyBuyTitle}</p>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-400">{plan.whyBuy}</p>
+          <div className="mt-4 shrink-0 rounded-lg border border-white/8 bg-black/30 px-3.5 py-3">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">{plan.whyBuyTitle}</p>
+            <p className="mt-1.5 line-clamp-3 text-[13px] leading-relaxed text-zinc-400">{plan.whyBuy}</p>
           </div>
         </div>
       </div>
 
-      <div className="relative shrink-0 border-t border-white/10 bg-black/20 px-6 py-5 sm:px-8 sm:py-6">
+      <div className="relative shrink-0 border-t border-white/10 bg-black/25 px-5 py-4 sm:px-6 lg:px-5 lg:py-4 xl:px-6">
         <a
           href={whatsappPrefilledUrl(plan.whatsappMessage)}
           target="_blank"
           rel="noopener noreferrer"
-          className={`inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition hover:brightness-110 ${
+          className={`inline-flex min-h-11 w-full items-center justify-center rounded-full px-4 py-3 text-center text-sm font-semibold transition hover:brightness-110 ${
             isElite
               ? "bg-accent text-black shadow-[0_10px_32px_-12px_rgba(0,229,160,0.55)]"
               : isPro
-                ? "border border-accent/45 bg-accent/90 text-black hover:bg-accent"
+                ? "border border-accent/45 bg-accent text-black hover:bg-accent/90"
                 : "border border-white/18 bg-white text-black hover:bg-zinc-100"
           }`}
         >
@@ -399,17 +407,23 @@ export function Packages() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(0,229,160,0.07),transparent_55%)]"
         aria-hidden
       />
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-tight">
             Card Player, Pro ed Elite per l&apos;atleta,{" "}
             <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">dal link alla presenza completa</span>
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Tre livelli chiari: <strong className="font-semibold text-zinc-300">Card Player</strong> solo hero card (€29,99);{" "}
-            <strong className="font-semibold text-zinc-300">Pro</strong> aggiunge sito e profilo completo;{" "}
-            <strong className="font-semibold text-zinc-300">Elite</strong> include Social Kit e template Instagram — grafiche nel sito, condivisione con un click.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg xl:max-w-3xl">
+            <span className="block sm:inline">
+              <strong className="font-semibold text-zinc-300">Card Player</strong> — hero card (€29,99).
+            </span>{" "}
+            <span className="block sm:inline">
+              <strong className="font-semibold text-zinc-300">Pro</strong> — sito completo (€89,99).
+            </span>{" "}
+            <span className="block sm:inline">
+              <strong className="font-semibold text-zinc-300">Elite</strong> — Pro + Social Kit (€149,99).
+            </span>
           </p>
         </div>
 
