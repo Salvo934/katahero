@@ -29,19 +29,49 @@ type Plan = {
   features: string[];
   ctaLabel: string;
   whatsappMessage: string;
-  tier: "card" | "pro";
+  tier: "player" | "pro" | "elite";
 };
 
 const plans: Plan[] = [
   {
-    name: "KATA HERO Card",
+    name: "KATA HERO Card Player",
+    badge: "Singolo atleta",
+    promoPill: "Entry · figurina",
+    subtitle: "Solo la tua figurina digitale.",
+    audienceLine:
+      "Per chi vuole una card professionale da condividere subito, senza aprire un sito web completo.",
+    salesLine:
+      "La figurina digitale personalizzata con foto, dati e statistiche: un link leggero da mandare a club, scout e follower — senza profilo sito.",
+    pricing: {
+      launch: "€24,99",
+      launchNote: "Solo figurina · senza sito web · /anno",
+      delivery: "Consegna entro 72h",
+    },
+    whyBuyTitle: "Perché dovresti comprarlo",
+    whyBuy:
+      "Perché parti subito con un’immagine da pro: figurina pronta da condividere ovunque, senza investire nel sito completo.",
+    featuresSectionTitle: "Include",
+    features: [
+      "Figurina digitale personalizzata (formato card)",
+      "Foto, nome, ruolo, numero e squadra",
+      "Statistiche principali in evidenza",
+      "Link dedicato per condividere la card",
+      "Senza sito web e senza profilo atleta completo",
+    ],
+    ctaLabel: "Attiva Card Player",
+    whatsappMessage:
+      "Ciao! Vorrei attivare KATA HERO Card Player (€24,99/anno, solo figurina). Mi dite tempi e materiali necessari?",
+    tier: "player",
+  },
+  {
+    name: "KATA HERO Pro",
     badge: "Singolo atleta",
     promoPill: "Lancio · primi 20",
-    subtitle: "La tua figurina digitale da atleta.",
+    subtitle: "Figurina + profilo atleta online.",
     audienceLine:
-      "Per chi vuole una card professionale e un profilo online da condividere ovunque.",
+      "Per chi vuole card e sito personale da condividere ovunque con un solo link professionale.",
     salesLine:
-      "La tua card digitale personalizzata con profilo atleta online: un solo link per presentarti in modo professionale a squadre, sponsor, scout e follower.",
+      "Card digitale e profilo atleta online per 12 mesi: presentati a squadre, sponsor, scout e follower con dati, bio, video e contatti.",
     pricing: {
       launch: "€89,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
@@ -49,33 +79,30 @@ const plans: Plan[] = [
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché non è solo un “sito”. È la tua figurina professionale, con un link personale da condividere ovunque.",
+      "Perché unisci figurina e presenza online: un link personale completo, non solo la card da condividere.",
     featuresSectionTitle: "Include",
     features: [
-      "Card digitale personalizzata",
+      "Tutto KATA HERO Card Player, più:",
       "Profilo atleta online per 12 mesi",
-      "Link personale da mettere in bio Instagram",
-      "Foto principale",
-      "Bio atleta",
-      "Ruolo, numero, squadra, altezza, anno",
-      "Social link",
-      "Contatto diretto",
+      "Sito web personale con dominio dedicato",
+      "Link da mettere in bio Instagram",
+      "Bio atleta, social link e contatto diretto",
       "3 aggiornamenti gratuiti all’anno: ottobre, febbraio, giugno",
     ],
-    ctaLabel: "Attiva la KATA HERO Card",
+    ctaLabel: "Attiva KATA HERO Pro",
     whatsappMessage:
-      "Ciao! Vorrei attivare la KATA HERO Card (€89,99/anno lancio). Mi dite tempi e materiali necessari?",
-    tier: "card",
+      "Ciao! Vorrei attivare KATA HERO Pro (€89,99/anno lancio). Mi dite tempi e materiali necessari?",
+    tier: "pro",
   },
   {
-    name: "KATA HERO Pro",
+    name: "KATA HERO Elite",
     badge: "Singolo atleta",
-    promoPill: "Card + Social Kit",
-    subtitle: "Il tuo profilo atleta + contenuti social pronti.",
+    promoPill: "Pro + Social Kit",
+    subtitle: "Profilo completo + contenuti social pronti.",
     audienceLine:
-      "Per chi vuole curare la propria immagine anche su Instagram, senza dover creare grafiche da zero.",
+      "Per chi vuole curare la propria immagine anche su Instagram, senza creare grafiche da zero.",
     salesLine:
-      "Oltre alla card e al profilo online, nel tuo sito trovi le grafiche social già pronte: le apri e le condividi con un click nei momenti importanti della stagione.",
+      "Oltre a card e sito, nel profilo trovi le grafiche social già pronte: le apri e le condividi con un click nei momenti chiave della stagione.",
     pricing: {
       launch: "€149,99",
       launchNote: "Prezzo lancio primi 20 atleti · /anno",
@@ -83,20 +110,20 @@ const plans: Plan[] = [
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché non compri solo un profilo: è come avere un social media manager dentro il tuo sito — grafiche pronte, immagine curata e contenuti da condividere con un click su Instagram.",
+      "Perché non compri solo un profilo: è come avere un social media manager dentro il tuo sito — grafiche pronte e contenuti da condividere con un click su Instagram.",
     featuresSectionTitle: "Include",
     features: [
-      "Tutto KATA HERO Card, più:",
+      "Tutto KATA HERO Pro, più:",
       "Social Kit nel tuo sito web personale",
-      "Grafiche personalizzate sempre nel profilo — condividibili con un click su Instagram",
+      "Grafiche personalizzate sempre nel profilo — condivisibili con un click su Instagram",
       "Template pronti: Match Day, grande prestazione, compleanno",
       "Nuova stagione / nuova squadra, thank you post partita",
       "5 aggiornamenti gratuiti all’anno: ottobre, dicembre, febbraio, aprile, giugno",
     ],
-    ctaLabel: "Attiva KATA HERO Pro",
+    ctaLabel: "Attiva KATA HERO Elite",
     whatsappMessage:
-      "Ciao! Vorrei attivare KATA HERO Pro (€149,99/anno lancio, card + Social Kit). Mi dite tempi e materiali necessari?",
-    tier: "pro",
+      "Ciao! Vorrei attivare KATA HERO Elite (€149,99/anno lancio, Pro + Social Kit). Mi dite tempi e materiali necessari?",
+    tier: "elite",
   },
 ];
 
@@ -146,24 +173,34 @@ function FeatureCheck({ highlight }: { highlight?: boolean }) {
   );
 }
 
+function tierIncludesPrefix(tier: Plan["tier"]): string {
+  if (tier === "pro") return "Tutto KATA HERO Card Player";
+  if (tier === "elite") return "Tutto KATA HERO Pro";
+  return "";
+}
+
 function PlanCard({ plan }: { plan: Plan }) {
   const monthlyLaunch = monthlyEquivalentFromLaunch(plan.pricing.launch);
+  const isElite = plan.tier === "elite";
   const isPro = plan.tier === "pro";
+  const includesPrefix = tierIncludesPrefix(plan.tier);
 
   return (
     <article
       className={`relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border transition duration-300 ${
-        isPro
+        isElite
           ? "border-accent/35 bg-linear-to-b from-accent/9 via-zinc-900/75 to-zinc-950 shadow-[0_0_0_1px_rgba(0,229,160,0.08),0_28px_80px_-40px_rgba(0,229,160,0.22)] hover:border-accent/50"
-          : "border-white/12 bg-linear-to-b from-white/7 via-zinc-900/70 to-zinc-950 shadow-[0_24px_70px_-44px_rgba(0,0,0,0.85)] hover:border-white/20"
+          : isPro
+            ? "border-accent/20 bg-linear-to-b from-accent/5 via-zinc-900/72 to-zinc-950 shadow-[0_24px_70px_-44px_rgba(0,0,0,0.85)] hover:border-accent/35"
+            : "border-white/12 bg-linear-to-b from-white/7 via-zinc-900/70 to-zinc-950 shadow-[0_24px_70px_-44px_rgba(0,0,0,0.85)] hover:border-white/20"
       }`}
     >
       <div
-        className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${isPro ? "via-accent/70" : "via-white/25"} to-transparent`}
+        className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${isElite ? "via-accent/70" : isPro ? "via-accent/40" : "via-white/25"} to-transparent`}
         aria-hidden
       />
       <div
-        className={`pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full blur-3xl ${isPro ? "bg-accent/15" : "bg-white/5"}`}
+        className={`pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full blur-3xl ${isElite ? "bg-accent/15" : isPro ? "bg-accent/8" : "bg-white/5"}`}
         aria-hidden
       />
 
@@ -174,9 +211,11 @@ function PlanCard({ plan }: { plan: Plan }) {
             {plan.promoPill ? (
               <span
                 className={`rounded-full border px-2.5 py-0.5 text-[9px] font-bold tracking-wide ${
-                  isPro
+                  isElite
                     ? "border-accent/40 bg-accent/15 text-accent"
-                    : "border-white/15 bg-white/8 text-zinc-300"
+                    : isPro
+                      ? "border-accent/25 bg-accent/10 text-accent"
+                      : "border-white/15 bg-white/8 text-zinc-300"
                 }`}
               >
                 {plan.promoPill}
@@ -193,7 +232,7 @@ function PlanCard({ plan }: { plan: Plan }) {
 
         <div
           className={`mt-6 rounded-2xl border p-4 sm:p-5 ${
-            isPro ? "border-accent/30 bg-accent/7" : "border-white/10 bg-black/30"
+            isElite ? "border-accent/30 bg-accent/7" : isPro ? "border-accent/20 bg-accent/5" : "border-white/10 bg-black/30"
           }`}
         >
           <div className="flex flex-wrap items-end justify-between gap-4">
@@ -206,7 +245,7 @@ function PlanCard({ plan }: { plan: Plan }) {
             </div>
             <div
               className={`shrink-0 rounded-xl border px-3.5 py-2.5 text-right ${
-                isPro ? "border-accent/25 bg-accent/10" : "border-white/10 bg-white/5"
+                isElite || isPro ? "border-accent/25 bg-accent/10" : "border-white/10 bg-white/5"
               }`}
             >
               <p className="text-[9px] font-semibold uppercase tracking-wider text-zinc-500">Al mese</p>
@@ -215,7 +254,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           </div>
           <p
             className={`mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${
-              isPro
+              isElite || isPro
                 ? "border-accent/30 bg-accent/10 text-accent"
                 : "border-white/12 bg-white/5 text-zinc-300"
             }`}
@@ -231,7 +270,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           </p>
           <ul className="mt-3 flex-1 space-y-1.5">
             {plan.features.map((f) => {
-              const highlight = f.startsWith("Tutto KATA HERO Card");
+              const highlight = includesPrefix !== "" && f.startsWith(includesPrefix);
               return (
                 <li
                   key={f}
@@ -261,9 +300,11 @@ function PlanCard({ plan }: { plan: Plan }) {
           target="_blank"
           rel="noopener noreferrer"
           className={`inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 py-3.5 text-center text-sm font-semibold transition hover:brightness-110 ${
-            isPro
+            isElite
               ? "bg-accent text-black shadow-[0_10px_32px_-12px_rgba(0,229,160,0.55)]"
-              : "border border-white/18 bg-white text-black hover:bg-zinc-100"
+              : isPro
+                ? "border border-accent/45 bg-accent/90 text-black hover:bg-accent"
+                : "border border-white/18 bg-white text-black hover:bg-zinc-100"
           }`}
         >
           {plan.ctaLabel}
@@ -330,7 +371,7 @@ function SubscriptionManagement() {
         <h3 className="font-display mt-2 text-xl font-bold text-white sm:text-2xl">Gestisci il tuo abbonamento</h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-zinc-400">
           Accedi al portale Stripe per aggiornare il metodo di pagamento, scaricare le fatture o gestire il rinnovo del
-          piano Card o Pro.
+          piano Card Player, Pro o Elite.
         </p>
         <a
           href={portalUrl}
@@ -362,17 +403,17 @@ export function Packages() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-tight">
-            Card e Pro per l&apos;atleta,{" "}
-            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">immagine pronta online</span>
+            Card Player, Pro ed Elite per l&apos;atleta,{" "}
+            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">dal link alla presenza completa</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Due livelli chiari: <strong className="font-semibold text-zinc-300">KATA HERO Card</strong> per la figurina
-            digitale con link personale; <strong className="font-semibold text-zinc-300">KATA HERO Pro</strong> aggiunge
-            Social Kit e template Instagram per i momenti chiave — grafiche nel sito, condivisione con un click.
+            Tre livelli chiari: <strong className="font-semibold text-zinc-300">Card Player</strong> solo figurina (€24,99);{" "}
+            <strong className="font-semibold text-zinc-300">Pro</strong> aggiunge sito e profilo completo;{" "}
+            <strong className="font-semibold text-zinc-300">Elite</strong> include Social Kit e template Instagram — grafiche nel sito, condivisione con un click.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 items-stretch gap-6 sm:mt-14 lg:grid-cols-2 lg:gap-8">
+        <div className="mt-12 grid grid-cols-1 items-stretch gap-6 sm:mt-14 lg:grid-cols-3 lg:gap-6 xl:gap-8">
           {plans.map((p) => (
             <PlanCard key={p.name} plan={p} />
           ))}
@@ -385,7 +426,7 @@ export function Packages() {
               Servizi aggiuntivi oltre il pacchetto
             </h3>
             <p className="mt-2 text-sm text-zinc-500">
-              Aggiungi solo ciò che ti serve, quando ti serve — oltre agli aggiornamenti già inclusi in Card e Pro.
+              Aggiungi solo ciò che ti serve, quando ti serve — oltre agli aggiornamenti già inclusi in Card Player, Pro ed Elite.
             </p>
           </div>
           <PackageExtrasTable />
