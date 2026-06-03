@@ -37,30 +37,30 @@ const plans: Plan[] = [
     name: "KATA HERO Card Player",
     badge: "Singolo atleta",
     promoPill: "Entry · figurina",
-    subtitle: "Solo la tua figurina digitale.",
+    subtitle: "Solo la hero card, senza sito completo.",
     audienceLine:
-      "Per chi vuole una card professionale da condividere subito, senza aprire un sito web completo.",
+      "Per chi vuole la sezione hero da atleta (figurina + dati in evidenza) da condividere subito, senza il sito web completo.",
     salesLine:
-      "La figurina digitale personalizzata con foto, dati e statistiche: un link leggero da mandare a club, scout e follower — senza profilo sito.",
+      "La hero card personalizzata con foto, nome, ruolo, squadra e statistiche: un link leggero per club, scout e follower — non include profilo, video hub, statistiche avanzate o Social Kit.",
     pricing: {
-      launch: "€24,99",
-      launchNote: "Solo figurina · senza sito web · /anno",
+      launch: "€29,99",
+      launchNote: "Solo hero card · senza sito web completo · /anno",
       delivery: "Consegna entro 72h",
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché parti subito con un’immagine da pro: figurina pronta da condividere ovunque, senza investire nel sito completo.",
+      "Perché hai subito un’immagine da pro con la hero da condividere ovunque, senza pagare il sito atleta completo.",
     featuresSectionTitle: "Include",
     features: [
-      "Figurina digitale personalizzata (formato card)",
+      "Hero card personalizzata (figurina + dati in evidenza)",
       "Foto, nome, ruolo, numero e squadra",
-      "Statistiche principali in evidenza",
-      "Link dedicato per condividere la card",
-      "Senza sito web e senza profilo atleta completo",
+      "Statistiche principali in hero",
+      "Link dedicato per condividere la hero",
+      "Senza sito web completo, profilo esteso o Social Kit",
     ],
     ctaLabel: "Attiva Card Player",
     whatsappMessage:
-      "Ciao! Vorrei attivare KATA HERO Card Player (€24,99/anno, solo figurina). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare KATA HERO Card Player (€29,99/anno, solo hero card senza sito completo). Mi dite tempi e materiali necessari?",
     tier: "player",
   },
   {
@@ -407,7 +407,7 @@ export function Packages() {
             <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">dal link alla presenza completa</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Tre livelli chiari: <strong className="font-semibold text-zinc-300">Card Player</strong> solo figurina (€24,99);{" "}
+            Tre livelli chiari: <strong className="font-semibold text-zinc-300">Card Player</strong> solo hero card (€29,99);{" "}
             <strong className="font-semibold text-zinc-300">Pro</strong> aggiunge sito e profilo completo;{" "}
             <strong className="font-semibold text-zinc-300">Elite</strong> include Social Kit e template Instagram — grafiche nel sito, condivisione con un click.
           </p>

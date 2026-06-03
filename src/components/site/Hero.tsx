@@ -8,7 +8,7 @@ const highlights = [
 ];
 
 const planTeaser = [
-  { name: "KATA HERO Card Player", hint: "Solo figurina · senza sito · da €24,99/anno" },
+  { name: "KATA HERO Card Player", hint: "Solo hero card · senza sito completo · da €29,99/anno" },
   { name: "KATA HERO Pro", hint: "Figurina + profilo online · da €89,99/anno" },
   { name: "KATA HERO Elite", hint: "Pro + Social Kit Instagram · da €149,99/anno" },
 ];
