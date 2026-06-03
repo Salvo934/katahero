@@ -15,8 +15,7 @@ type Plan = {
   name: string;
   badge: string;
   promoPill?: string;
-  subtitle?: string;
-  audienceLine?: string;
+  subtitle: string;
   salesLine: string;
   pricing: {
     launch: string;
@@ -38,25 +37,23 @@ const plans: Plan[] = [
     badge: "Singolo atleta",
     promoPill: "Entry · hero",
     subtitle: "Solo la hero card, senza sito completo.",
-    audienceLine:
-      "Per chi vuole la sezione hero da atleta (figurina + dati in evidenza) da condividere subito, senza il sito web completo.",
     salesLine:
-      "La hero card personalizzata con foto, nome, ruolo, squadra e statistiche: un link leggero per club, scout e follower — non include profilo, video hub, statistiche avanzate o Social Kit.",
+      "Hero card con foto, dati e statistiche in evidenza: un link leggero per club e scout. Senza sito completo, video hub o Social Kit.",
     pricing: {
       launch: "€29,99",
-      launchNote: "Solo hero card · senza sito web completo · /anno",
+      launchNote: "Solo hero · senza sito · /anno",
       delivery: "Consegna entro 72h",
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché hai subito un’immagine da pro con la hero da condividere ovunque, senza pagare il sito atleta completo.",
+      "Parti subito con un’immagine da pro da condividere ovunque, senza investire nel sito atleta completo.",
     featuresSectionTitle: "Include",
     features: [
-      "Hero card personalizzata (figurina + dati in evidenza)",
+      "Hero card personalizzata (figurina + dati)",
       "Foto, nome, ruolo, numero e squadra",
       "Statistiche principali in hero",
-      "Link dedicato per condividere la hero",
-      "Senza sito web completo, profilo esteso o Social Kit",
+      "Link dedicato per condividere",
+      "Senza sito completo né Social Kit",
     ],
     ctaLabel: "Attiva Card Player",
     whatsappMessage:
@@ -66,63 +63,59 @@ const plans: Plan[] = [
   {
     name: "KATA HERO Pro",
     badge: "Singolo atleta",
-    promoPill: "Lancio · primi 20",
-    subtitle: "Figurina + profilo atleta online.",
-    audienceLine:
-      "Per chi vuole card e sito personale da condividere ovunque con un solo link professionale.",
+    promoPill: "Sito completo",
+    subtitle: "Sito atleta completo · senza Social Kit.",
     salesLine:
-      "Card digitale e profilo atleta online per 12 mesi: presentati a squadre, sponsor, scout e follower con dati, bio, video e contatti.",
+      "Sito web completo per 12 mesi: hero, profilo, statistiche, video e contatti in un link. Senza Social Media Kit per Instagram.",
     pricing: {
       launch: "€89,99",
-      launchNote: "Prezzo lancio primi 20 atleti · /anno",
+      launchNote: "Sito completo · no Social Kit · /anno",
       delivery: "Consegna entro 72h",
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché unisci figurina e presenza online: un link personale completo, non solo la card da condividere.",
+      "Tutta la presenza online da atleta in un link: massimo per scouting e contatti, senza pagare il pacchetto social Instagram.",
     featuresSectionTitle: "Include",
     features: [
-      "Tutto KATA HERO Card Player, più:",
-      "Profilo atleta online per 12 mesi",
-      "Sito web personale con dominio dedicato",
-      "Link da mettere in bio Instagram",
-      "Bio atleta, social link e contatto diretto",
-      "3 aggiornamenti gratuiti all’anno: ottobre, febbraio, giugno",
+      "Tutto Card Player, più:",
+      "Sito web atleta completo · 12 mesi",
+      "Profilo, statistiche, video hub e contatti",
+      "Dominio dedicato · link in bio",
+      "Senza Social Media Kit Instagram",
+      "3 aggiornamenti/anno: ott, feb, giu",
     ],
     ctaLabel: "Attiva KATA HERO Pro",
     whatsappMessage:
-      "Ciao! Vorrei attivare KATA HERO Pro (€89,99/anno lancio). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare KATA HERO Pro (€89,99/anno, sito completo senza Social Kit). Mi dite tempi e materiali necessari?",
     tier: "pro",
   },
   {
     name: "KATA HERO Elite",
     badge: "Singolo atleta",
-    promoPill: "Pro + Social Kit",
-    subtitle: "Profilo completo + contenuti social pronti.",
-    audienceLine:
-      "Per chi vuole curare la propria immagine anche su Instagram, senza creare grafiche da zero.",
+    promoPill: "Sito + Social Kit IG",
+    subtitle: "Sito completo + Social Media Kit Instagram.",
     salesLine:
-      "Oltre a card e sito, nel profilo trovi le grafiche social già pronte: le apri e le condividi con un click nei momenti chiave della stagione.",
+      "Sito completo Pro più Social Media Kit: grafiche e template nel profilo, condivisibili con un click su Instagram.",
     pricing: {
       launch: "€149,99",
-      launchNote: "Prezzo lancio primi 20 atleti · /anno",
+      launchNote: "Sito + Social Kit IG · /anno",
       delivery: "Consegna entro 48h",
     },
     whyBuyTitle: "Perché dovresti comprarlo",
     whyBuy:
-      "Perché non compri solo un profilo: è come avere un social media manager dentro il tuo sito — grafiche pronte e contenuti da condividere con un click su Instagram.",
+      "Sito professionale e Instagram insieme: contenuti social già pronti per Match Day, grandi prestazioni e fine stagione.",
     featuresSectionTitle: "Include",
     features: [
       "Tutto KATA HERO Pro, più:",
-      "Social Kit nel tuo sito web personale",
-      "Grafiche personalizzate sempre nel profilo — condivisibili con un click su Instagram",
-      "Template pronti: Match Day, grande prestazione, compleanno",
-      "Nuova stagione / nuova squadra, thank you post partita",
-      "5 aggiornamenti gratuiti all’anno: ottobre, dicembre, febbraio, aprile, giugno",
+      "Social Media Kit Instagram nel sito",
+      "Grafiche personalizzate · 1 click",
+      "Template: Match Day, MVP, compleanno",
+      "Nuova squadra · thank you post partita",
+      "5 aggiornamenti/anno: ott, dic, feb, apr, giu",
     ],
     ctaLabel: "Attiva KATA HERO Elite",
     whatsappMessage:
-      "Ciao! Vorrei attivare KATA HERO Elite (€149,99/anno lancio, Pro + Social Kit). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare KATA HERO Elite (€149,99/anno, sito completo + Social Media Kit Instagram). Mi dite tempi e materiali necessari?",
     tier: "elite",
   },
 ];
@@ -160,21 +153,8 @@ const packageExtras = [
   },
 ] as const;
 
-function FeatureCheck({ highlight }: { highlight?: boolean }) {
-  return (
-    <span
-      className={`mt-0.5 flex size-4 shrink-0 items-center justify-center rounded text-[9px] font-bold ${
-        highlight ? "bg-accent/20 text-accent" : "bg-white/8 text-accent"
-      }`}
-      aria-hidden
-    >
-      ✓
-    </span>
-  );
-}
-
 function tierIncludesPrefix(tier: Plan["tier"]): string {
-  if (tier === "pro") return "Tutto KATA HERO Card Player";
+  if (tier === "pro") return "Tutto Card Player";
   if (tier === "elite") return "Tutto KATA HERO Pro";
   return "";
 }
@@ -194,20 +174,27 @@ function PlanCard({ plan }: { plan: Plan }) {
   const cardSurface = isElite
     ? "border-accent/40 bg-linear-to-b from-accent/10 via-zinc-900/80 to-zinc-950 shadow-[0_0_0_1px_rgba(0,229,160,0.12),0_28px_72px_-32px_rgba(0,229,160,0.35)] lg:ring-1 lg:ring-accent/25"
     : isPro
-      ? "border-accent/22 bg-linear-to-b from-accent/6 via-zinc-900/75 to-zinc-950 shadow-[0_20px_56px_-40px_rgba(0,0,0,0.88)]"
-      : "border-white/12 bg-linear-to-b from-white/6 via-zinc-900/72 to-zinc-950 shadow-[0_20px_56px_-40px_rgba(0,0,0,0.88)]";
+      ? "border-accent/22 bg-linear-to-b from-accent/6 via-zinc-900/75 to-zinc-950"
+      : "border-white/12 bg-linear-to-b from-white/6 via-zinc-900/72 to-zinc-950";
+
+  const pricingSurface = isElite
+    ? "border-accent/30 bg-accent/8"
+    : isPro
+      ? "border-accent/20 bg-accent/5"
+      : "border-white/10 bg-black/35";
 
   return (
     <article
-      className={`relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border transition duration-300 hover:border-white/25 ${cardSurface} ${isElite ? "hover:border-accent/55" : isPro ? "hover:border-accent/38" : ""}`}
+      className={`relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border transition duration-300 ${cardSurface} ${isElite ? "hover:border-accent/55" : isPro ? "hover:border-accent/38" : "hover:border-white/22"}`}
     >
       <div
         className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${isElite ? "via-accent/70" : isPro ? "via-accent/40" : "via-white/25"} to-transparent`}
         aria-hidden
       />
 
-      <div className="relative flex min-h-0 flex-1 flex-col p-5 sm:p-6 lg:p-5 xl:p-6">
-        <header className="min-w-0 shrink-0">
+      <div className="relative grid flex-1 grid-rows-[auto_auto_1fr] gap-5 p-5 sm:p-6 lg:gap-6 lg:p-6">
+        {/* Riga 1 — titolo e copy (altezza uniforme su desktop) */}
+        <header className="flex min-w-0 flex-col">
           <div className="flex flex-wrap items-center gap-2">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">{plan.badge}</p>
             {plan.promoPill ? (
@@ -226,27 +213,22 @@ function PlanCard({ plan }: { plan: Plan }) {
           </div>
           <h3 className="font-display mt-3 min-w-0">
             <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500">{brand}</span>
-            <span className="mt-1 block text-pretty text-xl font-bold leading-tight tracking-tight text-white lg:text-[1.35rem] xl:text-2xl">
+            <span className="mt-1 block text-pretty text-xl font-bold leading-tight text-white lg:text-[1.4rem]">
               {tier}
             </span>
           </h3>
           <p className="mt-2 text-sm font-semibold leading-snug text-accent">{plan.subtitle}</p>
-          <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-zinc-400 lg:text-[13px] lg:leading-relaxed">
+          <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-zinc-400 lg:min-h-18 lg:text-[13px]">
             {plan.salesLine}
           </p>
         </header>
 
-        <div
-          className={`mt-5 shrink-0 rounded-xl border p-4 ${
-            isElite ? "border-accent/30 bg-accent/8" : isPro ? "border-accent/20 bg-accent/5" : "border-white/10 bg-black/35"
-          }`}
-        >
+        {/* Riga 2 — prezzo (altezza uniforme su desktop) */}
+        <div className={`rounded-xl border p-4 ${pricingSurface} lg:min-h-40 lg:flex lg:flex-col lg:justify-between`}>
           <div className="space-y-3">
-            <div className="min-w-0">
+            <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">Investimento annuo</p>
-              <p className="font-display mt-0.5 text-3xl font-bold tracking-tight text-white lg:text-[1.85rem]">
-                {plan.pricing.launch}
-              </p>
+              <p className="font-display mt-0.5 text-3xl font-bold tracking-tight text-white">{plan.pricing.launch}</p>
               <p className="mt-1 text-[11px] leading-snug text-zinc-500">{plan.pricing.launchNote}</p>
             </div>
             {monthlyLaunch ? (
@@ -272,37 +254,44 @@ function PlanCard({ plan }: { plan: Plan }) {
           </p>
         </div>
 
-        <div className="mt-5 flex min-h-0 flex-1 flex-col border-t border-white/10 pt-5">
-          <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
+        {/* Riga 3 — feature + perché (riempie lo spazio, CTA in basso) */}
+        <div className="flex min-h-0 flex-col border-t border-white/10 pt-5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
             {plan.featuresSectionTitle}
           </p>
-          <ul className="mt-2.5 min-h-0 flex-1 space-y-2">
+          <ul className="mt-3 flex-1 space-y-1.5">
             {plan.features.map((f) => {
               const highlight = includesPrefix !== "" && f.startsWith(includesPrefix);
               return (
                 <li
                   key={f}
-                  className={`flex gap-2.5 rounded-lg px-2 py-2 text-[13px] leading-snug lg:text-sm ${
+                  className={`flex gap-2 rounded-md px-1.5 py-1.5 text-[13px] leading-snug lg:text-sm ${
                     highlight
                       ? "border border-accent/25 bg-accent/8 font-semibold text-zinc-100"
                       : "text-zinc-400"
                   }`}
                 >
-                  <FeatureCheck highlight={highlight} />
+                  <span
+                    className={`mt-0.5 flex size-4 shrink-0 items-center justify-center rounded text-[9px] font-bold ${
+                      highlight ? "bg-accent/20 text-accent" : "bg-white/8 text-accent"
+                    }`}
+                    aria-hidden
+                  >
+                    ✓
+                  </span>
                   <span className="min-w-0 text-pretty">{f}</span>
                 </li>
               );
             })}
           </ul>
-
-          <div className="mt-4 shrink-0 rounded-lg border border-white/8 bg-black/30 px-3.5 py-3">
+          <div className="mt-4 rounded-lg border border-white/8 bg-black/30 px-3.5 py-3 lg:min-h-22">
             <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">{plan.whyBuyTitle}</p>
             <p className="mt-1.5 line-clamp-3 text-[13px] leading-relaxed text-zinc-400">{plan.whyBuy}</p>
           </div>
         </div>
       </div>
 
-      <div className="relative shrink-0 border-t border-white/10 bg-black/25 px-5 py-4 sm:px-6 lg:px-5 lg:py-4 xl:px-6">
+      <div className="shrink-0 border-t border-white/10 bg-black/25 px-5 py-4 lg:px-6 lg:py-5">
         <a
           href={whatsappPrefilledUrl(plan.whatsappMessage)}
           target="_blank"
@@ -366,10 +355,7 @@ function SubscriptionManagement() {
   const portalUrl = getStripeCustomerPortalUrl();
 
   return (
-    <div
-      id="gestisci-abbonamento"
-      className="mx-auto mt-14 max-w-2xl scroll-mt-24 sm:mt-16"
-    >
+    <div id="gestisci-abbonamento" className="mx-auto mt-14 max-w-2xl scroll-mt-24 sm:mt-16">
       <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-linear-to-br from-zinc-900/80 via-zinc-900/50 to-black/80 p-6 text-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] sm:p-8">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/50 to-transparent"
@@ -411,27 +397,25 @@ export function Packages() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-tight">
-            Card Player, Pro ed Elite per l&apos;atleta,{" "}
-            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">dal link alla presenza completa</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg xl:max-w-3xl">
-            <span className="block sm:inline">
-              <strong className="font-semibold text-zinc-300">Card Player</strong> — hero card (€29,99).
-            </span>{" "}
-            <span className="block sm:inline">
-              <strong className="font-semibold text-zinc-300">Pro</strong> — sito completo (€89,99).
-            </span>{" "}
-            <span className="block sm:inline">
-              <strong className="font-semibold text-zinc-300">Elite</strong> — Pro + Social Kit (€149,99).
+            Card Player, Pro ed Elite{" "}
+            <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">
+              per l&apos;atleta
             </span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <strong className="font-semibold text-zinc-300">Card Player</strong> — hero card (€29,99).{" "}
+            <strong className="font-semibold text-zinc-300">Pro</strong> — sito completo senza Social Kit (€89,99).{" "}
+            <strong className="font-semibold text-zinc-300">Elite</strong> — sito + Social Kit Instagram (€149,99).
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 items-stretch gap-6 sm:mt-14 lg:grid-cols-3 lg:gap-6 xl:gap-8">
+        <ul className="mt-12 grid list-none grid-cols-1 gap-6 p-0 sm:mt-14 lg:grid-cols-3 lg:items-stretch lg:gap-7">
           {plans.map((p) => (
-            <PlanCard key={p.name} plan={p} />
+            <li key={p.name} className="min-w-0">
+              <PlanCard plan={p} />
+            </li>
           ))}
-        </div>
+        </ul>
 
         <div className="mx-auto mt-14 max-w-4xl sm:mt-16">
           <div className="text-center">
@@ -440,7 +424,7 @@ export function Packages() {
               Servizi aggiuntivi oltre il pacchetto
             </h3>
             <p className="mt-2 text-sm text-zinc-500">
-              Aggiungi solo ciò che ti serve, quando ti serve — oltre agli aggiornamenti già inclusi in Card Player, Pro ed Elite.
+              Aggiungi solo ciò che ti serve — oltre agli aggiornamenti inclusi in Card Player, Pro ed Elite.
             </p>
           </div>
           <PackageExtrasTable />
