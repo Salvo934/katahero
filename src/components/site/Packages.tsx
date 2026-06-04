@@ -120,7 +120,14 @@ const plans: Plan[] = [
   },
 ];
 
-const packageExtras = [
+type PackageExtraRow = {
+  name: string;
+  description: string;
+  price: string;
+};
+
+/** Extra oltre Card Player, Pro ed Elite (singolo atleta). */
+const athletePackageExtras: PackageExtraRow[] = [
   {
     name: "Aggiornamento extra",
     description: "Modifica foto, bio, dati, social o numero fuori dalle finestre incluse",
@@ -151,7 +158,46 @@ const packageExtras = [
     description: "Lavorazione in giornata",
     price: "+ €34,99",
   },
-] as const;
+];
+
+/** Extra board, roster e servizi avanzati. */
+const boardPackageExtras: PackageExtraRow[] = [
+  {
+    name: "Scheda giocatore aggiuntiva",
+    description: "Nuova scheda atleta in board o profilo, oltre al pacchetto o alla fascia roster",
+    price: "€90/anno",
+  },
+  {
+    name: "Aggiornamento extra scheda",
+    description: "Modifica foto, dati, statistiche o contenuti fuori dalle finestre incluse nel piano",
+    price: "€15–€25",
+  },
+  {
+    name: "Bio professionale riscritta",
+    description: "Riscrittura testo bio e pitch per club, scout e presentazioni istituzionali",
+    price: "€30",
+  },
+  {
+    name: "Inserimento video highlight extra",
+    description: "Aggiunta o sostituzione di un video / reel nel profilo atleta",
+    price: "€20",
+  },
+  {
+    name: "Traduzione profilo EN/IT",
+    description: "Versione bilingue del profilo (inglese e italiano) per mercato estero",
+    price: "€30",
+  },
+  {
+    name: "Priorità Talent Board",
+    description: "Maggiore visibilità del profilo in board pubblica o dedicata (posizionamento in evidenza)",
+    price: "€100–€200/anno",
+  },
+  {
+    name: "Social Media Kit",
+    description: "Piano annuale aggiuntivo: 8 post al mese con grafiche personalizzate per Instagram",
+    price: "+ €250/anno",
+  },
+];
 
 const rosterTiers = [
   { players: "fino a 10", annual: "€900", perAthleteYear: "€90", perAthleteMonth: "€7,50" },
@@ -466,9 +512,9 @@ function RosterPackage() {
   );
 }
 
-function PackageExtrasTable() {
+function PackageExtrasTable({ rows }: { rows: PackageExtraRow[] }) {
   return (
-    <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/45 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/45 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
       <div className="overflow-x-auto">
         <table className="w-full min-w-136 border-collapse text-left text-sm">
           <thead>
@@ -485,7 +531,7 @@ function PackageExtrasTable() {
             </tr>
           </thead>
           <tbody>
-            {packageExtras.map((row, i) => (
+            {rows.map((row, i) => (
               <tr
                 key={row.name}
                 className={`border-b border-white/6 last:border-b-0 ${i % 2 === 1 ? "bg-black/15" : ""}`}
@@ -501,6 +547,31 @@ function PackageExtrasTable() {
             ))}
           </tbody>
         </table>
+      </div>
+    </div>
+  );
+}
+
+function PackageExtrasSection() {
+  return (
+    <div className="space-y-10 sm:space-y-12">
+      <div>
+        <h4 className="font-display text-lg font-semibold text-white sm:text-xl">Extra singolo atleta</h4>
+        <p className="mt-1.5 text-sm text-zinc-500">
+          Oltre Card Player, Pro ed Elite — aggiornamenti e add-on sul profilo personale.
+        </p>
+        <div className="mt-4">
+          <PackageExtrasTable rows={athletePackageExtras} />
+        </div>
+      </div>
+      <div>
+        <h4 className="font-display text-lg font-semibold text-white sm:text-xl">Extra board e servizi avanzati</h4>
+        <p className="mt-1.5 text-sm text-zinc-500">
+          Per roster, Talent Board e profili istituzionali — schede aggiuntive, visibilità e Social Media Kit esteso.
+        </p>
+        <div className="mt-4">
+          <PackageExtrasTable rows={boardPackageExtras} />
+        </div>
       </div>
     </div>
   );
@@ -581,10 +652,12 @@ export function Packages() {
               Servizi aggiuntivi oltre il pacchetto
             </h3>
             <p className="mt-2 text-sm text-zinc-500">
-              Aggiungi solo ciò che ti serve — oltre agli aggiornamenti inclusi in Card Player, Pro ed Elite.
+              Due liste: extra sul pacchetto atleta e servizi per board / roster — prezzi indicativi, preventivo su richiesta.
             </p>
           </div>
-          <PackageExtrasTable />
+          <div className="mt-8">
+            <PackageExtrasSection />
+          </div>
         </div>
 
         <SubscriptionManagement />
