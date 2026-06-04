@@ -165,7 +165,7 @@ const boardPackageExtras: PackageExtraRow[] = [
   {
     name: "Scheda giocatore aggiuntiva",
     description: "Nuova scheda atleta in board o profilo, oltre al pacchetto o alla fascia roster",
-    price: "€90/anno",
+    price: "€120/anno",
   },
   {
     name: "Aggiornamento extra scheda",
@@ -200,11 +200,11 @@ const boardPackageExtras: PackageExtraRow[] = [
 ];
 
 const rosterTiers = [
-  { players: "fino a 10", annual: "€900", perAthleteYear: "€90", perAthleteMonth: "€7,50" },
-  { players: "fino a 20", annual: "€1.500", perAthleteYear: "€75", perAthleteMonth: "€6,25" },
-  { players: "fino a 30", annual: "€2.100", perAthleteYear: "€70", perAthleteMonth: "€5,83" },
-  { players: "fino a 40", annual: "€2.700", perAthleteYear: "€67,50", perAthleteMonth: "€5,63" },
-  { players: "fino a 50", annual: "€3.300", perAthleteYear: "€66", perAthleteMonth: "€5,50" },
+  { players: "fino a 10", annual: "€1.200", perAthleteYear: "€120", perAthleteMonth: "€10,00" },
+  { players: "fino a 20", annual: "€2.000", perAthleteYear: "€100", perAthleteMonth: "€8,33" },
+  { players: "fino a 30", annual: "€2.900", perAthleteYear: "€96,67", perAthleteMonth: "€8,06" },
+  { players: "fino a 40", annual: "€3.800", perAthleteYear: "€95", perAthleteMonth: "€7,92" },
+  { players: "fino a 50", annual: "€4.700", perAthleteYear: "€94", perAthleteMonth: "€7,83" },
 ] as const;
 
 const rosterFeatures = [
@@ -380,7 +380,7 @@ function RosterPackage() {
   return (
     <div id="roster" className="mt-16 scroll-mt-24 sm:mt-20">
       <div className="mb-8 text-center lg:mb-10">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Agenzie · Club · Academy</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Procuratori · Agenzie · Club</p>
         <h3 className="font-display mt-2 text-2xl font-bold text-white sm:text-3xl">
           KATA HERO <span className="text-accent">Roster</span>
         </h3>
@@ -412,9 +412,9 @@ function RosterPackage() {
               Il tuo roster in affitto sulla Talent Board KataHero
             </p>
             <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
-              Presenta il tuo organico con una board digitale professionale, creata e gestita da noi. Tu ci invii i
-              materiali dei giocatori: noi creiamo le schede atleta, organizziamo i contenuti e attiviamo una board
-              dedicata pronta da condividere con club, scout, direttori sportivi e società.
+              Pensato per procuratori e agenzie: presenta l&apos;intero organico con una board digitale professionale,
+              creata e gestita da KataHero. Invii i materiali dei giocatori — noi creiamo le schede, organizziamo i
+              contenuti e attiviamo una board dedicata da mandare a club, scout e direttori sportivi.
             </p>
 
             <div className="mt-6 rounded-xl border border-accent/30 bg-accent/8 p-4 sm:p-5">
