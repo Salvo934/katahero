@@ -153,6 +153,25 @@ const packageExtras = [
   },
 ] as const;
 
+const rosterTiers = [
+  { players: "fino a 10", annual: "€900", perAthleteYear: "€90", perAthleteMonth: "€7,50" },
+  { players: "fino a 20", annual: "€1.500", perAthleteYear: "€75", perAthleteMonth: "€6,25" },
+  { players: "fino a 30", annual: "€2.100", perAthleteYear: "€70", perAthleteMonth: "€5,83" },
+  { players: "fino a 40", annual: "€2.700", perAthleteYear: "€67,50", perAthleteMonth: "€5,63" },
+  { players: "fino a 50", annual: "€3.300", perAthleteYear: "€66", perAthleteMonth: "€5,50" },
+] as const;
+
+const rosterFeatures = [
+  "Creazione schede atleta e gestione contenuti",
+  "Foto, video, bio, statistiche e contatti",
+  "Board dedicata con link condivisibile",
+  "Profili pubblici o privati per il roster",
+  "Assistenza dedicata e 2 aggiornamenti annuali",
+] as const;
+
+const ROSTER_WHATSAPP_MESSAGE =
+  "Ciao! Vorrei informazioni sul pacchetto KATA HERO Roster (board digitale per agenzia/club). Mi indicate tempi, materiali e fascia giocatori.";
+
 function tierIncludesPrefix(tier: Plan["tier"]): string {
   if (tier === "pro") return "Tutto Card Player";
   if (tier === "elite") return "Tutto KATA HERO Pro";
@@ -311,6 +330,142 @@ function PlanCard({ plan }: { plan: Plan }) {
   );
 }
 
+function RosterPackage() {
+  return (
+    <div id="roster" className="mt-16 scroll-mt-24 sm:mt-20">
+      <div className="mb-8 text-center lg:mb-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Agenzie · Club · Academy</p>
+        <h3 className="font-display mt-2 text-2xl font-bold text-white sm:text-3xl">
+          KATA HERO <span className="text-accent">Roster</span>
+        </h3>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+          Per procuratori, agenzie, club e academy che vogliono presentare più giocatori con una board digitale
+          professionale.
+        </p>
+      </div>
+
+      <article className="relative overflow-hidden rounded-2xl border border-white/14 bg-linear-to-br from-zinc-900/90 via-zinc-950 to-black shadow-[0_32px_80px_-40px_rgba(0,0,0,0.9)] lg:rounded-[1.75rem]">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/60 to-transparent"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-accent/10 blur-3xl"
+          aria-hidden
+        />
+
+        <div className="relative grid gap-8 p-6 sm:p-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 lg:p-10">
+          <div className="flex min-w-0 flex-col">
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Board gestita</p>
+              <span className="rounded-full border border-accent/35 bg-accent/12 px-2.5 py-0.5 text-[9px] font-bold tracking-wide text-accent">
+                Talent Board dedicata
+              </span>
+            </div>
+            <p className="font-display mt-4 text-xl font-bold leading-snug text-white sm:text-2xl">
+              Il tuo roster in affitto sulla Talent Board KataHero
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
+              Presenta il tuo organico con una board digitale professionale, creata e gestita da noi. Tu ci invii i
+              materiali dei giocatori: noi creiamo le schede atleta, organizziamo i contenuti e attiviamo una board
+              dedicata pronta da condividere con club, scout, direttori sportivi e società.
+            </p>
+
+            <div className="mt-6 rounded-xl border border-accent/30 bg-accent/8 p-4 sm:p-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">Come un affitto annuale</p>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-200">
+                Paghi un canone fisso all&apos;anno per riservare i posti dei tuoi atleti nella board: più giocatori
+                includi, più conveniente diventa il costo per singolo profilo — come affittare spazio professionale sul
+                catalogo KataHero invece di gestire decine di link sparsi.
+              </p>
+            </div>
+
+            <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">Include</p>
+            <ul className="mt-3 space-y-2">
+              {rosterFeatures.map((f) => (
+                <li key={f} className="flex gap-2.5 text-sm leading-snug text-zinc-400">
+                  <span
+                    className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded bg-accent/20 text-[9px] font-bold text-accent"
+                    aria-hidden
+                  >
+                    ✓
+                  </span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex min-w-0 flex-col">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-500">Prezzi annuali</p>
+            <p className="mt-1 text-xs text-zinc-500">Canone roster · fatturazione annuale</p>
+
+            <div className="mt-4 overflow-hidden rounded-xl border border-white/12 bg-black/40">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-80 border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-white/10 bg-white/4">
+                      <th className="px-4 py-3 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                        Giocatori
+                      </th>
+                      <th className="px-4 py-3 text-right text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                        / anno
+                      </th>
+                      <th className="hidden px-4 py-3 text-right text-[10px] font-semibold uppercase tracking-wider text-zinc-500 sm:table-cell">
+                        / atleta · anno
+                      </th>
+                      <th className="hidden px-4 py-3 text-right text-[10px] font-semibold uppercase tracking-wider text-accent md:table-cell">
+                        / atleta · mese
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rosterTiers.map((row, i) => (
+                      <tr
+                        key={row.players}
+                        className={`border-b border-white/6 last:border-b-0 ${i % 2 === 1 ? "bg-white/2" : ""}`}
+                      >
+                        <td className="px-4 py-3.5 font-semibold text-zinc-100">{row.players} giocatori</td>
+                        <td className="px-4 py-3.5 text-right font-display text-base font-bold text-white">
+                          {row.annual}
+                        </td>
+                        <td className="hidden px-4 py-3.5 text-right text-zinc-400 sm:table-cell">{row.perAthleteYear}</td>
+                        <td className="hidden px-4 py-3.5 text-right font-semibold text-accent md:table-cell">
+                          {row.perAthleteMonth}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <p className="mt-3 text-xs leading-relaxed text-zinc-500">
+              Il costo mensile per atleta cala all&apos;aumentare dei posti in board — il canone annuale resta quello della
+              fascia scelta.
+            </p>
+
+            <a
+              href={whatsappPrefilledUrl(ROSTER_WHATSAPP_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-center text-sm font-semibold text-black shadow-[0_12px_40px_-14px_rgba(0,229,160,0.55)] transition hover:brightness-110"
+            >
+              Richiedi preventivo Roster
+            </a>
+            <a
+              href="/talent-board"
+              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-zinc-300 transition hover:border-white/25 hover:bg-white/8 hover:text-white"
+            >
+              Vedi esempio Talent Board
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  );
+}
+
 function PackageExtrasTable() {
   return (
     <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/45 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
@@ -365,7 +520,7 @@ function SubscriptionManagement() {
         <h3 className="font-display mt-2 text-xl font-bold text-white sm:text-2xl">Gestisci il tuo abbonamento</h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-zinc-400">
           Accedi al portale Stripe per aggiornare il metodo di pagamento, scaricare le fatture o gestire il rinnovo del
-          piano Card Player, Pro o Elite.
+          piano Card Player, Pro, Elite o Roster.
         </p>
         <a
           href={portalUrl}
@@ -416,6 +571,8 @@ export function Packages() {
             </li>
           ))}
         </ul>
+
+        <RosterPackage />
 
         <div className="mx-auto mt-14 max-w-4xl sm:mt-16">
           <div className="text-center">
