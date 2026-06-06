@@ -252,7 +252,7 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     badges: ["Serie B Girone A 25/26", "Playmaker"],
     cardBadgeLabels: ["Disponibile", "33 gare", "Serie B 25/26", "Profilo aggiornato"],
     profilePath: "/atleti/alfonso-zampogna",
-    profileWebsiteUrl: "https://www.legapallacanestro.com/zampogna-alfonso",
+    profileWebsiteUrl: "https://alfonsozampogna16.katahero.com",
     photoUrl: "/alfonso-zampogna.png",
     publicCardStrengthLine: "Playmaker che crea ritmo e distribuisce in Serie B.",
     strengthAccentPhrase: "crea ritmo",
