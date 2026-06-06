@@ -69,10 +69,10 @@ export const TALENT_BOARD_SEASON_LABEL = "25/26";
 
 /** Numeri dashboard — editabili */
 export const TALENT_BOARD_DASHBOARD_STATS = [
-  { key: "athletes", value: "4", label: "Atleti in board" },
-  { key: "updated", value: "4", label: "Schede aggiornate" },
+  { key: "athletes", value: "5", label: "Atleti in board" },
+  { key: "updated", value: "5", label: "Schede aggiornate" },
   { key: "agencies", value: "3", label: "Agenzie sul board" },
-  { key: "available", value: "4", label: "Card da condividere" },
+  { key: "available", value: "5", label: "Card da condividere" },
 ] as const;
 
 export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
@@ -228,6 +228,44 @@ export const DEMO_ATHLETES_BASKETBALL: TalentAthlete[] = [
     profileUpdatedAt: "2026-05-27",
     advanced: { ppg: 16.4, rpg: 3.5, apg: 2.5 },
   },
+  {
+    id: "5",
+    slug: "alfonso-zampogna",
+    firstName: "Alfonso",
+    lastName: "Zampogna",
+    jerseyNumber: 16,
+    sport: "Basket",
+    role: "Playmaker",
+    leagueLabel: "LNP",
+    roleCardSuffix: "/ PG",
+    birthYear: 2000,
+    heightCm: 186,
+    dominantHand: "Destra",
+    weightKg: 75,
+    nationality: "Italia",
+    club: "Fortitudo Agrigento",
+    clubLogoUrl: "/fortitudo-agrigento-logo.png",
+    category: "Serie B",
+    status: "Disponibile",
+    agency: "Non indicata",
+    statsMain: ["11 PPG", "3.3 RPG", "4.1 APG"],
+    badges: ["Serie B Girone A 25/26", "Playmaker"],
+    cardBadgeLabels: ["Disponibile", "33 gare", "Serie B 25/26", "Profilo aggiornato"],
+    profilePath: "/atleti/alfonso-zampogna",
+    profileWebsiteUrl: "https://www.legapallacanestro.com/zampogna-alfonso",
+    photoUrl: "/alfonso-zampogna.png",
+    publicCardStrengthLine: "Playmaker che crea ritmo e distribuisce in Serie B.",
+    strengthAccentPhrase: "crea ritmo",
+    scoutLine:
+      "Playmaker classe 2000 (186 cm, 75 kg): 11 PPG, 3,3 RPG e 4,1 APG in Serie B Girone A 25/26 con Moncada Energy Fortitudo Agrigento — fonte LNP. #16, esperienza in A2 e percorsi tra Alessandria, Caserta, Cremona e Roseto.",
+    playerNotes: [
+      "11 PPG e oltre 4 assist di media in Serie B Girone A 25/26",
+      "Direzione di gioco e pick and roll tra i punti di forza",
+      "Esperienza LNP in Serie B e Serie A2 con club di alto profilo",
+    ],
+    profileUpdatedAt: "2026-05-27",
+    advanced: { ppg: 11, rpg: 3.3, apg: 4.1 },
+  },
 ];
 
 export const FAQ_ITEMS = [
@@ -259,7 +297,7 @@ export const FAQ_ITEMS = [
 /** Opzioni filtri — allineate al dataset demo */
 export const FILTER_OPTIONS = {
   sport: ["Basket"] as const,
-  role: ["Tutti", "Ala piccola", "Guardia"] as const,
+  role: ["Tutti", "Ala piccola", "Playmaker", "Guardia"] as const,
   category: ["Tutte", "Serie B", "B Interregionale", "Divisione Regionale 1"] as const,
   birthYear: ["Tutti", "2005", "2004", "2000"] as const,
   nationality: ["Tutte", "Italia"] as const,
