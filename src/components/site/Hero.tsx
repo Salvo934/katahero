@@ -7,12 +7,6 @@ const highlights = [
   { label: "Un solo link", detail: "Pronto per decision maker" },
 ];
 
-const planTeaser = [
-  { name: "KATA HERO Card Player", hint: "Solo hero card · senza sito completo · da €29,99/anno" },
-  { name: "KATA HERO Pro", hint: "Sito completo · senza Social Kit · da €89,99/anno" },
-  { name: "KATA HERO Elite", hint: "Sito completo + Social Kit Instagram · da €149,99/anno" },
-];
-
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-[max(6rem,calc(5rem+env(safe-area-inset-top,0px)))] pb-[max(4rem,calc(3.25rem+env(safe-area-inset-bottom,0px)))] sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
@@ -85,43 +79,16 @@ export function Hero() {
 
         <div className="w-full shrink-0 lg:max-w-90 lg:pb-0">
           <div className="rounded-2xl border border-white/14 bg-black/55 p-5 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.9)] ring-1 ring-white/4 backdrop-blur-xl sm:rounded-3xl sm:p-7">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Pacchetti</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Talent Board</p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-              Tre pacchetti: <strong className="font-semibold text-zinc-300">Card Player</strong>,{" "}
-              <strong className="font-semibold text-zinc-300">Pro</strong> ed{" "}
-              <strong className="font-semibold text-zinc-300">Elite</strong> — anteprima qui; dettaglio e prezzi in sezione
-              pacchetti.
+              Schede atleta, filtri e link condivisibili — la vetrina KataHero per club, scout e agenzie.
             </p>
-            <ul className="mt-4 space-y-2 border-t border-white/10 pt-4 sm:mt-5 sm:space-y-2.5 sm:pt-5">
-              {planTeaser.map((row) => (
-                <li
-                  key={row.name}
-                  className="rounded-xl border border-white/6 bg-white/4 px-3 py-2.5 sm:rounded-2xl sm:px-3.5"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-zinc-300">{row.name}</p>
-                  <p className="mt-0.5 text-[11px] leading-snug text-zinc-500">{row.hint}</p>
-                </li>
-              ))}
-            </ul>
             <Link
               href="/talent-board"
-              className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-accent/35 bg-accent/10 py-3.5 text-sm font-semibold text-accent transition hover:border-accent/50 hover:bg-accent/15 active:bg-accent/20 sm:mt-5 sm:rounded-2xl"
+              className="mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-accent/35 bg-accent/10 py-3.5 text-sm font-semibold text-accent transition hover:border-accent/50 hover:bg-accent/15 active:bg-accent/20 sm:rounded-2xl"
             >
               Vai alla Talent Board
               <span aria-hidden>→</span>
-            </Link>
-            <Link
-              href="#pacchetti"
-              className="mt-2 block text-center text-[11px] font-semibold text-zinc-500 underline-offset-2 transition hover:text-zinc-300 hover:underline sm:text-xs"
-            >
-              Pacchetti Card Player, Pro ed Elite
-            </Link>
-            <Link
-              href="#portfolio"
-              className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/12 py-3.5 text-sm font-medium text-zinc-300 transition hover:border-white/22 hover:bg-white/6 hover:text-white active:bg-white/8 sm:rounded-2xl"
-            >
-              Esempio in portfolio
-              <span aria-hidden>↗</span>
             </Link>
           </div>
         </div>
