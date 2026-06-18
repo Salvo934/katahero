@@ -585,8 +585,9 @@ export function PlayerIntakeForm() {
         </p>
       ) : null}
 
-      <div className="sticky bottom-0 z-10 -mx-4 border-t border-white/10 bg-[#050505]/95 px-4 py-4 backdrop-blur-md sm:mx-0 sm:rounded-2xl sm:border sm:px-5">
-        <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3">
+      <section className={`${sectionClass} mt-2`}>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">Invio</p>
+        <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-black/40 px-4 py-3">
           <input
             id="privacyConsent"
             type="checkbox"
@@ -611,11 +612,11 @@ export function PlayerIntakeForm() {
           Invia su WhatsApp
           <span aria-hidden>→</span>
         </button>
-        <p className="mt-2 text-center text-[11px] text-zinc-500">
+        <p className="mt-3 text-center text-[11px] leading-relaxed text-zinc-500">
           Si aprirà WhatsApp con il messaggio precompilato verso {SITE.phoneDisplay}. Puoi aggiungere foto o file prima di
           inviare.
         </p>
-      </div>
+      </section>
     </form>
   );
 }
