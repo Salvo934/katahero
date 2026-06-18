@@ -191,6 +191,7 @@ export function buildPlayerIntakeWhatsAppMessage(data: PlayerIntakeFormData): st
     ]),
     block("Pacchetto", [PACKAGE_LABELS[data.packageTier]]),
     data.notes.trim() ? block("Note", [truncate(data.notes, 400)]) : "",
+    "\n*Materiali da inviare in chat:* 1 foto avatar (card + sito) · 3–4 foto gallery · fino a 3 clip se disponibili.",
   ].filter(Boolean);
 
   let message = parts.join("\n");

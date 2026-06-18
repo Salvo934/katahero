@@ -99,29 +99,6 @@ export function PlayerIntakeForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-6 sm:space-y-8" noValidate>
-      <div className="rounded-2xl border border-accent/20 bg-accent/5 p-4 sm:p-5">
-        <p className="text-sm leading-relaxed text-zinc-300">
-          Compila i campi come nella{" "}
-          <a
-            href="https://alfonsozampogna16.katahero.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-accent underline underline-offset-2 hover:text-white"
-          >
-            scheda esempio Alfonso Zampogna
-          </a>
-          . All&apos;invio si apre WhatsApp con il riepilogo verso{" "}
-          <span className="font-medium text-white">{SITE.phoneDisplay}</span>.
-        </p>
-        <p className="mt-2 text-xs text-zinc-500">
-          Se hai meno di 18 anni, spunta l&apos;opzione in fondo e invia anche il{" "}
-          <Link href="/minori" className="text-accent underline underline-offset-2 hover:text-white">
-            modulo genitore/tutore
-          </Link>
-          .
-        </p>
-      </div>
-
       <Section
         step="01 · Contatti"
         title="Anagrafica e contatti"
@@ -613,9 +590,41 @@ export function PlayerIntakeForm() {
           <span aria-hidden>→</span>
         </button>
         <p className="mt-3 text-center text-[11px] leading-relaxed text-zinc-500">
-          Si aprirà WhatsApp con il messaggio precompilato verso {SITE.phoneDisplay}. Puoi aggiungere foto o file prima di
-          inviare.
+          Si aprirà WhatsApp con il messaggio precompilato verso {SITE.phoneDisplay}. Allega i materiali elencati qui sotto
+          prima di inviare.
         </p>
+        <div className="mt-4 rounded-xl border border-white/10 bg-black/35 p-4 sm:p-5">
+          <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Materiali da allegare su WhatsApp</p>
+          <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-zinc-300">
+            <li className="flex gap-2.5">
+              <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
+                •
+              </span>
+              <span>
+                <strong className="font-semibold text-white">1 foto avatar</strong> — ritratto nitido per hero card e sito
+                (stesso scatto va bene per entrambi).
+              </span>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
+                •
+              </span>
+              <span>
+                <strong className="font-semibold text-white">3–4 foto gallery</strong> — azioni in gara, allenamento o
+                lifestyle utili per la sezione gallery.
+              </span>
+            </li>
+            <li className="flex gap-2.5">
+              <span className="mt-0.5 shrink-0 text-accent" aria-hidden>
+                •
+              </span>
+              <span>
+                <strong className="font-semibold text-white">Fino a 3 clip</strong> — highlights o estratti brevi, se li
+                hai (link YouTube o file video).
+              </span>
+            </li>
+          </ul>
+        </div>
       </section>
     </form>
   );
