@@ -6,7 +6,7 @@ export const SITE = {
   phoneDisplay: "+39 327 459 7773",
   phoneTel: "+393274597773",
   whatsappUrl: "https://wa.me/393274597773",
-  email: "salvo.bonaita9808@gmail.com",
+  email: "salvo.bonavita9808@gmail.com",
   locale: "it_IT",
   social: {
     instagram: "https://www.instagram.com/katahero?igsh=b2tpbmM4bGQyazcw",

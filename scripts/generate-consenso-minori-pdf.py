@@ -110,7 +110,7 @@ def main() -> None:
     write_line(
         pdf,
         "Il consenso ha durata legata al rapporto contrattuale o alla pubblicazione del profilo, "
-        "fino a revoca scritta inviata a salvo.bonaita9808@gmail.com. La revoca non pregiudica "
+        "fino a revoca scritta inviata a salvo.bonavita9808@gmail.com. La revoca non pregiudica "
         "i trattamenti già effettuati in base al consenso prestato.",
     )
 
@@ -132,7 +132,7 @@ def main() -> None:
     write_line(
         pdf,
         "Invio del modulo: allega scansione o foto leggibile del documento firmato a "
-        "salvo.bonaita9808@gmail.com indicando in oggetto «Consenso minorenne — [Nome atleta]». "
+        "salvo.bonavita9808@gmail.com indicando in oggetto «Consenso minorenne — [Nome atleta]». "
         "KataHero non attiva profili pubblici di atleti minorenni senza questo consenso.",
         size=9,
     )
