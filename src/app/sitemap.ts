@@ -43,5 +43,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.4,
     },
+    {
+      url: `${base}/compila-scheda`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
   ];
 }

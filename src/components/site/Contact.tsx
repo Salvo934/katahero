@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SITE } from "@/lib/site";
 
 function IconWhatsApp({ className }: { className?: string }) {
@@ -75,6 +76,13 @@ export function Contact() {
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
             Card Player, Pro o Elite: per demo, preventivo o raccolta materiali — un solo tap su WhatsApp, telefono o email.
           </p>
+          <Link
+            href="/compila-scheda"
+            className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-accent/35 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent transition hover:border-accent/50 hover:bg-accent/15"
+          >
+            Atleta? Compila la scheda online
+            <span aria-hidden>→</span>
+          </Link>
           <div
             className="mx-auto mt-8 h-px max-w-xs bg-linear-to-r from-transparent via-accent/50 to-transparent"
             aria-hidden
