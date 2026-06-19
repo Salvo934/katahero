@@ -1,6 +1,6 @@
 import { whatsappPrefilledUrl } from "@/lib/site";
 
-export type PlayerPackageTier = "card-player" | "pro" | "elite" | "non-so";
+export type PlayerPackageTier = "starter" | "social" | "player-pro" | "non-so";
 
 export type PlayerIntakeFormData = {
   firstName: string;
@@ -103,9 +103,9 @@ export const OPPORTUNITY_OPTIONS = [
 ] as const;
 
 export const PACKAGE_LABELS: Record<PlayerPackageTier, string> = {
-  "card-player": "KATA HERO Card Player (€29,99/anno — solo hero card)",
-  pro: "KATA HERO Pro (€89,99/anno — sito completo)",
-  elite: "KATA HERO Elite (€149,99/anno — sito + Social Kit IG)",
+  starter: "Starter (attivazione + 1° mese €49,99 · poi €14,99/mese)",
+  social: "Player Social (attivazione + 1° mese €59,99 · poi €29,99/mese)",
+  "player-pro": "Player Pro (attivazione + 1° mese €79,99 · poi €59,99/mese)",
   "non-so": "Non so ancora — vorrei consiglio",
 };
 

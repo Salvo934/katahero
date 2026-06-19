@@ -46,7 +46,7 @@ export default function CompilaSchedaPage() {
               href="/#pacchetti"
               className="mt-4 inline-block text-xs font-semibold text-zinc-500 underline-offset-2 transition hover:text-accent hover:underline"
             >
-              Confronta Card Player, Pro ed Elite →
+              Confronta Starter, Player Social e Player Pro →
             </Link>
           </header>
 

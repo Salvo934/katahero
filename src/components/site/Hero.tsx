@@ -8,9 +8,9 @@ const highlights = [
 ];
 
 const planTeaser = [
-  { name: "KATA HERO Card Player", hint: "Solo hero card · senza sito completo · da €29,99/anno" },
-  { name: "KATA HERO Pro", hint: "Sito completo · senza Social Kit · da €89,99/anno" },
-  { name: "KATA HERO Elite", hint: "Sito completo + Social Kit Instagram · da €149,99/anno" },
+  { name: "Starter", hint: "Attivazione + 1° mese €49,99 · poi €14,99/mese" },
+  { name: "Player Social", hint: "Attivazione + 1° mese €59,99 · poi €29,99/mese" },
+  { name: "Player Pro", hint: "Attivazione + 1° mese €79,99 · poi €59,99/mese · consigliato" },
 ];
 
 export function Hero() {
@@ -87,9 +87,9 @@ export function Hero() {
           <div className="rounded-2xl border border-white/14 bg-black/55 p-5 shadow-[0_24px_80px_-32px_rgba(0,0,0,0.9)] ring-1 ring-white/4 backdrop-blur-xl sm:rounded-3xl sm:p-7">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Pacchetti</p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-              Tre livelli per l&apos;atleta: <strong className="font-semibold text-zinc-300">Card Player</strong>,{" "}
-              <strong className="font-semibold text-zinc-300">Pro</strong> ed{" "}
-              <strong className="font-semibold text-zinc-300">Elite</strong> — anteprima qui; dettaglio in sezione
+              Tre livelli per l&apos;atleta: <strong className="font-semibold text-zinc-300">Starter</strong>,{" "}
+              <strong className="font-semibold text-zinc-300">Player Social</strong> e{" "}
+              <strong className="font-semibold text-zinc-300">Player Pro</strong> — anteprima qui; dettaglio in sezione
               pacchetti.
             </p>
             <ul className="mt-4 space-y-2 border-t border-white/10 pt-4 sm:mt-5 sm:space-y-2.5 sm:pt-5">

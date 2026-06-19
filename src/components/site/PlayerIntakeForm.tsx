@@ -506,7 +506,7 @@ export function PlayerIntakeForm() {
         <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-accent">08 · Pacchetto</p>
         <h2 className="font-display mt-2 text-xl font-bold text-white sm:text-2xl">Quale pacchetto ti interessa?</h2>
         <p className="mt-2 text-sm text-zinc-400">
-          Card Player, Pro o Elite — come in sezione pacchetti del sito KataHero.
+          Starter, Player Social o Player Pro — come in sezione pacchetti del sito KataHero.
         </p>
         <fieldset className="mt-5 space-y-2">
           {(Object.keys(PACKAGE_LABELS) as PlayerPackageTier[]).map((tier) => (
