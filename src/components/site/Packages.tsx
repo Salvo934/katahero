@@ -22,81 +22,83 @@ const plans: Plan[] = [
   {
     name: "Starter",
     badge: "Singolo atleta",
-    promoPill: "Entry",
-    subtitle: "Profilo e player card, con presenza social essenziale.",
+    promoPill: "Entry · presentazione",
+    subtitle: "Pagina presentazione + Social Media Kit — non sito completo.",
     salesLine:
-      "Un unico prezzo per partire: attivazione e primo mese inclusi. Poi solo il canone mensile — senza sorpese «attivazione + abbonamento».",
+      "Solo la pagina di presentazione atleta (landing essenziale), player card e Social Media Kit: il punto di partenza, senza video hub, statistiche avanzate o sezioni complete del sito Pro.",
     pricing: {
       activation: "€49,99",
       activationNote: "Attivazione + primo mese",
-      monthlyFromSecond: "€14,99",
+      monthlyFromSecond: "€24,99",
     },
     features: [
-      "Creazione del profilo atleta",
+      "Pagina presentazione atleta (non sito completo)",
       "Player card personalizzata",
-      "Inserimento di biografia, ruolo, squadra e statistiche",
+      "Social Media Kit — grafiche pronte per Instagram",
+      "Biografia, ruolo, squadra e dati principali",
       "1 post al mese",
       "2 storie al mese",
       "Aggiornamento delle informazioni principali",
     ],
     ctaLabel: "Attiva Starter",
     whatsappMessage:
-      "Ciao! Vorrei attivare Starter KataHero (attivazione + primo mese €49,99, dal secondo mese €14,99/mese). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare Starter KataHero (attivazione + primo mese €49,99, dal secondo mese €24,99/mese). Mi dite tempi e materiali necessari?",
     tier: "starter",
   },
   {
     name: "Player Social",
     badge: "Singolo atleta",
-    promoPill: "Social attivo",
-    subtitle: "Profilo, card e contenuti social ogni mese.",
+    promoPill: "Sito quasi completo",
+    subtitle: "Sito atleta quasi completo + Social Media Kit.",
     salesLine:
-      "Più post, storie e un reel al mese: identità grafica e aggiornamenti regolari per restare visibile su Instagram.",
+      "Quasi tutte le sezioni del sito atleta — profilo, numeri, gallery e contatti — più Social Media Kit con più post, storie e un reel al mese. Ideale se vuoi più del solo presentazione Starter.",
     pricing: {
       activation: "€59,99",
       activationNote: "Attivazione + primo mese",
-      monthlyFromSecond: "€29,99",
+      monthlyFromSecond: "€39,99",
     },
     features: [
-      "Creazione del profilo atleta",
+      "Sito atleta quasi completo + dominio dedicato",
       "Player card personalizzata",
-      "Impostazione grafica",
+      "Social Media Kit Instagram integrato",
+      "Profilo, statistiche, gallery e contatti",
       "3 post al mese",
       "3 storie al mese",
       "1 reel al mese",
-      "Aggiornamento del profilo e delle statistiche",
+      "Aggiornamento profilo e statistiche",
     ],
     ctaLabel: "Attiva Player Social",
     whatsappMessage:
-      "Ciao! Vorrei attivare Player Social KataHero (attivazione + primo mese €59,99, dal secondo mese €29,99/mese). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare Player Social KataHero (attivazione + primo mese €59,99, dal secondo mese €39,99/mese). Mi dite tempi e materiali necessari?",
     tier: "social",
   },
   {
     name: "Player Pro",
     badge: "Singolo atleta",
     recommended: true,
-    promoPill: "Piano consigliato",
-    subtitle: "Presenza premium, più contenuti e supporto prioritario.",
+    promoPill: "Sito completo + SMK",
+    subtitle: "Sito atleta completo + Social Media Kit.",
     salesLine:
-      "Card premium, grafica completa e massimo volume social: post, storie, reel e grafiche per risultati e traguardi.",
+      "Tutto il sito atleta premium — hero, pitch scout, video, statistiche, percorso e gallery — più Social Media Kit al massimo volume: post, storie, reel e grafiche per risultati e traguardi.",
     pricing: {
-      activation: "€79,99",
+      activation: "€69,99",
       activationNote: "Attivazione + primo mese",
       monthlyFromSecond: "€59,99",
     },
     features: [
-      "Creazione del profilo atleta",
+      "Sito atleta completo (come player card premium)",
       "Player card personalizzata premium",
-      "Impostazione grafica completa",
+      "Social Media Kit Instagram completo",
+      "Video hub, statistiche, percorso e gallery",
       "4 post al mese",
       "4 storie al mese",
       "2 reel al mese",
-      "Aggiornamento del profilo e delle statistiche",
       "Grafiche per risultati, convocazioni e traguardi",
       "Supporto prioritario",
     ],
     ctaLabel: "Attiva Player Pro",
     whatsappMessage:
-      "Ciao! Vorrei attivare Player Pro KataHero (attivazione + primo mese €79,99, dal secondo mese €59,99/mese). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare Player Pro KataHero (attivazione + primo mese €69,99, dal secondo mese €59,99/mese). Mi dite tempi e materiali necessari?",
     tier: "pro",
   },
 ];
@@ -382,10 +384,14 @@ export function Packages() {
             </span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Attivazione e primo mese in un unico prezzo:{" "}
-            <strong className="font-semibold text-zinc-300">Starter</strong> da €49,99, poi €14,99/mese ·{" "}
-            <strong className="font-semibold text-zinc-300">Player Social</strong> da €59,99, poi €29,99/mese ·{" "}
-            <strong className="font-semibold text-zinc-300">Player Pro</strong> da €79,99, poi €59,99/mese.
+            <strong className="font-semibold text-zinc-300">Starter</strong> — pagina presentazione + Social Kit (non
+            sito completo).{" "}
+            <strong className="font-semibold text-zinc-300">Player Social</strong> — sito quasi completo + Social Kit.{" "}
+            <strong className="font-semibold text-zinc-300">Player Pro</strong> — sito completo + Social Kit.
+          </p>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-500">
+            Attivazione e primo mese in un unico prezzo: Starter €49,99 → €24,99/mese · Player Social €59,99 →
+            €39,99/mese · Player Pro €69,99 → €59,99/mese.
           </p>
         </div>
 

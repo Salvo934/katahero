@@ -103,9 +103,9 @@ export const OPPORTUNITY_OPTIONS = [
 ] as const;
 
 export const PACKAGE_LABELS: Record<PlayerPackageTier, string> = {
-  starter: "Starter (attivazione + 1° mese €49,99 · poi €14,99/mese)",
-  social: "Player Social (attivazione + 1° mese €59,99 · poi €29,99/mese)",
-  "player-pro": "Player Pro (attivazione + 1° mese €79,99 · poi €59,99/mese)",
+  starter: "Starter — pagina presentazione + Social Kit (non sito completo)",
+  social: "Player Social — sito quasi completo + Social Media Kit",
+  "player-pro": "Player Pro — sito atleta completo + Social Media Kit",
   "non-so": "Non so ancora — vorrei consiglio",
 };
 

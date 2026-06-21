@@ -8,9 +8,9 @@ const highlights = [
 ];
 
 const planTeaser = [
-  { name: "Starter", hint: "Attivazione + 1° mese €49,99 · poi €14,99/mese" },
-  { name: "Player Social", hint: "Attivazione + 1° mese €59,99 · poi €29,99/mese" },
-  { name: "Player Pro", hint: "Attivazione + 1° mese €79,99 · poi €59,99/mese · consigliato" },
+  { name: "Starter", hint: "Pagina presentazione + SMK · non sito completo · da €49,99" },
+  { name: "Player Social", hint: "Sito quasi completo + SMK · da €59,99" },
+  { name: "Player Pro", hint: "Sito completo + SMK · consigliato · da €69,99" },
 ];
 
 export function Hero() {
