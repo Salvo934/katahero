@@ -8,9 +8,9 @@ const highlights = [
 ];
 
 const planTeaser = [
-  { name: "Starter", hint: "Pagina presentazione + SMK · non sito completo · da €49,99" },
-  { name: "Player Social", hint: "Sito quasi completo + SMK · da €59,99" },
-  { name: "Player Pro", hint: "Sito completo + SMK · consigliato · da €69,99" },
+  { name: "Starter", hint: "Pagina presentazione, player card e SMK base · da €49,99" },
+  { name: "Player Social", hint: "Sito Essential · più scelto · da €69,99" },
+  { name: "Player Pro", hint: "Sito completo premium · più completo · da €99,99" },
 ];
 
 export function Hero() {

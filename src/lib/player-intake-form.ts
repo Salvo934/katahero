@@ -103,9 +103,9 @@ export const OPPORTUNITY_OPTIONS = [
 ] as const;
 
 export const PACKAGE_LABELS: Record<PlayerPackageTier, string> = {
-  starter: "Starter — pagina presentazione + Social Kit (non sito completo)",
-  social: "Player Social — sito quasi completo + Social Media Kit",
-  "player-pro": "Player Pro — sito atleta completo + Social Media Kit",
+  starter: "Starter — pagina presentazione, player card e Social Media Kit base",
+  social: "Player Social — sito atleta Essential + contenuti social (più scelto)",
+  "player-pro": "Player Pro — sito atleta completo premium (più completo)",
   "non-so": "Non so ancora — vorrei consiglio",
 };
 

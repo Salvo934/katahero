@@ -4,6 +4,7 @@ type Plan = {
   name: string;
   badge: string;
   recommended?: boolean;
+  recommendedLabel?: string;
   promoPill?: string;
   subtitle: string;
   salesLine: string;
@@ -23,22 +24,21 @@ const plans: Plan[] = [
     name: "Starter",
     badge: "Singolo atleta",
     promoPill: "Entry · presentazione",
-    subtitle: "Pagina presentazione + Social Media Kit — non sito completo.",
+    subtitle: "Pagina presentazione, player card e Social Media Kit base.",
     salesLine:
-      "Solo la pagina di presentazione atleta (landing essenziale), player card e Social Media Kit: il punto di partenza, senza video hub, statistiche avanzate o sezioni complete del sito Pro.",
+      "Il piano base per iniziare: pagina atleta, card, kit social e aggiornamenti mensili essenziali.",
     pricing: {
       activation: "€49,99",
       activationNote: "Attivazione + primo mese",
       monthlyFromSecond: "€24,99",
     },
     features: [
-      "Pagina presentazione atleta (non sito completo)",
-      "Player card personalizzata",
-      "Social Media Kit — grafiche pronte per Instagram",
-      "Biografia, ruolo, squadra e dati principali",
-      "1 post al mese",
-      "2 storie al mese",
-      "Aggiornamento delle informazioni principali",
+      "Pagina presentazione atleta",
+      "Player card",
+      "Social Media Kit base",
+      "1 post/mese",
+      "1 storia/mese",
+      "Aggiornamento info principali",
     ],
     ctaLabel: "Attiva Starter",
     whatsappMessage:
@@ -48,57 +48,54 @@ const plans: Plan[] = [
   {
     name: "Player Social",
     badge: "Singolo atleta",
-    promoPill: "Sito quasi completo",
-    subtitle: "Sito atleta quasi completo + Social Media Kit.",
+    recommended: true,
+    recommendedLabel: "Più scelto",
+    promoPill: "Sito Essential",
+    subtitle: "Sito atleta Essential + contenuti social mensili.",
     salesLine:
-      "Quasi tutte le sezioni del sito atleta — profilo, numeri, gallery e contatti — più Social Media Kit con più post, storie e un reel al mese. Ideale se vuoi più del solo presentazione Starter.",
+      "Il piano più scelto: sito Essential con profilo, numeri, gallery e contatti, più post, storie e reel ogni mese.",
     pricing: {
-      activation: "€59,99",
+      activation: "€69,99",
       activationNote: "Attivazione + primo mese",
-      monthlyFromSecond: "€39,99",
+      monthlyFromSecond: "€44,99",
     },
     features: [
-      "Sito atleta quasi completo + dominio dedicato",
-      "Player card personalizzata",
-      "Social Media Kit Instagram integrato",
+      "Sito atleta Essential",
       "Profilo, statistiche, gallery e contatti",
-      "3 post al mese",
-      "3 storie al mese",
-      "1 reel al mese",
+      "2 post/mese",
+      "3 storie/mese",
+      "1 reel/mese",
       "Aggiornamento profilo e statistiche",
     ],
     ctaLabel: "Attiva Player Social",
     whatsappMessage:
-      "Ciao! Vorrei attivare Player Social KataHero (attivazione + primo mese €59,99, dal secondo mese €39,99/mese). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare Player Social KataHero (attivazione + primo mese €69,99, dal secondo mese €44,99/mese). Mi dite tempi e materiali necessari?",
     tier: "social",
   },
   {
     name: "Player Pro",
     badge: "Singolo atleta",
-    recommended: true,
-    promoPill: "Sito completo + SMK",
-    subtitle: "Sito atleta completo + Social Media Kit.",
+    promoPill: "Più completo",
+    subtitle: "Sito atleta completo premium + massimo volume social.",
     salesLine:
-      "Tutto il sito atleta premium — hero, pitch scout, video, statistiche, percorso e gallery — più Social Media Kit al massimo volume: post, storie, reel e grafiche per risultati e traguardi.",
+      "Il piano più completo: pitch scout, video hub, statistiche, percorso e gallery, con il massimo di post, storie, reel e grafiche evento ogni mese.",
     pricing: {
-      activation: "€69,99",
+      activation: "€99,99",
       activationNote: "Attivazione + primo mese",
-      monthlyFromSecond: "€59,99",
+      monthlyFromSecond: "€79,99",
     },
     features: [
-      "Sito atleta completo (come player card premium)",
-      "Player card personalizzata premium",
-      "Social Media Kit Instagram completo",
-      "Video hub, statistiche, percorso e gallery",
-      "4 post al mese",
-      "4 storie al mese",
-      "2 reel al mese",
-      "Grafiche per risultati, convocazioni e traguardi",
+      "Sito atleta completo premium",
+      "Pitch scout, video hub, statistiche, percorso e gallery",
+      "4 post/mese",
+      "4 storie/mese",
+      "2 reel/mese",
+      "2 grafiche evento/mese",
       "Supporto prioritario",
     ],
     ctaLabel: "Attiva Player Pro",
     whatsappMessage:
-      "Ciao! Vorrei attivare Player Pro KataHero (attivazione + primo mese €69,99, dal secondo mese €59,99/mese). Mi dite tempi e materiali necessari?",
+      "Ciao! Vorrei attivare Player Pro KataHero (attivazione + primo mese €99,99, dal secondo mese €79,99/mese). Mi dite tempi e materiali necessari?",
     tier: "pro",
   },
 ];
@@ -129,6 +126,7 @@ function planDisplayName(name: string): { brand: string; tier: string } {
 function PlanCard({ plan }: { plan: Plan }) {
   const isRecommended = plan.recommended === true;
   const isSocial = plan.tier === "social";
+  const isPro = plan.tier === "pro";
   const { brand, tier } = planDisplayName(plan.name);
 
   const cardSurface = isRecommended
@@ -150,7 +148,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       {isRecommended ? (
         <div className="absolute -top-px left-1/2 z-10 -translate-x-1/2">
           <span className="inline-flex rounded-b-lg border border-t-0 border-accent/40 bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black">
-            Piano consigliato
+            {plan.recommendedLabel ?? "Piano consigliato"}
           </span>
         </div>
       ) : null}
@@ -170,7 +168,9 @@ function PlanCard({ plan }: { plan: Plan }) {
                     ? "border-accent/40 bg-accent/15 text-accent"
                     : isSocial
                       ? "border-accent/25 bg-accent/10 text-accent"
-                      : "border-white/15 bg-white/8 text-zinc-300"
+                      : isPro
+                        ? "border-white/20 bg-white/10 text-zinc-200"
+                        : "border-white/15 bg-white/8 text-zinc-300"
                 }`}
               >
                 {plan.promoPill}
@@ -384,14 +384,16 @@ export function Packages() {
             </span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            <strong className="font-semibold text-zinc-300">Starter</strong> — pagina presentazione + Social Kit (non
-            sito completo).{" "}
-            <strong className="font-semibold text-zinc-300">Player Social</strong> — sito quasi completo + Social Kit.{" "}
-            <strong className="font-semibold text-zinc-300">Player Pro</strong> — sito completo + Social Kit.
+            <strong className="font-semibold text-zinc-300">Starter</strong> — pagina presentazione, player card e
+            Social Media Kit base.{" "}
+            <strong className="font-semibold text-zinc-300">Player Social</strong> — sito Essential + contenuti social
+            (più scelto).{" "}
+            <strong className="font-semibold text-zinc-300">Player Pro</strong> — sito completo premium (più
+            completo).
           </p>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-500">
-            Attivazione e primo mese in un unico prezzo: Starter €49,99 → €24,99/mese · Player Social €59,99 →
-            €39,99/mese · Player Pro €69,99 → €59,99/mese.
+            Attivazione e primo mese in un unico prezzo: Starter €49,99 → €24,99/mese · Player Social €69,99 →
+            €44,99/mese · Player Pro €99,99 → €79,99/mese.
           </p>
         </div>
 
