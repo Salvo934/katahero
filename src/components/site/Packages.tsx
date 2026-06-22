@@ -10,80 +10,76 @@ type Plan = {
   subtitle: string;
   salesLine: string;
   pricing: {
-    activation: string;
-    activationNote: string;
-    monthlyFromSecond: string;
+    amount: string;
+    footnote: string;
   };
   features: string[];
   ctaLabel: string;
   whatsappMessage: string;
-  tier: "starter" | "social" | "pro";
+  tier: "rookie" | "pro" | "elite";
 };
 
 const plans: Plan[] = [
   {
-    name: "Starter",
+    name: "Rookie",
     badge: "Singolo atleta",
-    promoPill: "Entry · presentazione",
+    promoPill: "Annuale",
     subtitle: "Pagina presentazione, player card e Social Media Kit base.",
     salesLine:
-      "Il piano base per iniziare: pagina atleta, card, kit social e aggiornamenti mensili essenziali.",
+      "Il piano d'ingresso: pagamento annuale unico, presenza essenziale online e un contenuto social in omaggio.",
     pricing: {
-      activation: "€49,99",
-      activationNote: "Attivazione + primo mese",
-      monthlyFromSecond: "€24,99",
+      amount: "€49,99",
+      footnote: "Un solo pagamento all'anno — nessun canone mensile.",
     },
     features: [
       "Pagina presentazione atleta",
       "Player card",
       "Social Media Kit base",
-      "1 post/mese",
-      "1 storia/mese",
       "Aggiornamento info principali",
+      "1 contenuto social omaggio",
     ],
-    ctaLabel: "Attiva Starter",
+    ctaLabel: "Attiva Rookie",
     whatsappMessage:
-      "Ciao! Vorrei attivare Starter KataHero (attivazione + primo mese €49,99, dal secondo mese €24,99/mese). Mi dite tempi e materiali necessari?",
-    tier: "starter",
+      "Ciao! Vorrei attivare Rookie KataHero (€49,99/anno). Mi dite tempi e materiali necessari?",
+    tier: "rookie",
   },
   {
-    name: "Player Social",
+    name: "Pro",
     badge: "Singolo atleta",
     recommended: true,
     recommendedLabel: "Più scelto",
     promoPill: "Sito Essential",
-    subtitle: "Sito atleta Essential + contenuti social mensili.",
+    subtitle: "Sito atleta Essential + contenuti social.",
     salesLine:
-      "Il piano più scelto: sito Essential con profilo, numeri, gallery e contatti, più post, storie e reel ogni mese.",
+      "Il piano più scelto: sito Essential con profilo, numeri, gallery e contatti, più post, storie, reel e un contenuto in omaggio.",
     pricing: {
-      activation: "€69,99",
-      activationNote: "Attivazione + primo mese",
-      monthlyFromSecond: "€44,99",
+      amount: "€69,99",
+      footnote: "Un solo pagamento all'anno — nessun canone mensile.",
     },
     features: [
       "Sito atleta Essential",
       "Profilo, statistiche, gallery e contatti",
       "2 post/mese",
-      "3 storie/mese",
+      "2 storie/mese",
       "1 reel/mese",
+      "1 contenuto omaggio",
       "Aggiornamento profilo e statistiche",
     ],
-    ctaLabel: "Attiva Player Social",
+    ctaLabel: "Attiva Pro",
     whatsappMessage:
-      "Ciao! Vorrei attivare Player Social KataHero (attivazione + primo mese €69,99, dal secondo mese €44,99/mese). Mi dite tempi e materiali necessari?",
-    tier: "social",
+      "Ciao! Vorrei attivare Pro KataHero (€69,99/anno). Mi dite tempi e materiali necessari?",
+    tier: "pro",
   },
   {
-    name: "Player Pro",
+    name: "Elite",
     badge: "Singolo atleta",
     promoPill: "Più completo",
     subtitle: "Sito atleta completo premium + massimo volume social.",
     salesLine:
-      "Il piano più completo: pitch scout, video hub, statistiche, percorso e gallery, con il massimo di post, storie, reel e grafiche evento ogni mese.",
+      "Il piano più completo: pitch scout, video hub, statistiche, percorso e gallery, con il massimo di post, storie, reel e un contenuto social in omaggio.",
     pricing: {
-      activation: "€99,99",
-      activationNote: "Attivazione + primo mese",
-      monthlyFromSecond: "€79,99",
+      amount: "€99,99",
+      footnote: "Un solo pagamento all'anno — nessun canone mensile.",
     },
     features: [
       "Sito atleta completo premium",
@@ -91,13 +87,13 @@ const plans: Plan[] = [
       "4 post/mese",
       "4 storie/mese",
       "2 reel/mese",
-      "2 grafiche evento/mese",
+      "1 contenuto social omaggio",
       "Supporto prioritario",
     ],
-    ctaLabel: "Attiva Player Pro",
+    ctaLabel: "Attiva Elite",
     whatsappMessage:
-      "Ciao! Vorrei attivare Player Pro KataHero (attivazione + primo mese €99,99, dal secondo mese €79,99/mese). Mi dite tempi e materiali necessari?",
-    tier: "pro",
+      "Ciao! Vorrei attivare Elite KataHero (€99,99/anno). Mi dite tempi e materiali necessari?",
+    tier: "elite",
   },
 ];
 
@@ -106,7 +102,7 @@ type AthleteExtraRow = {
   price: string;
 };
 
-/** Extra oltre Starter, Player Social e Player Pro (singolo atleta). */
+/** Extra oltre Rookie, Pro e Elite (singolo atleta). */
 const athletePackageExtras: AthleteExtraRow[] = [
   { name: "1 post extra", price: "€14,99" },
   { name: "1 storia extra", price: "€7,99" },
@@ -126,25 +122,25 @@ function planDisplayName(name: string): { brand: string; tier: string } {
 
 function PlanCard({ plan }: { plan: Plan }) {
   const isRecommended = plan.recommended === true;
-  const isSocial = plan.tier === "social";
-  const isPro = plan.tier === "pro";
+  const isMid = plan.tier === "pro";
+  const isElite = plan.tier === "elite";
   const { brand, tier } = planDisplayName(plan.name);
 
   const cardSurface = isRecommended
     ? "border-accent/40 bg-linear-to-b from-accent/10 via-zinc-900/80 to-zinc-950 shadow-[0_0_0_1px_rgba(0,229,160,0.12),0_28px_72px_-32px_rgba(0,229,160,0.35)] lg:ring-1 lg:ring-accent/25"
-    : isSocial
+    : isMid
       ? "border-accent/22 bg-linear-to-b from-accent/6 via-zinc-900/75 to-zinc-950"
       : "border-white/12 bg-linear-to-b from-white/6 via-zinc-900/72 to-zinc-950";
 
   const pricingSurface = isRecommended
     ? "border-accent/30 bg-accent/8"
-    : isSocial
+    : isMid
       ? "border-accent/20 bg-accent/5"
       : "border-white/10 bg-black/35";
 
   return (
     <article
-      className={`relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border transition duration-300 ${cardSurface} ${isRecommended ? "hover:border-accent/55" : isSocial ? "hover:border-accent/38" : "hover:border-white/22"}`}
+      className={`relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border transition duration-300 ${cardSurface} ${isRecommended ? "hover:border-accent/55" : isMid ? "hover:border-accent/38" : "hover:border-white/22"}`}
     >
       {isRecommended ? (
         <div className="absolute -top-px left-1/2 z-10 -translate-x-1/2">
@@ -154,7 +150,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         </div>
       ) : null}
       <div
-        className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${isRecommended ? "via-accent/70" : isSocial ? "via-accent/40" : "via-white/25"} to-transparent`}
+        className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${isRecommended ? "via-accent/70" : isMid ? "via-accent/40" : "via-white/25"} to-transparent`}
         aria-hidden
       />
 
@@ -167,9 +163,9 @@ function PlanCard({ plan }: { plan: Plan }) {
                 className={`rounded-full border px-2 py-0.5 text-[9px] font-bold tracking-wide ${
                   isRecommended
                     ? "border-accent/40 bg-accent/15 text-accent"
-                    : isSocial
+                    : isMid
                       ? "border-accent/25 bg-accent/10 text-accent"
-                      : isPro
+                      : isElite
                         ? "border-white/20 bg-white/10 text-zinc-200"
                         : "border-white/15 bg-white/8 text-zinc-300"
                 }`}
@@ -190,29 +186,15 @@ function PlanCard({ plan }: { plan: Plan }) {
           </p>
         </header>
 
-        <div className={`flex min-h-44 flex-col rounded-xl border p-4 ${pricingSurface} lg:justify-between`}>
-          <div className="space-y-3">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                {plan.pricing.activationNote}
-              </p>
-              <p className="font-display mt-0.5 text-3xl font-bold tracking-tight text-white">{plan.pricing.activation}</p>
-            </div>
-            <div
-              className={`flex items-center justify-between gap-3 rounded-lg border px-3 py-2.5 ${
-                isRecommended || isSocial ? "border-accent/25 bg-accent/10" : "border-white/10 bg-white/5"
-              }`}
-            >
-              <p className="text-[9px] font-semibold uppercase tracking-wider text-zinc-500">Dal 2° mese</p>
-              <p className="font-display text-lg font-bold text-accent">
-                {plan.pricing.monthlyFromSecond}
-                <span className="ml-1 text-xs font-semibold text-zinc-400">/ mese</span>
-              </p>
-            </div>
+        <div className={`flex min-h-32 flex-col justify-between rounded-xl border p-4 ${pricingSurface} lg:min-h-36`}>
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">Pagamento annuale</p>
+            <p className="font-display mt-0.5 text-3xl font-bold tracking-tight text-white">
+              {plan.pricing.amount}
+              <span className="ml-1.5 text-base font-semibold text-zinc-400">/ anno</span>
+            </p>
           </div>
-          <p className="mt-3 text-[11px] leading-snug text-zinc-500">
-            Primo mese incluso nell&apos;attivazione — poi solo il canone mensile.
-          </p>
+          <p className="mt-3 text-[11px] leading-snug text-zinc-500">{plan.pricing.footnote}</p>
         </div>
 
         <div className="flex min-h-0 flex-col border-t border-white/10 pt-5 lg:min-h-75">
@@ -244,7 +226,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           className={`inline-flex min-h-11 w-full items-center justify-center rounded-full px-4 py-3 text-center text-sm font-semibold transition hover:brightness-110 ${
             isRecommended
               ? "bg-accent text-black shadow-[0_10px_32px_-12px_rgba(0,229,160,0.55)]"
-              : isSocial
+              : isMid
                 ? "border border-accent/45 bg-accent text-black hover:bg-accent/90"
                 : "border border-white/18 bg-white text-black hover:bg-zinc-100"
           }`}
@@ -297,7 +279,7 @@ function AthleteExtrasSection() {
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Extra</p>
         <h3 className="font-display mt-2 text-xl font-bold text-white sm:text-2xl">Servizi aggiuntivi atleta</h3>
         <p className="mt-2 text-sm text-zinc-500">
-          Oltre Starter, Player Social e Player Pro — contenuti social, aggiornamenti sito e card.
+          Oltre Rookie, Pro e Elite — contenuti social, aggiornamenti sito e card.
         </p>
       </div>
       <div className="mt-6">
@@ -321,7 +303,7 @@ function SubscriptionManagement() {
         <h3 className="font-display mt-2 text-xl font-bold text-white sm:text-2xl">Gestisci il tuo abbonamento</h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-zinc-400">
           Accedi al portale Stripe per aggiornare il metodo di pagamento, scaricare le fatture o gestire il rinnovo del
-          piano Starter, Player Social o Player Pro.
+          piano Rookie, Pro o Elite.
         </p>
         <a
           href={portalUrl}
@@ -345,9 +327,11 @@ function PricingFormulaAndConditions() {
       <div className="rounded-2xl border border-accent/25 bg-accent/5 p-5 text-center sm:p-6">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent">Come funziona il prezzo</p>
         <p className="mt-3 text-sm leading-relaxed text-zinc-200 sm:text-base">
-          Il <strong className="font-semibold text-white">primo mese è incluso</strong> nel costo di attivazione. Dal
-          secondo mese paghi esclusivamente il <strong className="font-semibold text-white">canone mensile</strong> del
-          piano scelto — un unico prezzo per partire, senza «attivazione + abbonamento» separati.
+          Tutti i piani — <strong className="font-semibold text-white">Rookie</strong>,{" "}
+          <strong className="font-semibold text-white">Pro</strong> ed{" "}
+          <strong className="font-semibold text-white">Elite</strong> — prevedono un{" "}
+          <strong className="font-semibold text-white">unico pagamento annuale</strong>. Niente attivazione separata
+          né canone mensile: un prezzo chiaro per 12 mesi di servizio.
         </p>
       </div>
       <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-5 sm:p-6">
@@ -379,22 +363,21 @@ export function Packages() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Pacchetti</p>
           <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-tight">
-            Starter, Player Social e Player Pro{" "}
+            Rookie, Pro e Elite{" "}
             <span className="bg-linear-to-r from-white to-accent bg-clip-text text-transparent">
               per l&apos;atleta
             </span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            <strong className="font-semibold text-zinc-300">Starter</strong> — pagina presentazione, player card e
-            Social Media Kit base.{" "}
-            <strong className="font-semibold text-zinc-300">Player Social</strong> — sito Essential + contenuti social
-            (più scelto).{" "}
-            <strong className="font-semibold text-zinc-300">Player Pro</strong> — sito completo premium (più
-            completo).
+            Tutti i piani con <strong className="font-semibold text-zinc-300">pagamento annuale</strong>:{" "}
+            <strong className="font-semibold text-zinc-300">Rookie</strong> presenza essenziale + contenuto social
+            omaggio,{" "}
+            <strong className="font-semibold text-zinc-300">Pro</strong> sito Essential + contenuti social (più
+            scelto),{" "}
+            <strong className="font-semibold text-zinc-300">Elite</strong> sito completo premium (più completo).
           </p>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-zinc-500">
-            Attivazione e primo mese in un unico prezzo: Starter €49,99 → €24,99/mese · Player Social €69,99 →
-            €44,99/mese · Player Pro €99,99 → €79,99/mese.
+            Rookie €49,99/anno · Pro €69,99/anno · Elite €99,99/anno.
           </p>
           <div className="mt-7">
             <SharePackagesButton fallbackUrl={getPackagesShareUrl()} />

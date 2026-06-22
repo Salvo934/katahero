@@ -74,7 +74,7 @@ export function Contact() {
             </span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Starter, Player Social o Player Pro: per demo, preventivo o raccolta materiali — un solo tap su WhatsApp, telefono o email.
+            Rookie, Pro o Elite: per demo, preventivo o raccolta materiali — un solo tap su WhatsApp, telefono o email.
           </p>
           <Link
             href="/compila-scheda"
@@ -102,7 +102,7 @@ export function Contact() {
               </div>
               <h3 className="font-display mt-6 text-lg font-semibold text-white">WhatsApp</h3>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-zinc-400 transition group-hover:text-zinc-300">
-                Messaggi rapidi per Starter, Player Social e Player Pro.
+                Messaggi rapidi per Rookie, Pro e Elite.
               </p>
               <span className="mt-6 inline-flex items-center gap-2 text-base font-semibold text-[#4ade80] transition group-hover:gap-3">
                 {SITE.phoneDisplay}

@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Pacchetti atleta",
   description:
-    "Starter, Player Social e Player Pro: prezzi, include, extra e condizioni per la presenza digitale dell'atleta KataHero.",
+    "Rookie, Pro e Elite: prezzi, include, extra e condizioni per la presenza digitale dell'atleta KataHero.",
   path: "/pacchetti",
 });
 

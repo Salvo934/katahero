@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 
 const SHARE_TITLE = "Pacchetti KataHero";
 const SHARE_TEXT =
-  "Starter, Player Social e Player Pro — prezzi, include e condizioni per atleti KataHero.";
+  "Rookie, Pro e Elite — prezzi, include e condizioni per atleti KataHero.";
 
 type Props = {
   /** URL assoluto di fallback (es. dominio produzione). */

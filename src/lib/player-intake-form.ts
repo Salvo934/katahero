@@ -1,6 +1,6 @@
 import { whatsappPrefilledUrl } from "@/lib/site";
 
-export type PlayerPackageTier = "starter" | "social" | "player-pro" | "non-so";
+export type PlayerPackageTier = "rookie" | "pro" | "elite" | "non-so";
 
 export type PlayerIntakeFormData = {
   firstName: string;
@@ -103,9 +103,9 @@ export const OPPORTUNITY_OPTIONS = [
 ] as const;
 
 export const PACKAGE_LABELS: Record<PlayerPackageTier, string> = {
-  starter: "Starter — pagina presentazione, player card e Social Media Kit base",
-  social: "Player Social — sito atleta Essential + contenuti social (più scelto)",
-  "player-pro": "Player Pro — sito atleta completo premium (più completo)",
+  rookie: "Rookie — €49,99/anno + contenuto social omaggio",
+  pro: "Pro — €69,99/anno · sito Essential + contenuti social (più scelto)",
+  elite: "Elite — €99,99/anno · sito completo premium (più completo)",
   "non-so": "Non so ancora — vorrei consiglio",
 };
 
