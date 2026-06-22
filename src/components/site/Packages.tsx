@@ -1,4 +1,5 @@
-import { getStripeCustomerPortalUrl, whatsappPrefilledUrl } from "@/lib/site";
+import { getStripeCustomerPortalUrl, getPackagesShareUrl, whatsappPrefilledUrl } from "@/lib/site";
+import { SharePackagesButton } from "@/components/site/SharePackagesButton";
 
 type Plan = {
   name: string;
@@ -395,6 +396,9 @@ export function Packages() {
             Attivazione e primo mese in un unico prezzo: Starter €49,99 → €24,99/mese · Player Social €69,99 →
             €44,99/mese · Player Pro €99,99 → €79,99/mese.
           </p>
+          <div className="mt-7">
+            <SharePackagesButton fallbackUrl={getPackagesShareUrl()} />
+          </div>
         </div>
 
         <ul className="mt-12 grid list-none grid-cols-1 gap-6 p-0 sm:mt-14 lg:grid-cols-3 lg:items-stretch lg:gap-7">

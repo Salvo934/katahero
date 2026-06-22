@@ -33,6 +33,13 @@ export function getSiteUrl(): string {
   return "https://www.katahero.com";
 }
 
+/** Pagina condivisibile solo pacchetti atleta (Starter, Player Social, Player Pro). */
+export const PACKAGES_SHARE_PATH = "/pacchetti" as const;
+
+export function getPackagesShareUrl(): string {
+  return `${getSiteUrl()}${PACKAGES_SHARE_PATH}`;
+}
+
 /**
  * Link WhatsApp precompilato: nome pacchetto, mensilità e descrizione breve (es. tagline dalla card).
  */
